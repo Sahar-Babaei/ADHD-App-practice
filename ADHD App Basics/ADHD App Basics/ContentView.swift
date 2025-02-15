@@ -12,7 +12,12 @@ struct ContentView: View {
         HStack{
             
             Text("Todo list app (rough draft)")
-                .font(.title)
+                .font(.custom("Avenir-Medium", size: 17))
+            //fun fact: this is how you change fonts.
+            //doing fonts individually like this is kinda hell :/
+                
+            // TODO: mentor? how do i define font styles so i can apply them all over the project? (all heading 1s should be avenir bold 25, all body should be Helverica light 16, etc)
+            
             Spacer()
             //TODO: ^ not sure how this works but i had to put it in the middle of the two elements.
             Image(systemName: "checkmark.square")
@@ -62,7 +67,7 @@ struct ContentView: View {
                 }
             
             
-            // MARK: fun fact, if you have more than 5, it'll move the rests to a "more tab"!
+            // fun fact: if you have more than 5, it'll move the rests to a "more tab"!
             //tab6:
             Text("Tab 6 page")
                 .tabItem {
