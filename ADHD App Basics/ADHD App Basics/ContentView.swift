@@ -134,6 +134,11 @@ struct ContentView: View {
                 }
             }
             
+
+            Divider()
+                .frame(width: 2, height: 50)
+                    .background(Color.init(red: 121/255, green: 68/255, blue: 5/255))
+            
             //tab 2
             Button (action: {selectedTab = 2}){
                 VStack{
@@ -147,6 +152,11 @@ struct ContentView: View {
                 }
             }
             
+  
+            Divider()
+                .frame(width: 2, height: 50)
+                    .background(Color.init(red: 121/255, green: 68/255, blue: 5/255))
+            
             //tab 3
             Button (action: {selectedTab = 3}){
                 VStack{
@@ -158,6 +168,11 @@ struct ContentView: View {
                         .font(.custom("Charter-Bold", size: 14))
                 }
             }
+            
+
+            Divider()
+                .frame(width: 2, height: 50)
+                    .background(Color.init(red: 121/255, green: 68/255, blue: 5/255))
             
             //tab 4
             Button (action: {selectedTab = 4}){
@@ -171,6 +186,12 @@ struct ContentView: View {
                 }
             }
             
+            
+            //divider
+            Divider()
+                .frame(width: 2, height: 50)
+                    .background(Color.init(red: 121/255, green: 68/255, blue: 5/255))
+            
             //tab 5
             Button (action: {selectedTab = 5}){
                 VStack{
@@ -183,7 +204,7 @@ struct ContentView: View {
                 }
             }
         }
-        .accentColor(Color.init(red: 121/255, green: 68/255, blue: 5/255)) // This is how you use colors, no hex codes allowed apparently :')
+        .accentColor(Color.init(red: 121/255, green: 68/255, blue: 5/255)) // I guess this is how you use colors, no hex codes allowed apparently :')
         .frame(height: 60)
         .frame(maxWidth: .infinity) //this fixes the width but not spacing between tabs
         .clipped()
