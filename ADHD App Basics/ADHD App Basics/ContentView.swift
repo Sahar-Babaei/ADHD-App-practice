@@ -119,7 +119,7 @@ struct ContentView: View {
         
         
         //MARK: - the tabs
-        HStack{
+        HStack(spacing:16){ //TODO: mentor? HELP!! using spacing won't work because it's not content aware. using a long tab name will mess everything up!
             
             //tab 1
             Button (action: {selectedTab = 1}){
@@ -191,6 +191,7 @@ struct ContentView: View {
             Divider()
                 .frame(width: 2, height: 50)
                     .background(Color.init(red: 121/255, green: 68/255, blue: 5/255))
+            //TODO: Mentor: how do we get the dividers to vertically center against the yellow background?
             
             //tab 5
             Button (action: {selectedTab = 5}){
