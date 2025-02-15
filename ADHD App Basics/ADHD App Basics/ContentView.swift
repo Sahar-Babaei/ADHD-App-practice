@@ -18,9 +18,12 @@ struct ContentView: View {
         //MARK: - App's header title?
         HStack{
             Text("Todo list app (rough draft)")
-                .font(.custom("Avenir-Medium", size: 17))
+                .font(.custom("Avenir-Medium", size: 20))
             //fun fact: this is how you change fonts.
             //doing fonts individually like this is kinda hell :/
+                .padding(.horizontal,4)
+                .padding(.vertical,8)
+                
             
             // TODO: mentor? how do i define font styles so i can apply them all over the project? (all heading 1s should be avenir bold 25, all body should be Helverica light 16, etc)
             
@@ -28,7 +31,8 @@ struct ContentView: View {
             //^ not sure how this works but i had to put it in the middle of the two elements.
             Image(systemName: "checkmark.square")
                 .foregroundColor(.red)
-                .font(.title)
+                //.font(.title)
+                .font(.system(size: 25))
             
         }
         .padding(EdgeInsets(top: 0, leading: 10, bottom:10, trailing: 10))
@@ -99,15 +103,15 @@ struct ContentView: View {
             
             switch selectedTab{
             case 1:
-                Text ("this is tab 1")
+                Text ("this is tab 1 lol")
             case 2:
-                Text ("this is tab 2")
+                Text ("this is tab 2 lol lol ")
             case 3:
-                Text ("this is tab 3")
+                Text ("this is tab 3 lol lol lol")
             case 4:
-                Text ("this is tab 4")
+                Text ("this is tab 4 lol lol lol lol")
             case 5:
-                Text ("this is tab 5")
+                Text ("this is tab 5 lol lol lol lol lol")
             default:
                 Text ("this tab doesn't exist")
                 //TODO: Mentor? is using switch a good idea? the default case seems pointless...
