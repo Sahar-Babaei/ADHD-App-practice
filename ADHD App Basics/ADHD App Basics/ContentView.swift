@@ -183,6 +183,7 @@ struct ContentView: View {
                 }
             }
         }
+        .accentColor(Color.init(red: 121/255, green: 68/255, blue: 5/255)) // This is how you use colors, no hex codes allowed apparently :')
         .frame(height: 60)
         .frame(maxWidth: .infinity) //this fixes the width but not spacing between tabs
         .clipped()
