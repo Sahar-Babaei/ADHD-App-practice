@@ -137,6 +137,7 @@ struct ContentView: View {
                         .font(.custom("Charter-Bold", size: 14))
                 }
             }
+            .frame(maxWidth: .infinity)
             
 
             Divider()
@@ -155,6 +156,7 @@ struct ContentView: View {
                     // TODO: Mentor? Do i have to set the font for each item every time? :c
                 }
             }
+            .frame(maxWidth: .infinity)
             
   
             Divider()
@@ -172,6 +174,7 @@ struct ContentView: View {
                         .font(.custom("Charter-Bold", size: 14))
                 }
             }
+            .frame(maxWidth: .infinity)
             
 
             Divider()
@@ -189,6 +192,7 @@ struct ContentView: View {
                         .font(.custom("Charter-Bold", size: 14))
                 }
             }
+            .frame(maxWidth: .infinity)
             
             
             //divider
@@ -208,11 +212,17 @@ struct ContentView: View {
                         .font(.custom("Charter-Bold", size: 14))
                 }
             }
+            .frame(maxWidth: .infinity)
+            
+            
+            
         }
+        .padding(.horizontal, 20)
         .accentColor(Color.init(red: 121/255, green: 68/255, blue: 5/255)) // I guess this is how you use colors, no hex codes allowed apparently :')
-        .frame(height: 60)
-        .frame(maxWidth: .infinity) //this fixes the width but not spacing between tabs
-        .clipped()
+//        .frame(height: 60)
+//        .frame(maxWidth: .infinity) //this fixes the width but not spacing between tabs
+//        .clipped()
+        //Note: ^ commented these out for now because i manually set the width of each button to .infinity
         .background(Color.yellow)
         
         
