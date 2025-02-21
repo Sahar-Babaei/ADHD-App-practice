@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Task: Decodable {
+struct Task {
     var taskId = UUID()                      //   <-- task id
     var taskName: String = ""                //   <-- Task name
     var taskStatus: String = "Not Started"   //   <-- Completion status
