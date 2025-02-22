@@ -23,7 +23,10 @@ struct Checkbox: View {
             Rectangle()
                 .frame(width: 80, height: 80)
                 .foregroundStyle(.blue)
-                
+            Image(systemName: "checkmark")
+                .font(.system(size: 70))
+                .foregroundStyle(.white)
+            
         }
         
     }
