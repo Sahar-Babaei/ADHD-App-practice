@@ -103,6 +103,7 @@ struct ContentView: View {
             
             switch selectedTab{
             case 1:
+                //make enums for name of each tab instead of 1,2,3,...
                 Text ("this is tab 1 lol")
             case 2:
                 Text ("this is tab 2 lol lol ")
@@ -112,7 +113,7 @@ struct ContentView: View {
                 Text ("this is tab 4 lol lol lol lol")
             case 5:
                 Text ("this is tab 5 lol lol lol lol lol")
-            default:
+            default: //if we do an enum, the default is not necessary. only for ints
                 Text ("this tab doesn't exist")
                 //TODO: Mentor? is using switch a good idea? the default case seems pointless...
             }
@@ -123,7 +124,7 @@ struct ContentView: View {
         
         
         //MARK: - the tabs
-        HStack(spacing:16){ //TODO: mentor? HELP!! using spacing won't work because it's not content aware. using a long tab name will mess everything up!
+        HStack(){ //TODO: mentor? HELP!! using spacing won't work because it's not content aware. using a long tab name will mess everything up!
             
             //tab 1
             Button (action: {selectedTab = 1}){
@@ -190,6 +191,7 @@ struct ContentView: View {
                     
                     Text("tab 4")
                         .font(.custom("Charter-Bold", size: 14))
+                    
                 }
             }
             .frame(maxWidth: .infinity)

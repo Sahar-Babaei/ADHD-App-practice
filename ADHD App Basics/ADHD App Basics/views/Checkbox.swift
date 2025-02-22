@@ -23,7 +23,7 @@ struct Checkbox: View {
             Rectangle()
                 .frame(width: 80, height: 80)
                 .foregroundStyle(.blue)
-                . 
+                
         }
         
     }
