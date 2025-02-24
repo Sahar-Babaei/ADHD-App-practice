@@ -13,6 +13,8 @@ struct TaskCard: View {
     //the initialized values are the default states for now
     
     @State var task: Task
+    @State private var isTaskCompled = false
+    
 //    @State private var taskName: String
 //    @State private var taskDueDate: Date
 //    init(task: Task)    {
@@ -29,10 +31,13 @@ struct TaskCard: View {
         
 //        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
         VStack{
-            
-            TextField("Enter your task here", text: $task.taskName)
+            HStack{
+                Checkbox(isChecked: $isTaskCompled);                TextField("Enter your task here", text: $task.taskName)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
+                
+            }
+            .padding()
+            
             
             DatePicker(selection: $task.taskDueDate, label: { Text("Date") })
                 .padding()
