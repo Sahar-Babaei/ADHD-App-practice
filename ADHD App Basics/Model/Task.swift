@@ -12,7 +12,7 @@ struct Task {
     var taskName: String = ""                //   <-- Task name
     var taskStatus: String = "Not Started"   //   <-- Completion status
     var taskTag = [String]()                 //   <-- Tags associated with it
-    var taskPriority: Int = 0                //   <-- what is the priority (0 is no priority)
+//    var taskPriority: Int               //   <-- what is the priority (0 is no priority)
     var taskDuration: Int = 0                //   <-- how long the task would take
     
     var taskDueDate: Date = Date()           //   <-- the due date for the task

@@ -14,6 +14,10 @@ struct TaskCard: View {
     
     @State var task: Task
     @State private var isTaskCompled = false
+    @State private var priorityType = 1
+    @State private var selectedPriority: Priority = .none
+    
+    
     
 //    @State private var taskName: String
 //    @State private var taskDueDate: Date
@@ -32,19 +36,101 @@ struct TaskCard: View {
 //        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
         VStack{
             HStack{
+                //TODO: this combines checkbox with the task title
                 Checkbox(isChecked: $isTaskCompled);                TextField("Enter your task here", text: $task.taskName)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 
             }
             .padding()
             
-            
+            //TODO: add due date for task
             DatePicker(selection: $task.taskDueDate, label: { Text("Date") })
                 .padding()
+            
+            //TODO: Need to add a tag system: where user can add x amount of tags plus make new ones: if there's time have each tag has it's own colour
+            //make an empty array list for tags: there is a button to add tags to the
+            
+            //TODO: add priority/importance: use either case of enum or switch
+            //~the incremented menu bar
+//            VStack {
+//                Text("Priority: \(selectedPriority.rawValue)")
+//                    .font(.headline)
+//                
+//                Picker("Priority", selection: $selectedPriority) {
+//                    ForEach(Priority.allCases, id: \.self) { priority in
+//                        Text(priority.rawValue).tag(priority)
+//                    }
+//                }
+//                .pickerStyle(SegmentedPickerStyle())
+//            }
+            //~popoup menu version: we go with this one
+            Menu {
+                ForEach(Priority.allCases, id: \.self) { priority in
+                    Button(priority.rawValue) { selectedPriority = priority}
+                    
+                }
+            } label: {
+                HStack {
+                    Text("Priority: \(selectedPriority.rawValue)")
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding(10)
+                        .background(Color.gray)
+                        .foregroundColor(.white)
+                        .cornerRadius(4)
+//                    Image(systemName: "chevron.down")
+                }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 205))
+            }
+            //need to comment this out bc I dont have a way to switch between priority states
+//            switch task.taskPriority {
+//            case 1:
+//                ZStack{
+//                    Text("Low Priority")
+//                        .textFieldStyle(RoundedBorderTextFieldStyle())
+//                        .padding(10)
+//                        .background(Color.yellow)
+//                        .foregroundColor(.white)
+//                        .cornerRadius(4)
+//                }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 260))
+//            case 2:
+//                ZStack{
+//                    Text("Medium Priority")
+//                        .textFieldStyle(RoundedBorderTextFieldStyle())
+//                        .padding(10)
+//                        .background(Color.orange)
+//                        .foregroundColor(.white)
+//                        .cornerRadius(4)
+//                }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 260))
+//            case 3:
+//                ZStack{
+//                    Text("Top Priority")
+//                        .textFieldStyle(RoundedBorderTextFieldStyle())
+//                        .padding(10)
+//                        .background(Color.red)
+//                        .foregroundColor(.white)
+//                        .cornerRadius(4)
+//                }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 260))
+//            default:
+//                ZStack {
+//                    Text("No Priority")
+//                        .textFieldStyle(RoundedBorderTextFieldStyle())
+//                        .padding(10)
+//                        .background(Color.gray)
+//                        .foregroundColor(.white)
+//                        .cornerRadius(4)
+//                }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 260))
+//                //is there a way to have this spacing without hardcarding?
+//            }
+            
         }
         
         
     }
+}
+enum Priority: String, CaseIterable {
+    case none = "No Priority"
+    case low = "Low Priority"
+    case medium = "Medium Priority"
+    case high = "High Priority"
 }
 
 #Preview {
