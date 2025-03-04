@@ -17,6 +17,6 @@ struct FakeTask{
     var fTaskCompleted: Bool = false
     var fTaskStatus: String = "Not Started"
     var fTaskCreationDate : Date = Date()
-    var fTaskCompletionDate : Date = Date () //Todo: What should the default value for this be?
+    var fTaskCompletionDate : Date? = nil // Optional date for when the task is completed
     
 }

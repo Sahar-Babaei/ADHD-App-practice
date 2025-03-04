@@ -14,7 +14,16 @@ struct FakeTaskCard: View {
     
     //MARK: - body
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        Text(fTask.fTaskName)
+            .frame(maxWidth:.infinity , minHeight: 120)
+            .background(Color.yellow)
+            .cornerRadius(20)
+            .overlay(
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(Color.black, lineWidth: 2)
+            )
+        
        
     }
 }
