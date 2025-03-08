@@ -114,7 +114,11 @@ struct TaskBankPage: View {
         guard !userTaskTitle.isEmpty else { return }
         
         let newTask  = FakeTask(fTaskName: userTaskTitle, fTaskID: UUID(), fTaskCompleted: false)
-        allTasksList.append(newTask)
+    
+        
+        //allTasksList.append(newTask)
+        // this adds the task at the top rather than at the end:
+        allTasksList.insert(newTask, at: 0)
         
         // Hide the overlay and reset the task title
         showTextFieldOverlay = false
