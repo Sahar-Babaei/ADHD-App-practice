@@ -18,8 +18,9 @@ struct FakeTaskCard: View {
     var body: some View {
         
         Text(fTask.fTaskName)
+            .padding()
             .frame(maxWidth:.infinity , minHeight: 120)
-            .background(Color.yellow)
+            .background(Color.yellow.opacity(0.5))
             .cornerRadius(20)
             .overlay(
                 RoundedRectangle(cornerRadius: 20)
