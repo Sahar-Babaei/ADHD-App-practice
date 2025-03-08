@@ -14,7 +14,7 @@ struct TaskBankPage: View {
     @State var userTaskTitle : String = ""
     @State var showTextFieldOverlay : Bool = false
     
-    @State var reverseOrder : Bool = true
+    @State var reverseOrder : Bool = false
     
     
     //important: can't create functions in body. body is a special property that returns views
@@ -27,6 +27,9 @@ struct TaskBankPage: View {
                 
                 //sort button
                 Button(action: {reverseOrder.toggle()
+                    sortTasks(reversed: reverseOrder)
+
+
                 }) {
                     Text(reverseOrder ? "Sort: Reverse Order" : "Sort: Regular Order")
                         .padding()
@@ -61,13 +64,13 @@ struct TaskBankPage: View {
                 LazyVStack(){
                     
                     //the \.fTaskID is needed because swiftUI needs an identifier for each task in the array. don't ask why!
-                    ForEach(allTasksList.sorted {
-                        //basically this sorted WTF checkes if reverseOrder is on(true) and if it is, it sorts new items on top. if false. it sorts new items on bottom.
-                        reverseOrder ? $0.fTaskName > $1.fTaskName : $0.fTaskName < $1.fTaskName
-                    },id: \.fTaskID){ task in
+                    
+                    ForEach(allTasksList,id: \.fTaskID ){ task in
                         FakeTaskCard(fTask: task)
                     }
                 }
+                
+                //ForEach(if(reverseOrder)allTasksList.reversed() else {allTasksLists})
                 .padding(.vertical,5)
                 .padding(.horizontal,12)
                 
@@ -138,13 +141,25 @@ struct TaskBankPage: View {
     
         
 
-        //allTasksList.append(newTask)
+        allTasksList.append(newTask)
+        sortTasks(reversed: reverseOrder)
         // this adds the task at the top rather than at the end:
-        allTasksList.insert(newTask, at: 0)
+//        allTasksList.insert(newTask, at: 0)
         
         // Hide the overlay and reset the task title
         showTextFieldOverlay = false
         userTaskTitle = ""
+    }
+    
+    func sortTasks(reversed: Bool ){
+        allTasksList = allTasksList.sorted { taskA, taskB in
+            if reversed {
+                taskA.fTaskCreationDate > taskB.fTaskCreationDate
+            }
+            else{
+                taskA.fTaskCreationDate < taskB.fTaskCreationDate
+            }
+        }
     }
 }
 
