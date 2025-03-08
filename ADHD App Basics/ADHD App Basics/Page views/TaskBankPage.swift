@@ -14,16 +14,28 @@ struct TaskBankPage: View {
     @State var userTaskTitle : String = ""
     @State var showTextFieldOverlay : Bool = false
     
+    @State var reverseOrder : Bool = true
+    
     
     //important: can't create functions in body. body is a special property that returns views
     var body: some View {
         
         VStack{
             
-            //Add task Button
+            
             HStack{
+                
+                //sort button
+                Button(action: {reverseOrder.toggle()
+                }) {
+                    Text(reverseOrder ? "Sort: Reverse Order" : "Sort: Regular Order")
+                        .padding()
+                }
+                
+                
                 Spacer()
                 
+                //Add task Button
                 Button(action: {showTextFieldOverlay=true}) {
                     Text("Add New Task +")
                         .padding()
@@ -31,19 +43,28 @@ struct TaskBankPage: View {
                         .foregroundStyle(.white)
                         .cornerRadius(10)
                 }
+                
+                
+
             }
             .padding(.horizontal, 12)
             
             
             
             
+            
+            
             //for loop to show Task cards
             ScrollView{
-                //LazyVStack only loads what's on the screen.
                 
+                //LazyVStack only loads what's on the screen.
                 LazyVStack(){
+                    
                     //the \.fTaskID is needed because swiftUI needs an identifier for each task in the array. don't ask why!
-                    ForEach(allTasksList, id: \.fTaskID){ task in
+                    ForEach(allTasksList.sorted {
+                        //basically this sorted WTF checkes if reverseOrder is on(true) and if it is, it sorts new items on top. if false. it sorts new items on bottom.
+                        reverseOrder ? $0.fTaskName > $1.fTaskName : $0.fTaskName < $1.fTaskName
+                    },id: \.fTaskID){ task in
                         FakeTaskCard(fTask: task)
                     }
                 }
@@ -116,6 +137,7 @@ struct TaskBankPage: View {
         let newTask  = FakeTask(fTaskName: userTaskTitle, fTaskID: UUID(), fTaskCompleted: false)
     
         
+
         //allTasksList.append(newTask)
         // this adds the task at the top rather than at the end:
         allTasksList.insert(newTask, at: 0)
