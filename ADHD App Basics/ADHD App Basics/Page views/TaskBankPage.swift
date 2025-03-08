@@ -8,8 +8,33 @@
 import SwiftUI
 
 struct TaskBankPage: View {
+    
+    //@State means SwiftUI will automatically update the screen when the list changes
+    @State var allTasksList : [FakeTask] = []
+    
+    
+    //important: can't create functions in body. body is a special property that returns views
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+
+        VStack{
+            Button(action: addNewTask) {
+                Text("Add New Task +")
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundStyle(.white)
+                    .cornerRadius(10)
+            }
+            
+        }
+       
+        
+
+        
+    }
+    
+    func addNewTask(){
+        let newTask  = FakeTask(fTaskName: "New Task \(allTasksList.count + 1)", fTaskID: UUID(), fTaskCompleted: false)
+        allTasksList.append(newTask)
     }
 }
 
