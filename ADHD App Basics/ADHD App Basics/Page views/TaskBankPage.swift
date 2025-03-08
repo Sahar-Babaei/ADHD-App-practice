@@ -17,12 +17,27 @@ struct TaskBankPage: View {
     var body: some View {
 
         VStack{
+            
+            //Add task button Button
             Button(action: addNewTask) {
                 Text("Add New Task +")
                     .padding()
                     .background(Color.blue)
                     .foregroundStyle(.white)
                     .cornerRadius(10)
+            }
+            
+            
+            //Tasks
+            ScrollView{
+                //LazyVStack only loads what's on the screen.
+                LazyVStack(){
+                    ForEach(allTasksList, id: \.fTaskID){ task in
+                        FakeTaskCard(fTask: task)
+                    }
+                    
+                }
+                
             }
             
         }

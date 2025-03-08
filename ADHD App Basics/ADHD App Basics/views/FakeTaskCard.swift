@@ -9,6 +9,8 @@ import SwiftUI
 
 struct FakeTaskCard: View {
     
+    // creating a variable of type FakeTask, so we can use its attributes when creating our card.
+    
     var fTask : FakeTask
  
     
