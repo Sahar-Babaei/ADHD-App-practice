@@ -20,7 +20,7 @@ struct TaskBankPage: View {
         
         VStack{
             
-            //Add task button Button
+            //Add task Button
             HStack{
                 Spacer()
                 
@@ -33,12 +33,6 @@ struct TaskBankPage: View {
                 }
             }
             .padding(.horizontal, 12)
-            
-            
-            //Text field for task input
-            //            TextField ("Task title:", text: $userTaskTitle )
-            //                .padding()
-            //                .textFieldStyle(RoundedBorderTextFieldStyle())
             
             
             
@@ -59,21 +53,44 @@ struct TaskBankPage: View {
             }
             
             
+            
+            // text field overlay
             if showTextFieldOverlay == true{
                 VStack{
+                    //input field
                     TextField ("Task title:", text: $userTaskTitle )
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding(.horizontal,12)
                     
-                    Button(action: addNewTask) {
-                        Text("Add Task")
-                            .padding()
-                            .background(Color.green)
-                            .foregroundStyle(.white)
-                            .cornerRadius(10)
+                    HStack{
+                        //create button
+                        Button(action: addNewTask) {
+                            Text("create task")
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(Color.indigo)
+                                .foregroundStyle(.white)
+                                .cornerRadius(10)
+                        }
+                        
+                        
+                        //cancel button
+                        Button(action: {
+                            showTextFieldOverlay = false // Hide the overlay if user cancels
+                            userTaskTitle = "" // Optionally clear the title
+                        }) {
+                            Text("Cancel")
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(Color.red)
+                                .foregroundStyle(.white)
+                                .cornerRadius(10)
+                        }
                     }
+                    .padding(.horizontal,12)
+                    
                 }
-                .background(Color.white.opacity(0.5))
+
                 
             }
             
