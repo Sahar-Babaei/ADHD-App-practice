@@ -68,7 +68,7 @@ struct TaskBankPage: View {
                             Text("create task")
                                 .padding()
                                 .frame(maxWidth: .infinity)
-                                .background(Color.indigo)
+                                .background(Color.green)
                                 .foregroundStyle(.white)
                                 .cornerRadius(10)
                         }
@@ -90,6 +90,10 @@ struct TaskBankPage: View {
                     .padding(.horizontal,12)
                     
                 }
+                .padding()
+                .background(Color.black.opacity(0.5)) // Dim the background
+                .cornerRadius(20)
+
 
                 
             }
@@ -105,8 +109,16 @@ struct TaskBankPage: View {
     
     //function to create new tasks
     func addNewTask(){
-        let newTask  = FakeTask(fTaskName: "New Task \(allTasksList.count + 1)", fTaskID: UUID(), fTaskCompleted: false)
+        
+        // this only adds a new task if title is not empty
+        guard !userTaskTitle.isEmpty else { return }
+        
+        let newTask  = FakeTask(fTaskName: userTaskTitle, fTaskID: UUID(), fTaskCompleted: false)
         allTasksList.append(newTask)
+        
+        // Hide the overlay and reset the task title
+        showTextFieldOverlay = false
+        userTaskTitle = ""
     }
 }
 
