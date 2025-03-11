@@ -22,7 +22,7 @@ struct FakeTaskCard: View {
     
     //MARK: - body
     var body: some View {
-            VStack {
+           
                 HStack {
                     Text(fTask.fTaskName)
                         .padding()
@@ -60,7 +60,7 @@ struct FakeTaskCard: View {
                 }
             }
         }
-    }
+    
 
 
 

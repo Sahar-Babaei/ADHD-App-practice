@@ -16,6 +16,8 @@ struct TaskBankPage: View {
     
     @State var reverseOrder : Bool = false
     
+    @State private var columns: [GridItem] = [GridItem(.flexible())] // Default is 1 column
+    
     
     //important: can't create functions in body. body is a special property that returns views
     var body: some View {
@@ -24,6 +26,17 @@ struct TaskBankPage: View {
             
             
             HStack{
+                
+                
+                //toggle button
+                Button(action: {
+                    columns = columns.count == 1 ? [GridItem(.flexible()), GridItem(.flexible())] : [GridItem(.flexible())]
+                }) {
+                    Text(columns.count == 1 ? "Switch to 2 Columns" : "Switch to 1 Column")
+                        .padding()
+                        .background(Color.gray.opacity(0.3))
+                        .cornerRadius(10)
+                }
                 
                 //sort button
                 Button(action: {reverseOrder.toggle()
@@ -57,25 +70,38 @@ struct TaskBankPage: View {
             
             
             
-            //for loop to show Task cards
-            ScrollView{
-                
-                //LazyVStack only loads what's on the screen.
-                LazyVStack(){
-                    
-                    //the \.fTaskID is needed because swiftUI needs an identifier for each task in the array. don't ask why!
-                    
+//            //for loop to show Task cards
+//            ScrollView{
+//                
+//                //LazyVStack only loads what's on the screen.
+//                LazyVStack(){
+//                    
+//                    //the \.fTaskID is needed because swiftUI needs an identifier for each task in the array. don't ask why!
+//                    
+//                    ForEach(allTasksList, id: \.fTaskID) { task in
+//                        FakeTaskCard(fTask: task, onDelete: {
+//                            allTasksList.removeAll { $0.fTaskID == task.fTaskID }
+//                        })
+//                    }
+//                }
+//                
+//                //ForEach(if(reverseOrder)allTasksList.reversed() else {allTasksLists})
+//                .padding(.vertical,5)
+//                .padding(.horizontal,12)
+//                
+//            }
+            
+            ScrollView {
+                // LazyVGrid adjusts the number of columns dynamically
+                LazyVGrid(columns: columns) {
                     ForEach(allTasksList, id: \.fTaskID) { task in
                         FakeTaskCard(fTask: task, onDelete: {
                             allTasksList.removeAll { $0.fTaskID == task.fTaskID }
                         })
                     }
                 }
-                
-                //ForEach(if(reverseOrder)allTasksList.reversed() else {allTasksLists})
-                .padding(.vertical,5)
-                .padding(.horizontal,12)
-                
+                .padding(.vertical, 5)
+                .padding(.horizontal, 12)
             }
             
             
