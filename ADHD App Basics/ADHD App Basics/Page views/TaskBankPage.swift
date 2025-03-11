@@ -65,8 +65,10 @@ struct TaskBankPage: View {
                     
                     //the \.fTaskID is needed because swiftUI needs an identifier for each task in the array. don't ask why!
                     
-                    ForEach(allTasksList,id: \.fTaskID ){ task in
-                        FakeTaskCard(fTask: task)
+                    ForEach(allTasksList, id: \.fTaskID) { task in
+                        FakeTaskCard(fTask: task, onDelete: {
+                            allTasksList.removeAll { $0.fTaskID == task.fTaskID }
+                        })
                     }
                 }
                 
