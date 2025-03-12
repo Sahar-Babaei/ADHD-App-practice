@@ -14,7 +14,7 @@ struct FakeTaskCard: View {
     var fTask : FakeTask
     
     //todo: mentor: why did chatgpt suggest a private variable?
-    @State private var showMenu: Bool = false
+    @State private var showMenu: Bool = false       // private variable is the default, think of it as the objects should not be able to know everything about each other. like a safeguard to keep other users from touching it.
     @State private var showDeleteConfirmation: Bool = false
     
     // Function to delete a task, provided by TaskBankPage
@@ -27,6 +27,8 @@ struct FakeTaskCard: View {
                     Text(fTask.fTaskName)
                         .padding()
                         .frame(maxWidth: .infinity, alignment: .leading)
+                        .lineLimit(2)
+                        .truncationMode(.tail)  //adding ellipse
 
                     // "More" menu button
                     Menu {
