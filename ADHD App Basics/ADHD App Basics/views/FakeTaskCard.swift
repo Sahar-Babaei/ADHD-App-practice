@@ -29,6 +29,7 @@ struct FakeTaskCard: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .lineLimit(2)
                         .truncationMode(.tail)  //adding ellipse
+                        .background(Color.white)
 
                     // "More" menu button
                     Menu {
@@ -42,6 +43,8 @@ struct FakeTaskCard: View {
                         Image(systemName: "ellipsis.circle")
                             .font(.title)
                             .padding()
+                            .background(Color.green)
+                            
                     }
                 }
                 .frame(maxWidth: .infinity, minHeight: 120)
