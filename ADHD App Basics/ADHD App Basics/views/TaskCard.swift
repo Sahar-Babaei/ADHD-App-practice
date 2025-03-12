@@ -10,6 +10,8 @@ import SwiftUI
 struct TaskCard: View {
     
 //MARK: - Variables
+    
+//MARK: this page is now for displaying task card info can not make edits here
     //the initialized values are the default states for now
     
     @State var task: Task
@@ -17,6 +19,12 @@ struct TaskCard: View {
     @State private var priorityType = 1
     @State private var selectedPriority: Priority = .none
     
+    let allTags = ["School", "Work", "Chores", "Hobbies", "Health"]
+    @State private var selectedTags: [String] = []
+    @State private var selectedTag: String = ""
+    @State private var editingTag: Int?
+    @State private var editedTagName: String = ""
+    @State private var isEditing: Bool = false
     
     
 //    @State private var taskName: String
@@ -42,6 +50,24 @@ struct TaskCard: View {
                 
             }
             .padding()
+            
+            ZStack(alignment: .topLeading) {
+                TextEditor( text: $task.taskDescription)
+                    .frame(height: 75)
+                    .cornerRadius(5)
+//                    .padding()
+                
+                if task.taskDescription.isEmpty {
+                    Text("Enter task description")
+                        .foregroundColor(.gray.opacity(0.5))
+                        .padding(.leading)
+                        .padding(.top)
+                }
+                
+            }
+            .padding()
+            
+            
             
             //TODO: add due date for task
             DatePicker(selection: $task.taskDueDate, label: { Text("Date") })
@@ -71,15 +97,114 @@ struct TaskCard: View {
                 }
             } label: {
                 HStack {
-                    Text("Priority: \(selectedPriority.rawValue)")
+                    Text((selectedPriority.rawValue))
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding(10)
                         .background(Color.gray)
                         .foregroundColor(.white)
                         .cornerRadius(4)
 //                    Image(systemName: "chevron.down")
-                }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 205))
+                }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 230))
             }
+            
+            // MARK: this code creates a horizontal bar of all the tags available and you can choose to edit or remove them
+            
+//            VStack{
+//                ScrollView(.horizontal, showsIndicators: true){
+//                    HStack {
+//                        ForEach(tags.indices, id: \.self) { index in
+//                            HStack {
+//                                Text(tags[index])
+//                                    .padding(8)
+//                                    .background(Color.blue.opacity(0.2))
+//                                    .cornerRadius(8)
+//                                
+//                                Button(action: {
+//                                    editingTag = index
+//                                    editedTagName = tags[index]
+//                                    editAlert = true
+//                                }) {
+//                                    Image(systemName: "pencil")
+//                                        .foregroundColor(.blue)
+//                                }
+//                                
+//                                Button(action: {
+//                                    tags.remove(at:index)
+//                                }) {
+//                                    Image(systemName: "xmark.circle")
+//                                        .foregroundColor(.red)
+//                                }
+//                            }
+//                        }
+//                    }
+//                    .padding()
+//                }
+//            }
+            
+            VStack{
+                    ScrollView(.horizontal, showsIndicators: true){
+                        HStack {
+                            Text("Tags:")
+                            ForEach(selectedTags, id: \.self) { tag in
+                                HStack {
+                                    //TODO: is it possible to make the tag label a button to be able to edit the writing/ where should we put were to edit the same
+                                    Text(tag)
+                                        .padding(.vertical, 8)
+                                        .padding(.leading, 10)
+                                        .padding(.trailing, isEditing ? 2:10)   // if editing tag expand padding to 10
+                                        
+    
+//                                    Button(action: {
+//                                        editingTag = index
+//                                        editedTagName = tags[index]
+//                                        editAlert = true
+//                                    }) {
+//                                        Image(systemName: "pencil")
+//                                            .foregroundColor(.blue)
+//                                    }
+                                    //TODO: is there a way to put the remove button inside the label? or
+                                    if isEditing == true {
+                                        Button(action: {        //removes tag
+                                            selectedTags.removeAll {$0 == tag}
+                                        
+                                        }) {
+                                            Image(systemName: "xmark.circle")
+                                                .foregroundColor(.red)
+                                        }
+                                        .padding(.trailing, 10)
+                                    }
+                                }
+                                .background(Color.blue.opacity(0.2))
+                                .cornerRadius(8)
+                            }
+                        }
+                        .padding()
+                    }
+                
+                Picker("Select tag", selection: $selectedTag) {
+                    ForEach(allTags, id: \.self) { tag in
+                        Text(tag).tag(tag)
+                    }
+                }
+                .pickerStyle(MenuPickerStyle())
+                
+                Button("Add Tag") {
+                    if !selectedTag.isEmpty && !selectedTags.contains(selectedTag) {
+                        selectedTags.append(selectedTag)
+                    }
+                }
+                .buttonStyle(.bordered)
+                
+                Button("Edit Tags") {      // basically show the 'x' button is they want to edit the tag, and if they press the button again it will close the button
+                    isEditing = !isEditing
+//                    if isEditing == true {
+//                        isEditing = false
+//                    }
+                }
+                .buttonStyle(.bordered)
+                }
+        
+           
             //need to comment this out bc I dont have a way to switch between priority states
 //            switch task.taskPriority {
 //            case 1:
@@ -122,15 +247,21 @@ struct TaskCard: View {
 //            }
             
         }
+        .frame(maxWidth:.infinity, maxHeight: 500)
+        .background(Color.gray.opacity(0.1))
+        .cornerRadius(12)
+        .padding(.all)
+        
         
         
     }
 }
 enum Priority: String, CaseIterable {
-    case none = "No Priority"
-    case low = "Low Priority"
-    case medium = "Medium Priority"
-    case high = "High Priority"
+    case none = "Not Started"
+    case inProg = "In-progress"
+    case paused = "Paused"
+    case complete = "Completed"
+    
 }
 
 #Preview {

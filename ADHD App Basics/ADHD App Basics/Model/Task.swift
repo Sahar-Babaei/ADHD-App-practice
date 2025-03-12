@@ -10,6 +10,7 @@ import Foundation
 struct Task {
     var taskId = UUID()                      //   <-- task id
     var taskName: String = ""                //   <-- Task name
+    var taskDescription: String = ""         //   <-- Description
     var taskStatus: String = "Not Started"   //   <-- Completion status
     var taskTag = [String]()                 //   <-- Tags associated with it
 //    var taskPriority: Int               //   <-- what is the priority (0 is no priority)
