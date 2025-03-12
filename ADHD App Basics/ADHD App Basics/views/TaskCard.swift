@@ -149,9 +149,10 @@ struct TaskCard: View {
                                 HStack {
                                     //TODO: is it possible to make the tag label a button to be able to edit the writing/ where should we put were to edit the same
                                     Text(tag)
-                                        .padding(8)
-                                        .background(Color.blue.opacity(0.2))
-                                        .cornerRadius(8)
+                                        .padding(.vertical, 8)
+                                        .padding(.leading, 10)
+                                        .padding(.trailing, isEditing ? 2:10)   // if editing tag expand padding to 10
+                                        
     
 //                                    Button(action: {
 //                                        editingTag = index
@@ -170,10 +171,11 @@ struct TaskCard: View {
                                             Image(systemName: "xmark.circle")
                                                 .foregroundColor(.red)
                                         }
+                                        .padding(.trailing, 10)
                                     }
-
-                                    
                                 }
+                                .background(Color.blue.opacity(0.2))
+                                .cornerRadius(8)
                             }
                         }
                         .padding()
@@ -194,10 +196,10 @@ struct TaskCard: View {
                 .buttonStyle(.bordered)
                 
                 Button("Edit Tags") {      // basically show the 'x' button is they want to edit the tag, and if they press the button again it will close the button
-                     isEditing = true
-                    if isEditing == true {
-                        isEditing = false
-                    }
+                    isEditing = !isEditing
+//                    if isEditing == true {
+//                        isEditing = false
+//                    }
                 }
                 .buttonStyle(.bordered)
                 }
