@@ -56,18 +56,18 @@ struct TaskBankPage: View {
                     Spacer()
                     
                     //Add task Button
-//                    Button(action: {showTextFieldOverlay=true}) {
-//                        Text("Add New Task +")
-//                            .padding()
-//                            .background(Color.blue)
-//                            .foregroundStyle(.white)
-//                            .cornerRadius(10)
-//                    }
+                    Button(action: {showTextFieldOverlay=true}) {
+                        Text("Add New Task +")
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundStyle(.white)
+                            .cornerRadius(10)
+                    }
             
             //MARK: adding a navigation path to the task creation page
-                    NavigationLink("Add New Task +", destination: TaskCard(task: Task(taskName: "")))
-                        .buttonStyle(.borderedProminent)
-                        .padding()
+//                    NavigationLink("Add New Task +", destination: TaskCard(task: Task(taskName: "")))
+//                        .buttonStyle(.borderedProminent)
+//                        //.padding()
                     
                     
 
@@ -130,43 +130,46 @@ struct TaskBankPage: View {
                 
                 // text field overlay
                 if showTextFieldOverlay == true{
-                    VStack{
-                        //input field
-                        TextField ("Task title:", text: $userTaskTitle )
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding(.horizontal,12)
-                        
-                        HStack{
-                            //create button
-                            Button(action: addNewTask) {
-                                Text("create task")
-                                    .padding()
-                                    .frame(maxWidth: .infinity)
-                                    .background(Color.green)
-                                    .foregroundStyle(.white)
-                                    .cornerRadius(10)
-                            }
-                            
-                            
-                            //cancel button
-                            Button(action: {
-                                showTextFieldOverlay = false // Hide the overlay if user cancels
-                                userTaskTitle = "" // Optionally clear the title
-                            }) {
-                                Text("Cancel")
-                                    .padding()
-                                    .frame(maxWidth: .infinity)
-                                    .background(Color.red)
-                                    .foregroundStyle(.white)
-                                    .cornerRadius(10)
-                            }
-                        }
-                        .padding(.horizontal,12)
-                        
-                    }
-                    .padding()
-                    .background(Color.black.opacity(0.5)) // Dim the background
-                    .cornerRadius(20)
+                    
+                    TaskCard(task: Task(taskName: "hello"))
+                    
+//                    VStack{
+//                        //input field
+//                        TextField ("Task title:", text: $userTaskTitle )
+//                            .textFieldStyle(RoundedBorderTextFieldStyle())
+//                            .padding(.horizontal,12)
+//                        
+//                        HStack{
+//                            //create button
+//                            Button(action: addNewTask) {
+//                                Text("create task")
+//                                    .padding()
+//                                    .frame(maxWidth: .infinity)
+//                                    .background(Color.green)
+//                                    .foregroundStyle(.white)
+//                                    .cornerRadius(10)
+//                            }
+//                            
+//                            
+//                            //cancel button
+//                            Button(action: {
+//                                showTextFieldOverlay = false // Hide the overlay if user cancels
+//                                userTaskTitle = "" // Optionally clear the title
+//                            }) {
+//                                Text("Cancel")
+//                                    .padding()
+//                                    .frame(maxWidth: .infinity)
+//                                    .background(Color.red)
+//                                    .foregroundStyle(.white)
+//                                    .cornerRadius(10)
+//                            }
+//                        }
+//                        .padding(.horizontal,12)
+//                        
+//                    }
+//                    .padding()
+//                    .background(Color.black.opacity(0.5)) // Dim the background
+//                    .cornerRadius(20)
 
 
                     
