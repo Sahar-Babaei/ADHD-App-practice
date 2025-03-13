@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 
-struct FakeTask{
+struct FakeTask: Codable {
     var fTaskName: String = "this would be the task name"
     
     var fTaskID = UUID()
@@ -19,8 +19,18 @@ struct FakeTask{
     var fTaskCreationDate : Date = Date()
     var fTaskCompletionDate : Date? = nil // Optional date for when the task is completed
     
+    
+    enum CodingKeys: String, CodingKey {
+            case fTaskName = "task_name"
+            case fTaskID = "task_id"
+            case fTaskCategory = "task_category"
+            case fTaskCompleted = "task_completed"
+            case fTaskStatus = "task_status"
+            case fTaskCreationDate = "task_creation_date"
+            case fTaskCompletionDate = "task_completion_date"
+        }
+    
 }
-
 
 
 
