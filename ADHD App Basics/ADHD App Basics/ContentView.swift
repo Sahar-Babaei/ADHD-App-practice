@@ -12,8 +12,10 @@ struct ContentView: View {
     @State private var selectedTab = 1
     // variable for changing tabs
     
+    //navigation path:
     
     var body: some View {
+        
         
         //MARK: - App's header title?
         HStack{
@@ -227,7 +229,6 @@ struct ContentView: View {
 //        .clipped()
         //Note: ^ commented these out for now because i manually set the width of each button to .infinity
         .background(Color.yellow)
-        
         
         
         
