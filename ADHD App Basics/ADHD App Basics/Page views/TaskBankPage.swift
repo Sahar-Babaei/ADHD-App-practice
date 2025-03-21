@@ -12,54 +12,36 @@ import Foundation
 struct TaskBankPage: View {
     
     //@State means SwiftUI will automatically update the screen when the list changes
-    @State var allTasksList : [FakeTask] = []
     
     @StateObject var viewModel : TaskBankViewModel
-    init(vm: TaskBankViewModel){
-        _viewModel = StateObject(wrappedValue: vm)
+    init(potato: TaskBankViewModel){
+        _viewModel = StateObject(wrappedValue: potato)
+        potato.loadAllTasks()
     }
-    
-//    @State var allTasksList : [TaskCard] = []
-    @State var userTaskTitle : String = ""
-    @State var showTextFieldOverlay : Bool = false
-    
-    @State var reverseOrder : Bool = false
-    
-    @State private var columns: [GridItem] = [GridItem(.flexible())] // Default is 1 column
-    
-    
-    
-    
     
     //important: can't create functions in body. body is a special property that returns views
     var body: some View {
-        
         //Navigation path
         NavigationStack {
             VStack{
-                
-                
                 HStack{
-                    
-                    
                     //toggle button
                     Button(action: {
-                        viewModel.addTask()
-                        columns = columns.count == 1 ? [GridItem(.flexible()), GridItem(.flexible())] : [GridItem(.flexible())]
+                        addNewTask()
+                        viewModel.gridViewEnabled.toggle()
                     }) {
-                        Text(columns.count == 1 ? "Switch to 2 Columns" : "Switch to 1 Column")
+                        Text(viewModel.gridViewEnabled ? "Switch to 2 Columns" : "Switch to 1 Column")
                             .padding()
                             .background(Color.gray.opacity(0.3))
                             .cornerRadius(10)
                     }
                     
                     //sort button
-                    Button(action: {reverseOrder.toggle()
-                        sortTasks(reversed: reverseOrder)
-
-
+                    Button(action: {
+                        viewModel.reverseOrder.toggle()
+                        sortTasks()
                     }) {
-                        Text(reverseOrder ? "Sort: Reverse Order" : "Sort: Regular Order")
+                        Text(viewModel.reverseOrder ? "Sort: Reverse Order" : "Sort: Regular Order")
                             .padding()
                     }
                     
@@ -67,7 +49,7 @@ struct TaskBankPage: View {
                     Spacer()
                     
                     //Add task Button
-                    Button(action: {showTextFieldOverlay=true}) {
+                    Button(action: {viewModel.showTextFieldOverlay=true}) {
                         Text("Add New Task +")
                             .padding()
                             .background(Color.blue)
@@ -113,10 +95,10 @@ struct TaskBankPage: View {
                 
                 ScrollView {
                     // LazyVGrid adjusts the number of columns dynamically
-                    LazyVGrid(columns: columns) {
-                        ForEach(allTasksList, id: \.fTaskID) { task in
+                    LazyVGrid(columns: getColumnStyle(viewModel.gridViewEnabled)) {
+                        ForEach(viewModel.allTasksList, id: \.fTaskID) { task in
                             FakeTaskCard(fTask: task, onDelete: {
-                                allTasksList.removeAll { $0.fTaskID == task.fTaskID }
+                                viewModel.allTasksList.removeAll { $0.fTaskID == task.fTaskID }
                             })
                         }
                     }
@@ -140,14 +122,14 @@ struct TaskBankPage: View {
                 
                 
                 // text field overlay
-                if showTextFieldOverlay == true{
+                if viewModel.showTextFieldOverlay == true{
                     
 //                    TaskCard(task: Task(taskName: "hello"))
                 //MARK: can have viewModel create task + have array in viewModel as well
             
                     VStack{
                         //input field
-                        TextField ("Task title:", text: $userTaskTitle )
+                        TextField ("Task title:", text: $viewModel.userTaskTitle)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .padding(.horizontal,12)
                         
@@ -165,8 +147,8 @@ struct TaskBankPage: View {
                             
                             //cancel button
                             Button(action: {
-                                showTextFieldOverlay = false // Hide the overlay if user cancels
-                                userTaskTitle = "" // Optionally clear the title
+                                viewModel.showTextFieldOverlay = false // Hide the overlay if user cancels
+                                viewModel.clearTitle()// Optionally clear the title
                             }) {
                                 Text("Cancel")
                                     .padding()
@@ -190,47 +172,26 @@ struct TaskBankPage: View {
                 
                 
             }
-        }
-        
-        
-        
-        
-        
-        
+        }        
+    }
+    
+    func getColumnStyle(_ isGridMode: Bool) -> [GridItem] {
+        return isGridMode ? [GridItem(.flexible())] : [GridItem(.flexible()), GridItem(.flexible())]
     }
     
     //function to create new tasks
     func addNewTask(){
-        
-        // this only adds a new task if title is not empty
-        guard !userTaskTitle.isEmpty else { return }
-        
-        let newTask  = FakeTask(fTaskName: userTaskTitle, fTaskID: UUID(), fTaskCompleted: false)
-    
-        
-
-        allTasksList.append(newTask)
-        sortTasks(reversed: reverseOrder)
-        // this adds the task at the top rather than at the end:
-//        allTasksList.insert(newTask, at: 0)
+        viewModel.addTask()
         
         // Hide the overlay and reset the task title
-        showTextFieldOverlay = false
-        userTaskTitle = ""
+        viewModel.showTextFieldOverlay = false
     }
     
-    func sortTasks(reversed: Bool ){
-        allTasksList = allTasksList.sorted { taskA, taskB in
-            if reversed {
-                taskA.fTaskCreationDate > taskB.fTaskCreationDate
-            }
-            else{
-                taskA.fTaskCreationDate < taskB.fTaskCreationDate
-            }
-        }
+    func sortTasks(){
+        viewModel.sortTasks()
     }
 }
 
 #Preview {
-    TaskBankPage(vm: TaskBankViewModel())
+    TaskBankPage(potato: TaskBankViewModel())
 }

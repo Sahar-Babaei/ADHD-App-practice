@@ -109,7 +109,7 @@ struct ContentView: View {
                 Text ("this is tab 1 lol")
             case 2:
                 //Text ("this is tab 2 lol lol ")
-                TaskBankPage(vm: TaskBankViewModel())
+                TaskBankPage(potato: TaskBankViewModel())
             case 3:
                 Text ("this is tab 3 lol lol lol")
             case 4:
