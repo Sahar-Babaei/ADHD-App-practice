@@ -6,11 +6,19 @@
 //
 
 import SwiftUI
+import Foundation
+
 
 struct TaskBankPage: View {
     
     //@State means SwiftUI will automatically update the screen when the list changes
     @State var allTasksList : [FakeTask] = []
+    
+    @StateObject var viewModel : TaskBankViewModel
+    init(vm: TaskBankViewModel){
+        _viewModel = StateObject(wrappedValue: vm)
+    }
+    
 //    @State var allTasksList : [TaskCard] = []
     @State var userTaskTitle : String = ""
     @State var showTextFieldOverlay : Bool = false
@@ -18,6 +26,8 @@ struct TaskBankPage: View {
     @State var reverseOrder : Bool = false
     
     @State private var columns: [GridItem] = [GridItem(.flexible())] // Default is 1 column
+    
+    
     
     
     
@@ -34,6 +44,7 @@ struct TaskBankPage: View {
                     
                     //toggle button
                     Button(action: {
+                        viewModel.addTask()
                         columns = columns.count == 1 ? [GridItem(.flexible()), GridItem(.flexible())] : [GridItem(.flexible())]
                     }) {
                         Text(columns.count == 1 ? "Switch to 2 Columns" : "Switch to 1 Column")
@@ -131,45 +142,46 @@ struct TaskBankPage: View {
                 // text field overlay
                 if showTextFieldOverlay == true{
                     
-                    TaskCard(task: Task(taskName: "hello"))
-                    
-//                    VStack{
-//                        //input field
-//                        TextField ("Task title:", text: $userTaskTitle )
-//                            .textFieldStyle(RoundedBorderTextFieldStyle())
-//                            .padding(.horizontal,12)
-//                        
-//                        HStack{
-//                            //create button
-//                            Button(action: addNewTask) {
-//                                Text("create task")
-//                                    .padding()
-//                                    .frame(maxWidth: .infinity)
-//                                    .background(Color.green)
-//                                    .foregroundStyle(.white)
-//                                    .cornerRadius(10)
-//                            }
-//                            
-//                            
-//                            //cancel button
-//                            Button(action: {
-//                                showTextFieldOverlay = false // Hide the overlay if user cancels
-//                                userTaskTitle = "" // Optionally clear the title
-//                            }) {
-//                                Text("Cancel")
-//                                    .padding()
-//                                    .frame(maxWidth: .infinity)
-//                                    .background(Color.red)
-//                                    .foregroundStyle(.white)
-//                                    .cornerRadius(10)
-//                            }
-//                        }
-//                        .padding(.horizontal,12)
-//                        
-//                    }
-//                    .padding()
-//                    .background(Color.black.opacity(0.5)) // Dim the background
-//                    .cornerRadius(20)
+//                    TaskCard(task: Task(taskName: "hello"))
+                //MARK: can have viewModel create task + have array in viewModel as well
+            
+                    VStack{
+                        //input field
+                        TextField ("Task title:", text: $userTaskTitle )
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding(.horizontal,12)
+                        
+                        HStack{
+                            //create button
+                            Button(action: addNewTask) {
+                                Text("create task")
+                                    .padding()
+                                    .frame(maxWidth: .infinity)
+                                    .background(Color.green)
+                                    .foregroundStyle(.white)
+                                    .cornerRadius(10)
+                            }
+                            
+                            
+                            //cancel button
+                            Button(action: {
+                                showTextFieldOverlay = false // Hide the overlay if user cancels
+                                userTaskTitle = "" // Optionally clear the title
+                            }) {
+                                Text("Cancel")
+                                    .padding()
+                                    .frame(maxWidth: .infinity)
+                                    .background(Color.red)
+                                    .foregroundStyle(.white)
+                                    .cornerRadius(10)
+                            }
+                        }
+                        .padding(.horizontal,12)
+                        
+                    }
+                    .padding()
+                    .background(Color.black.opacity(0.5)) // Dim the background
+                    .cornerRadius(20)
 
 
                     
@@ -220,5 +232,5 @@ struct TaskBankPage: View {
 }
 
 #Preview {
-    TaskBankPage()
+    TaskBankPage(vm: TaskBankViewModel())
 }
