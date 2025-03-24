@@ -14,7 +14,7 @@ struct FakeTask: Codable {
     
     var fTaskID = UUID()
     //var fTaskCategory : [String] = ["No category"]
-    var fTaskCategory : String = "no Tag"
+    var fTaskCategory : String = "No tag"
     var fTaskCompleted: Bool = false
     var fTaskStatus: String = "Not Started"
     var fTaskCreationDate : Date = Date()

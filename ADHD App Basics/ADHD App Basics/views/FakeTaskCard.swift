@@ -24,19 +24,35 @@ struct FakeTaskCard: View {
         
         VStack(alignment: .leading){
             
-            //tag and more button
-            HStack (alignment: .top) {
-                Text(fTask.fTaskCategory)
+            //tag and more
+            HStack (alignment:.center) {
+                
+                //tag
+                HStack(){
+                    //Image("tag-icon")
+                    Image(systemName: "tag")
+
+                    
+                        
+                        
+                       
+                    
+                    Text(fTask.fTaskCategory)
+                        .font(Font.custom("Helvetica", size: 19))
+                }
                 Spacer()
-                Image(systemName: "ellipsis.circle")
+                
+                // three dots (more)
+                Image(systemName: "ellipsis")
+                    .font(.body)
             }
             
             
             //task name
             Text(fTask.fTaskName)
-                .font(Font.custom("Instrument Sans", size: 26)) // Set the custom font
+                .font(Font.custom("Instrument Sans", size: 21)) // Set the custom font
                     .fontWeight(.medium) // Apply weight separately
-                    .foregroundColor(Color(red: 0.09, green: 0.09, blue: 0.09))
+                    .foregroundColor(Color(red: 0.086, green: 0.09, blue: 0.09))
 
             
             //status
@@ -46,7 +62,7 @@ struct FakeTaskCard: View {
                     .frame(width: 8, height: 8)
                 
                 Text(fTask.fTaskStatus)
-                    .font(Font.custom("Helvetica", size: 13))
+                    .font(Font.custom("Helvetica", size: 17))
                     .foregroundColor(Color(red: 0.09, green: 0.09, blue: 0.09))
             }
             .padding(.leading, 8)
