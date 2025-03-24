@@ -57,7 +57,8 @@ struct FakeTaskCard: View {
             .background(.black.opacity(0.1))
             .cornerRadius(10)
         }
-        .background(Color.yellow)
+        //.background(Color.yellow)
+        .background(Color(red: 1, green: 0.8, blue: 0.62))
         
         
         
