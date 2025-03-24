@@ -36,9 +36,26 @@ struct FakeTaskCard: View {
             
             //task name
             Text(fTask.fTaskName)
+                .font(Font.custom("Instrument Sans", size: 16)) // Set the custom font
+                    .fontWeight(.medium) // Apply weight separately
+                    .foregroundColor(Color(red: 0.09, green: 0.09, blue: 0.09))
+
             
             //status
-            Text(fTask.fTaskStatus)
+            HStack(alignment: .center, spacing: 5) {
+                Circle()
+                    .fill(Color(red: 0.53, green: 0.53, blue: 0.53))
+                    .frame(width: 8, height: 8)
+                
+                Text(fTask.fTaskStatus)
+                    .font(Font.custom("Helvetica", size: 13))
+                    .foregroundColor(Color(red: 0.09, green: 0.09, blue: 0.09))
+            }
+            .padding(.leading, 8)
+            .padding(.trailing, 12)
+            .padding(.vertical, 4)
+            .background(.black.opacity(0.1))
+            .cornerRadius(10)
         }
         .background(Color.yellow)
         
