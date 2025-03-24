@@ -32,11 +32,9 @@ struct FakeTaskCard: View {
             }
             
             
-            
-            
             //task name
             Text(fTask.fTaskName)
-                .font(Font.custom("Instrument Sans", size: 16)) // Set the custom font
+                .font(Font.custom("Instrument Sans", size: 26)) // Set the custom font
                     .fontWeight(.medium) // Apply weight separately
                     .foregroundColor(Color(red: 0.09, green: 0.09, blue: 0.09))
 
