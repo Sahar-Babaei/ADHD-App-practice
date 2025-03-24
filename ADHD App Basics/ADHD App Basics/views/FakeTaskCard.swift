@@ -29,8 +29,11 @@ struct FakeTaskCard: View {
                 
                 //tag
                 HStack(){
-                    //Image("tag-icon")
+                    Image("tag-icon")
+                        .foregroundColor(Color.red)
+                    
                     Image(systemName: "tag")
+                        .foregroundColor(Color.red)
 
                     
                         
