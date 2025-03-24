@@ -24,11 +24,9 @@ struct ContentView: View {
                     .padding(.horizontal,4)
                     .padding(.vertical,8)
                     
-                
-                // TODO: mentor? how do i define font styles so i can apply them all over the project? (all heading 1s should be avenir bold 25, all body should be Helverica light 16, etc)
+
                 
                 Spacer()
-                //^ not sure how this works but i had to put it in the middle of the two elements.
                 Image(systemName: "checkmark.square")
                     .foregroundColor(.red)
                     //.font(.title)
@@ -125,7 +123,7 @@ struct ContentView: View {
             
             
             //MARK: - the tabs
-            HStack(){ //TODO: mentor? HELP!! using spacing won't work because it's not content aware. using a long tab name will mess everything up!
+            HStack(){
                 
                 //tab 1
                 Button (action: {selectedTab = 1}){
@@ -155,7 +153,7 @@ struct ContentView: View {
                         
                         Text("tab 2")
                             .font(.custom("Charter-Bold", size: 14))
-                        // TODO: Mentor? Do i have to set the font for each item every time? :c
+
                     }
                 }
                 .frame(maxWidth: .infinity)
@@ -202,7 +200,7 @@ struct ContentView: View {
                 Divider()
                     .frame(width: 2, height: 50)
                         .background(Color.init(red: 121/255, green: 68/255, blue: 5/255))
-                //TODO: Mentor: how do we get the dividers to vertically center against the yellow background?
+
                 
                 //tab 5
                 Button (action: {selectedTab = 5}){

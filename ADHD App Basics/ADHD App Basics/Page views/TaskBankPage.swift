@@ -56,42 +56,13 @@ struct TaskBankPage: View {
                             .foregroundStyle(.white)
                             .cornerRadius(10)
                     }
-            
-            //MARK: adding a navigation path to the task creation page
-//                    NavigationLink("Add New Task +", destination: TaskCard(task: Task(taskName: "")))
-//                        .buttonStyle(.borderedProminent)
-//                        //.padding()
-                    
-                    
+                                
 
                 }
                 .padding(.horizontal, 12)
                 
                 
-                
-                
-                
-                
-    //            //for loop to show Task cards
-    //            ScrollView{
-    //
-    //                //LazyVStack only loads what's on the screen.
-    //                LazyVStack(){
-    //
-    //                    //the \.fTaskID is needed because swiftUI needs an identifier for each task in the array. don't ask why!
-    //
-    //                    ForEach(allTasksList, id: \.fTaskID) { task in
-    //                        FakeTaskCard(fTask: task, onDelete: {
-    //                            allTasksList.removeAll { $0.fTaskID == task.fTaskID }
-    //                        })
-    //                    }
-    //                }
-    //
-    //                //ForEach(if(reverseOrder)allTasksList.reversed() else {allTasksLists})
-    //                .padding(.vertical,5)
-    //                .padding(.horizontal,12)
-    //
-    //            }
+
                 
                 ScrollView {
                     // LazyVGrid adjusts the number of columns dynamically
@@ -105,19 +76,7 @@ struct TaskBankPage: View {
                     .padding(.vertical, 5)
                     .padding(.horizontal, 12)
                 }
-                
-//                ScrollView {
-//                    // LazyVGrid adjusts the number of columns dynamically
-//                    LazyVGrid(columns: columns) {
-//                        ForEach(allTasksList, id: \.task.taskId) { task in
-//                            TaskCard(fTask: task, onDelete: {
-//                                allTasksList.removeAll { $0.fTaskID == task.fTaskID }
-//                            })
-//                        }
-//                    }
-//                    .padding(.vertical, 5)
-//                    .padding(.horizontal, 12)
-//                }
+
                 
                 
                 

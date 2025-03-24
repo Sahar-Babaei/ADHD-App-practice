@@ -10,11 +10,10 @@ import SwiftUI
 struct FakeTaskCard: View {
     
     // creating a variable of type FakeTask, so we can use its attributes when creating our card.
-    
     var fTask : FakeTask
     
-    //todo: mentor: why did chatgpt suggest a private variable?
-    @State private var showMenu: Bool = false       // private variable is the default, think of it as the objects should not be able to know everything about each other. like a safeguard to keep other users from touching it.
+   
+    @State private var showMenu: Bool = false
     @State private var showDeleteConfirmation: Bool = false
     
     // Function to delete a task, provided by TaskBankPage
