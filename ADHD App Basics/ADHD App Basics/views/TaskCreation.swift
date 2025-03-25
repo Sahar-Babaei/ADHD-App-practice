@@ -16,98 +16,123 @@ struct TaskCreation: View {
     
     
     var body: some View {
-        ZStack{
-            //transparency background
-            Color(red: 0.06, green: 0.09, blue: 0.16).opacity(0.32)
-                .edgesIgnoringSafeArea(.all)
+        
+        //get screen height
+        GeometryReader { geometry in
+            let screenHeight = geometry.size.height
             
-            //Quick View task creation view
-            VStack() {
-                //heading + arrow button
-                HStack(alignment:.center){
-                    //heading
-                    Text("Task title")
-                        .font(Font.custom("Instrument Sans", size: 16)) // Set the custom font
-                        .fontWeight(.regular) // Apply weight separately
+            ZStack{
+                //transparency background
+                Color(red: 0.06, green: 0.09, blue: 0.16).opacity(0.32)
+                    .edgesIgnoringSafeArea(.all)
+                
+                //Quick View task creation view
+                VStack() {
+                    //heading + arrow button
+                    HStack(alignment:.center){
+                        //heading
+                        Text("Task title")
+                            .font(Font.custom("Instrument Sans", size: 16)) // Set the custom font
+                            .fontWeight(.regular) // Apply weight separately
+                        
+                        Spacer()
+                        
+                        // arrow
+                        Button(action: {
+                            showExpanded.toggle()
+                            print(showExpanded)
+                        }) {
+                            //only rotate chevron icon downward when showExpanded is true
+                            Image("chevron-double-up")
+                                .foregroundColor(Color(red: 0, green: 0, blue: 0))
+                                .rotationEffect(.degrees(showExpanded ? 180 : 0 ))
+                        }
+                        
+                        if showExpanded {
+                            
+                        }
+                        
+                    }
+                    //task name text field
+                    Rectangle()
+                    .foregroundColor(.clear)
+                    .frame(height: 39)
+                    .background(Color(red: 0.92, green: 0.92, blue: 0.92))
+
+                    .cornerRadius(4)
+                    //TODO: need to find way to allow binding to ftaskname
+    //                TextField("Enter your task here")
+    //                , text: $task.fTaskName)
+    //                 .textFieldStyle(RoundedBorderTextFieldStyle())
+                    
+                    //expanded version with all extra elements
+                    
+                    
                     
                     Spacer()
+                        .frame(height: 35)
                     
-                    // arrow
-                    Button(action: {
-                        print("hello")
-                    }) {
-                        Image("chevron-double-up")
-                            .foregroundColor(Color(red: 0, green: 0, blue: 0))
-                    }
-                    
-                    
-                }
-                //task name text field
-                Rectangle()
-                .foregroundColor(.clear)
-                .frame(height: 39)
-                .background(Color(red: 0.92, green: 0.92, blue: 0.92))
-
-                .cornerRadius(4)
-                //TODO: need to find way to allow binding to ftaskname
-//                TextField("Enter your task here")
-//                , text: $task.fTaskName)
-//                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                
-                Spacer()
-                    .frame(height: 35)
-                
-                HStack{
-                    //status
-                    HStack(alignment: .center, spacing: 5) {
-                        Circle()
-                            .fill(Color(red: 0.53, green: 0.53, blue: 0.53))
-                            .frame(width: 8, height: 8)
+                    //status + tag + button
+                    HStack{
                         
-                        Text(fTask.fTaskStatus)
-                            .font(Font.custom("Helvetica", size: 17))
-                            .foregroundColor(Color(red: 0.09, green: 0.09, blue: 0.09))
-                    }
-                    .padding(.leading, 8)
-                    .padding(.trailing, 12)
-                    .padding(.vertical, 4)
-                    .background(.black.opacity(0.1))
-                    .cornerRadius(10)
-
-                    //tag
-                    HStack(spacing:2){
-                        
-                        Image(systemName: "tag")
-                            .foregroundColor(Color(red: 0.61, green: 0.61, blue: 0.61))
-                        
-                        Text(fTask.fTaskCategory)
-                            .font(Font.custom("Helvetica", size: 18))
-                            .foregroundColor(Color(red: 0.61, green: 0.61, blue: 0.61))
-                    }
-                    
-                    Spacer()
-                    
-                    //add Task button
-                    Button(action: {print("howdy")}) {
-                        Text("Add task ")
-                            .padding()
-                            .frame(height: 32)
-                            .background(Color.black)
-                            .foregroundStyle(.white)
-                            .cornerRadius(10)
-                    }
-                }
+                        //should only show if showExpanded is false
+                        if !showExpanded {
+                            //status
+                            HStack(alignment: .center, spacing: 5) {
+                                Circle()
+                                    .fill(Color(red: 0.53, green: 0.53, blue: 0.53))
+                                    .frame(width: 8, height: 8)
                                 
-            }
-            .padding()
-            .frame(maxWidth: .infinity, minHeight: 168, maxHeight: 170)
-            .background(Color.white)
-            .clipShape(RoundedCorners(radius: 20, corners: [.topLeft, .topRight]))
-            
+                                Text(fTask.fTaskStatus)
+                                    .font(Font.custom("Helvetica", size: 17))
+                                    .foregroundColor(Color(red: 0.09, green: 0.09, blue: 0.09))
+                            }
+                            .padding(.leading, 8)
+                            .padding(.trailing, 12)
+                            .padding(.vertical, 4)
+                            .background(.black.opacity(0.1))
+                            .cornerRadius(10)
 
-            
+                            //tag
+                            HStack(spacing:2){
+                                
+                                Image(systemName: "tag")
+                                    .foregroundColor(Color(red: 0.61, green: 0.61, blue: 0.61))
+                                
+                                Text(fTask.fTaskCategory)
+                                    .font(Font.custom("Helvetica", size: 18))
+                                    .foregroundColor(Color(red: 0.61, green: 0.61, blue: 0.61))
+                            }
+                            
+                            
+                        }
+                        
+                        Spacer()
+                        //add Task button
+                        Button(action: {print("howdy")}) {
+                            Text("Add task ")
+                                .padding()
+                                .frame(height: 32)
+                                .background(Color.black)
+                                .foregroundStyle(.white)
+                                .cornerRadius(10)
+                        }
+                    }
+                                    
+                }
+                .padding()
+                .frame(maxWidth: .infinity, minHeight: 168, maxHeight: 170)
+                .background(Color.white)
+                .clipShape(RoundedCorners(radius: 20, corners: [.topLeft, .topRight]))
+                
+
+                
+                
+            }
             
         }
+        
+        
     }
 }
 
