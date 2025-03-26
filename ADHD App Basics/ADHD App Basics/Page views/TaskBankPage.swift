@@ -86,43 +86,46 @@ struct TaskBankPage: View {
 //                    TaskCard(task: Task(taskName: "hello"))
                 //MARK: can have viewModel create task + have array in viewModel as well
             
+                    
                     VStack{
+                        TaskCreation(viewModel: TaskCreationViewModel(), storageViewModel: viewModel, showExpanded: false)
+
                         //input field
-                        TextField ("Task title:", text: $viewModel.userTaskTitle)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding(.horizontal,12)
-                        
-                        HStack{
-                            //create button
-                            Button(action: addNewTask) {
-                                Text("create task")
-                                    .padding()
-                                    .frame(maxWidth: .infinity)
-                                    .background(Color.green)
-                                    .foregroundStyle(.white)
-                                    .cornerRadius(10)
-                            }
-                            
-                            
-                            //cancel button
-                            Button(action: {
-                                viewModel.showTextFieldOverlay = false // Hide the overlay if user cancels
-                                viewModel.clearTitle()// Optionally clear the title
-                            }) {
-                                Text("Cancel")
-                                    .padding()
-                                    .frame(maxWidth: .infinity)
-                                    .background(Color.red)
-                                    .foregroundStyle(.white)
-                                    .cornerRadius(10)
-                            }
-                        }
-                        .padding(.horizontal,12)
+//                        TextField ("Task title:", text: $viewModel.userTaskTitle)
+//                            .textFieldStyle(RoundedBorderTextFieldStyle())
+//                            .padding(.horizontal,12)
+//                        
+//                        HStack{
+//                            //create button
+//                            Button(action: addNewTask) {
+//                                Text("create task")
+//                                    .padding()
+//                                    .frame(maxWidth: .infinity)
+//                                    .background(Color.green)
+//                                    .foregroundStyle(.white)
+//                                    .cornerRadius(10)
+//                            }
+//                            
+//                            
+//                            //cancel button
+//                            Button(action: {
+//                                viewModel.showTextFieldOverlay = false // Hide the overlay if user cancels
+//                                viewModel.clearTitle()// Optionally clear the title
+//                            }) {
+//                                Text("Cancel")
+//                                    .padding()
+//                                    .frame(maxWidth: .infinity)
+//                                    .background(Color.red)
+//                                    .foregroundStyle(.white)
+//                                    .cornerRadius(10)
+//                            }
+//                        }
+//                        .padding(.horizontal,12)
                         
                     }
-                    .padding()
-                    .background(Color.black.opacity(0.5)) // Dim the background
-                    .cornerRadius(20)
+//                    .padding()
+                    //.background(Color.black.opacity(0.5)) // Dim the background
+//                    .cornerRadius(20)
 
 
                     
