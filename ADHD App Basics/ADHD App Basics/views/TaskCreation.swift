@@ -14,6 +14,7 @@ struct TaskCreation: View {
     //keep track of overlay expansion
     @State private var showExpanded: Bool = false
     
+//    @StateObject var viewModelTaskCreate: TaskCreationViewModel
     
     var body: some View {
         
@@ -27,7 +28,8 @@ struct TaskCreation: View {
                     .edgesIgnoringSafeArea(.all)
                 
                 //Quick View task creation view
-                VStack() {
+                VStack(alignment: .leading) {
+                    
                     //heading + arrow button
                     HStack(alignment:.center){
                         //heading
@@ -47,27 +49,53 @@ struct TaskCreation: View {
                                 .foregroundColor(Color(red: 0, green: 0, blue: 0))
                                 .rotationEffect(.degrees(showExpanded ? 180 : 0 ))
                         }
-                        
-                        if showExpanded {
-                            
-                        }
-                        
                     }
+                    
                     //task name text field
                     Rectangle()
                     .foregroundColor(.clear)
                     .frame(height: 39)
                     .background(Color(red: 0.92, green: 0.92, blue: 0.92))
-
                     .cornerRadius(4)
-                    //TODO: need to find way to allow binding to ftaskname
-    //                TextField("Enter your task here")
-    //                , text: $task.fTaskName)
-    //                 .textFieldStyle(RoundedBorderTextFieldStyle())
+                    
+                    //TODO: mentor - need to find way to allow binding to ftaskname
+//                    TextField("Enter your task here")
+//                    , text: $task.fTaskName)
+//                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     
                     //expanded version with all extra elements
                     
-                    
+                    if showExpanded {
+                        
+                        VStack (alignment: .leading) {
+                            Text("Notes")
+                                .font(Font.custom("Instrument Sans", size: 16)) // Set the custom font
+                                .fontWeight(.regular) // Apply weight separately
+                            //Notes text field
+                            Rectangle()
+                            .foregroundColor(.clear)
+                            .frame(height: 80)
+                            .background(Color(red: 0.92, green: 0.92, blue: 0.92))
+                            .cornerRadius(4)
+                            
+                        }
+                        .padding(.top, 5)
+                        
+                        VStack (alignment: .leading) {
+                            Text("Tag")
+                                .font(Font.custom("Instrument Sans", size: 16)) // Set the custom font
+                                .fontWeight(.regular) // Apply weight separately
+                            
+                            Rectangle()
+                            .foregroundColor(.clear)
+                            .frame(height: 39)
+                            .background(Color(red: 0.92, green: 0.92, blue: 0.92))
+                            .cornerRadius(4)
+                            
+                        }
+                        .padding(.top, 5)
+
+                    }
                     
                     Spacer()
                         .frame(height: 35)
@@ -122,6 +150,7 @@ struct TaskCreation: View {
                 }
                 .padding()
                 .frame(maxWidth: .infinity, minHeight: 168, maxHeight: 170)
+                .frame(height: showExpanded ? screenHeight * 0.55: screenHeight * 0.25)
                 .background(Color.white)
                 .clipShape(RoundedCorners(radius: 20, corners: [.topLeft, .topRight]))
                 
