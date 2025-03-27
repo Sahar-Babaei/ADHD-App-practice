@@ -32,14 +32,14 @@ struct FakeTaskCard: View {
                 HStack (alignment:.center) {
                     
                     //tag
-                    HStack(spacing:2){
+                    HStack(spacing:3){
                         
                         Image(systemName: "tag")
-                            .foregroundColor(Color(red: 0.61, green: 0.61, blue: 0.61))
+                            .foregroundColor(Color("TagNoColor"))
                         
                         Text(fTask.fTaskCategory)
                             .font(Font.custom("Helvetica", size: 18))
-                            .foregroundColor(Color(red: 0.61, green: 0.61, blue: 0.61))
+                            .foregroundColor(Color("TagNoColor"))
                     }
                     
                     Spacer()
@@ -56,7 +56,8 @@ struct FakeTaskCard: View {
                 Text(fTask.fTaskName)
                     .font(Font.custom("Instrument Sans", size: 22)) // Set the custom font
                     .fontWeight(.medium) // Apply weight separately
-                    .foregroundColor(Color(red: 0.086, green: 0.09, blue: 0.09))
+                    .foregroundColor(Color("BodyCopy"))
+                
             }
             .background(.yellow)
             
@@ -78,7 +79,7 @@ struct FakeTaskCard: View {
             .cornerRadius(10)
         }
         .padding(12)
-        .background(.white)
+        .background(Color("MainForeground"))
         .cornerRadius(20)
         .shadow(color: .black.opacity(0.1), radius: 2, x: 0, y: 1)
         
