@@ -33,6 +33,11 @@ class TaskBankViewModel: ObservableObject {
         clearTitle()
     }
     
+    func addTask(_ task: FakeTask) {
+        addTaskToUserDefaults(task: task)
+        loadAllTasks()
+    }
+    
     func sortTasks() {
         allTasksList = allTasksList.sorted { taskA, taskB in
             if reverseOrder {

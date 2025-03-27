@@ -10,7 +10,7 @@ import SwiftUI
 
 
 struct FakeTask: Codable {
-    var fTaskName: String = "this would be the task name"
+    var fTaskName: String = ""
     
     var fTaskID = UUID()
     //var fTaskCategory : [String] = ["No category"]

@@ -15,7 +15,7 @@ struct ContentView: View {
     //navigation path:
     
     var body: some View {
-        VStack{
+        VStack(spacing: 0){
             HStack{
                 Text("Todo list app (rough draft)")
                     .font(.custom("Avenir-Medium", size: 20))
