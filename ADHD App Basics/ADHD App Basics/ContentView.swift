@@ -18,12 +18,10 @@ struct ContentView: View {
         
         VStack(){
             
-
             
             
             
             //MARK: - Content for each tab's page
-            
             VStack{
                 
                 switch selectedTab{
@@ -50,88 +48,114 @@ struct ContentView: View {
             
             
             //MARK: - the tabs
-            HStack(){
+            VStack(alignment: .leading, spacing: -46){
                 
-                //tab 1
-                Button (action: {selectedTab = 1}){
-                    VStack{
-                        Image("menu-tab-1")
-
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 26, height: 26)
-                        
-                        Text("Daily Plan")
-                            .font(Font.custom("Helvetica", size: 14))
-                            .fontWeight(.regular)
+                //--> HStack for 3 tabs
+                HStack(alignment: .center, spacing: 51){
+                    
+                    //tab 1
+                    Button (action: {selectedTab = 1}){
+                        VStack{
+                            Image("menu-tab-1")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 24, height: 24)
+                                .foregroundColor(Color("BodyCopy"))
+                        }
                     }
-                }
-                .frame(maxWidth: .infinity)
-                
-
-                
-                //tab 2
-                Button (action: {selectedTab = 2}){
-                    VStack{
-                        Image("menu-tab-2")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 26, height: 26)
-                        
-                        
-                        Text("Task Bank")
-                            .font(Font.custom("Helvetica", size: 14))
-                            .fontWeight(.regular)
-
+                    
+                    
+                    
+                    
+                    //tab 2
+                    Button (action: {selectedTab = 2}){
+                        VStack{
+                            Image("menu-tab-2")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 24, height: 24)
+                                .foregroundColor(Color("BodyCopy"))
+                        }
                     }
-                }
-                .frame(maxWidth: .infinity)
-                
-      
-
-                
-                //tab 3
-                Button (action: {selectedTab = 3}){
-                    VStack{
-                        Image("menu-tab-3")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 26, height: 26)
-                        
-                        Text("Settings")
-                            .font(Font.custom("Helvetica", size: 14))
-                            .fontWeight(.regular)
-
+                    
+                    
+                    
+                    
+                    
+                    //tab 3
+                    Button (action: {selectedTab = 3}){
+                        VStack{
+                            Image("menu-tab-3")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 24, height: 24)
+                                .foregroundColor(Color("BodyCopy"))
+                            
+                        }
                     }
+                    
+                    
                 }
-                .frame(maxWidth: .infinity)
+                .padding(.horizontal, 30)
+                .padding(.top, 20)
+                .padding(.bottom, 40)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color("MenuBackground"))
+                .overlay(
+                    Rectangle()
+                        .inset(by: 0.5)
+                        .stroke(.white, lineWidth: 1)
+                )
+                //.blur(radius: 40)
+                //.blur(radius: 2, opaque: false)
+                //.background(.thinMaterial)
+                .background(.ultraThinMaterial)
                 
-
                 
-                //tab 4
-                Button (action: {selectedTab = 4}){
-                    VStack{
-                        Image("menu-tab-4")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 26, height: 26)
+                
+                // --> HStack all of this is for the plus (+) button section
+                HStack(alignment: .center, spacing: 10){
+                    HStack(alignment: .center, spacing: 10){
                         
-                        Text("Create new Task")
-                            .font(Font.custom("Helvetica", size: 14))
-                            .fontWeight(.regular)
-
+                        //tab 4
+                        Button (action: {selectedTab = 4}){
+                            VStack{
+                                Image("menu-tab-4")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 24, height: 24)
+                                    .foregroundColor(Color("BodyCopy"))
+                                
+                            }
+                        }
                     }
-                }
-                .frame(maxWidth: .infinity)
-                
+                    .padding(30)
+                    .background(Color(red: 0.54, green: 0.54, blue: 0.54).opacity(0.3))
+                    .background(.ultraThinMaterial) //Delete this if it doesn't make it transparent
 
+                    .cornerRadius(57)
+                    .overlay(
+                    RoundedRectangle(cornerRadius: 57)
+                    .inset(by: 0.5)
+                    .stroke(Color(red: 0.4, green: 0.4, blue: 0.4), lineWidth: 1)
+
+                    )
+                    //.blur(radius: 40)
+                    
+                }
+                .padding(.horizontal, 20)
+                .padding(.vertical, 0)
+                .frame(maxWidth: .infinity, alignment: .trailing)
                 
                 
                 
             }
-            .padding(.horizontal, 20)
-            .accentColor(Color.init(red: 121/255, green: 68/255, blue: 5/255))
-            .background(Color.yellow)
+            .padding(0)
+            .frame(maxWidth: .infinity, alignment: .topLeading)
+            
+            //            .padding(.horizontal, 20)
+            //            .accentColor(Color.init(red: 121/255, green: 68/255, blue: 5/255))
+            //            .background(Color.yellow)
         }.ignoresSafeArea(.keyboard)
         //MARK: - App's header title?
         
