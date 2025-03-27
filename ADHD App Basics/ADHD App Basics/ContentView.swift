@@ -15,29 +15,31 @@ struct ContentView: View {
     //navigation path:
     
     var body: some View {
-        VStack(spacing: 0){
-            HStack{
-                Text("Todo list app (rough draft)")
-                    .font(.custom("Avenir-Medium", size: 20))
-                //fun fact: this is how you change fonts.
-                //doing fonts individually like this is kinda hell :/
-                    .padding(.horizontal,4)
-                    .padding(.vertical,8)
-                    
-
-                
-                Spacer()
-                Image(systemName: "checkmark.square")
-                    .foregroundColor(.red)
-                    //.font(.title)
-                    .font(.system(size: 25))
-                
-            }
-            .padding(EdgeInsets(top: 0, leading: 10, bottom:10, trailing: 10))
-            .background(Color.yellow)
-            //Note: why doesn't this go full width? - it did when i used a Spacer()
+        
+        VStack(){
             
-            Spacer() // NOTE: without this, everything would appear at middle of screen.
+//            HStack{
+//                Text("Todo list app (rough draft)")
+//                    .font(.custom("Avenir-Medium", size: 20))
+//                //fun fact: this is how you change fonts.
+//                //doing fonts individually like this is kinda hell :/
+//                    .padding(.horizontal,4)
+//                    .padding(.vertical,8)
+//                    
+//
+//                
+//                Spacer()
+//                Image(systemName: "checkmark.square")
+//                    .foregroundColor(.red)
+//                    //.font(.title)
+//                    .font(.system(size: 25))
+//                
+//            }
+//            .padding(EdgeInsets(top: 0, leading: 10, bottom:10, trailing: 10))
+//            .background(Color.yellow)
+//            //Note: why doesn't this go full width? - it did when i used a Spacer()
+//            
+//            Spacer() // NOTE: without this, everything would appear at middle of screen.
             
             //MARK: you can't style tabs when using TabViews and TabItem(s), so commenting this out:
             
@@ -97,7 +99,7 @@ struct ContentView: View {
             
             //MARK: - Content for each tab's page
             
-            VStack{ //TODO: Mentor: feels weird to put a switch block in a VStack...
+            VStack{
                 
                 switch selectedTab{
                 case 1:
@@ -128,102 +130,82 @@ struct ContentView: View {
                 //tab 1
                 Button (action: {selectedTab = 1}){
                     VStack{
-                        Image(systemName: "list.bullet.clipboard")
-                            .font(.system(size: 25))
-                        //^ in SwiftUI, SF Symbols (system images) are treated like text glyphs, which is why their size is controlled using .font().
-                            .padding(.bottom,2)
+                        Image("menu-tab-1")
+
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 26, height: 26)
                         
-                        Text("tab 1")
-                            .font(.custom("Charter-Bold", size: 14))
+                        Text("Daily Plan")
+                            .font(Font.custom("Helvetica", size: 14))
+                            .fontWeight(.regular)
                     }
                 }
                 .frame(maxWidth: .infinity)
                 
 
-                Divider()
-                    .frame(width: 2, height: 50)
-                        .background(Color.init(red: 121/255, green: 68/255, blue: 5/255))
                 
                 //tab 2
                 Button (action: {selectedTab = 2}){
                     VStack{
-                        Image(systemName: "person.text.rectangle")
-                            .font(.system(size: 25))
-                            .padding(.bottom,2)
+                        Image("menu-tab-2")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 26, height: 26)
                         
-                        Text("tab 2")
-                            .font(.custom("Charter-Bold", size: 14))
+                        
+                        Text("Task Bank")
+                            .font(Font.custom("Helvetica", size: 14))
+                            .fontWeight(.regular)
 
                     }
                 }
                 .frame(maxWidth: .infinity)
                 
       
-                Divider()
-                    .frame(width: 2, height: 50)
-                        .background(Color.init(red: 121/255, green: 68/255, blue: 5/255))
+
                 
                 //tab 3
                 Button (action: {selectedTab = 3}){
                     VStack{
-                        Image(systemName: "plus")
-                            .font(.system(size: 25))
-                            .padding(.bottom,2)
+                        Image("menu-tab-3")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 26, height: 26)
                         
-                        Text("tab 3")
-                            .font(.custom("Charter-Bold", size: 14))
+                        Text("Settings")
+                            .font(Font.custom("Helvetica", size: 14))
+                            .fontWeight(.regular)
+
                     }
                 }
                 .frame(maxWidth: .infinity)
                 
 
-                Divider()
-                    .frame(width: 2, height: 50)
-                        .background(Color.init(red: 121/255, green: 68/255, blue: 5/255))
                 
                 //tab 4
                 Button (action: {selectedTab = 4}){
                     VStack{
-                        Image(systemName: "face.smiling")
-                            .font(.system(size: 25))
-                            .padding(.bottom,2)
+                        Image("menu-tab-4")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 26, height: 26)
                         
-                        Text("tab 4")
-                            .font(.custom("Charter-Bold", size: 14))
-                        
-                    }
-                }
-                .frame(maxWidth: .infinity)
-                
-                
-                //divider
-                Divider()
-                    .frame(width: 2, height: 50)
-                        .background(Color.init(red: 121/255, green: 68/255, blue: 5/255))
+                        Text("Create new Task")
+                            .font(Font.custom("Helvetica", size: 14))
+                            .fontWeight(.regular)
 
-                
-                //tab 5
-                Button (action: {selectedTab = 5}){
-                    VStack{
-                        Image(systemName: "checkmark.square")
-                            .font(.system(size: 25))
-                            .padding(.bottom,2)
-                        
-                        Text("tab 5")
-                            .font(.custom("Charter-Bold", size: 14))
                     }
                 }
                 .frame(maxWidth: .infinity)
+                
+
                 
                 
                 
             }
             .padding(.horizontal, 20)
-            .accentColor(Color.init(red: 121/255, green: 68/255, blue: 5/255)) // I guess this is how you use colors, no hex codes allowed apparently :')
-    //        .frame(height: 60)
-    //        .frame(maxWidth: .infinity) //this fixes the width but not spacing between tabs
-    //        .clipped()
-            //Note: ^ commented these out for now because i manually set the width of each button to .infinity
+            .accentColor(Color.init(red: 121/255, green: 68/255, blue: 5/255))
             .background(Color.yellow)
         }.ignoresSafeArea(.keyboard)
         //MARK: - App's header title?
