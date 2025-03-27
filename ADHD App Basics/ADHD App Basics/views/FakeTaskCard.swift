@@ -23,22 +23,23 @@ struct FakeTaskCard: View {
     var body: some View {
         
         //card
-        VStack(alignment: .leading){
+        VStack(alignment: .leading, spacing: 22){
             
             //tag and title
-            VStack(alignment: .leading, spacing: 10){
+            VStack(alignment: .leading, spacing:10){
                 
                 //tag and more
                 HStack (alignment:.center) {
                     
                     //tag
-                    HStack(spacing:3){
+                    HStack(spacing:4){
                         
                         Image(systemName: "tag")
+                            .font(.system(size: 13))
                             .foregroundColor(Color("TagNoColor"))
                         
                         Text(fTask.fTaskCategory)
-                            .font(Font.custom("Helvetica", size: 13))
+                            .font(Font.custom("Helvetica", size: 14))
                             .foregroundColor(Color("TagNoColor"))
                     }
                     
