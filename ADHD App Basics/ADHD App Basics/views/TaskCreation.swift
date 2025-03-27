@@ -52,14 +52,10 @@ struct TaskCreation: View {
                 }
                 
                 //task name text field
-                Rectangle()
-                    .foregroundColor(.clear)
-                    .frame(height: 39)
-                    .background(Color(red: 0.92, green: 0.92, blue: 0.92))
-                    .cornerRadius(4)
-                
                 //TODO: mentor - need to find way to allow binding to ftaskname
                 TextField("Enter your task here", text: $viewModel.fTask.fTaskName)
+                    .textFieldStyle(.plain)
+                    .background((Color(red: 0.92, green: 0.92, blue: 0.92)))
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 
                 //expanded version with all extra elements

@@ -58,7 +58,7 @@ struct FakeTaskCard: View {
                     .fontWeight(.medium) // Apply weight separately
                     .foregroundColor(Color(red: 0.086, green: 0.09, blue: 0.09))
             }
-            .background(.yellow)
+//            .background(.yellow)
             
             
             //status
