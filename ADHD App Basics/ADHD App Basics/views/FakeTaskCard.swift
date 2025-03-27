@@ -38,7 +38,7 @@ struct FakeTaskCard: View {
                             .foregroundColor(Color("TagNoColor"))
                         
                         Text(fTask.fTaskCategory)
-                            .font(Font.custom("Helvetica", size: 18))
+                            .font(Font.custom("Helvetica", size: 13))
                             .foregroundColor(Color("TagNoColor"))
                     }
                     
@@ -54,7 +54,7 @@ struct FakeTaskCard: View {
                 
                 //task name
                 Text(fTask.fTaskName)
-                    .font(Font.custom("Instrument Sans", size: 22)) // Set the custom font
+                    .font(Font.custom("Instrument Sans", size: 16)) // Set the custom font
                     .fontWeight(.medium) // Apply weight separately
                     .foregroundColor(Color("BodyCopy"))
                 
@@ -69,7 +69,7 @@ struct FakeTaskCard: View {
                     .frame(width: 8, height: 8)
                 
                 Text(fTask.fTaskStatus)
-                    .font(Font.custom("Helvetica", size: 17))
+                    .font(Font.custom("Helvetica", size: 13))
                     .foregroundColor(Color("GreyStatusBody"))
             }
             .padding(.leading, 8)
