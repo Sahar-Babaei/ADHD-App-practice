@@ -26,7 +26,7 @@ struct FakeTaskCard: View {
         VStack(alignment: .leading){
             
             //tag and title
-            VStack(alignment: .leading, spacing: 8){
+            VStack(alignment: .leading, spacing: 10){
                 
                 //tag and more
                 HStack (alignment:.center) {
@@ -59,24 +59,25 @@ struct FakeTaskCard: View {
                     .foregroundColor(Color("BodyCopy"))
                 
             }
-            .background(.yellow)
+            //.background(.yellow)
             
             
             //status
             HStack(alignment: .center, spacing: 5) {
                 Circle()
-                    .fill(Color(red: 0.53, green: 0.53, blue: 0.53))
+                    .fill(Color("GreyStatusBody"))
                     .frame(width: 8, height: 8)
                 
                 Text(fTask.fTaskStatus)
                     .font(Font.custom("Helvetica", size: 17))
-                    .foregroundColor(Color(red: 0.09, green: 0.09, blue: 0.09))
+                    .foregroundColor(Color("GreyStatusBody"))
             }
             .padding(.leading, 8)
             .padding(.trailing, 12)
             .padding(.vertical, 4)
-            .background(.black.opacity(0.1))
-            .cornerRadius(10)
+            .background(Color("GreyStatusBackground"))
+            .cornerRadius(15)
+            
         }
         .padding(12)
         .background(Color("MainForeground"))
