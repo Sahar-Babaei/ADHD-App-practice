@@ -16,7 +16,7 @@ struct ContentView: View {
     
     var body: some View {
         
-        VStack(){
+        ZStack(alignment: .bottom){
             
             
             
@@ -48,72 +48,92 @@ struct ContentView: View {
             
             
             //MARK: - the tabs
-            VStack(alignment: .leading, spacing: -46){
+            ZStack(alignment: .leading){
+                
+                
                 
                 //--> HStack for 3 tabs
-                HStack(alignment: .center, spacing: 51){
+                VStack(){
                     
-                    //tab 1
-                    Button (action: {selectedTab = 1}){
-                        VStack{
-                            Image("menu-tab-1")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 24, height: 24)
-                                .foregroundColor(Color("BodyCopy"))
+                    Spacer()
+                        .frame(height:80)
+                    HStack(alignment: .center, spacing: 51){
+                        
+                        //tab 1
+                        Button (action: {selectedTab = 1}){
+                            VStack{
+                                Image("menu-tab-1")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 24, height: 24)
+                                    .foregroundColor(Color("BodyCopy"))
+                            }
                         }
-                    }
-                    
-                    
-                    
-                    
-                    //tab 2
-                    Button (action: {selectedTab = 2}){
-                        VStack{
-                            Image("menu-tab-2")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 24, height: 24)
-                                .foregroundColor(Color("BodyCopy"))
+                        
+                        
+                        
+                        
+                        //tab 2
+                        Button (action: {selectedTab = 2}){
+                            VStack{
+                                Image("menu-tab-2")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 24, height: 24)
+                                    .foregroundColor(Color("BodyCopy"))
+                            }
                         }
-                    }
-                    
-                    
-                    
-                    
-                    
-                    //tab 3
-                    Button (action: {selectedTab = 3}){
-                        VStack{
-                            Image("menu-tab-3")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 24, height: 24)
-                                .foregroundColor(Color("BodyCopy"))
-                            
+                        
+                        
+                        
+                        
+                        
+                        //tab 3
+                        Button (action: {selectedTab = 3}){
+                            VStack{
+                                Image("menu-tab-3")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 24, height: 24)
+                                    .foregroundColor(Color("BodyCopy"))
+                                
+                            }
                         }
+                        
+                        
                     }
+                    .background(Color.yellow)
+                    .padding(.horizontal, 30)
+                    .padding(.top, 20)
+                    .padding(.bottom, 40)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     
+                    .overlay(
+                        Rectangle()
+                            .fill(Color.green)
+                            .frame(height: 1),
+                        alignment:.top
+                            //.inset(by: 0.5)
+                            //.stroke(Color(red: 0.4, green: 0.4, blue: 0.4), lineWidth: 1)
+                    )
+                    .background(Color("MenuBackground"))
+                    .background(.ultraThinMaterial)
+                    
+                    //.blur(radius: 40)
+                    //.blur(radius: 2, opaque: false)
+                    //.background(.thinMaterial)
+                    //.background(.ultraThinMaterial)
+                    
+                    //.frame(alignment: .bottom)
                     
                 }
-                .padding(.horizontal, 30)
-                .padding(.top, 20)
-                .padding(.bottom, 40)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .background(Color("MenuBackground"))
-                .overlay(
-                    Rectangle()
-                        .inset(by: 0.5)
-                        .stroke(.white, lineWidth: 1)
-                )
-                //.blur(radius: 40)
-                //.blur(radius: 2, opaque: false)
-                //.background(.thinMaterial)
-                .background(.ultraThinMaterial)
-                
+                //.background(Color.blue)
                 
                 
                 // --> HStack all of this is for the plus (+) button section
+                VStack{
+                //Spacer()
+                
                 HStack(alignment: .center, spacing: 10){
                     HStack(alignment: .center, spacing: 10){
                         
@@ -129,16 +149,17 @@ struct ContentView: View {
                             }
                         }
                     }
+                    //.frame(height: 99)
                     .padding(30)
                     .background(Color(red: 0.54, green: 0.54, blue: 0.54).opacity(0.3))
                     .background(.ultraThinMaterial) //Delete this if it doesn't make it transparent
-
+                    
                     .cornerRadius(57)
                     .overlay(
-                    RoundedRectangle(cornerRadius: 57)
-                    .inset(by: 0.5)
-                    .stroke(Color(red: 0.4, green: 0.4, blue: 0.4), lineWidth: 1)
-
+                        RoundedRectangle(cornerRadius: 57)
+                            .inset(by: 0.5)
+                            .stroke(Color(red: 0.4, green: 0.4, blue: 0.4), lineWidth: 1)
+                        
                     )
                     //.blur(radius: 40)
                     
@@ -146,19 +167,33 @@ struct ContentView: View {
                 .padding(.horizontal, 20)
                 .padding(.vertical, 0)
                 .frame(maxWidth: .infinity, alignment: .trailing)
+                //.background(Color.yellow)
                 
+                    Spacer()
+                        .frame(height: 10)
+                    
+                }
+                //.background(Color.green)
                 
                 
             }
+            
             .padding(0)
-            .frame(maxWidth: .infinity, alignment: .topLeading)
+            .frame(maxWidth: .infinity, alignment: .bottom)
+            //.frame(height: 90)
+            .fixedSize(horizontal: false, vertical: true)
+            //.background(Color.orange)
+            
+            
             
             //            .padding(.horizontal, 20)
             //            .accentColor(Color.init(red: 121/255, green: 68/255, blue: 5/255))
             //            .background(Color.yellow)
-        }.ignoresSafeArea(.keyboard)
+        }
+        .background(Color.pink)
+        .ignoresSafeArea(.keyboard)
         //MARK: - App's header title?
-        
+            .background(Color.pink)
         
         
         
