@@ -21,6 +21,18 @@ func addTaskToUserDefaults(task: Task) {
     }
 }
 
+func removeTaskFromUserDefaults(taskID: UUID) {
+    var existingTasks = retrieveTasksFromUserDefaults()
+    if let index = existingTasks.firstIndex(where: { $0.ID == taskID }) {
+        existingTasks.remove(at: index)
+    }
+    
+    let encoder = JSONEncoder()
+    if let encoded = try? encoder.encode(existingTasks) {
+        UserDefaults.standard.set(encoded, forKey: "user_tasks")
+    }
+}
+
 // MARK: - retrieve Task from UserDefaults
 
 func retrieveTasksFromUserDefaults() -> [Task] {

@@ -33,8 +33,15 @@ class TaskBankViewModel: ObservableObject {
         clearTitle()
     }
     
+    
     func addTask(_ task: Task) {
         addTaskToUserDefaults(task: task)
+        loadAllTasks()
+    }
+    
+    func removeTask(_ taskToRemove: Task) {
+        // There are two things that you can find when you click on an element (I don't know how we need to ask AI or something) either, the index, or the actual ID. Then we
+        removeTaskFromUserDefaults(taskID: taskToRemove.ID)
         loadAllTasks()
     }
     

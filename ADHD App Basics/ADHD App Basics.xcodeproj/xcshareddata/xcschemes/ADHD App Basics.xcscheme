@@ -16,7 +16,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B8C9FBA42D605CF700F19AF2"
-               BuildableName = "ADHD App Basics.app"
+               BuildableName = "DO-3.app"
                BlueprintName = "ADHD App Basics"
                ReferencedContainer = "container:ADHD App Basics.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B8C9FBA42D605CF700F19AF2"
-            BuildableName = "ADHD App Basics.app"
+            BuildableName = "DO-3.app"
             BlueprintName = "ADHD App Basics"
             ReferencedContainer = "container:ADHD App Basics.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B8C9FBA42D605CF700F19AF2"
-            BuildableName = "ADHD App Basics.app"
+            BuildableName = "DO-3.app"
             BlueprintName = "ADHD App Basics"
             ReferencedContainer = "container:ADHD App Basics.xcodeproj">
          </BuildableReference>
