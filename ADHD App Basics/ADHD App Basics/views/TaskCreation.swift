@@ -14,11 +14,13 @@ struct TaskCreation: View {
     
     @StateObject var viewModel = TaskCreationViewModel()
     @StateObject var storageViewModel = TaskBankViewModel()
+    var onComplete : () -> Void = { }
     
-    init(viewModel: TaskCreationViewModel, storageViewModel: TaskBankViewModel, showExpanded: Bool) {
+    init(viewModel: TaskCreationViewModel, storageViewModel: TaskBankViewModel, showExpanded: Bool , onComplete: @escaping () -> Void) {
         _viewModel = StateObject(wrappedValue: viewModel)
         _storageViewModel = StateObject(wrappedValue: storageViewModel)
         self.showExpanded = showExpanded
+        self.onComplete = onComplete //not invoking, just saving.
     }
     
     var body: some View {
@@ -58,8 +60,8 @@ struct TaskCreation: View {
                     .background(Color(red: 0.92, green: 0.92, blue: 0.92))
                     .cornerRadius(4)
                 
-                //TODO: mentor - need to find way to allow binding to ftaskname
-                TextField("Enter your task here", text: $viewModel.fTask.fTaskName)
+                //TODO: mentor - need to find way to allow binding to name
+                TextField("Enter your task here", text: $viewModel.fTask.name)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 
                 //expanded version with all extra elements
@@ -110,7 +112,7 @@ struct TaskCreation: View {
                                 .fill(Color(red: 0.53, green: 0.53, blue: 0.53))
                                 .frame(width: 8, height: 8)
                             
-                            Text(viewModel.fTask.fTaskStatus)
+                            Text(viewModel.fTask.status)
                                 .font(Font.custom("Helvetica", size: 17))
                                 .foregroundColor(Color(red: 0.09, green: 0.09, blue: 0.09))
                         }
@@ -126,7 +128,7 @@ struct TaskCreation: View {
                             Image(systemName: "tag")
                                 .foregroundColor(Color(red: 0.61, green: 0.61, blue: 0.61))
                             
-                            Text(viewModel.fTask.fTaskTag.name)
+                            Text(viewModel.fTask.tag.name)
                                 .font(Font.custom("Helvetica", size: 18))
                                 .foregroundColor(Color(red: 0.61, green: 0.61, blue: 0.61))
                         }
@@ -139,11 +141,15 @@ struct TaskCreation: View {
                     Button(action: {
                         //viewModel.createTask returns nil if the task data is no-good
                         let newlyCreatedTask = viewModel.createTask()
+                        self.onComplete()
+                        
                         
                         //only add to storage if the task was successfully created (aka, it's not nil)
                         if let a = newlyCreatedTask {
                             storageViewModel.addTask(a)
+                            // put a flag here to make it all disapear
                         }
+                        
                     }) {
                         Text("Add task ")
                             .padding()
@@ -178,5 +184,5 @@ struct RoundedCorners: Shape {
 }
 
 #Preview {
-    TaskCreation(viewModel: TaskCreationViewModel(), storageViewModel: TaskBankViewModel(), showExpanded: false)
+    TaskCreation(viewModel: TaskCreationViewModel(), storageViewModel: TaskBankViewModel(), showExpanded: false, onComplete:{})
 }

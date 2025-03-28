@@ -25,6 +25,8 @@ class TaskCreationViewModel: ObservableObject {
         resetTask()
         return taskToReturn
     }
+    
+    
 
     private func resetTask() {
         fTask = Task()

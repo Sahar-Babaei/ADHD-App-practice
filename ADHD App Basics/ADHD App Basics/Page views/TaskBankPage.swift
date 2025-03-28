@@ -67,9 +67,9 @@ struct TaskBankPage: View {
                 ScrollView {
                     // LazyVGrid adjusts the number of columns dynamically
                     LazyVGrid(columns: getColumnStyle(viewModel.gridViewEnabled)) {
-                        ForEach(viewModel.allTasksList, id: \.fTaskID) { task in
-                            FakeTaskCard(fTask: task, onDelete: {
-                                viewModel.allTasksList.removeAll { $0.fTaskID == task.fTaskID }
+                        ForEach(viewModel.allTasksList, id: \.ID) { task in
+                            TaskCard(fTask: task, onDelete: {
+                                viewModel.allTasksList.removeAll { $0.ID == task.ID }
                             })
                         }
                     }
@@ -88,7 +88,10 @@ struct TaskBankPage: View {
             
                     
                     VStack{
-                        TaskCreation(viewModel: TaskCreationViewModel(), storageViewModel: viewModel, showExpanded: false)
+                        TaskCreation(viewModel: TaskCreationViewModel(), storageViewModel: viewModel, showExpanded: false, onComplete: {
+                            viewModel.showTextFieldOverlay = false
+                            
+                        })
 
                         //input field
 //                        TextField ("Task title:", text: $viewModel.userTaskTitle)

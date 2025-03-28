@@ -46,7 +46,7 @@ struct Task: Codable {
 // 2)
 // If you want to provide your own values for any of the properties
 // You can initialize a FakeTask by providing values for as many or as few properties as you like.
-// let task67 = FakeTask(fTaskName: "wash dishes", fTaskCategory: ["Work"])
+// let task67 = FakeTask(name: "wash dishes", fTaskCategory: ["Work"])
 
 
 // For structs in Swift:
