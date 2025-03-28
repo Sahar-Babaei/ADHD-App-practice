@@ -9,16 +9,16 @@ import Foundation
 
 class TaskCreationViewModel: ObservableObject {
     
-    @Published var fTask: FakeTask = FakeTask()
+    @Published var fTask: Task = Task()
     
     //mentor: do I need to reference the taskbank viewmodel to get access to the same faketask array?
 //    var taskBankViewModel: TaskBankViewModel?
     
     //want to be able to reference the FakeTask properties to bind the user's input to a new entry to the array
-    func createTask() -> FakeTask? {
+    func createTask() -> Task? {
         // this only adds a new task if title is not empty
         
-        guard !fTask.fTaskName.isEmpty else { return nil }
+        guard !fTask.name.isEmpty else { return nil }
         //Add any data checks before allowing a task to be added to memory
         
         let taskToReturn = fTask
@@ -27,6 +27,6 @@ class TaskCreationViewModel: ObservableObject {
     }
 
     private func resetTask() {
-        fTask = FakeTask()
+        fTask = Task()
     }
 }

@@ -126,7 +126,7 @@ struct TaskCreation: View {
                             Image(systemName: "tag")
                                 .foregroundColor(Color(red: 0.61, green: 0.61, blue: 0.61))
                             
-                            Text(viewModel.fTask.fTaskCategory)
+                            Text(viewModel.fTask.fTaskTag.name)
                                 .font(Font.custom("Helvetica", size: 18))
                                 .foregroundColor(Color(red: 0.61, green: 0.61, blue: 0.61))
                         }

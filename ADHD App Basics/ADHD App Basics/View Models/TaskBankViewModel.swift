@@ -9,7 +9,7 @@ import Foundation
 
 class TaskBankViewModel: ObservableObject {
     
-    @Published var allTasksList : [FakeTask] = []
+    @Published var allTasksList : [Task] = []
     @Published var reverseOrder: Bool = false
     @Published var showTextFieldOverlay : Bool = false
     @Published var userTaskTitle : String = ""
@@ -26,14 +26,14 @@ class TaskBankViewModel: ObservableObject {
         // this only adds a new task if title is not empty
         guard !userTaskTitle.isEmpty else { return }
         
-        let newTask  = FakeTask(fTaskName: userTaskTitle, fTaskID: UUID(), fTaskCompleted: false)
+        let newTask  = Task(name: userTaskTitle, ID: UUID(), isCompleted: false)
         
         addTaskToUserDefaults(task: newTask)
         loadAllTasks()
         clearTitle()
     }
     
-    func addTask(_ task: FakeTask) {
+    func addTask(_ task: Task) {
         addTaskToUserDefaults(task: task)
         loadAllTasks()
     }
@@ -41,10 +41,10 @@ class TaskBankViewModel: ObservableObject {
     func sortTasks() {
         allTasksList = allTasksList.sorted { taskA, taskB in
             if reverseOrder {
-                taskA.fTaskCreationDate > taskB.fTaskCreationDate
+                taskA.creationDate > taskB.creationDate
             }
             else{
-                taskA.fTaskCreationDate < taskB.fTaskCreationDate
+                taskA.creationDate < taskB.creationDate
             }
         }
     }

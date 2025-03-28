@@ -10,7 +10,7 @@ import SwiftUI
 struct FakeTaskCard: View {
     
     // creating a variable of type FakeTask, so we can use its attributes when creating our card.
-    var fTask : FakeTask
+    var fTask : Task
     
     @State private var showMenu: Bool = false
     @State private var showDeleteConfirmation: Bool = false
@@ -36,11 +36,11 @@ struct FakeTaskCard: View {
                         
                         Image(systemName: "tag")
                             .font(.system(size: 13))
-                            .foregroundColor(Color("TagNoColor"))
+                            .foregroundColor(fTask.tag.color)
                         
-                        Text(fTask.fTaskCategory)
+                        Text(fTask.tag.name)
                             .font(Font.custom("Helvetica", size: 14))
-                            .foregroundColor(Color("TagNoColor"))
+                            .foregroundColor(fTask.tag.color)
                     }
                     
                     Spacer()
@@ -54,7 +54,7 @@ struct FakeTaskCard: View {
                 
                 
                 //task name
-                Text(fTask.fTaskName)
+                Text(fTask.name)
                     .font(Font.custom("Instrument Sans", size: 16)) // Set the custom font
                     .fontWeight(.medium) // Apply weight separately
                     .foregroundColor(Color("BodyCopy"))
@@ -69,7 +69,7 @@ struct FakeTaskCard: View {
                     .fill(Color("GreyStatusBody"))
                     .frame(width: 8, height: 8)
                 
-                Text(fTask.fTaskStatus)
+                Text(fTask.status)
                     .font(Font.custom("Helvetica", size: 13))
                     .foregroundColor(Color("GreyStatusBody"))
             }
@@ -139,5 +139,5 @@ struct FakeTaskCard: View {
 
 //MARK: - Preview
 #Preview {
-    FakeTaskCard(fTask: FakeTask(),onDelete: {})
+    FakeTaskCard(fTask: Task(),onDelete: {})
 }

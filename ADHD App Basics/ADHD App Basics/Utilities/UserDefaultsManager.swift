@@ -11,7 +11,7 @@ import Foundation
 //where will you call this function?
 // can not be accessed within a View - will need an observable object
 
-func addTaskToUserDefaults(task: FakeTask) {
+func addTaskToUserDefaults(task: Task) {
     var existingTasks = retrieveTasksFromUserDefaults()
     existingTasks.append(task)
     
@@ -23,10 +23,10 @@ func addTaskToUserDefaults(task: FakeTask) {
 
 // MARK: - retrieve Task from UserDefaults
 
-func retrieveTasksFromUserDefaults() -> [FakeTask] {
+func retrieveTasksFromUserDefaults() -> [Task] {
     if let savedData = UserDefaults.standard.data(forKey: "user_tasks") {
         let decoder = JSONDecoder()
-        if let loadedUserDetails = try? decoder.decode([FakeTask].self, from: savedData) {
+        if let loadedUserDetails = try? decoder.decode([Task].self, from: savedData) {
             return loadedUserDetails
         }
     }
@@ -34,11 +34,11 @@ func retrieveTasksFromUserDefaults() -> [FakeTask] {
 }
 
 //Returns nil if it failed to find the task
-func retrieveTaskFromUserDefaults(taskID: String) -> FakeTask? {
+func retrieveTaskFromUserDefaults(taskID: String) -> Task? {
     if let savedData = UserDefaults.standard.data(forKey: "user_tasks") {
         let decoder = JSONDecoder()
-        if let loadedUserDetails = try? decoder.decode([FakeTask].self, from: savedData) {
-            return loadedUserDetails.first { $0.fTaskID.uuidString == taskID }
+        if let loadedUserDetails = try? decoder.decode([Task].self, from: savedData) {
+            return loadedUserDetails.first { $0.ID.uuidString == taskID }
         }
     }
     return nil
