@@ -12,6 +12,8 @@ struct TaskCreation: View {
     //keep track of overlay expansion
     @State private var showExpanded: Bool = false
     
+//    var dropdown
+    
     @StateObject var viewModel = TaskCreationViewModel()
     @StateObject var storageViewModel = TaskBankViewModel()
     var onComplete : () -> Void = { }
@@ -54,12 +56,6 @@ struct TaskCreation: View {
                 }
                 
                 //task name text field
-                Rectangle()
-                    .foregroundColor(.clear)
-                    .frame(height: 39)
-                    .background(Color(red: 0.92, green: 0.92, blue: 0.92))
-                    .cornerRadius(4)
-                
                 //TODO: mentor - need to find way to allow binding to name
                 TextField("Enter your task here", text: $viewModel.fTask.name)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -126,11 +122,11 @@ struct TaskCreation: View {
                         HStack(spacing:2){
                             
                             Image(systemName: "tag")
-                                .foregroundColor(Color(red: 0.61, green: 0.61, blue: 0.61))
+                                .foregroundColor(viewModel.fTask.tag.color)
                             
                             Text(viewModel.fTask.tag.name)
                                 .font(Font.custom("Helvetica", size: 18))
-                                .foregroundColor(Color(red: 0.61, green: 0.61, blue: 0.61))
+                                .foregroundColor(viewModel.fTask.tag.color)
                         }
                         
                         
@@ -161,7 +157,7 @@ struct TaskCreation: View {
                 }
                 
             }
-            .padding(.horizontal)
+            .padding()
             .background(Color.white)
             .clipShape(RoundedCorners(radius: 20, corners: [.topLeft, .topRight]))
         }.background(Color(red: 0.06, green: 0.09, blue: 0.16).opacity(0.32))

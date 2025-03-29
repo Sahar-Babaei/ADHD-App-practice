@@ -10,11 +10,12 @@ import SwiftUI
 
 
 struct Task: Codable {
-    var name: String = "Your Task Title"
+    var name: String = ""
     
     var ID = UUID()
     //var fTaskCategory : [String] = ["No category"]
-    var tag : Tag = .none
+    var tag : Tag = .school
+    var notes: String = ""
     var isCompleted: Bool = false
     var status: String = "Not Started"
     var creationDate : Date = Date()
@@ -25,6 +26,7 @@ struct Task: Codable {
             case name = "task_name"
             case ID = "task_id"
             case tag = "task_tag"
+            case notes = "task_notes"
             case isCompleted = "task_completed"
             case status = "task_status"
             case creationDate = "task_creation_date"
