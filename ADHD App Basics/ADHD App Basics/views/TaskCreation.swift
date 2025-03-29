@@ -94,8 +94,8 @@ struct TaskCreation: View {
                     
                 }
                 
-                Spacer()
-                    .frame(height: 35)
+//                Spacer()
+//                    .frame(height: 35)
                 
                 //status + tag + button
                 HStack{
@@ -131,28 +131,41 @@ struct TaskCreation: View {
                         
                         
                     }
-                    
+
                     Spacer()
-                    //add Task button
-                    Button(action: {
-                        //viewModel.createTask returns nil if the task data is no-good
-                        let newlyCreatedTask = viewModel.createTask()
-                        self.onComplete()
-                        
-                        
-                        //only add to storage if the task was successfully created (aka, it's not nil)
-                        if let a = newlyCreatedTask {
-                            storageViewModel.addTask(a)
-                            // put a flag here to make it all disapear
+                    
+                    HStack(){
+                        //add Task button
+                        Button(action: {
+                            //viewModel.createTask returns nil if the task data is no-good
+                            let newlyCreatedTask = viewModel.createTask()
+                            self.onComplete()
+                            
+                            
+                            //only add to storage if the task was successfully created (aka, it's not nil)
+                            if let a = newlyCreatedTask {
+                                storageViewModel.addTask(a)
+                                // put a flag here to make it all disapear
+                            }
+                            
+                        }) {
+                            Text("Add task ")
+                                .padding()
+                                .frame(height: 32)
+                                .background(Color.black)
+                                .foregroundStyle(.white)
+                                .cornerRadius(10)
                         }
                         
-                    }) {
-                        Text("Add task ")
-                            .padding()
-                            .frame(height: 32)
-                            .background(Color.black)
-                            .foregroundStyle(.white)
-                            .cornerRadius(10)
+                        //cancel button
+                        Button(action: { self.onComplete()}) {
+                            Text("cancel")
+                                .padding()
+                                .frame(height: 32)
+                                .background(Color.black)
+                                .foregroundStyle(.white)
+                                .cornerRadius(10)
+                        }
                     }
                 }
                 
