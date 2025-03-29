@@ -132,9 +132,21 @@ struct TaskCreation: View {
                         
                     }
 
-                    Spacer()
                     
                     HStack(){
+                        
+                        //cancel button
+                        Button(action: { self.onComplete()}) {
+                            Text("cancel")
+                                .padding()
+                                .frame(height: 32)
+                                .background(Color.black)
+                                .foregroundStyle(.white)
+                                .cornerRadius(10)
+                        }
+                        
+                        Spacer()
+                        
                         //add Task button
                         Button(action: {
                             //viewModel.createTask returns nil if the task data is no-good
@@ -157,15 +169,7 @@ struct TaskCreation: View {
                                 .cornerRadius(10)
                         }
                         
-                        //cancel button
-                        Button(action: { self.onComplete()}) {
-                            Text("cancel")
-                                .padding()
-                                .frame(height: 32)
-                                .background(Color.black)
-                                .foregroundStyle(.white)
-                                .cornerRadius(10)
-                        }
+
                     }
                 }
                 
