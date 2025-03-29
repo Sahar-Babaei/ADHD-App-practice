@@ -102,20 +102,21 @@ struct ContentView: View {
                         
                         
                     }
-                    .background(Color.yellow)
+                    //.background(Color.yellow)
                     .padding(.horizontal, 30)
                     .padding(.top, 20)
                     .padding(.bottom, 40)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    .overlay(
-                        Rectangle()
-                            .fill(Color.green)
-                            .frame(height: 1),
-                        alignment:.top
-                            //.inset(by: 0.5)
-                            //.stroke(Color(red: 0.4, green: 0.4, blue: 0.4), lineWidth: 1)
-                    )
+                    //Don't deleted this commented out below
+//
+//                    .overlay(
+//                        Rectangle()
+//                            .fill(Color.green)
+//                            .frame(height: 1),
+//                        alignment:.top
+//                            //.inset(by: 0.5)
+//                            //.stroke(Color(red: 0.4, green: 0.4, blue: 0.4), lineWidth: 1)
+//                    )
                     .background(Color("MenuBackground"))
                     .background(.ultraThinMaterial)
                     
@@ -149,7 +150,6 @@ struct ContentView: View {
                             }
                         }
                     }
-                    //.frame(height: 99)
                     .padding(30)
                     .background(Color(red: 0.54, green: 0.54, blue: 0.54).opacity(0.3))
                     .background(.ultraThinMaterial) //Delete this if it doesn't make it transparent
@@ -167,33 +167,26 @@ struct ContentView: View {
                 .padding(.horizontal, 20)
                 .padding(.vertical, 0)
                 .frame(maxWidth: .infinity, alignment: .trailing)
-                //.background(Color.yellow)
+
                 
                     Spacer()
                         .frame(height: 10)
                     
                 }
-                //.background(Color.green)
                 
                 
             }
             
             .padding(0)
             .frame(maxWidth: .infinity, alignment: .bottom)
-            //.frame(height: 90)
             .fixedSize(horizontal: false, vertical: true)
-            //.background(Color.orange)
-            
-            
-            
-            //            .padding(.horizontal, 20)
-            //            .accentColor(Color.init(red: 121/255, green: 68/255, blue: 5/255))
-            //            .background(Color.yellow)
+
         }
-        .background(Color.pink)
+        
+        .background(Color("MainBackground"))
         .ignoresSafeArea(.keyboard)
         //MARK: - App's header title?
-            .background(Color.pink)
+            
         
         
         
