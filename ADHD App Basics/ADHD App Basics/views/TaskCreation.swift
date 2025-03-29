@@ -158,9 +158,24 @@ struct TaskCreation: View {
                 
             }
             .padding()
-            .background(Color.white)
+            .background(Color("MainForeground"))
             .clipShape(RoundedCorners(radius: 20, corners: [.topLeft, .topRight]))
-        }.background(Color(red: 0.06, green: 0.09, blue: 0.16).opacity(0.32))
+            
+            .overlay(
+                RoundedRectangle(cornerRadius: 20)
+//                    .fill(Color.green)
+//                    .frame(height: 1),
+                //alignment:.top
+                //.inset(by: 0.5)
+                .stroke(Color("BodyCopy"))
+                //.stroke
+            )
+
+
+        }//.background(Color(red: 0.06, green: 0.09, blue: 0.16).opacity(0.32))
+            //.background(Color(.red))
+            //.background(.ultraThinMaterial)
+            
     }
 }
 
