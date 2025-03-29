@@ -66,7 +66,9 @@ struct ContentView: View {
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 24, height: 24)
-                                    .foregroundColor(Color("BodyCopy"))
+                                
+                                    .foregroundColor(selectedTab == 1 ? .red : Color("BodyCopy"))
+                                    //.foregroundColor(Color("BodyCopy"))
                             }
                         }
                         
@@ -80,7 +82,9 @@ struct ContentView: View {
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 24, height: 24)
-                                    .foregroundColor(Color("BodyCopy"))
+                                    //.foregroundColor(Color("BodyCopy"))
+                                
+                                    .foregroundColor(selectedTab == 2 ? .red : Color("BodyCopy"))
                             }
                         }
                         
@@ -95,7 +99,8 @@ struct ContentView: View {
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 24, height: 24)
-                                    .foregroundColor(Color("BodyCopy"))
+                                    //.foregroundColor(Color("BodyCopy"))
+                                    .foregroundColor(selectedTab == 3 ? .red : Color("BodyCopy"))
                                 
                             }
                         }
