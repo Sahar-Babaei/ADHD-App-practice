@@ -67,17 +67,17 @@ struct TaskCard: View {
             //status
             HStack(alignment: .center, spacing: 5) {
                 Circle()
-                    .fill(Color("GreyStatusBody"))
+                    .fill(fTask.status.bodyColor)
                     .frame(width: 8, height: 8)
                 
-                Text(fTask.status)
+                Text(fTask.status.name)
                     .font(Font.custom("Helvetica", size: 13))
-                    .foregroundColor(Color("GreyStatusBody"))
+                    .foregroundColor(fTask.status.bodyColor)
             }
             .padding(.leading, 8)
             .padding(.trailing, 12)
             .padding(.vertical, 4)
-            .background(Color("GreyStatusBackground"))
+            .background(fTask.status.backgroundColor)
             .cornerRadius(15)
             
         }

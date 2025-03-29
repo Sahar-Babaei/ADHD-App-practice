@@ -105,17 +105,17 @@ struct TaskCreation: View {
                         //status
                         HStack(alignment: .center, spacing: 5) {
                             Circle()
-                                .fill(Color(red: 0.53, green: 0.53, blue: 0.53))
+                                .fill(viewModel.fTask.status.bodyColor)
                                 .frame(width: 8, height: 8)
                             
-                            Text(viewModel.fTask.status)
-                                .font(Font.custom("Helvetica", size: 17))
-                                .foregroundColor(Color(red: 0.09, green: 0.09, blue: 0.09))
+                            Text(viewModel.fTask.status.name)
+                                .font(Font.custom("Helvetica", size: 13))
+                                .foregroundColor(viewModel.fTask.status.bodyColor)
                         }
                         .padding(.leading, 8)
                         .padding(.trailing, 12)
                         .padding(.vertical, 4)
-                        .background(.black.opacity(0.1))
+                        .background(viewModel.fTask.status.backgroundColor)
                         .cornerRadius(10)
                         
                         //tag
@@ -125,7 +125,7 @@ struct TaskCreation: View {
                                 .foregroundColor(viewModel.fTask.tag.color)
                             
                             Text(viewModel.fTask.tag.name)
-                                .font(Font.custom("Helvetica", size: 18))
+                                .font(Font.custom("Helvetica", size: 13))
                                 .foregroundColor(viewModel.fTask.tag.color)
                         }
                         
@@ -162,14 +162,9 @@ struct TaskCreation: View {
             .clipShape(RoundedCorners(radius: 20, corners: [.topLeft, .topRight]))
             
             .overlay(
-                RoundedRectangle(cornerRadius: 20)
-//                    .fill(Color.green)
-//                    .frame(height: 1),
-                //alignment:.top
-                //.inset(by: 0.5)
-                .stroke(Color("BodyCopy"))
-                //.stroke
-            )
+                RoundedCorners(radius: 20, corners: [.topLeft, .topRight])
+                    .stroke(Color("BodyCopy"), lineWidth: 1)
+                )
 
 
         }//.background(Color(red: 0.06, green: 0.09, blue: 0.16).opacity(0.32))

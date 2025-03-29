@@ -17,7 +17,7 @@ struct Task: Codable {
     var tag : Tag = .school
     var notes: String = ""
     var isCompleted: Bool = false
-    var status: String = "Not Started"
+    var status: Status = .plannedForToday
     var creationDate : Date = Date()
     var completionDate : Date? = nil // Optional date for when the task is completed
     
