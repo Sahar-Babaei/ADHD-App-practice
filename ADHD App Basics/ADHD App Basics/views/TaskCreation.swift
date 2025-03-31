@@ -10,9 +10,10 @@ import SwiftUI
 struct TaskCreation: View {
     
     //keep track of overlay expansion
+    @State private var selectedStatus: Status = .notStarted // New state for status
     @State private var showExpanded: Bool = false
     @State private var tagDropDown: TagDropDownMenu
-    @State private var statusDropDown: StatusDropDownMenu
+    //@State private var statusDropDown: StatusDropDownMenu
     
 //    var dropdown
     
@@ -24,9 +25,9 @@ struct TaskCreation: View {
         _viewModel = StateObject(wrappedValue: viewModel)
         _storageViewModel = StateObject(wrappedValue: storageViewModel)
         self.showExpanded = showExpanded
-        self.onComplete = onComplete //not invoking, just saving.
+        //self.onComplete = onComplete //not invoking, just saving.
         self.tagDropDown = TagDropDownMenu()
-        self.statusDropDown = StatusDropDownMenu()
+        //self.statusDropDown = StatusDropDownMenu()
     }
     
     var body: some View {
@@ -113,7 +114,7 @@ struct TaskCreation: View {
                         Text("Status")
                             .font(Font.custom("Instrument Sans", size: 16)) // Set the custom font
                             .fontWeight(.regular)
-                        statusDropDown
+                        StatusDropDownMenu(selectedStatus: $selectedStatus) // Pass as binding
                     }
                     
                 }
@@ -129,17 +130,17 @@ struct TaskCreation: View {
                         //status
                         HStack(alignment: .center, spacing: 5) {
                             Circle()
-                                .fill(viewModel.fTask.status.bodyColor)
+                                .fill(selectedStatus.bodyColor)
                                 .frame(width: 8, height: 8)
                             
-                            Text(statusDropDown.selectedStatus.name)
+                            Text(selectedStatus.name)
                                 .font(Font.custom("Helvetica", size: 13))
-                                .foregroundColor(statusDropDown.selectedStatus.bodyColor)
+                                .foregroundColor(selectedStatus.bodyColor)
                         }
                         .padding(.leading, 8)
                         .padding(.trailing, 12)
                         .padding(.vertical, 4)
-                        .background(statusDropDown.selectedStatus.backgroundColor)
+                        .background(selectedStatus.backgroundColor)
                         .cornerRadius(10)
                         
                         //tag
