@@ -57,7 +57,7 @@ struct ContentView: View {
                     
                     Spacer()
                         .frame(height:80)
-                    HStack(alignment: .center, spacing: 15){
+                    HStack(alignment: .center, spacing: 10){
                         
                         //tab 1
                         Button (action: {selectedTab = 1}){
@@ -66,24 +66,22 @@ struct ContentView: View {
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 24, height: 24)
+                                    .foregroundColor(Color("BodyCopy"))
                                 
                                 //for the bg
                                     .padding(.vertical, 15)
                                     .padding(.horizontal, 25)
                                     
-                                    .background(.white.opacity(0.3))
+                                    //.background(.white.opacity(0.3))
+                                    .background(selectedTab == 1 ? Color("MenuButtonBackground") : .clear )
   
                                     .cornerRadius(30)
                                     .overlay(
                                     RoundedRectangle(cornerRadius: 48)
                                     .inset(by: 0.5)
-                                    .stroke(.white.opacity(0.6), lineWidth: 1)
+                                    .stroke(selectedTab == 1 ? Color(.gray.opacity(0.25)): .clear )
 
                                     )
-                                
-                                    .foregroundColor(selectedTab == 1 ? .red : Color("BodyCopy"))
-                                    //.foregroundColor(Color("BodyCopy"))
-                                    //.foregroundColor(.clear)
                             }
                         }
                         
@@ -97,23 +95,22 @@ struct ContentView: View {
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 24, height: 24)
-                                    //.foregroundColor(Color("BodyCopy"))
+                                    .foregroundColor(Color("BodyCopy"))
                                 
                                 //for the bg
                                     .padding(.vertical, 15)
                                     .padding(.horizontal, 25)
                                     
-                                    .background(.white.opacity(0.3))
+                                    //.background(.white.opacity(0.3))
+                                    .background(selectedTab == 2 ? Color("MenuButtonBackground") : .clear )
   
                                     .cornerRadius(30)
                                     .overlay(
                                     RoundedRectangle(cornerRadius: 48)
                                     .inset(by: 0.5)
-                                    .stroke(.white.opacity(0.6), lineWidth: 1)
+                                    .stroke(selectedTab == 2 ? Color(.gray.opacity(0.25)): .clear )
 
                                     )
-                                
-                                    .foregroundColor(selectedTab == 2 ? .red : Color("BodyCopy"))
                             }
                         }
                         
@@ -128,23 +125,24 @@ struct ContentView: View {
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 24, height: 24)
-                                    //.foregroundColor(Color("BodyCopy"))
+                                    .foregroundColor(Color("BodyCopy"))
                                 
                                 //for the bg
                                     .padding(.vertical, 15)
                                     .padding(.horizontal, 25)
                                     
-                                    .background(.white.opacity(0.3))
+                                    //.background(.white.opacity(0.3))
+                                    .background(selectedTab == 3 ? Color("MenuButtonBackground") : .clear )
   
                                     .cornerRadius(30)
                                     .overlay(
                                     RoundedRectangle(cornerRadius: 48)
                                     .inset(by: 0.5)
-                                    .stroke(.white.opacity(0.6), lineWidth: 1)
+                                    .stroke(selectedTab == 3 ? Color(.gray.opacity(0.25)): .clear )
 
                                     )
                                 
-                                    .foregroundColor(selectedTab == 3 ? .red : Color("BodyCopy"))
+                                    //.foregroundColor(selectedTab == 3 ? .red : Color("BodyCopy"))
                                 
                             }
                         }
@@ -152,9 +150,9 @@ struct ContentView: View {
                         
                     }
                     //.background(Color.yellow)
-                    .padding(.horizontal, 30)
+                    .padding(.horizontal, 20)
                     .padding(.top, 20)
-                    .padding(.bottom, 5)
+                    //.padding(.bottom, 5)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     //Don't deleted this commented out below
 //
@@ -184,7 +182,7 @@ struct ContentView: View {
                 VStack{
                 //Spacer()
                 
-                HStack(alignment: .center, spacing: 10){
+                HStack(alignment: .center){
                     HStack(alignment: .center, spacing: 10){
                         
                         //tab 4
