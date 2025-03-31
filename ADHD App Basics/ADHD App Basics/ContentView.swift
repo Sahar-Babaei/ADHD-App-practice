@@ -67,8 +67,23 @@ struct ContentView: View {
                                     .scaledToFit()
                                     .frame(width: 24, height: 24)
                                 
+                                //for the bg
+                                    .padding(.vertical, 15)
+                                    .padding(.horizontal, 25)
+                                    
+                                    .background(.white.opacity(0.3))
+  
+                                    .cornerRadius(30)
+                                    .overlay(
+                                    RoundedRectangle(cornerRadius: 48)
+                                    .inset(by: 0.5)
+                                    .stroke(.white.opacity(0.6), lineWidth: 1)
+
+                                    )
+                                
                                     .foregroundColor(selectedTab == 1 ? .red : Color("BodyCopy"))
                                     //.foregroundColor(Color("BodyCopy"))
+                                    //.foregroundColor(.clear)
                             }
                         }
                         
@@ -83,6 +98,20 @@ struct ContentView: View {
                                     .scaledToFit()
                                     .frame(width: 24, height: 24)
                                     //.foregroundColor(Color("BodyCopy"))
+                                
+                                //for the bg
+                                    .padding(.vertical, 15)
+                                    .padding(.horizontal, 25)
+                                    
+                                    .background(.white.opacity(0.3))
+  
+                                    .cornerRadius(30)
+                                    .overlay(
+                                    RoundedRectangle(cornerRadius: 48)
+                                    .inset(by: 0.5)
+                                    .stroke(.white.opacity(0.6), lineWidth: 1)
+
+                                    )
                                 
                                     .foregroundColor(selectedTab == 2 ? .red : Color("BodyCopy"))
                             }
@@ -100,6 +129,21 @@ struct ContentView: View {
                                     .scaledToFit()
                                     .frame(width: 24, height: 24)
                                     //.foregroundColor(Color("BodyCopy"))
+                                
+                                //for the bg
+                                    .padding(.vertical, 15)
+                                    .padding(.horizontal, 25)
+                                    
+                                    .background(.white.opacity(0.3))
+  
+                                    .cornerRadius(30)
+                                    .overlay(
+                                    RoundedRectangle(cornerRadius: 48)
+                                    .inset(by: 0.5)
+                                    .stroke(.white.opacity(0.6), lineWidth: 1)
+
+                                    )
+                                
                                     .foregroundColor(selectedTab == 3 ? .red : Color("BodyCopy"))
                                 
                             }
