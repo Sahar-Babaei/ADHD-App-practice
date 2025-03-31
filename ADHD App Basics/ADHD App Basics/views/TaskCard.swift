@@ -47,8 +47,48 @@ struct TaskCard: View {
                     Spacer()
                     
                     // three dots (more)
-                    Image(systemName: "ellipsis")
-                        .font(.body)
+//                    
+//                    Image(systemName: "ellipsis")
+//                        .font(.body)
+                    
+                   // "More" menu button
+                    Menu {
+                        
+                        Button("Edit") {
+                            // Implement edit functionality here
+                        }
+                        Button("Delete", role: .destructive) {
+                            showDeleteConfirmation = true
+                            
+                            storageViewModel.removeTask(fTask)
+                            
+                            
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis")
+                            .font(.body)
+                            .padding()
+                            //.background(Color.green)
+                            .foregroundColor(Color("BodyCopy"))
+                        
+                    }
+                
+                //.frame(maxWidth: .infinity, minHeight: 120)
+               // .background(Color.yellow.opacity(0.5))
+               // .cornerRadius(20)
+//                .overlay(
+//                    RoundedRectangle(cornerRadius: 20)
+//                        .stroke(Color.red, lineWidth: 2)
+//                )
+                .confirmationDialog("Are you sure you want to delete this task?",
+                                    isPresented: $showDeleteConfirmation,
+                                    titleVisibility: .visible
+                ) {
+                    Button("Delete", role: .destructive) {
+                        onDelete()
+                    }
+                    Button("Cancel", role: .cancel) { }
+                }
                 }
                 //.background(.green)
                 
