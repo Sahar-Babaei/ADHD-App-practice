@@ -57,7 +57,7 @@ struct ContentView: View {
                     
                     Spacer()
                         .frame(height:80)
-                    HStack(alignment: .center, spacing: 51){
+                    HStack(alignment: .center, spacing: 15){
                         
                         //tab 1
                         Button (action: {selectedTab = 1}){
@@ -154,7 +154,7 @@ struct ContentView: View {
                     //.background(Color.yellow)
                     .padding(.horizontal, 30)
                     .padding(.top, 20)
-                    .padding(.bottom, 40)
+                    .padding(.bottom, 5)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     //Don't deleted this commented out below
 //
