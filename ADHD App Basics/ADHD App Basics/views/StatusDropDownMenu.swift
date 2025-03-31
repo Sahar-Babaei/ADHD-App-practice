@@ -6,7 +6,7 @@ import SwiftUI
 
 struct StatusDropDownMenu: View {
     @State private var isExpanded: Bool = false
-    @State private var selectedStatus: Status = .notStarted
+    @State public var selectedStatus: Status = .notStarted
 
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {

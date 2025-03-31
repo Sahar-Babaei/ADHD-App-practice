@@ -132,14 +132,14 @@ struct TaskCreation: View {
                                 .fill(viewModel.fTask.status.bodyColor)
                                 .frame(width: 8, height: 8)
                             
-                            Text(viewModel.fTask.status.name)
+                            Text(statusDropDown.selectedStatus.name)
                                 .font(Font.custom("Helvetica", size: 13))
-                                .foregroundColor(viewModel.fTask.status.bodyColor)
+                                .foregroundColor(statusDropDown.selectedStatus.bodyColor)
                         }
                         .padding(.leading, 8)
                         .padding(.trailing, 12)
                         .padding(.vertical, 4)
-                        .background(viewModel.fTask.status.backgroundColor)
+                        .background(statusDropDown.selectedStatus.backgroundColor)
                         .cornerRadius(10)
                         
                         //tag

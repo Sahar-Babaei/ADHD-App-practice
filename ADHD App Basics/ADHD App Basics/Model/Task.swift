@@ -14,7 +14,7 @@ struct Task: Codable {
     
     var ID = UUID()
     //var fTaskCategory : [String] = ["No category"]
-    var tag : Tag = .school
+    var tag : Tag = .none
     var notes: String = ""
     var isCompleted: Bool = false
     var status: Status = .plannedForToday
