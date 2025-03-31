@@ -17,6 +17,9 @@ struct StatusDropDownMenu: View {
             }) {
                 HStack {
                     HStack(alignment: .center) {
+                        Circle()
+                            .fill(selectedStatus.bodyColor) // Use enum-defined color
+                            .frame(width: 8, height: 8)
                         Text(selectedStatus.name) // Display selected status
                             .font(Font.custom("Helvetica", size: 14))
                             .foregroundColor(selectedStatus.bodyColor)
@@ -29,7 +32,7 @@ struct StatusDropDownMenu: View {
                 }
                 .padding()
                 .frame(maxWidth: .infinity)
-                .background(Color.gray.opacity(0.2))
+                .background(Color.gray.opacity(0.1))
                 .cornerRadius(10)
             }
             .buttonStyle(PlainButtonStyle())
@@ -56,7 +59,7 @@ struct StatusDropDownMenu: View {
                         selectedStatus = status
                         isExpanded = false
                     }
-                    .padding()
+                    .padding(.vertical, 5)
                 }
             }
         }

@@ -11,6 +11,8 @@ struct TaskCreation: View {
     
     //keep track of overlay expansion
     @State private var showExpanded: Bool = false
+    @State private var tagDropDown: TagDropDownMenu
+    @State private var statusDropDown: StatusDropDownMenu
     
 //    var dropdown
     
@@ -23,6 +25,8 @@ struct TaskCreation: View {
         _storageViewModel = StateObject(wrappedValue: storageViewModel)
         self.showExpanded = showExpanded
         self.onComplete = onComplete //not invoking, just saving.
+        self.tagDropDown = TagDropDownMenu()
+        self.statusDropDown = StatusDropDownMenu()
     }
     
     var body: some View {
@@ -57,8 +61,17 @@ struct TaskCreation: View {
                 
                 //task name text field
                 //TODO: mentor - need to find way to allow binding to name
-                TextField("Enter your task here", text: $viewModel.fTask.name)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+//                TextField("Enter your task here", text: $viewModel.fTask.name)
+//                    .padding(.vertical, 12) // Adds internal padding
+//                        .textFieldStyle(RoundedBorderTextFieldStyle())
+   
+                ZStack {
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(Color.gray.opacity(0.1))
+                        .frame(height: 60) // Adjust height here
+                    TextField("Enter your task here", text: $viewModel.fTask.name)
+                        .padding(.horizontal, 15)
+                }
                 
                 //expanded version with all extra elements
                 
@@ -72,8 +85,8 @@ struct TaskCreation: View {
                         Rectangle()
                             .foregroundColor(.clear)
                             .frame(height: 80)
-                            .background(Color(red: 0.92, green: 0.92, blue: 0.92))
-                            .cornerRadius(4)
+                            .background(Color.gray.opacity(0.1))
+                            .cornerRadius(10)
                         
                     }
                     .padding(.top, 5)
@@ -83,6 +96,9 @@ struct TaskCreation: View {
                             .font(Font.custom("Instrument Sans", size: 16)) // Set the custom font
                             .fontWeight(.regular) // Apply weight separately
                         
+                        tagDropDown
+                        
+                        
 //                        Rectangle()
 //                            .foregroundColor(.clear)
 //                            .frame(height: 39)
@@ -91,7 +107,14 @@ struct TaskCreation: View {
 //                        DropdownMenu
                         
                     }
-                    .padding(.top, 5)
+                    .padding(.vertical,20)
+                    
+                    VStack(alignment: .leading){
+                        Text("Status")
+                            .font(Font.custom("Instrument Sans", size: 16)) // Set the custom font
+                            .fontWeight(.regular)
+                        statusDropDown
+                    }
                     
                 }
                 

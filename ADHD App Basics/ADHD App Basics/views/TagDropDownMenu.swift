@@ -35,7 +35,7 @@ struct TagDropDownMenu: View {
                 }
                 .padding()
                 .frame(maxWidth: .infinity)
-                .background(Color.gray.opacity(0.2))
+                .background(Color.gray.opacity(0.1))
                 .cornerRadius(10)
             }
             .buttonStyle(PlainButtonStyle())
@@ -61,7 +61,7 @@ struct TagDropDownMenu: View {
                         selectedTag = tag
                         isExpanded = false
                     }
-                    .padding()
+                    .padding(.vertical, 5)
                 }
             }
         }
