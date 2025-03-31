@@ -27,13 +27,27 @@ struct TaskBankPage: View {
                 HStack{
                     //toggle button
                     Button(action: {
-                        addNewTask()
                         viewModel.gridViewEnabled.toggle()
                     }) {
-                        Text(viewModel.gridViewEnabled ? "Switch to 2 Columns" : "Switch to 1 Column")
-                            .padding()
-                            .background(Color.gray.opacity(0.3))
-                            .cornerRadius(10)
+                        HStack(alignment: .center){
+                            Text ("view: ")
+                                .foregroundColor(Color("BodyCopy"))
+                            Image (viewModel.gridViewEnabled ? "view-list" : "view-column")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 24, height: 24)
+                                .foregroundColor(Color("BodyCopy"))
+
+                        }
+                        .padding()
+                        .background(Color(.yellow))
+                        
+                        
+//                        
+//                        Text(viewModel.gridViewEnabled ? "Switch to 2 Columns" : "Switch to 1 Column")
+//                            .padding()
+//                            .background(Color.gray.opacity(0.3))
+//                            .cornerRadius(10)
                     }
                     
 
@@ -46,7 +60,7 @@ struct TaskBankPage: View {
                         viewModel.reverseOrder.toggle()
                         sortTasks()
                     }) {
-                        HStack{
+                        HStack(alignment: .center){
                             Text ("order: ")
                                 .foregroundColor(Color("BodyCopy"))
                             Image (viewModel.reverseOrder ? "sort-up" : "sort-down")
