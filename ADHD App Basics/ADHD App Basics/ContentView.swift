@@ -31,6 +31,7 @@ struct ContentView: View {
                 case 2:
                     //Text ("this is tab 2 lol lol ")
                     TaskBankPage(potato: TaskBankViewModel())
+                        
                 case 3:
                     Text ("this is tab 3 lol lol lol")
                 case 4:
@@ -198,7 +199,7 @@ struct ContentView: View {
                         }
                     }
                     .padding(30)
-//                    .background(Color(red: 0.54, green: 0.54, blue: 0.54).opacity(0.3))
+
                     .background(selectedTab == 4 ? Color("MenuButtonBackground").opacity(0.2) : Color("MenuButtonBackground"))
                     .background(.ultraThinMaterial) //Delete this if it doesn't make it transparent
                     

@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUICore
 
-enum Tag : Codable {
+enum Tag : Codable, CaseIterable {
     case school, health, misc, work, personal, none
     
     var name : String {
