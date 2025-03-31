@@ -36,14 +36,7 @@ struct TaskBankPage: View {
                             .cornerRadius(10)
                     }
                     
-//                    //sort button
-//                    Button(action: {
-//                        viewModel.reverseOrder.toggle()
-//                        sortTasks()
-//                    }) {
-//                        Text(viewModel.reverseOrder ? "Sort: Reverse Order" : "Sort: Regular Order")
-//                            .padding()
-//                    }
+
                     
                    
                     Spacer()
