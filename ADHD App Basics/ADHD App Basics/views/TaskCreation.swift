@@ -11,8 +11,10 @@ struct TaskCreation: View {
     
     //keep track of overlay expansion
     @State private var selectedStatus: Status = .notStarted // New state for status
+    @State private var selectedTag: Tag = .none
     @State private var showExpanded: Bool = false
-    @State private var tagDropDown: TagDropDownMenu
+//    @State private var tagDropDown: TagDropDownMenu
+//    @State private var userSelectedStatus: Status = $selectedStatus
     //@State private var statusDropDown: StatusDropDownMenu
     
 //    var dropdown
@@ -25,8 +27,8 @@ struct TaskCreation: View {
         _viewModel = StateObject(wrappedValue: viewModel)
         _storageViewModel = StateObject(wrappedValue: storageViewModel)
         self.showExpanded = showExpanded
-        //self.onComplete = onComplete //not invoking, just saving.
-        self.tagDropDown = TagDropDownMenu()
+        self.onComplete = onComplete //not invoking, just saving.
+//        self.tagDropDown = TagDropDownMenu()
         //self.statusDropDown = StatusDropDownMenu()
     }
     
@@ -97,7 +99,8 @@ struct TaskCreation: View {
                             .font(Font.custom("Instrument Sans", size: 16)) // Set the custom font
                             .fontWeight(.regular) // Apply weight separately
                         
-                        tagDropDown
+                        //tag dropdown menu that passes in the dropdown's tag value
+                        TagDropDownMenu(selectedTag: $selectedTag)
                         
                         
 //                        Rectangle()
@@ -147,11 +150,11 @@ struct TaskCreation: View {
                         HStack(spacing:2){
                             
                             Image(systemName: "tag")
-                                .foregroundColor(viewModel.fTask.tag.color)
+                                .foregroundColor(selectedTag.color)
                             
-                            Text(viewModel.fTask.tag.name)
+                            Text(selectedTag.name)
                                 .font(Font.custom("Helvetica", size: 13))
-                                .foregroundColor(viewModel.fTask.tag.color)
+                                .foregroundColor(selectedTag.color)
                         }
                     }
                 }
@@ -165,15 +168,19 @@ struct TaskCreation: View {
                             .padding(.top)
                             .padding(.bottom)
                             .frame(height: 32)
-//                            .background(Color.black)
                             .foregroundStyle(Color("GreyStatusBody"))
                             .underline()
                     }
+                    
                     
                     Spacer()
                     
                     //add Task button
                     Button(action: {
+                        //viewModel.ftask... tied the dropdown tag and status values to the Task's tag and status values
+                        viewModel.fTask.tag = selectedTag
+                        viewModel.fTask.status = selectedStatus
+                        
                         //viewModel.createTask returns nil if the task data is no-good
                         let newlyCreatedTask = viewModel.createTask()
                         self.onComplete()

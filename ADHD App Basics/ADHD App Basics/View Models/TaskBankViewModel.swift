@@ -22,16 +22,16 @@ class TaskBankViewModel: ObservableObject {
     }
     
     //use this view model to keep track of the state of your cards, state of your views: this place holds your data --> View is just reading it 
-    func addTask() {
-        // this only adds a new task if title is not empty
-        guard !userTaskTitle.isEmpty else { return }
-        
-        let newTask  = Task(name: userTaskTitle, ID: UUID(), isCompleted: false)
-        
-        addTaskToUserDefaults(task: newTask)
-        loadAllTasks()
-        clearTitle()
-    }
+//    func addTask() {
+//        // this only adds a new task if title is not empty
+//        guard !userTaskTitle.isEmpty else { return }
+//        
+//        let newTask  = Task(name: userTaskTitle, ID: UUID(), isCompleted: false)
+//        
+//        addTaskToUserDefaults(task: newTask)
+//        loadAllTasks()
+//        clearTitle()
+//    }
     
     
     func addTask(_ task: Task) {

@@ -10,7 +10,7 @@ import SwiftUI
 struct TagDropDownMenu: View {
     
     @State private var isExpanded: Bool = false
-    @State private var selectedTag: Tag = .none
+    @Binding var selectedTag: Tag
     
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
@@ -68,7 +68,20 @@ struct TagDropDownMenu: View {
     }
 }
 
-
-#Preview {
-    TagDropDownMenu()
+// Test View
+struct aView: View {
+    @State private var selectedTag: Tag = .none // Define a state variable
+    var body: some View {
+        VStack(spacing: 20) {
+            TagDropDownMenu(selectedTag: $selectedTag) // Pass as binding
+        }
+        .padding()
+    }
 }
+
+struct aView_Previews: PreviewProvider {
+    static var previews: some View {
+        aView()
+    }
+}
+

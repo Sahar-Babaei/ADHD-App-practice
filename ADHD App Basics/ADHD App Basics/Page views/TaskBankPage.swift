@@ -175,7 +175,7 @@ struct TaskBankPage: View {
     
     //function to create new tasks
     func addNewTask(){
-        viewModel.addTask()
+//        viewModel.addTask()
         
         // Hide the overlay and reset the task title
         viewModel.showTextFieldOverlay = false
