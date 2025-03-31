@@ -36,14 +36,36 @@ struct TaskBankPage: View {
                             .cornerRadius(10)
                     }
                     
+//                    //sort button
+//                    Button(action: {
+//                        viewModel.reverseOrder.toggle()
+//                        sortTasks()
+//                    }) {
+//                        Text(viewModel.reverseOrder ? "Sort: Reverse Order" : "Sort: Regular Order")
+//                            .padding()
+//                    }
+                    
+                   
+                    Spacer()
+                    
                     //sort button
-                    Button(action: {
+                    Button (action: {
                         viewModel.reverseOrder.toggle()
                         sortTasks()
                     }) {
-                        Text(viewModel.reverseOrder ? "Sort: Reverse Order" : "Sort: Regular Order")
-                            .padding()
+                        HStack{
+                            Text ("order: ")
+                                .foregroundColor(Color("BodyCopy"))
+                            Image (viewModel.reverseOrder ? "sort-up" : "sort-down")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 24, height: 24)
+                                .foregroundColor(Color("BodyCopy"))
+
+                        }
                     }
+                    .padding()
+                    .background(Color(.yellow))
                     
                     
                     Spacer()
