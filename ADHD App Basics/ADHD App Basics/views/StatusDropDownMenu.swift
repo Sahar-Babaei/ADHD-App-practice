@@ -6,7 +6,7 @@ import SwiftUI
 
 struct StatusDropDownMenu: View {
     @State private var isExpanded: Bool = false
-    @Binding var selectedStatus: Status // Use @Binding instead of @State
+    @State public var selectedStatus: Status = .notStarted
 
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
@@ -18,9 +18,9 @@ struct StatusDropDownMenu: View {
                 HStack {
                     HStack(alignment: .center) {
                         Circle()
-                            .fill(selectedStatus.bodyColor)
+                            .fill(selectedStatus.bodyColor) // Use enum-defined color
                             .frame(width: 8, height: 8)
-                        Text(selectedStatus.name)
+                        Text(selectedStatus.name) // Display selected status
                             .font(Font.custom("Helvetica", size: 14))
                             .foregroundColor(selectedStatus.bodyColor)
                     }
@@ -41,22 +41,22 @@ struct StatusDropDownMenu: View {
                 ForEach(Status.allCases, id: \.self) { status in
                     HStack(alignment: .center) {
                         Circle()
-                            .fill(status.bodyColor)
+                            .fill(status.bodyColor) // Use enum-defined color
                             .frame(width: 8, height: 8)
                         
-                        Text(status.name)
+                        Text(status.name) // Use enum-defined name
                             .font(Font.custom("Helvetica", size: 13))
                             .foregroundColor(status.bodyColor)
                     }
                     .padding(.leading, 8)
                     .padding(.trailing, 12)
                     .padding(.vertical, 4)
-                    .background(status.backgroundColor)
+                    .background(status.backgroundColor) // Use enum-defined background color
                     .cornerRadius(15)
                     .padding(.leading, 20)
                     .transition(.opacity.combined(with: .slide))
                     .onTapGesture {
-                        selectedStatus = status // Update the binding value
+                        selectedStatus = status
                         isExpanded = false
                     }
                     .padding(.vertical, 5)
@@ -66,17 +66,15 @@ struct StatusDropDownMenu: View {
     }
 }
 
+// Test View
 struct myView: View {
-    @State private var selectedStatus: Status = .notStarted // Define a state variable
-
     var body: some View {
         VStack(spacing: 20) {
-            StatusDropDownMenu(selectedStatus: $selectedStatus) // Pass as binding
+            StatusDropDownMenu()
         }
         .padding()
     }
 }
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
