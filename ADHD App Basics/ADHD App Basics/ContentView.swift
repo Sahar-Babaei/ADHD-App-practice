@@ -175,7 +175,7 @@ struct ContentView: View {
                     //.frame(alignment: .bottom)
                     
                 }
-                //.background(Color.blue)
+
                 
                 
                 // --> HStack all of this is for the plus (+) button section
@@ -198,7 +198,8 @@ struct ContentView: View {
                         }
                     }
                     .padding(30)
-                    .background(Color(red: 0.54, green: 0.54, blue: 0.54).opacity(0.3))
+//                    .background(Color(red: 0.54, green: 0.54, blue: 0.54).opacity(0.3))
+                    .background(selectedTab == 4 ? Color("MenuButtonBackground").opacity(0.2) : Color("MenuButtonBackground"))
                     .background(.ultraThinMaterial) //Delete this if it doesn't make it transparent
                     
                     .cornerRadius(57)
