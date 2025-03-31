@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUICore
 
-enum Status : Codable {
+enum Status : Codable, CaseIterable {
     case notStarted, plannedForToday, completed
     
     var name : String {

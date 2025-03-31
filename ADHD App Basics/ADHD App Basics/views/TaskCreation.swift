@@ -83,11 +83,12 @@ struct TaskCreation: View {
                             .font(Font.custom("Instrument Sans", size: 16)) // Set the custom font
                             .fontWeight(.regular) // Apply weight separately
                         
-                        Rectangle()
-                            .foregroundColor(.clear)
-                            .frame(height: 39)
-                            .background(Color(red: 0.92, green: 0.92, blue: 0.92))
-                            .cornerRadius(4)
+//                        Rectangle()
+//                            .foregroundColor(.clear)
+//                            .frame(height: 39)
+//                            .background(Color(red: 0.92, green: 0.92, blue: 0.92))
+//                            .cornerRadius(4)
+//                        DropdownMenu
                         
                     }
                     .padding(.top, 5)
@@ -128,49 +129,48 @@ struct TaskCreation: View {
                                 .font(Font.custom("Helvetica", size: 13))
                                 .foregroundColor(viewModel.fTask.tag.color)
                         }
-                        
-                        
                     }
-
+                }
+                .padding(.bottom)
+                .padding(.top, 5)
+                HStack(){
                     
-                    HStack(){
-                        
-                        //cancel button
-                        Button(action: { self.onComplete()}) {
-                            Text("cancel")
-                                .padding()
-                                .frame(height: 32)
-                                .background(Color.black)
-                                .foregroundStyle(.white)
-                                .cornerRadius(10)
-                        }
-                        
-                        Spacer()
-                        
-                        //add Task button
-                        Button(action: {
-                            //viewModel.createTask returns nil if the task data is no-good
-                            let newlyCreatedTask = viewModel.createTask()
-                            self.onComplete()
-                            
-                            
-                            //only add to storage if the task was successfully created (aka, it's not nil)
-                            if let a = newlyCreatedTask {
-                                storageViewModel.addTask(a)
-                                // put a flag here to make it all disapear
-                            }
-                            
-                        }) {
-                            Text("Add task ")
-                                .padding()
-                                .frame(height: 32)
-                                .background(Color.black)
-                                .foregroundStyle(.white)
-                                .cornerRadius(10)
-                        }
-                        
-
+                    //cancel button
+                    Button(action: { self.onComplete()}) {
+                        Text("Cancel")
+                            .padding(.top)
+                            .padding(.bottom)
+                            .frame(height: 32)
+//                            .background(Color.black)
+                            .foregroundStyle(Color("GreyStatusBody"))
+                            .underline()
                     }
+                    
+                    Spacer()
+                    
+                    //add Task button
+                    Button(action: {
+                        //viewModel.createTask returns nil if the task data is no-good
+                        let newlyCreatedTask = viewModel.createTask()
+                        self.onComplete()
+                        
+                        
+                        //only add to storage if the task was successfully created (aka, it's not nil)
+                        if let a = newlyCreatedTask {
+                            storageViewModel.addTask(a)
+                            // put a flag here to make it all disapear
+                        }
+                        
+                    }) {
+                        Text("Add task ")
+                            .padding()
+                            .frame(height: 32)
+                            .background(Color.black)
+                            .foregroundStyle(.white)
+                            .cornerRadius(10)
+                    }
+                    
+
                 }
                 
             }
