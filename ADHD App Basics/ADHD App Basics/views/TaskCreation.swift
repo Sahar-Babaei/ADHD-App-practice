@@ -85,11 +85,19 @@ struct TaskCreation: View {
                             .font(Font.custom("Instrument Sans", size: 16)) // Set the custom font
                             .fontWeight(.regular) // Apply weight separately
                         //Notes text field
-                        Rectangle()
-                            .foregroundColor(.clear)
-                            .frame(height: 80)
-                            .background(Color.gray.opacity(0.1))
-                            .cornerRadius(10)
+                        ZStack (alignment: .top){
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(Color.gray.opacity(0.1))
+                                .frame(height: 80) // Adjust height here
+                            TextEditor(text: $viewModel.fTask.notes)
+                                .padding(.horizontal, 15)
+                                .lineLimit(3, reservesSpace: true)
+                        }
+//                        Rectangle()
+//                            .foregroundColor(.clear)
+//                            .frame(height: 80)
+//                            .background(Color.gray.opacity(0.1))
+//                            .cornerRadius(10)
                         
                     }
                     .padding(.top, 5)
