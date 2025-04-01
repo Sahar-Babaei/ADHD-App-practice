@@ -41,13 +41,7 @@ struct TaskBankPage: View {
                         }
                         .padding()
                         .background(Color(.yellow))
-                        
-                        
-//                        
-//                        Text(viewModel.gridViewEnabled ? "Switch to 2 Columns" : "Switch to 1 Column")
-//                            .padding()
-//                            .background(Color.gray.opacity(0.3))
-//                            .cornerRadius(10)
+
                     }
                     
 
@@ -90,7 +84,71 @@ struct TaskBankPage: View {
                 }
                 .padding(.horizontal, 12)
                 
-                
+                HStack{
+                   
+                    HStack(alignment: .center, spacing: 6){
+                        Image("filter-icon")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 24, height: 24)
+                            .foregroundColor(Color("BodyCopy"))
+                        
+                        Text("filter")
+                    }
+                    .padding(.horizontal, 12)
+                        .padding(.vertical, 9)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .cornerRadius(24)
+                        .overlay(
+                        RoundedRectangle(cornerRadius: 24)
+                        .inset(by: 0.4)
+                        .stroke(Color(red: 0.35, green: 0.35, blue: 0.35), lineWidth: 0.8)
+
+                        )
+                    
+                    HStack(alignment: .center, spacing: 6){
+                        Image("search-icon")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 24, height: 24)
+                            .foregroundColor(Color("BodyCopy"))
+                        
+                        Text("search")
+                    }
+                    .padding(.horizontal, 12)
+                        .padding(.vertical, 9)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .cornerRadius(24)
+                        .overlay(
+                        RoundedRectangle(cornerRadius: 24)
+                        .inset(by: 0.4)
+                        .stroke(Color(red: 0.35, green: 0.35, blue: 0.35), lineWidth: 0.8)
+
+                        )
+                    
+                    HStack(alignment: .center, spacing: 6){
+                        Image("sort-icon")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 24, height: 24)
+                            .foregroundColor(Color("BodyCopy"))
+                        
+                        Text("group")
+                    }
+                    .padding(.horizontal, 12)
+                        .padding(.vertical, 9)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .cornerRadius(24)
+                        .overlay(
+                        RoundedRectangle(cornerRadius: 24)
+                        .inset(by: 0.4)
+                        .stroke(Color(red: 0.35, green: 0.35, blue: 0.35), lineWidth: 0.8)
+
+                        )
+                    
+
+                }
+                .padding(.horizontal, 12)
 
                 
                 ScrollView {
