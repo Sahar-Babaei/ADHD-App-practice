@@ -31,12 +31,12 @@ struct TaskBankPage: View {
                     }) {
                         HStack(alignment: .center){
                             Text ("view: ")
-                                .foregroundColor(Color("BodyCopy"))
+                                .foregroundColor(Color("FiltersBodycopy"))
                             Image (viewModel.gridViewEnabled ? "view-list" : "view-column")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 24, height: 24)
-                                .foregroundColor(Color("BodyCopy"))
+                                .foregroundColor(Color("FiltersBodycopy"))
 
                         }
                         .padding()
@@ -56,12 +56,12 @@ struct TaskBankPage: View {
                     }) {
                         HStack(alignment: .center){
                             Text ("order: ")
-                                .foregroundColor(Color("BodyCopy"))
+                                .foregroundColor(Color("FiltersBodycopy"))
                             Image (viewModel.reverseOrder ? "sort-up" : "sort-down")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 24, height: 24)
-                                .foregroundColor(Color("BodyCopy"))
+                                .foregroundColor(Color("FiltersBodycopy"))
 
                         }
                     }
@@ -91,9 +91,10 @@ struct TaskBankPage: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 24, height: 24)
-                            .foregroundColor(Color("BodyCopy"))
+                            .foregroundColor(Color("FiltersBodycopy"))
                         
                         Text("filter")
+                            .foregroundColor(Color("FiltersBodycopy"))
                     }
                     .padding(.horizontal, 12)
                         .padding(.vertical, 9)
@@ -102,7 +103,7 @@ struct TaskBankPage: View {
                         .overlay(
                         RoundedRectangle(cornerRadius: 24)
                         .inset(by: 0.4)
-                        .stroke(Color(red: 0.35, green: 0.35, blue: 0.35), lineWidth: 0.8)
+                        .stroke(Color("FiltersBodycopy"))
 
                         )
                     
@@ -111,9 +112,10 @@ struct TaskBankPage: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 24, height: 24)
-                            .foregroundColor(Color("BodyCopy"))
+                            .foregroundColor(Color("FiltersBodycopy"))
                         
                         Text("search")
+                            .foregroundColor(Color("FiltersBodycopy"))
                     }
                     .padding(.horizontal, 12)
                         .padding(.vertical, 9)
@@ -122,7 +124,7 @@ struct TaskBankPage: View {
                         .overlay(
                         RoundedRectangle(cornerRadius: 24)
                         .inset(by: 0.4)
-                        .stroke(Color(red: 0.35, green: 0.35, blue: 0.35), lineWidth: 0.8)
+                        .stroke(Color("FiltersBodycopy"))
 
                         )
                     
@@ -131,9 +133,10 @@ struct TaskBankPage: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 24, height: 24)
-                            .foregroundColor(Color("BodyCopy"))
+                            .foregroundColor(Color("FiltersBodycopy"))
                         
-                        Text("group")
+                        Text("Sort")
+                            .foregroundColor(Color("FiltersBodycopy"))
                     }
                     .padding(.horizontal, 12)
                         .padding(.vertical, 9)
@@ -142,7 +145,7 @@ struct TaskBankPage: View {
                         .overlay(
                         RoundedRectangle(cornerRadius: 24)
                         .inset(by: 0.4)
-                        .stroke(Color(red: 0.35, green: 0.35, blue: 0.35), lineWidth: 0.8)
+                        .stroke(Color("FiltersBodycopy"))
 
                         )
                     
