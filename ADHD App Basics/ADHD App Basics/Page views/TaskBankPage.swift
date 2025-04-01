@@ -19,11 +19,28 @@ struct TaskBankPage: View {
         potato.loadAllTasks()
     }
     
+    //filtering, sorting and searching variables
+    @State private var searchText: String = ""
+    
+    //let all items on taskbank = viewModel.allTasksList
+    
+    var filteredItems: [Task] {
+        var items = viewModel.allTasksList
+        
+        if !searchText.isEmpty {
+            items = items.filter {$0.name.localizedCaseInsensitiveContains(searchText) }
+        }
+        return items
+    }
+    
     //important: can't create functions in body. body is a special property that returns views
     var body: some View {
         //Navigation path
         NavigationStack {
             VStack{
+                TextField("Search...", text: $searchText)
+                    .padding(.horizontal)
+                
                 HStack{
                     //toggle button
                     Button(action: {
@@ -157,7 +174,7 @@ struct TaskBankPage: View {
                 ScrollView {
                     // LazyVGrid adjusts the number of columns dynamically
                     LazyVGrid(columns: getColumnStyle(viewModel.gridViewEnabled)) {
-                        ForEach(viewModel.allTasksList, id: \.ID) { task in
+                        ForEach(filteredItems, id: \.ID) { task in
                             TaskCard(fTask: task, onDelete: {
                                 viewModel.allTasksList.removeAll { $0.ID == task.ID }
                             })
