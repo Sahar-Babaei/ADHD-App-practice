@@ -35,6 +35,7 @@ class TaskBankViewModel: ObservableObject {
     
     
     func addTask(_ task: Task) {
+      
         addTaskToUserDefaults(task: task)
         loadAllTasks()
     }

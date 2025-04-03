@@ -14,6 +14,7 @@ struct ContentView: View {
     // variable for changing tabs
     @State private var showTaskCreationOverlay: Bool = false
     @StateObject private var viewModel: MainViewModel = .init()
+    @StateObject private var myViewModel: TaskBankViewModel = .init()
     
     //navigation path:
     
@@ -29,8 +30,8 @@ struct ContentView: View {
                         //make enums for name of each tab instead of 1,2,3,...
                         Text ("this is tab 1 lol")
                     case 2:
-                        //Text ("this is tab 2 lol lol ")
-                        TaskBankPage(potato: TaskBankViewModel())
+                       // Text ("this is tab 2 lol lol ")
+                        TaskBankPage(viewModel: myViewModel)
                         
                     case 3:
                         Text ("this is tab 3 lol lol lol")
@@ -241,13 +242,13 @@ struct ContentView: View {
             
             .background(Color("MainBackground"))
             .ignoresSafeArea(.keyboard)
-            //MARK: - App's header title?
+            //MARK: - the outter most layer
             
             
             if (showTaskCreationOverlay)
             {
                 VStack{
-                    TaskCreation(viewModel: TaskCreationViewModel(), storageViewModel: TaskBankViewModel(), showExpanded: false, onComplete: { taskCreated in
+                    TaskCreation(viewModel: TaskCreationViewModel(), storageViewModel: myViewModel, showExpanded: false, onComplete: { taskCreated in
                         showTaskCreationOverlay = false
                         if (taskCreated) {
                             viewModel.startToast()

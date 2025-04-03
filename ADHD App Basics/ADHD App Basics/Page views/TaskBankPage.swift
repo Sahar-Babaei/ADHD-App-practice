@@ -13,11 +13,12 @@ struct TaskBankPage: View {
     
     //@State means SwiftUI will automatically update the screen when the list changes
     
-    @StateObject var viewModel : TaskBankViewModel
-    init(potato: TaskBankViewModel){
-        _viewModel = StateObject(wrappedValue: potato)
-        potato.loadAllTasks()
-    }
+    @ObservedObject var viewModel : TaskBankViewModel
+//    init(viewModel: TaskBankViewModel){
+//        self.viewModel = viewModel
+//      //  _viewModel =  ObservedObject(wrappedValue: potato)
+//        viewModel.loadAllTasks()
+//    }
     
     //filtering, sorting and searching variables
     @State private var searchText: String = ""
@@ -253,6 +254,10 @@ struct TaskBankPage: View {
             }
             .background(Color("MainBackground"))
         }
+        .onAppear {
+            viewModel.loadAllTasks()
+            //this makes all tasks appears when this page is loaded.
+        }
     }
          
     
@@ -274,5 +279,5 @@ struct TaskBankPage: View {
 }
 
 #Preview {
-    TaskBankPage(potato: TaskBankViewModel())
+    TaskBankPage(viewModel: TaskBankViewModel())
 }
