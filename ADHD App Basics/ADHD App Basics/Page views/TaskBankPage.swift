@@ -90,21 +90,7 @@ struct TaskBankPage: View {
                         }
                     }
                     .padding(.horizontal,5)
-//                    .background(Color(.yellow))
-                    
-                    
-//                    Spacer()
-//                    
-//                    //Add task Button
-//                    Button(action: {viewModel.showTextFieldOverlay=true}) {
-//                        Text("Add New Task +")
-//                            .padding()
-//                            .background(Color.blue)
-//                            .foregroundStyle(.white)
-//                            .cornerRadius(10)
-//                    }
-                                
-
+                        
                 }
                 .padding(.horizontal, 12)
                 .padding(.bottom,10)
@@ -188,9 +174,13 @@ struct TaskBankPage: View {
                             })
                         }
                     }
-                    .padding(.vertical, 5)
+//                    .padding(.vertical, 10)
+                    .padding(.top, 5)
+                    .padding(.bottom,85)
                     .padding(.horizontal, 12)
+                   // .background(.yellow)
                 }
+              //  .padding(.bottom,75)
 
                 
                 
