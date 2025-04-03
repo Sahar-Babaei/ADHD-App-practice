@@ -190,7 +190,7 @@ struct TaskBankPage: View {
                 // text field overlay
                 if viewModel.showTextFieldOverlay == true{
                     
-//                    TaskCard(task: Task(taskName: "hello"))
+//                    TaskCard(task: Task(taskName: "helloooo"))
                 //MARK: can have viewModel create task + have array in viewModel as well
             
                     
