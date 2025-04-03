@@ -43,11 +43,11 @@ struct TaskBankPage: View {
                     .padding(.horizontal)
                 
                 HStack(){
-                    //toggle button
+                    //page's title
                     Text("Task Bank")
-                        .font(Font.custom("Helvetica", size: 28))
+                        .font(Font.custom("Helvetica", size: 26))
                         .fontWeight(.bold)
-                        //.foregroundColor(Color("Bodycopy"))
+                        .foregroundColor(Color("BodyCopy"))
                         
                     
                     Spacer()

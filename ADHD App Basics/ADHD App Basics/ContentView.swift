@@ -37,8 +37,6 @@ struct ContentView: View {
                         Text ("this is tab 3 lol lol lol")
                     case 4:
                         Text ("this is tab 4 lol lol lol lol")
-                    case 5:
-                        Text ("this is tab 5 lol lol lol lol lol")
                     default: //if we do an enum, the default is not necessary. only for ints
                         Text ("this tab doesn't exist")
                         //TODO: Mentor? is using switch a good idea? the default case seems pointless...
@@ -85,14 +83,10 @@ struct ContentView: View {
                                             RoundedRectangle(cornerRadius: 48)
                                                 .inset(by: 0.5)
                                                 .stroke(selectedTab == 1 ? Color(.gray.opacity(0.25)): .clear )
-                                            
                                         )
                                 }
                             }
-                            
-                            
-                            
-                            
+
                             //tab 2
                             Button (action: {selectedTab = 2}){
                                 VStack{
@@ -114,14 +108,10 @@ struct ContentView: View {
                                             RoundedRectangle(cornerRadius: 48)
                                                 .inset(by: 0.5)
                                                 .stroke(selectedTab == 2 ? Color(.gray.opacity(0.25)): .clear )
-                                            
                                         )
                                 }
                             }
-                            
-                            
-                            
-                            
+
                             
                             //tab 3
                             Button (action: {selectedTab = 3}){
@@ -146,9 +136,7 @@ struct ContentView: View {
                                                 .stroke(selectedTab == 3 ? Color(.gray.opacity(0.25)): .clear )
                                             
                                         )
-                                    
-                                    //.foregroundColor(selectedTab == 3 ? .red : Color("BodyCopy"))
-                                    
+  
                                 }
                             }
                             
@@ -177,7 +165,7 @@ struct ContentView: View {
                         //.background(.thinMaterial)
                         //.background(.ultraThinMaterial)
                         
-                        //.frame(alignment: .bottom)
+
                         
                     }
                     
