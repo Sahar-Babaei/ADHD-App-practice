@@ -10,17 +10,7 @@ import SwiftUI
 
 
 struct Task: Codable {
-    
-    var name = "default"
-    
-    var hiddenName: String {
-        get {
-            return name.uppercased()
-        }
-        set {
-            self.name = "a"
-        }
-    }
+    var name: String = "remember to change this to an empty string before the app's release"
     
     var ID = UUID()
     //var fTaskCategory : [String] = ["No category"]
