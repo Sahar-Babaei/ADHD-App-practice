@@ -41,30 +41,37 @@ struct TaskBankPage: View {
                 TextField("Search...", text: $searchText)
                     .padding(.horizontal)
                 
-                HStack{
+                HStack(){
                     //toggle button
+                    Text("Task Bank")
+                        .font(Font.custom("Helvetica", size: 28))
+                        .fontWeight(.bold)
+                        //.foregroundColor(Color("Bodycopy"))
+                        
+                    
+                    Spacer()
+                    
                     Button(action: {
                         viewModel.gridViewEnabled.toggle()
                     }) {
                         HStack(alignment: .center){
-                            Text ("view: ")
-                                .foregroundColor(Color("FiltersBodycopy"))
-                            Image (viewModel.gridViewEnabled ? "view-list" : "view-column")
+//                            Text ("view: ")
+//                                .foregroundColor(Color("FiltersBodycopy"))
+                            Image (viewModel.gridViewEnabled ? "view-column" : "view-list")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 24, height: 24)
                                 .foregroundColor(Color("FiltersBodycopy"))
-
                         }
-                        .padding()
-                        .background(Color(.yellow))
+                        .padding(.horizontal,5)
+//                        .background(Color(.yellow))
 
                     }
                     
+                  //  Spacer()
 
-                    
-                   
-                    Spacer()
+                        
+
                     
                     //sort button
                     Button (action: {
@@ -72,34 +79,34 @@ struct TaskBankPage: View {
                         sortTasks()
                     }) {
                         HStack(alignment: .center){
-                            Text ("order: ")
-                                .foregroundColor(Color("FiltersBodycopy"))
-                            Image (viewModel.reverseOrder ? "sort-up" : "sort-down")
+//                            Text ("order: ")
+//                                .foregroundColor(Color("FiltersBodycopy"))
+                            Image (viewModel.reverseOrder ? "sort-down" : "sort-up")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 24, height: 24)
                                 .foregroundColor(Color("FiltersBodycopy"))
-
                         }
                     }
-                    .padding()
-                    .background(Color(.yellow))
+                    .padding(.horizontal,5)
+//                    .background(Color(.yellow))
                     
                     
-                    Spacer()
-                    
-                    //Add task Button
-                    Button(action: {viewModel.showTextFieldOverlay=true}) {
-                        Text("Add New Task +")
-                            .padding()
-                            .background(Color.blue)
-                            .foregroundStyle(.white)
-                            .cornerRadius(10)
-                    }
+//                    Spacer()
+//                    
+//                    //Add task Button
+//                    Button(action: {viewModel.showTextFieldOverlay=true}) {
+//                        Text("Add New Task +")
+//                            .padding()
+//                            .background(Color.blue)
+//                            .foregroundStyle(.white)
+//                            .cornerRadius(10)
+//                    }
                                 
 
                 }
                 .padding(.horizontal, 12)
+                .padding(.bottom,10)
                 
                 HStack{
                    
@@ -244,8 +251,10 @@ struct TaskBankPage: View {
                 
                 
             }
-        }        
+            .background(Color("MainBackground"))
+        }
     }
+         
     
     func getColumnStyle(_ isGridMode: Bool) -> [GridItem] {
         return isGridMode ? [GridItem(.flexible())] : [GridItem(.flexible()), GridItem(.flexible())]
