@@ -195,7 +195,7 @@ struct TaskBankPage: View {
             
                     
                     VStack{
-                        TaskCreation(viewModel: TaskCreationViewModel(), storageViewModel: viewModel, showExpanded: false, onComplete: {_ in 
+                        TaskCreation(viewModel: TaskCreationViewModel(), storageViewModel: viewModel, showExpanded: false, onComplete: {
                             viewModel.showTextFieldOverlay = false
                             
                         })

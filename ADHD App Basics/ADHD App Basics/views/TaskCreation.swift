@@ -19,12 +19,11 @@ struct TaskCreation: View {
     
 //    var dropdown
     
-    @State private var text: String = ""
     @StateObject var viewModel = TaskCreationViewModel()
     @StateObject var storageViewModel = TaskBankViewModel()
-    var onComplete : (Bool) -> Void = { _ in }
+    var onComplete : () -> Void = { }
     
-    init(viewModel: TaskCreationViewModel, storageViewModel: TaskBankViewModel, showExpanded: Bool , onComplete: @escaping (Bool) -> Void) {
+    init(viewModel: TaskCreationViewModel, storageViewModel: TaskBankViewModel, showExpanded: Bool , onComplete: @escaping () -> Void) {
         _viewModel = StateObject(wrappedValue: viewModel)
         _storageViewModel = StateObject(wrappedValue: storageViewModel)
         self.showExpanded = showExpanded
@@ -74,15 +73,6 @@ struct TaskCreation: View {
                         .fill(Color.gray.opacity(0.1))
                         .frame(height: 60) // Adjust height here
                     TextField("Enter your task here", text: $viewModel.fTask.name)
-                        .onChange(of: viewModel.fTask.name, perform: {newValue in
-                            if (newValue.count > 10)
-                            {
-                                viewModel.fTask.name = String(newValue.prefix(upTo:  newValue.index(newValue.startIndex, offsetBy: 10)))
-//                                setErrorFlag
-                            } else {
-//                                removeErrorFlag
-                            }
-                        })
                         .padding(.horizontal, 15)
                 }
                 
@@ -176,7 +166,7 @@ struct TaskCreation: View {
                 HStack(){
                     
                     //cancel button
-                    Button(action: { self.onComplete(false)}) {
+                    Button(action: { self.onComplete()}) {
                         Text("Cancel")
                             .padding(.top)
                             .padding(.bottom)
@@ -196,7 +186,7 @@ struct TaskCreation: View {
                         
                         //viewModel.createTask returns nil if the task data is no-good
                         let newlyCreatedTask = viewModel.createTask()
-                        self.onComplete(true)
+                        self.onComplete()
                         
                         
                         //only add to storage if the task was successfully created (aka, it's not nil)
@@ -251,5 +241,5 @@ struct RoundedCorners: Shape {
 }
 
 #Preview {
-    TaskCreation(viewModel: TaskCreationViewModel(), storageViewModel: TaskBankViewModel(), showExpanded: false, onComplete:{_ in })
+    TaskCreation(viewModel: TaskCreationViewModel(), storageViewModel: TaskBankViewModel(), showExpanded: false, onComplete:{})
 }
