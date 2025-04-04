@@ -221,7 +221,7 @@ struct TaskBankPage: View {
                         // LazyVGrid adjusts the number of columns dynamically
                         LazyVGrid(columns: getColumnStyle(viewModel.gridViewEnabled)) {
                             ForEach(filteredItems, id: \.ID) { task in
-                                TaskCard(fTask: task, onDelete: {
+                                TaskCard(fTask: task,chosenHeight: (viewModel.gridViewEnabled ? 120 : 155), onDelete: {
                                     viewModel.allTasksList.removeAll { $0.ID == task.ID }
                                 })
                             }

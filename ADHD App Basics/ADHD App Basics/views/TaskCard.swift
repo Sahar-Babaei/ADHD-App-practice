@@ -11,7 +11,7 @@ struct TaskCard: View {
     
     // creating a variable of type FakeTask, so we can use its attributes when creating our card.
     var fTask : Task
-    
+    var chosenHeight: CGFloat
     @State private var showMenu: Bool = false
     @State private var showDeleteConfirmation: Bool = false
     @StateObject var storageViewModel = TaskBankViewModel()
@@ -116,8 +116,10 @@ struct TaskCard: View {
             .cornerRadius(15)
             
         }
+        .frame(height:chosenHeight)
         .padding(12)
         .background(Color("MainForeground"))
+        //.background(.green)
         .cornerRadius(20)
         .shadow(color: .black.opacity(0.1), radius: 2, x: 0, y: 1)
 
@@ -132,5 +134,5 @@ struct TaskCard: View {
 
 //MARK: - Preview
 #Preview {
-    TaskCard(fTask: Task(),onDelete: {})
+    TaskCard(fTask: Task(), chosenHeight: 200,onDelete: {})
 }
