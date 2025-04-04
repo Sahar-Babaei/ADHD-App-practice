@@ -6,8 +6,22 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct TodaysPage: View {
+    
+    var a :String {
+        //"a hello"
+        let formatter = DateFormatter()
+        formatter.dateFormat = "E, MMM d, yyyy"  // ✅ Short weekday, short month, day, full year
+
+        let today = Date()
+        return formatter.string(from: today)
+    }
+    
+    
+    
+   
     
     var body: some View {
         
@@ -28,9 +42,12 @@ struct TodaysPage: View {
                         
                         
                         //TODO: mentor? how do we get today's date displayed here?
-                        Text("Monday, December 20")
+                        Text(a)
                             .font(Font.custom("Helvetica", size: 15))
                             .foregroundColor(Color("BodyCopy"))
+                        
+
+                        
                     }
                     
                     Spacer()
@@ -620,6 +637,7 @@ struct TodaysPage: View {
                     //.padding()
                     //.frame(maxWidth:.infinity, alignment: .top)
                 }
+                
                 
                 
                 
