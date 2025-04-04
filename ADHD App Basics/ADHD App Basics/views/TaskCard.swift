@@ -24,7 +24,7 @@ struct TaskCard: View {
     var body: some View {
         
         //card
-        VStack(alignment: .leading, spacing: 22){
+        VStack(alignment: .leading){
             
             //tag and title
             VStack(alignment: .leading, spacing:10){
@@ -94,10 +94,11 @@ struct TaskCard: View {
                     .foregroundColor(Color("BodyCopy"))
                     .lineLimit(2)
                     .truncationMode(.tail)
+                    
                 
             }
             //.background(.yellow)
-            
+            Spacer()
             
             //status
             HStack(alignment: .center, spacing: 5) {
@@ -118,6 +119,7 @@ struct TaskCard: View {
         }
         .frame(height:chosenHeight)
         .padding(12)
+        
         .background(Color("MainForeground"))
         //.background(.green)
         .cornerRadius(20)
@@ -134,5 +136,5 @@ struct TaskCard: View {
 
 //MARK: - Preview
 #Preview {
-    TaskCard(fTask: Task(), chosenHeight: 200,onDelete: {})
+    TaskCard(fTask: Task(), chosenHeight: 120,onDelete: {})
 }
