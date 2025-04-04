@@ -74,15 +74,15 @@ struct TaskCreation: View {
                         .fill(Color.gray.opacity(0.1))
                         .frame(height: 60) // Adjust height here
                     TextField("Enter your task here", text: $viewModel.fTask.name)
-//                        .onChange(of: viewModel.fTask.name, perform: {newValue in
-//                            if (newValue.count > 10)
-//                            {
-//                                viewModel.fTask.name = String(newValue.prefix(upTo:  newValue.index(newValue.startIndex, offsetBy: 10)))
-////                                setErrorFlag
-//                            } else {
-////                                removeErrorFlag
-//                            }
-//                        })
+                        .onChange(of: viewModel.fTask.name, perform: {newValue in
+                            if (newValue.count > 73)
+                            {
+                                viewModel.fTask.name = String(newValue.prefix(upTo:  newValue.index(newValue.startIndex, offsetBy: 73)))
+//                                setErrorFlag
+                            } else {
+//                                removeErrorFlag
+                            }
+                        })
                         .padding(.horizontal, 15)
                 }
                 

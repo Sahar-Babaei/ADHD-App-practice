@@ -72,14 +72,7 @@ struct TaskCard: View {
                             .foregroundColor(Color("BodyCopy"))
                         
                     }
-                
-                //.frame(maxWidth: .infinity, minHeight: 120)
-               // .background(Color.yellow.opacity(0.5))
-               // .cornerRadius(20)
-//                .overlay(
-//                    RoundedRectangle(cornerRadius: 20)
-//                        .stroke(Color.red, lineWidth: 2)
-//                )
+
                 .confirmationDialog("Are you sure you want to delete this task?",
                                     isPresented: $showDeleteConfirmation,
                                     titleVisibility: .visible
@@ -99,6 +92,8 @@ struct TaskCard: View {
                     .font(Font.custom("Instrument Sans", size: 16)) // Set the custom font
                     .fontWeight(.medium) // Apply weight separately
                     .foregroundColor(Color("BodyCopy"))
+                    .lineLimit(2)
+                    .truncationMode(.tail)
                 
             }
             //.background(.yellow)
@@ -125,104 +120,7 @@ struct TaskCard: View {
         .background(Color("MainForeground"))
         .cornerRadius(20)
         .shadow(color: .black.opacity(0.1), radius: 2, x: 0, y: 1)
-//        
-        
-        
-        
-        
 
-//                        HStack {
-//                            Text(fTask.name)
-//                                .padding()
-//                                .frame(maxWidth: .infinity, alignment: .leading)
-//                                .lineLimit(2)
-//                                .truncationMode(.tail)  //adding ellipse
-//                                .background(Color.white)
-//        
-//                            // "More" menu button
-//                            Menu {
-//                                
-//                                Button("Edit") {
-//                                    // Implement edit functionality here
-//                                }
-//                                Button("Delete", role: .destructive) {
-//                                    showDeleteConfirmation = true
-//                            
-//                                    storageViewModel.removeTask(fTask)
-//                                    
-//                                    
-//                                }
-//                            } label: {
-//                                Image(systemName: "ellipsis.circle")
-//                                    .font(.title)
-//                                    .padding()
-//                                    .background(Color.green)
-//        
-//                            }
-//                        }
-//                        .frame(maxWidth: .infinity, minHeight: 120)
-//                        .background(Color.yellow.opacity(0.5))
-//                        .cornerRadius(20)
-//                        .overlay(
-//                            RoundedRectangle(cornerRadius: 20)
-//                                .stroke(Color.red, lineWidth: 2)
-//                        )
-//                        .confirmationDialog("Are you sure you want to delete this task?",
-//                                            isPresented: $showDeleteConfirmation,
-//                                            titleVisibility: .visible
-//                        ) {
-//                            Button("Delete", role: .destructive) {
-//                                onDelete()
-//                            }
-//                            Button("Cancel", role: .cancel) { }
-//                        }
-
-//                        HStack {
-//                            Text(fTask.name)
-//                                .padding()
-//                                .frame(maxWidth: .infinity, alignment: .leading)
-//                                .lineLimit(2)
-//                                .truncationMode(.tail)  //adding ellipse
-//                                .background(Color.white)
-//        //MARK: - this part?
-//                            // "More" menu button
-//                            Menu {
-//                                
-//                                Button("Edit") {
-//                                    // Implement edit functionality here
-//                                }
-//                                Button("Delete", role: .destructive) {
-//                                    showDeleteConfirmation = true
-//                            
-//                                    storageViewModel.removeTask(fTask)
-//                                    
-//                                    
-//                                }
-//                            } label: {
-//                                Image(systemName: "ellipsis.circle")
-//                                    .font(.title)
-//                                    .padding()
-//                                    .background(Color.green)
-//        
-//                            }
-//                            //MARK: - this part?
-//                        }
-//                        .frame(maxWidth: .infinity, minHeight: 120)
-//                        .background(Color.yellow.opacity(0.5))
-//                        .cornerRadius(20)
-//                        .overlay(
-//                            RoundedRectangle(cornerRadius: 20)
-//                                .stroke(Color.red, lineWidth: 2)
-//                        )
-//                        .confirmationDialog("Are you sure you want to delete this task?",
-//                                            isPresented: $showDeleteConfirmation,
-//                                            titleVisibility: .visible
-//                        ) {
-//                            Button("Delete", role: .destructive) {
-//                                onDelete()
-//                            }
-//                            Button("Cancel", role: .cancel) { }
-//                        }
 
     }
     
