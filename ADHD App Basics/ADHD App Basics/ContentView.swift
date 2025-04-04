@@ -29,7 +29,7 @@ struct ContentView: View {
                     case 1:
                         //make enums for name of each tab instead of 1,2,3,...
                         //Text ("this is tab 1 lol")
-                        TodaysPage()
+                        TodaysPage(viewModel: myViewModel)
                     case 2:
                        // Text ("this is tab 2 lol lol ")
                         TaskBankPage(viewModel: myViewModel)

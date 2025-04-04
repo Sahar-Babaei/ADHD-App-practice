@@ -30,6 +30,7 @@ struct Task: Codable {
     var status: Status = .plannedForToday
     var creationDate : Date = Date()
     var completionDate : Date? = nil // Optional date for when the task is completed
+    var taskAssignment: TaskAssignment? = nil
     
     
     enum CodingKeys: String, CodingKey {
@@ -41,6 +42,7 @@ struct Task: Codable {
             case status = "task_status"
             case creationDate = "task_creation_date"
             case completionDate = "task_completion_date"
+            case taskAssignment = "task_assignment"
         }
     
 }

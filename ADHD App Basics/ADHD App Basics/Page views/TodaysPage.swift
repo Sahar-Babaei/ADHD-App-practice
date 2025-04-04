@@ -10,6 +10,8 @@ import Foundation
 
 struct TodaysPage: View {
     
+    @ObservedObject var viewModel : TaskBankViewModel
+    
     var a :String {
         //"a hello"
         let formatter = DateFormatter()
@@ -18,10 +20,6 @@ struct TodaysPage: View {
         let today = Date()
         return formatter.string(from: today)
     }
-    
-    
-    
-   
     
     var body: some View {
         
@@ -81,6 +79,8 @@ struct TodaysPage: View {
                 
                 ScrollView{
                     //contianer for 3 sections
+                    
+                    
                     VStack(alignment: .center, spacing: 18) {
                         
                         //Must do section
@@ -107,142 +107,52 @@ struct TodaysPage: View {
                             //three tasks
                             VStack(alignment: .leading, spacing: 12) {
                                 
-                                //first space
-                                HStack(alignment: .center, spacing: 12) {
-                                    
-                                    //checkbox
-                                    Rectangle()
-                                    .foregroundColor(.clear)
-                                    .frame(width: 18, height: 18)
-                                    .cornerRadius(5)
-                                    .overlay(
-                                    RoundedRectangle(cornerRadius: 5)
-                                    .inset(by: 0.75)
-                                    .stroke(Color(red: 0.26, green: 0.26, blue: 0.26), lineWidth: 1.5)
+                                ForEach(viewModel.getAllTasksForPriority(priority: Priority.mustDo), id: \.ID.uuidString) { task in
+                                    HStack(alignment: .center, spacing: 12) {
 
-                                    )
-                                    
-                                    //task title
-                                    Text("this would be a task title")
-                                    
-                                    
-                                    // ... button
-                                    Menu {
-                                        
-                                        Button("Edit") {
-                                            // Implement edit functionality here
-                                        }
-                                        Button("Remove", role: .destructive) {
-                                            //remove functionality
+                                        //checkbox
+                                        Rectangle()
+                                        .foregroundColor(.clear)
+                                        .frame(width: 18, height: 18)
+                                        .cornerRadius(5)
+                                        .overlay(
+                                        RoundedRectangle(cornerRadius: 5)
+                                        .inset(by: 0.75)
+                                        .stroke(Color(red: 0.26, green: 0.26, blue: 0.26), lineWidth: 1.5)
+
+                                        )
+
+                                        //task title
+                                        Text(task.name)
+
+
+                                        // ... button
+                                        Menu {
+
+                                            Button("Edit") {
+                                                // Implement edit functionality here
+                                            }
+                                            Button("Remove", role: .destructive) {
+                                                //remove functionality
+
+                                            }
+                                        } label: {
+                                            Image("vertical-more")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 24, height: 24)
+                                                .foregroundColor(Color("BodyCopy"))
 
                                         }
-                                    } label: {
-                                        Image("vertical-more")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 24, height: 24)
-                                            .foregroundColor(Color("BodyCopy"))
-                                        
+
                                     }
-                                    
+                                    .padding(.horizontal, 0)
+                                    .padding(.vertical, 10)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .cornerRadius(10)
+                                    .background(.white)
                                 }
-                                .padding(.horizontal, 0)
-                                .padding(.vertical, 10)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .cornerRadius(10)
-                                .background(.white)
-                                
-                                //second space
-                                HStack(alignment: .center, spacing: 12) {
-                                    
-                                    //checkbox
-                                    Rectangle()
-                                    .foregroundColor(.clear)
-                                    .frame(width: 18, height: 18)
-                                    .cornerRadius(5)
-                                    .overlay(
-                                    RoundedRectangle(cornerRadius: 5)
-                                    .inset(by: 0.75)
-                                    .stroke(Color(red: 0.26, green: 0.26, blue: 0.26), lineWidth: 1.5)
-
-                                    )
-                                    
-                                    //task title
-                                    Text("this would be a task title")
-                                    
-                                    
-                                    // ... button
-                                    Menu {
-                                        
-                                        Button("Edit") {
-                                            // Implement edit functionality here
-                                        }
-                                        Button("Remove", role: .destructive) {
-                                            //remove functionality
-
-                                        }
-                                    } label: {
-                                        Image("vertical-more")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 24, height: 24)
-                                            .foregroundColor(Color("BodyCopy"))
-                                        
-                                    }
-                                    
-                                }
-                                .padding(.horizontal, 0)
-                                .padding(.vertical, 10)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .cornerRadius(10)
-                                .background(.white)
-                                
-                                //third space
-                                HStack(alignment: .center, spacing: 12) {
-                                    
-                                    //checkbox
-                                    Rectangle()
-                                    .foregroundColor(.clear)
-                                    .frame(width: 18, height: 18)
-                                    .cornerRadius(5)
-                                    .overlay(
-                                    RoundedRectangle(cornerRadius: 5)
-                                    .inset(by: 0.75)
-                                    .stroke(Color(red: 0.26, green: 0.26, blue: 0.26), lineWidth: 1.5)
-
-                                    )
-                                    
-                                    //task title
-                                    Text("this would be a task title")
-                                    
-                                    
-                                    // ... button
-                                    Menu {
-                                        
-                                        Button("Edit") {
-                                            // Implement edit functionality here
-                                        }
-                                        Button("Remove", role: .destructive) {
-                                            //remove functionality
-
-                                        }
-                                    } label: {
-                                        Image("vertical-more")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 24, height: 24)
-                                            .foregroundColor(Color("BodyCopy"))
-                                        
-                                    }
-                                    
-                                }
-                                .padding(.horizontal, 0)
-                                .padding(.vertical, 10)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .cornerRadius(10)
-                                .background(.white)
-                                
-                                
+                      
                             }
                             .padding(.leading, 15)
                             .padding(.trailing, 10)
@@ -271,7 +181,7 @@ struct TodaysPage: View {
                             //header part
                             HStack(alignment: .center) {
                                 
-                                Text("Do If TIME ALLOWS")
+                                Text("DO IF TIME ALLOWS")
                                     .font(Font.custom("Helvetica", size: 14))
                                     .fontWeight(.bold)
                                     .foregroundColor(Color("BodyCopy"))
@@ -290,142 +200,52 @@ struct TodaysPage: View {
                             //three tasks
                             VStack(alignment: .leading, spacing: 12) {
                                 
-                                //first space
-                                HStack(alignment: .center, spacing: 12) {
-                                    
-                                    //checkbox
-                                    Rectangle()
-                                    .foregroundColor(.clear)
-                                    .frame(width: 18, height: 18)
-                                    .cornerRadius(5)
-                                    .overlay(
-                                    RoundedRectangle(cornerRadius: 5)
-                                    .inset(by: 0.75)
-                                    .stroke(Color(red: 0.26, green: 0.26, blue: 0.26), lineWidth: 1.5)
+                                ForEach(viewModel.getAllTasksForPriority(priority: Priority.doIfPossible), id: \.ID.uuidString) { task in
+                                    HStack(alignment: .center, spacing: 12) {
 
-                                    )
-                                    
-                                    //task title
-                                    Text("this would be a task title")
-                                    
-                                    
-                                    // ... button
-                                    Menu {
-                                        
-                                        Button("Edit") {
-                                            // Implement edit functionality here
-                                        }
-                                        Button("Remove", role: .destructive) {
-                                            //remove functionality
+                                        //checkbox
+                                        Rectangle()
+                                        .foregroundColor(.clear)
+                                        .frame(width: 18, height: 18)
+                                        .cornerRadius(5)
+                                        .overlay(
+                                        RoundedRectangle(cornerRadius: 5)
+                                        .inset(by: 0.75)
+                                        .stroke(Color(red: 0.26, green: 0.26, blue: 0.26), lineWidth: 1.5)
+
+                                        )
+
+                                        //task title
+                                        Text(task.name)
+
+
+                                        // ... button
+                                        Menu {
+
+                                            Button("Edit") {
+                                                // Implement edit functionality here
+                                            }
+                                            Button("Remove", role: .destructive) {
+                                                //remove functionality
+
+                                            }
+                                        } label: {
+                                            Image("vertical-more")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 24, height: 24)
+                                                .foregroundColor(Color("BodyCopy"))
 
                                         }
-                                    } label: {
-                                        Image("vertical-more")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 24, height: 24)
-                                            .foregroundColor(Color("BodyCopy"))
-                                        
+
                                     }
-                                    
+                                    .padding(.horizontal, 0)
+                                    .padding(.vertical, 10)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .cornerRadius(10)
+                                    .background(.white)
                                 }
-                                .padding(.horizontal, 0)
-                                .padding(.vertical, 10)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .cornerRadius(10)
-                                .background(.white)
-                                
-                                //second space
-                                HStack(alignment: .center, spacing: 12) {
-                                    
-                                    //checkbox
-                                    Rectangle()
-                                    .foregroundColor(.clear)
-                                    .frame(width: 18, height: 18)
-                                    .cornerRadius(5)
-                                    .overlay(
-                                    RoundedRectangle(cornerRadius: 5)
-                                    .inset(by: 0.75)
-                                    .stroke(Color(red: 0.26, green: 0.26, blue: 0.26), lineWidth: 1.5)
-
-                                    )
-                                    
-                                    //task title
-                                    Text("this would be a task title")
-                                    
-                                    
-                                    // ... button
-                                    Menu {
-                                        
-                                        Button("Edit") {
-                                            // Implement edit functionality here
-                                        }
-                                        Button("Remove", role: .destructive) {
-                                            //remove functionality
-
-                                        }
-                                    } label: {
-                                        Image("vertical-more")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 24, height: 24)
-                                            .foregroundColor(Color("BodyCopy"))
-                                        
-                                    }
-                                    
-                                }
-                                .padding(.horizontal, 0)
-                                .padding(.vertical, 10)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .cornerRadius(10)
-                                .background(.white)
-                                
-                                //third space
-                                HStack(alignment: .center, spacing: 12) {
-                                    
-                                    //checkbox
-                                    Rectangle()
-                                    .foregroundColor(.clear)
-                                    .frame(width: 18, height: 18)
-                                    .cornerRadius(5)
-                                    .overlay(
-                                    RoundedRectangle(cornerRadius: 5)
-                                    .inset(by: 0.75)
-                                    .stroke(Color(red: 0.26, green: 0.26, blue: 0.26), lineWidth: 1.5)
-
-                                    )
-                                    
-                                    //task title
-                                    Text("this would be a task title")
-                                    
-                                    
-                                    // ... button
-                                    Menu {
-                                        
-                                        Button("Edit") {
-                                            // Implement edit functionality here
-                                        }
-                                        Button("Remove", role: .destructive) {
-                                            //remove functionality
-
-                                        }
-                                    } label: {
-                                        Image("vertical-more")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 24, height: 24)
-                                            .foregroundColor(Color("BodyCopy"))
-                                        
-                                    }
-                                    
-                                }
-                                .padding(.horizontal, 0)
-                                .padding(.vertical, 10)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .cornerRadius(10)
-                                .background(.white)
-                                
-                                
+                      
                             }
                             .padding(.leading, 15)
                             .padding(.trailing, 10)
@@ -473,141 +293,51 @@ struct TodaysPage: View {
                             //three tasks
                             VStack(alignment: .leading, spacing: 12) {
                                 
-                                //first space
-                                HStack(alignment: .center, spacing: 12) {
-                                    
-                                    //checkbox
-                                    Rectangle()
-                                    .foregroundColor(.clear)
-                                    .frame(width: 18, height: 18)
-                                    .cornerRadius(5)
-                                    .overlay(
-                                    RoundedRectangle(cornerRadius: 5)
-                                    .inset(by: 0.75)
-                                    .stroke(Color(red: 0.26, green: 0.26, blue: 0.26), lineWidth: 1.5)
+                                ForEach(viewModel.getAllTasksForPriority(priority: Priority.niceToDo), id: \.ID.uuidString) { task in
+                                    HStack(alignment: .center, spacing: 12) {
 
-                                    )
-                                    
-                                    //task title
-                                    Text("this would be a task title")
-                                    
-                                    
-                                    // ... button
-                                    Menu {
-                                        
-                                        Button("Edit") {
-                                            // Implement edit functionality here
-                                        }
-                                        Button("Remove", role: .destructive) {
-                                            //remove functionality
+                                        //checkbox
+                                        Rectangle()
+                                        .foregroundColor(.clear)
+                                        .frame(width: 18, height: 18)
+                                        .cornerRadius(5)
+                                        .overlay(
+                                        RoundedRectangle(cornerRadius: 5)
+                                        .inset(by: 0.75)
+                                        .stroke(Color(red: 0.26, green: 0.26, blue: 0.26), lineWidth: 1.5)
+
+                                        )
+
+                                        //task title
+                                        Text(task.name)
+
+
+                                        // ... button
+                                        Menu {
+
+                                            Button("Edit") {
+                                                // Implement edit functionality here
+                                            }
+                                            Button("Remove", role: .destructive) {
+                                                //remove functionality
+
+                                            }
+                                        } label: {
+                                            Image("vertical-more")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 24, height: 24)
+                                                .foregroundColor(Color("BodyCopy"))
 
                                         }
-                                    } label: {
-                                        Image("vertical-more")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 24, height: 24)
-                                            .foregroundColor(Color("BodyCopy"))
-                                        
+
                                     }
-                                    
+                                    .padding(.horizontal, 0)
+                                    .padding(.vertical, 10)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .cornerRadius(10)
+                                    .background(.white)
                                 }
-                                .padding(.horizontal, 0)
-                                .padding(.vertical, 10)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .cornerRadius(10)
-                                .background(.white)
-                                
-                                //second space
-                                HStack(alignment: .center, spacing: 12) {
-                                    
-                                    //checkbox
-                                    Rectangle()
-                                    .foregroundColor(.clear)
-                                    .frame(width: 18, height: 18)
-                                    .cornerRadius(5)
-                                    .overlay(
-                                    RoundedRectangle(cornerRadius: 5)
-                                    .inset(by: 0.75)
-                                    .stroke(Color(red: 0.26, green: 0.26, blue: 0.26), lineWidth: 1.5)
-
-                                    )
-                                    
-                                    //task title
-                                    Text("this would be a task title")
-                                    
-                                    
-                                    // ... button
-                                    Menu {
-                                        
-                                        Button("Edit") {
-                                            // Implement edit functionality here
-                                        }
-                                        Button("Remove", role: .destructive) {
-                                            //remove functionality
-
-                                        }
-                                    } label: {
-                                        Image("vertical-more")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 24, height: 24)
-                                            .foregroundColor(Color("BodyCopy"))
-                                        
-                                    }
-                                    
-                                }
-                                .padding(.horizontal, 0)
-                                .padding(.vertical, 10)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .cornerRadius(10)
-                                .background(.white)
-                                
-                                //third space
-                                HStack(alignment: .center, spacing: 12) {
-                                    
-                                    //checkbox
-                                    Rectangle()
-                                    .foregroundColor(.clear)
-                                    .frame(width: 18, height: 18)
-                                    .cornerRadius(5)
-                                    .overlay(
-                                    RoundedRectangle(cornerRadius: 5)
-                                    .inset(by: 0.75)
-                                    .stroke(Color(red: 0.26, green: 0.26, blue: 0.26), lineWidth: 1.5)
-
-                                    )
-                                    
-                                    //task title
-                                    Text("this would be a task title")
-                                    
-                                    
-                                    // ... button
-                                    Menu {
-                                        
-                                        Button("Edit") {
-                                            // Implement edit functionality here
-                                        }
-                                        Button("Remove", role: .destructive) {
-                                            //remove functionality
-
-                                        }
-                                    } label: {
-                                        Image("vertical-more")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 24, height: 24)
-                                            .foregroundColor(Color("BodyCopy"))
-                                        
-                                    }
-                                    
-                                }
-                                .padding(.horizontal, 0)
-                                .padding(.vertical, 10)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .cornerRadius(10)
-                                .background(.white)
-                                
                                 
                             }
                             .padding(.leading, 15)
@@ -636,6 +366,8 @@ struct TodaysPage: View {
                     
                     //.padding()
                     //.frame(maxWidth:.infinity, alignment: .top)
+                }.onAppear {
+                    viewModel.loadAllTasks()
                 }
                 
                 
@@ -654,5 +386,5 @@ struct TodaysPage: View {
 }
 
 #Preview {
-    TodaysPage()
+    TodaysPage(viewModel: TaskBankViewModel())
 }

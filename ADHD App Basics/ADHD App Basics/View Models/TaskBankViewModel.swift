@@ -57,6 +57,19 @@ class TaskBankViewModel: ObservableObject {
         }
     }
     
+    func getAllTasksForPriority(priority: Priority) -> [Task] {
+        let calendar = Calendar.current
+        let todaysDate = Date()
+        
+        return allTasksList.filter {
+            if let assignment = $0.taskAssignment {
+                return calendar.isDate(assignment.date, inSameDayAs: todaysDate) && assignment.priority == priority
+            } else {
+                return false
+            }
+        }
+    }
+    
     func clearTitle() {
         userTaskTitle = ""
     }
