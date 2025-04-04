@@ -22,15 +22,26 @@ struct TaskBankPage: View {
     
     //filtering, sorting and searching variables
     @State private var searchText: String = ""
-    @State private var selectedFilter: String = "Not Started"  //how to set selected filter
+    @State private var selectedFilter: String = "All"  //how to set selected filter
     @State private var presentingSheet: Bool = false
     
     //categories
     var filters: [String] {
-        let categoryStatus = viewModel.allTasksList.map {$0.status.name}
-        let categoryTag = viewModel.allTasksList.map {$0.tag.name}
+        var seen: Set<String> = [] // keeps track of unique values
+        var uniqueFilters: [String] = []
         
-        return categoryStatus + categoryTag
+        for item in viewModel.allTasksList {
+            if !seen.contains(item.status.name) {
+                seen.insert(item.status.name)
+                uniqueFilters.append(item.status.name)
+            }
+            if !seen.contains(item.tag.name) {
+                seen.insert(item.tag.name)
+                uniqueFilters.append(item.tag.name)
+            }
+            
+        }
+        return ["All"] + uniqueFilters
     }
     
     var filteredItems: [Task] {
@@ -45,7 +56,7 @@ struct TaskBankPage: View {
         let filteredTasks = if !selectedFilter.isEmpty {
             //how to i get to the tasks inside the alltaskslist
             searchItems.filter {
-                $0.status.name == selectedFilter || $0.tag.name == selectedFilter
+                $0.status.name == selectedFilter || $0.tag.name == selectedFilter || selectedFilter == "All"
             }
         } else {
             items
@@ -62,12 +73,12 @@ struct TaskBankPage: View {
                 
                 
                 VStack{
-                    Picker(selection: $selectedFilter, label: Text("Picker")) {
-                        ForEach(filters, id: \.self) { item in
-                            Text(item)
-                        }
-                    }
-                    .background(Color(.red))
+//                    Picker(selection: $selectedFilter, label: Text("Picker")) {
+//                        ForEach(filters, id: \.self) { item in
+//                            Text(item)
+//                        }
+//                    }
+//                    .background(Color(.red))
 
 
                     Spacer()
@@ -130,7 +141,7 @@ struct TaskBankPage: View {
                     HStack{
                        //filters are a nice to have + sort is nice to have
                         Button (action: {
-                            presentingSheet.toggle()
+                            presentingSheet = true
                         }) {
                             HStack(alignment: .center, spacing: 6){
                                 Image("filter-icon")
@@ -285,7 +296,7 @@ struct TaskBankPage: View {
                 }
                 .background(Color("MainBackground"))
                 .onTapGesture {
-                    presentingSheet.toggle()
+                    presentingSheet = false
                     //here is where you can apply filter if you want it to be applied after the popup is closed
                 }
                 
