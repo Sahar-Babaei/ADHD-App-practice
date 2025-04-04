@@ -22,7 +22,7 @@ class TaskCreationViewModel: ObservableObject {
         //Add any data checks before allowing a task to be added to memory
         
         //temporary placement
-        fTask.taskAssignment = TaskAssignment(date: Date(), priority: .niceToDo)
+        fTask.taskAssignment = TaskAssignment(date: Date(), priority: .notSelected)
         
         let taskToReturn = fTask
         resetTask()

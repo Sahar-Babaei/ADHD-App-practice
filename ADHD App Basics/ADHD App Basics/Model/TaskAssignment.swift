@@ -19,6 +19,7 @@ struct TaskAssignment: Codable {
 }
 
 enum Priority: String, Codable {
+    case notSelected
     case mustDo
     case doIfPossible
     case niceToDo
