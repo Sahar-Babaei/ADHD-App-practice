@@ -19,15 +19,16 @@ struct TaskAssignment: Codable {
 }
 
 enum Priority: String, Codable, CaseIterable {
-    case notSelected
+   // case notSelected
     case mustDo
     case doIfPossible
     case niceToDo
     
     
+    //so we can get the names
     var name : String {
         switch self {
-            case .notSelected: return "Not Selected"
+            //case .notSelected: return "Not Selected"
             case .mustDo: return "MUST DO"
             case .doIfPossible: return "DO IF POSSIBLE"
             case .niceToDo: return "NICE TO DO" //do for fun

@@ -6,8 +6,11 @@
 //
 
 import Foundation
+import SwiftUICore
 
 class TaskCreationViewModel: ObservableObject {
+    
+    //@State private var selectedPriority:Priority = .mustDo
     
     @Published var fTask: Task = Task()
     
@@ -15,14 +18,17 @@ class TaskCreationViewModel: ObservableObject {
 //    var taskBankViewModel: TaskBankViewModel?
     
     //want to be able to reference the FakeTask properties to bind the user's input to a new entry to the array
-    func createTask() -> Task? {
+    func createTask(with priority: Priority) -> Task? {
         // this only adds a new task if title is not empty
         
         guard !fTask.name.isEmpty else { return nil }
         //Add any data checks before allowing a task to be added to memory
         
         //temporary placement
-        fTask.taskAssignment = TaskAssignment(date: Date(), priority: .notSelected)
+        if fTask.status == .plannedForToday{
+            fTask.taskAssignment = TaskAssignment(date: Date(), priority: priority)
+        }
+       
         
         let taskToReturn = fTask
         resetTask()

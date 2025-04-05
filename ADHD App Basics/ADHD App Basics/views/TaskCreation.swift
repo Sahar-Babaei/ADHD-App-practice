@@ -12,7 +12,8 @@ struct TaskCreation: View {
     //keep track of overlay expansion
     @State private var selectedStatus: Status = .notStarted // New state for status
     @State private var selectedTag: Tag = .none
-    @State private var selectedPriority: Priority = .notSelected
+    @State private var selectedPriority: Priority = .niceToDo
+    //@Binding var selectedPriority: Priority
     @State private var showExpanded: Bool = false
     //    @State private var tagDropDown: TagDropDownMenu
     //    @State private var userSelectedStatus: Status = $selectedStatus
@@ -32,6 +33,7 @@ struct TaskCreation: View {
         self.onComplete = onComplete //not invoking, just saving.
         //        self.tagDropDown = TagDropDownMenu()
         //self.statusDropDown = StatusDropDownMenu()
+      //  self.selectedPriority = selectedPriority
     }
     
     var body: some View {
@@ -134,22 +136,6 @@ struct TaskCreation: View {
                         StatusDropDownMenu(selectedStatus: $selectedStatus) // Pass as binding
                         
                         if selectedStatus == .plannedForToday{
-                            //NavigationStack {
-                            // Form {
-//                            VStack(alignment:.leading){
-//                                Text("Please Choose a Priority Category")
-//                                    .font(Font.custom("Instrument Sans", size: 16))
-//                                    .fontWeight(.regular)
-//                                
-//                                Picker("Priority", selection: $selectedPriority) {
-//                                    ForEach(Priority.allCases, id: \.self) { priority in
-//                                        Text(priority.name)
-//                                            .frame(height:120)
-//                                            
-//                                    }
-//                                }
-//                                .pickerStyle(.segmented)
-//                            }
 
                                 VStack(alignment: .leading, spacing: 10) {
                                     Text("Please Choose a Priority Category")
@@ -174,8 +160,6 @@ struct TaskCreation: View {
                                                 }
                                         }
                                     }
-                                
-                                .padding(.vertical, 10)
                             }
 
                             .padding(.vertical,10)
@@ -245,7 +229,7 @@ struct TaskCreation: View {
                         viewModel.fTask.status = selectedStatus
                         
                         //viewModel.createTask returns nil if the task data is no-good
-                        let newlyCreatedTask = viewModel.createTask()
+                        let newlyCreatedTask = viewModel.createTask(with:selectedPriority)
                         self.onComplete(true)
                         
                         
