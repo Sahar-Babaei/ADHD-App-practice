@@ -24,6 +24,7 @@ struct TaskBankPage: View {
     @State private var searchText: String = ""
     @State private var selectedFilter: String = "All"  //how to set selected filter
     @State private var presentingSheet: Bool = false
+//    @State private var
     
     //categories
     var filters: [String] {
@@ -59,10 +60,40 @@ struct TaskBankPage: View {
                 $0.status.name == selectedFilter || $0.tag.name == selectedFilter || selectedFilter == "All"
             }
         } else {
-            items
+            searchItems
         }
         return filteredTasks
     }
+    
+    //old filtering code with the 'all; filter included
+    //categories
+//    var filters: [String] {
+//        let categoryStatus = viewModel.allTasksList.map {$0.status.name}
+//        let categoryTag = viewModel.allTasksList.map {$0.tag.name}
+//
+//        let uniqueFilters = Set(categoryStatus + categoryTag)
+//        return ["All"] + uniqueFilters
+//    }
+//    
+//    var filteredItems: [Task] {
+//        var items = viewModel.allTasksList
+//        
+//        let searchItems = if !searchText.isEmpty  {
+//            items.filter {$0.name.localizedCaseInsensitiveContains(searchText) }
+//        } else {
+//            items
+//        }
+//        
+//        let filteredTasks = if !selectedFilter.isEmpty {
+//            //how to i get to the tasks inside the alltaskslist
+//            searchItems.filter {
+//                $0.status.name == selectedFilter || $0.tag.name == selectedFilter || selectedFilter == ["All"]
+//            }
+//        } else {
+//            items
+//        }
+//        return filteredTasks
+//    }
     
     //important: can't create functions in body. body is a special property that returns views
     var body: some View {
@@ -298,12 +329,15 @@ struct TaskBankPage: View {
                 .onTapGesture {
                     presentingSheet = false
                     //here is where you can apply filter if you want it to be applied after the popup is closed
+//                    FilterPickerModel(parent: , child: )
+                    
                 }
                 
                 if presentingSheet{
                     Rectangle()
                         .frame(width: 100, height: 100)
                         .background(Color(.blue))
+//                    MultiplePickerView()
                         
                 }
             }
