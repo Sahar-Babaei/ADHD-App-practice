@@ -12,12 +12,13 @@ struct TaskCreation: View {
     //keep track of overlay expansion
     @State private var selectedStatus: Status = .notStarted // New state for status
     @State private var selectedTag: Tag = .none
+    @State private var selectedPriority: Priority = .notSelected
     @State private var showExpanded: Bool = false
-//    @State private var tagDropDown: TagDropDownMenu
-//    @State private var userSelectedStatus: Status = $selectedStatus
+    //    @State private var tagDropDown: TagDropDownMenu
+    //    @State private var userSelectedStatus: Status = $selectedStatus
     //@State private var statusDropDown: StatusDropDownMenu
     
-//    var dropdown
+    //    var dropdown
     
     @State private var text: String = ""
     @StateObject var viewModel = TaskCreationViewModel()
@@ -29,7 +30,7 @@ struct TaskCreation: View {
         _storageViewModel = StateObject(wrappedValue: storageViewModel)
         self.showExpanded = showExpanded
         self.onComplete = onComplete //not invoking, just saving.
-//        self.tagDropDown = TagDropDownMenu()
+        //        self.tagDropDown = TagDropDownMenu()
         //self.statusDropDown = StatusDropDownMenu()
     }
     
@@ -37,7 +38,7 @@ struct TaskCreation: View {
         
         ZStack{
             //transparency background
-
+            
             
             //Quick View task creation view
             VStack(alignment: .leading) {
@@ -65,10 +66,10 @@ struct TaskCreation: View {
                 
                 //task name text field
                 //TODO: mentor - need to find way to allow binding to name
-//                TextField("Enter your task here", text: $viewModel.fTask.name)
-//                    .padding(.vertical, 12) // Adds internal padding
-//                        .textFieldStyle(RoundedBorderTextFieldStyle())
-   
+                //                TextField("Enter your task here", text: $viewModel.fTask.name)
+                //                    .padding(.vertical, 12) // Adds internal padding
+                //                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                
                 ZStack {
                     RoundedRectangle(cornerRadius: 10)
                         .fill(Color.gray.opacity(0.1))
@@ -78,9 +79,9 @@ struct TaskCreation: View {
                             if (newValue.count > 73)
                             {
                                 viewModel.fTask.name = String(newValue.prefix(upTo:  newValue.index(newValue.startIndex, offsetBy: 73)))
-//                                setErrorFlag
+                                //                                setErrorFlag
                             } else {
-//                                removeErrorFlag
+                                //                                removeErrorFlag
                             }
                         })
                         .padding(.horizontal, 15)
@@ -90,22 +91,22 @@ struct TaskCreation: View {
                 
                 if showExpanded {
                     
-//                    VStack (alignment: .leading) {
-//                        Text("Notes")
-//                            .font(Font.custom("Instrument Sans", size: 16)) // Set the custom font
-//                            .fontWeight(.regular) // Apply weight separately
-//                        //Notes text field
-//                        ZStack (alignment: .top){
-//                            RoundedRectangle(cornerRadius: 10)
-//                                .fill(Color.gray.opacity(0.1))
-////                                .frame(height: 80) // Adjust height here
-//                            TextEditor(text: $viewModel.fTask.notes)
-//                                .padding(.horizontal, 15)
-//                                .lineLimit(3, reservesSpace: false)
-//                                
-//                        }
-//                    }
-//                    .padding(.top, 5)
+                    //                    VStack (alignment: .leading) {
+                    //                        Text("Notes")
+                    //                            .font(Font.custom("Instrument Sans", size: 16)) // Set the custom font
+                    //                            .fontWeight(.regular) // Apply weight separately
+                    //                        //Notes text field
+                    //                        ZStack (alignment: .top){
+                    //                            RoundedRectangle(cornerRadius: 10)
+                    //                                .fill(Color.gray.opacity(0.1))
+                    ////                                .frame(height: 80) // Adjust height here
+                    //                            TextEditor(text: $viewModel.fTask.notes)
+                    //                                .padding(.horizontal, 15)
+                    //                                .lineLimit(3, reservesSpace: false)
+                    //
+                    //                        }
+                    //                    }
+                    //                    .padding(.top, 5)
                     
                     VStack (alignment: .leading) {
                         Text("Tag")
@@ -116,12 +117,12 @@ struct TaskCreation: View {
                         TagDropDownMenu(selectedTag: $selectedTag)
                         
                         
-//                        Rectangle()
-//                            .foregroundColor(.clear)
-//                            .frame(height: 39)
-//                            .background(Color(red: 0.92, green: 0.92, blue: 0.92))
-//                            .cornerRadius(4)
-//                        DropdownMenu
+                        //                        Rectangle()
+                        //                            .foregroundColor(.clear)
+                        //                            .frame(height: 39)
+                        //                            .background(Color(red: 0.92, green: 0.92, blue: 0.92))
+                        //                            .cornerRadius(4)
+                        //                        DropdownMenu
                         
                     }
                     .padding(.vertical,20)
@@ -131,12 +132,61 @@ struct TaskCreation: View {
                             .font(Font.custom("Instrument Sans", size: 16)) // Set the custom font
                             .fontWeight(.regular)
                         StatusDropDownMenu(selectedStatus: $selectedStatus) // Pass as binding
+                        
+                        if selectedStatus == .plannedForToday{
+                            //NavigationStack {
+                            // Form {
+//                            VStack(alignment:.leading){
+//                                Text("Please Choose a Priority Category")
+//                                    .font(Font.custom("Instrument Sans", size: 16))
+//                                    .fontWeight(.regular)
+//                                
+//                                Picker("Priority", selection: $selectedPriority) {
+//                                    ForEach(Priority.allCases, id: \.self) { priority in
+//                                        Text(priority.name)
+//                                            .frame(height:120)
+//                                            
+//                                    }
+//                                }
+//                                .pickerStyle(.segmented)
+//                            }
+
+                                VStack(alignment: .leading, spacing: 10) {
+                                    Text("Please Choose a Priority Category")
+                                        .font(Font.custom("Helvetica", size: 13))
+                                        .fontWeight(.regular)
+
+                                    HStack(spacing: 10) {
+                                        ForEach(Priority.allCases, id: \.self) { priority in
+                                            Text(priority.name)
+                                                .font(Font.custom("Helvetica", size: 13))
+                                                .foregroundColor(Color("BodyCopy"))
+                                            
+                                                .frame(maxWidth: .infinity, minHeight: 50)
+                                                .background(selectedPriority == priority ? Color.yellow : Color.gray.opacity(0.2))
+                                                .cornerRadius(12)
+                                                .overlay(
+                                                    RoundedRectangle(cornerRadius: 12)
+                                                        .stroke(selectedPriority == priority ? Color.orange : Color.clear, lineWidth: 2)
+                                                )
+                                                .onTapGesture {
+                                                    selectedPriority = priority
+                                                }
+                                        }
+                                    }
+                                
+                                .padding(.vertical, 10)
+                            }
+
+                            .padding(.vertical,10)
+
+                        }
                     }
                     
                 }
                 
-//                Spacer()
-//                    .frame(height: 35)
+                //                Spacer()
+                //                    .frame(height: 35)
                 
                 //status + tag + button
                 HStack{
@@ -215,7 +265,7 @@ struct TaskCreation: View {
                             .cornerRadius(10)
                     }
                     
-
+                    
                 }
                 
             }
@@ -226,13 +276,13 @@ struct TaskCreation: View {
             .overlay(
                 RoundedCorners(radius: 20, corners: [.topLeft, .topRight])
                     .stroke(Color("BodyCopy"), lineWidth: 1)
-                )
-
-
-        }//.background(Color(red: 0.06, green: 0.09, blue: 0.16).opacity(0.32))
-            //.background(Color(.red))
-            //.background(.ultraThinMaterial)
+            )
             
+            
+        }//.background(Color(red: 0.06, green: 0.09, blue: 0.16).opacity(0.32))
+        //.background(Color(.red))
+        //.background(.ultraThinMaterial)
+        
     }
 }
 
