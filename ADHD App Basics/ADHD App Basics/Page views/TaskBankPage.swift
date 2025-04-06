@@ -342,6 +342,13 @@ struct TaskBankPage: View {
                 }
                 
                 if presentingSheet{
+
+                        Color.black.opacity(0.4) // Dimming effect
+                            .ignoresSafeArea()
+                        .transition(.opacity)
+                        .onTapGesture {
+                            presentingSheet=false
+                        }
                     
                     //here is where you can apply filter if you want it to be applied after the popup is closed
 
