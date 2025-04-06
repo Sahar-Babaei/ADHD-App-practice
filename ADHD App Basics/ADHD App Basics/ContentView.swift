@@ -236,6 +236,9 @@ struct ContentView: View {
             
             if (showTaskCreationOverlay)
             {
+                    Color.black.opacity(0.4) // Dimming effect
+                        .ignoresSafeArea()
+                    .transition(.opacity)
                 VStack{
                     TaskCreation(viewModel: TaskCreationViewModel(), storageViewModel: myViewModel, showExpanded: false, onComplete: { taskCreated in
                         showTaskCreationOverlay = false
@@ -244,7 +247,9 @@ struct ContentView: View {
                         }
                     })
                 }
+
             }
+            
         }
     }
 }

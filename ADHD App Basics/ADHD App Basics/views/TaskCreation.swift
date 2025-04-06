@@ -257,10 +257,10 @@ struct TaskCreation: View {
             .background(Color("MainForeground"))
             .clipShape(RoundedCorners(radius: 20, corners: [.topLeft, .topRight]))
             
-            .overlay(
-                RoundedCorners(radius: 20, corners: [.topLeft, .topRight])
-                    .stroke(Color("BodyCopy"), lineWidth: 1)
-            )
+//            .overlay(
+//                RoundedCorners(radius: 20, corners: [.topLeft, .topRight])
+//                    .stroke(Color("BodyCopy"), lineWidth: 1)
+//            )
             
             
         }//.background(Color(red: 0.06, green: 0.09, blue: 0.16).opacity(0.32))
