@@ -329,15 +329,18 @@ struct TaskBankPage: View {
                 .onTapGesture {
                     presentingSheet = false
                     //here is where you can apply filter if you want it to be applied after the popup is closed
-//                    FilterPickerModel(parent: , child: )
                     
                 }
                 
                 if presentingSheet{
-                    Rectangle()
-                        .frame(width: 100, height: 100)
-                        .background(Color(.blue))
-//                    MultiplePickerView()
+//                    Rectangle()
+//                        .frame(width: 100, height: 100)
+//                        .background(Color(.blue))
+                    MultiplePickerView(selectedSensor: $selectedFilter)
+                        .frame(width: 350, height: 620)
+                        .background(.ultraThinMaterial)
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                        .shadow(radius: 10)
                         
                 }
             }
