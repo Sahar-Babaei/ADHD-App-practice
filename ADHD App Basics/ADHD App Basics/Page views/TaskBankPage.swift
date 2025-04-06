@@ -20,6 +20,10 @@ struct TaskBankPage: View {
 //        viewModel.loadAllTasks()
 //    }
     
+    //selection mode
+    var isSelectionMode: Bool = false
+    var onSelectTasks: (([Task]) -> Void)? = nil
+    
     //filtering, sorting and searching variables
     @State private var searchText: String = ""
     @State private var selectedFilter: String = "All"  //how to set selected filter
@@ -58,11 +62,14 @@ struct TaskBankPage: View {
             //how to i get to the tasks inside the alltaskslist
             searchItems.filter {
                 $0.status.name == selectedFilter || $0.tag.name == selectedFilter || selectedFilter == "All"
-            }
+                            }
         } else {
             searchItems
         }
+        print(filteredTasks)
+        print("selected filter:" + selectedFilter)
         return filteredTasks
+        
     }
     
     //old filtering code with the 'all; filter included
@@ -100,17 +107,7 @@ struct TaskBankPage: View {
         //Navigation path
         NavigationStack {
             ZStack {
-                
-                
-                
-                VStack{
-//                    Picker(selection: $selectedFilter, label: Text("Picker")) {
-//                        ForEach(filters, id: \.self) { item in
-//                            Text(item)
-//                        }
-//                    }
-//                    .background(Color(.red))
-
+                VStack(alignment: .leading){
 
                     Spacer()
                         .frame(height: 25)
@@ -143,10 +140,6 @@ struct TaskBankPage: View {
                         }
                         
                       //  Spacer()
-
-                            
-
-                        
                         //sort button
                         Button (action: {
                             viewModel.reverseOrder.toggle()
@@ -222,6 +215,8 @@ struct TaskBankPage: View {
 
                             )
                         
+                       
+                        
     //                    HStack(alignment: .center, spacing: 6){
     //                        Image("sort-icon")
     //                            .resizable()
@@ -246,7 +241,16 @@ struct TaskBankPage: View {
 
                     }
                     .padding(.horizontal, 12)
-
+                    
+                    
+                    if isSelectionMode {    //show instructions when selecting tasks
+                        Text("Select your tasks from the bank:")
+                            .font(Font.custom("Helvetica", size: 16))
+                            .fontWeight(.regular)
+                            .foregroundColor(Color("BodyCopy"))
+                            .padding(.horizontal)
+                            .padding(.vertical, 10)
+                    }
                     
                     ScrollView {
                         // LazyVGrid adjusts the number of columns dynamically
@@ -254,7 +258,13 @@ struct TaskBankPage: View {
                             ForEach(filteredItems, id: \.ID) { task in
                                 TaskCard(fTask: task,chosenHeight: (viewModel.gridViewEnabled ? 120 : 155), onDelete: {
                                     viewModel.allTasksList.removeAll { $0.ID == task.ID }
-                                })
+                                }
+//                                         if isSelectionMode{
+//                                    .onTapGesture{
+//                                        .borderStyle
+//                                    }
+//                                }
+                                )
                             }
                         }
     //                    .padding(.vertical, 10)
@@ -328,16 +338,25 @@ struct TaskBankPage: View {
                 .background(Color("MainBackground"))
                 .onTapGesture {
                     presentingSheet = false
-                    //here is where you can apply filter if you want it to be applied after the popup is closed
                     
                 }
                 
                 if presentingSheet{
+                    
+                    //here is where you can apply filter if you want it to be applied after the popup is closed
+
+//            //TODO: would be nice to have this dark background
+////                    Color.black.opacity(0.3)
+////                        .edgesIgnoringSafeArea(.all)
+////                        .onTapGesture {
+////                            withAnimation {
+////                                presentingSheet = false
+//                            }
 //                    Rectangle()
 //                        .frame(width: 100, height: 100)
 //                        .background(Color(.blue))
                     MultiplePickerView(selectedSensor: $selectedFilter)
-                        .frame(width: 350, height: 620)
+                        .frame(width: 350, height: 730)
                         .background(.ultraThinMaterial)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
                         .shadow(radius: 10)

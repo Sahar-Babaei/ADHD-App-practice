@@ -138,6 +138,7 @@ struct FilterPickerModel: Identifiable {
 
 var pickers: [FilterPickerModel] {
     [
+        FilterPickerModel(parent: "All status and tags", children: ["All"]),
         FilterPickerModel(
             parent: "Status",
             children: Status.allCases.map { $0 } // Passing enums directly
@@ -155,6 +156,7 @@ struct MultiplePickerView: View {
     var body: some View {
         Form {
             Text(selectedSensor)
+            
 
             ForEach(pickers) { picker in
                 Section(header: Text(picker.parent)) {
@@ -167,15 +169,20 @@ struct MultiplePickerView: View {
                                         .frame(width: 10, height: 10)
                                     Text(status.name)
                                 }
-                                .tag("Filtered \(picker.parent): \(status.name)")
+                                .tag( (status.name))
                             } else if picker.parent == "Tag", let tag = picker.children[index] as? Tag {
                                 HStack {
                                     Image(systemName: "tag")
                                         .foregroundColor(tag.color)
                                     Text(tag.name)
                                 }
-                                .tag("Filtered \(picker.parent): \(tag.name)")
-                            }
+                                .tag((tag.name))
+                            } else if let all = picker.children[index] as? String {
+                                HStack {
+                                    Text(all)
+                                }.tag((all))
+                                }
+                            
                         }
                     }
                     .pickerStyle(InlinePickerStyle())
@@ -216,12 +223,12 @@ struct FilterPickerView: View {
 
                     VStack {
                         MultiplePickerView(selectedSensor: $selectedSensor)
-                            .frame(width: 350, height: 620)
+                            .frame(width: 350, height: 730)
                             .background(.ultraThinMaterial)
                             .clipShape(RoundedRectangle(cornerRadius: 20))
                             .shadow(radius: 10)
                     }
-                    .padding(.bottom, 100)
+                    .padding(.bottom, 50)
                 }
                 .transition(.move(edge: .bottom))
             }
