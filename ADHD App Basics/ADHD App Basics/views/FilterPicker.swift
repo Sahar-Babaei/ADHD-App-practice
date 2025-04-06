@@ -138,7 +138,7 @@ struct FilterPickerModel: Identifiable {
 
 var pickers: [FilterPickerModel] {
     [
-        FilterPickerModel(parent: "All status and tags", children: ["All"]),
+        FilterPickerModel(parent: "Clear all filters", children: ["All"]),
         FilterPickerModel(
             parent: "Status",
             children: Status.allCases.map { $0 } // Passing enums directly
@@ -187,6 +187,7 @@ struct MultiplePickerView: View {
                     }
                     .pickerStyle(InlinePickerStyle())
                     .labelsHidden()
+                    
                 }
             }
         }
@@ -232,6 +233,16 @@ struct FilterPickerView: View {
                 }
                 .transition(.move(edge: .bottom))
             }
+        }
+        .onChange(of: selectedSensor) {
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.30) {
+                withAnimation(.easeInOut(duration: 0.35)){
+                    showOverlay = false
+                }
+                selectedSensor = "no sensor selected"
+            }
+            
         }
     }
 }

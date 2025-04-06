@@ -337,8 +337,20 @@ struct TaskBankPage: View {
                 }
                 .background(Color("MainBackground"))
                 .onTapGesture {
-                    presentingSheet = false
+                    withAnimation {
+                        presentingSheet=false
+                    }
                     
+                }
+                .onChange(of: selectedFilter) {
+    
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.30) {
+                            withAnimation(.easeInOut(duration: 0.35)){
+                                presentingSheet = false
+                            }
+                        }
+    
+                
                 }
                 
                 if presentingSheet{
@@ -347,33 +359,45 @@ struct TaskBankPage: View {
                             .ignoresSafeArea()
                         .transition(.opacity)
                         .onTapGesture {
-                            presentingSheet=false
+                            
+                            withAnimation {
+                                presentingSheet=false
+                            }
                         }
                     
                     //here is where you can apply filter if you want it to be applied after the popup is closed
-
-//            //TODO: would be nice to have this dark background
-////                    Color.black.opacity(0.3)
-////                        .edgesIgnoringSafeArea(.all)
-////                        .onTapGesture {
-////                            withAnimation {
-////                                presentingSheet = false
-//                            }
-//                    Rectangle()
-//                        .frame(width: 100, height: 100)
-//                        .background(Color(.blue))
+                    
+                    //            //TODO: would be nice to have this dark background
+                    ////                    Color.black.opacity(0.3)
+                    ////                        .edgesIgnoringSafeArea(.all)
+                    ////                        .onTapGesture {
+                    ////                            withAnimation {
+                    ////                                presentingSheet = false
+                    //                            }
+                    //                    Rectangle()
+                    //                        .frame(width: 100, height: 100)
+                    //                        .background(Color(.blue))
                     MultiplePickerView(selectedSensor: $selectedFilter)
                         .frame(width: 350, height: 730)
                         .background(.ultraThinMaterial)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
                         .shadow(radius: 10)
-                        
                 }
+//                }.onChange(of: selectedFilter) {
+//                    
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.30) {
+//                        withAnimation(.easeInOut(duration: 0.35)){
+//                            presentingSheet = false
+//                        }
+//                    }
+//                    
+//                }
             }
             .onAppear {
                 viewModel.loadAllTasks()
                 //this makes all tasks appears when this page is loaded.
             }
+            
             
             }
             
