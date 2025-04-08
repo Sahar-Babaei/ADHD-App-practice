@@ -59,7 +59,7 @@ struct TodaysPage: View {
                             HStack(alignment: .center) {
                                 
                                 Text("MUST DO TODAY")
-                                    .font(Font.custom("Helvetica", size: 15))
+                                    .font(Font.custom("Helvetica", size: 16))
                                     .fontWeight(.bold)
                                     .foregroundColor(Color("BodyCopy"))
                                     
@@ -106,10 +106,10 @@ struct TodaysPage: View {
                       
                             }
                             //.padding(.horizontal, 14)
-                            .padding(.leading,14)
-                            .padding(.trailing,8)
-                            .padding(.vertical, 3)
-                            .frame(maxWidth: .infinity, alignment: .topLeading)
+//                            .padding(.leading,14)
+//                            .padding(.trailing,8)
+//                            .padding(.vertical, 3)
+//                            .frame(maxWidth: .infinity, alignment: .topLeading)
                             //.background(.yellow)
   
                         }
@@ -128,7 +128,7 @@ struct TodaysPage: View {
                             HStack(alignment: .center) {
                                 
                                 Text("DO IF TIME ALLOWS")
-                                    .font(Font.custom("Helvetica", size: 15))
+                                    .font(Font.custom("Helvetica", size: 16))
                                     .fontWeight(.bold)
                                     .foregroundColor(Color("BodyCopy"))
                                     
@@ -178,11 +178,11 @@ struct TodaysPage: View {
                                 }
                       
                             }
-
-                            .padding(.leading,14)
-                            .padding(.trailing,8)
-                            .padding(.vertical, 3)
-                            .frame(maxWidth: .infinity, alignment: .topLeading)
+//
+//                            .padding(.leading,14)
+//                            .padding(.trailing,8)
+//                            .padding(.vertical, 3)
+//                            .frame(maxWidth: .infinity, alignment: .topLeading)
                             //.background(.yellow)
                             
 
@@ -202,7 +202,7 @@ struct TodaysPage: View {
                             HStack(alignment: .center) {
                                 
                                 Text("NICE TO DO")
-                                    .font(Font.custom("Helvetica", size: 15))
+                                    .font(Font.custom("Helvetica", size: 16))
                                     .fontWeight(.bold)
                                     .foregroundColor(Color("BodyCopy"))
                                   
@@ -255,10 +255,10 @@ struct TodaysPage: View {
                                 
                             }
 
-                            .padding(.leading,14)
-                            .padding(.trailing,8)
-                            .padding(.vertical, 3)
-                            .frame(maxWidth: .infinity, alignment: .topLeading)
+//                            .padding(.leading,14)
+//                            .padding(.trailing,8)
+//                            .padding(.vertical, 3)
+//                            .frame(maxWidth: .infinity, alignment: .topLeading)
                             //.background(.yellow)
                             
 
