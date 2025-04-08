@@ -92,10 +92,10 @@ struct TodaysPage: View {
                             HStack(alignment: .center) {
                                 
                                 Text("MUST DO TODAY")
-                                    .font(Font.custom("Helvetica", size: 14))
+                                    .font(Font.custom("Helvetica", size: 15))
                                     .fontWeight(.bold)
                                     .foregroundColor(Color("BodyCopy"))
-                                    .background(.orange)
+                                    
                                 
                                 Spacer()
                                 Button (action: {}){
@@ -104,17 +104,17 @@ struct TodaysPage: View {
                                             .resizable()
                                             .scaledToFit()
                                             .frame(width: 16, height: 16)
-                                            .foregroundColor(Color("BodyCopy"))
+                                            .foregroundColor(Color("BodyCopyReverse"))
                                         //.background(.green)
                                         
                                         Text("Manage Tasks")
                                             .font(Font.custom("Helvetica", size: 15))
-                                            .foregroundColor(Color("BodyCopy"))
+                                            .foregroundColor(Color("BodyCopyReverse"))
                                     }
                                     .padding(.leading,10)
                                     .padding(.trailing,16)
                                     .padding(.vertical, 9)
-                                    .background(Color(.yellow))
+                                    .background(Color("SectionButtonBackground"))
                                     .cornerRadius(40)
                                     
                                 }
@@ -180,13 +180,14 @@ struct TodaysPage: View {
                         .padding(.top, 0)
                         .padding(.bottom, 10)
                         //.frame(width: 369, alignment: .top)
-                        .background(.green)
+                       // .background(.green)
+                        .background(Color("MainForeground"))
                         .cornerRadius(15)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 15)
-                                .inset(by: 0.5)
-                                .stroke(.white, lineWidth: 1)
-                        )
+//                        .overlay(
+//                            RoundedRectangle(cornerRadius: 15)
+//                                .inset(by: 0.5)
+//                                .stroke(.white, lineWidth: 1)
+//                        )
                         
                         //if time allows section
                         VStack(alignment: .center, spacing: 5) {
@@ -194,10 +195,10 @@ struct TodaysPage: View {
                             HStack(alignment: .center) {
                                 
                                 Text("DO IF TIME ALLOWS")
-                                    .font(Font.custom("Helvetica", size: 14))
+                                    .font(Font.custom("Helvetica", size: 15))
                                     .fontWeight(.bold)
                                     .foregroundColor(Color("BodyCopy"))
-                                    .background(.orange)
+                                    
                                 
                                 Spacer()
                                 Button (action: {}){
@@ -206,17 +207,17 @@ struct TodaysPage: View {
                                             .resizable()
                                             .scaledToFit()
                                             .frame(width: 16, height: 16)
-                                            .foregroundColor(Color("BodyCopy"))
+                                            .foregroundColor(Color("BodyCopyReverse"))
                                         //.background(.green)
                                         
                                         Text("Manage Tasks")
                                             .font(Font.custom("Helvetica", size: 15))
-                                            .foregroundColor(Color("BodyCopy"))
+                                            .foregroundColor(Color("BodyCopyReverse"))
                                     }
                                     .padding(.leading,10)
                                     .padding(.trailing,16)
                                     .padding(.vertical, 9)
-                                    .background(Color(.yellow))
+                                    .background(Color("SectionButtonBackground"))
                                     .cornerRadius(40)
                                     
                                 }
@@ -226,7 +227,7 @@ struct TodaysPage: View {
                             .padding(.trailing, 6)
                             .padding(.vertical, 7)
                             .frame(maxWidth: .infinity, alignment: .center)
-                            .background(.green)
+                            //.background(.green)
                             
                             
                             //three tasks
@@ -254,7 +255,7 @@ struct TodaysPage: View {
 
                                         //task title
                                         Text(task.name)
-
+                                            .frame(maxWidth: .infinity, alignment: .leading)
 
                                         // ... button
                                         Menu {
@@ -306,13 +307,14 @@ struct TodaysPage: View {
                         .padding(.top, 0)
                         .padding(.bottom, 10)
                         //.frame(width: 369, alignment: .top)
-                        .background(.green)
+                        //.background(.green)
+                        .background(Color("MainForeground"))
                         .cornerRadius(15)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 15)
-                                .inset(by: 0.5)
-                                .stroke(.white, lineWidth: 1)
-                        )
+//                        .overlay(
+//                            RoundedRectangle(cornerRadius: 15)
+//                                .inset(by: 0.5)
+//                                .stroke(.white, lineWidth: 1)
+//                        )
                         
                         //Nice to do section
                         VStack(alignment: .center, spacing: 5) {
@@ -320,10 +322,10 @@ struct TodaysPage: View {
                             HStack(alignment: .center) {
                                 
                                 Text("NICE TO DO")
-                                    .font(Font.custom("Helvetica", size: 14))
+                                    .font(Font.custom("Helvetica", size: 15))
                                     .fontWeight(.bold)
                                     .foregroundColor(Color("BodyCopy"))
-                                    .background(.orange)
+                                  
                                 
                                 Spacer()
                                 
@@ -333,17 +335,17 @@ struct TodaysPage: View {
                                             .resizable()
                                             .scaledToFit()
                                             .frame(width: 16, height: 16)
-                                            .foregroundColor(Color("BodyCopy"))
-                                        //.background(.green)
+                                            .foregroundColor(Color("BodyCopyReverse"))
+                                        
                                         
                                         Text("Manage Tasks")
                                             .font(Font.custom("Helvetica", size: 15))
-                                            .foregroundColor(Color("BodyCopy"))
+                                            .foregroundColor(Color("BodyCopyReverse"))
                                     }
                                     .padding(.leading,10)
                                     .padding(.trailing,16)
                                     .padding(.vertical, 9)
-                                    .background(Color(.yellow))
+                                    .background(Color("SectionButtonBackground"))
                                     .cornerRadius(40)
                                     
                                 }
@@ -353,7 +355,7 @@ struct TodaysPage: View {
                             .padding(.trailing, 6)
                             .padding(.vertical, 7)
                             .frame(maxWidth: .infinity, alignment: .center)
-                            .background(.green)
+                            //.background(.green)
                             
                             
                             //three tasks
@@ -409,13 +411,14 @@ struct TodaysPage: View {
                         .padding(.top, 0)
                         .padding(.bottom, 10)
 //                        .frame(width: 369, alignment: .top)
-                        .background(.green)
+                        //.background(.green)
+                        .background(Color("MainForeground"))
                         .cornerRadius(15)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 15)
-                                .inset(by: 0.5)
-                                .stroke(.white, lineWidth: 1)
-                        )
+//                        .overlay(
+//                            RoundedRectangle(cornerRadius: 15)
+//                                .inset(by: 0.5)
+//                                .stroke(.white, lineWidth: 1)
+//                        )
                         
                     }
                     
