@@ -10,7 +10,7 @@ import SwiftUI
 struct TodaysTaskElement: View {
     
     @ObservedObject var viewModel : TaskBankViewModel
-    var fTask : Task
+    @State var fTask : Task
     @State var crossOutTitle : Bool = false
     
     var body: some View {

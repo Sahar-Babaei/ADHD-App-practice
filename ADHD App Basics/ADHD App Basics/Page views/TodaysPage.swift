@@ -105,7 +105,7 @@ struct TodaysPage: View {
                                             .scaledToFit()
                                             .frame(width: 16, height: 16)
                                             .foregroundColor(Color("BodyCopyReverse"))
-                                        //.background(.green)
+                          
                                         
                                         Text("Manage Tasks")
                                             .font(Font.custom("Helvetica", size: 15))
@@ -124,45 +124,15 @@ struct TodaysPage: View {
                             .padding(.trailing, 6)
                             .padding(.vertical, 7)
                             .frame(maxWidth: .infinity, alignment: .center)
-                            //.background(.green)
+
                             
                             
                             //three tasks
                             VStack(alignment: .leading, spacing: 12) {
                                 
                                 ForEach(viewModel.getAllTasksForPriority(priority: Priority.mustDo), id: \.ID.uuidString) { task in
-                                    HStack(alignment: .center, spacing: 12) {
-
-
-                                        //task title
-                                        Text(task.name)
-
-
-                                        // ... button
-                                        Menu {
-
-                                            Button("Edit") {
-                                                // Implement edit functionality here
-                                            }
-                                            Button("Remove", role: .destructive) {
-                                                //remove functionality
-
-                                            }
-                                        } label: {
-                                            Image("vertical-more")
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(width: 24, height: 24)
-                                                .foregroundColor(Color("BodyCopy"))
-
-                                        }
-
-                                    }
-                                    .padding(.horizontal, 0)
-                                    .padding(.vertical, 10)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .cornerRadius(10)
-                                    .background(.white)
+                                    
+                                    TodaysTaskElement(viewModel: TaskBankViewModel(), fTask: task)
                                 }
                       
                             }
@@ -179,16 +149,9 @@ struct TodaysPage: View {
                         .padding(.horizontal, 0)
                         .padding(.top, 0)
                         .padding(.bottom, 10)
-                        //.frame(width: 369, alignment: .top)
-                       // .background(.green)
                         .background(Color("MainForeground"))
                         .cornerRadius(15)
-//                        .overlay(
-//                            RoundedRectangle(cornerRadius: 15)
-//                                .inset(by: 0.5)
-//                                .stroke(.white, lineWidth: 1)
-//                        )
-                        
+
                         //if time allows section
                         VStack(alignment: .center, spacing: 5) {
                             //header part
@@ -208,7 +171,6 @@ struct TodaysPage: View {
                                             .scaledToFit()
                                             .frame(width: 16, height: 16)
                                             .foregroundColor(Color("BodyCopyReverse"))
-                                        //.background(.green)
                                         
                                         Text("Manage Tasks")
                                             .font(Font.custom("Helvetica", size: 15))
@@ -227,70 +189,16 @@ struct TodaysPage: View {
                             .padding(.trailing, 6)
                             .padding(.vertical, 7)
                             .frame(maxWidth: .infinity, alignment: .center)
-                            //.background(.green)
+
                             
                             
                             //three tasks
                             VStack(alignment: .leading, spacing: 12) {
                                 
                                 ForEach(viewModel.getAllTasksForPriority(priority: Priority.doIfPossible), id: \.ID.uuidString) { task in
+                                    
                                     TodaysTaskElement(viewModel: TaskBankViewModel(), fTask: task)
-//                                    HStack(alignment: .center, spacing: 12) {
-//
-//                                        //checkbox
-//                                        Checkbox(isChecked: task.status == .completed ) { isChecked in
-//                                            var task = task
-//                                            if isChecked {
-//                                                
-//                                                task.status = .completed
-//                                               
-//                                            }
-//                                            else{
-//                                                task.status = .plannedForToday
-//                                               
-//                                            }
-//                                            viewModel.updateTask(task)
-//                                            
-//                                        }
-//
-//
-//                                        //task title
-//                                        Text(task.name)
-//                                            .frame(maxWidth: .infinity, alignment: .leading)
-//
-//                                        // ... button
-//                                        Menu {
-//
-//                                            Button("Edit") {
-//                                                // Implement edit functionality here
-//                                            }
-//                                            Button("Remove from today", role: .destructive) {
-//                                                //remove functionality
-//                                                var task = task
-//                                                if task.status != .completed{
-//                                                    task.status = .notStarted
-//                                                }
-//                                                task.taskAssignment = nil
-//                                                viewModel.updateTask(task)
-//                                                
-//                                                
-//
-//                                            }
-//                                        } label: {
-//                                            Image("vertical-more")
-//                                                .resizable()
-//                                                .scaledToFit()
-//                                                .frame(width: 24, height: 24)
-//                                                .foregroundColor(Color("BodyCopy"))
-//
-//                                        }
-//
-//                                    }
-//                                    .padding(.horizontal, 0)
-//                                    .padding(.vertical, 10)
-//                                    .frame(maxWidth: .infinity, alignment: .leading)
-//                                    .cornerRadius(10)
-//                                    .background(.green)
+
                                 }
                       
                             }
@@ -307,15 +215,9 @@ struct TodaysPage: View {
                         .padding(.horizontal, 0)
                         .padding(.top, 0)
                         .padding(.bottom, 10)
-                        //.frame(width: 369, alignment: .top)
-                        //.background(.green)
                         .background(Color("MainForeground"))
                         .cornerRadius(15)
-//                        .overlay(
-//                            RoundedRectangle(cornerRadius: 15)
-//                                .inset(by: 0.5)
-//                                .stroke(.white, lineWidth: 1)
-//                        )
+
                         
                         //Nice to do section
                         VStack(alignment: .center, spacing: 5) {
@@ -364,41 +266,8 @@ struct TodaysPage: View {
                                 
                                 ForEach(viewModel.getAllTasksForPriority(priority: Priority.niceToDo), id: \.ID.uuidString) { task in
                                     
-                                  
-                                    
-                                    //TodaysTaskElement(fTask: task)
-                                    HStack(alignment: .center, spacing: 12) {
+                                    TodaysTaskElement(viewModel: TaskBankViewModel(), fTask: task)
 
-
-                                        //task title
-                                        Text(task.name)
-
-
-                                        // ... button
-                                        Menu {
-
-                                            Button("Edit") {
-                                                // Implement edit functionality here
-                                            }
-                                            Button("Remove", role: .destructive) {
-                                                //remove functionality
-
-                                            }
-                                        } label: {
-                                            Image("vertical-more")
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(width: 24, height: 24)
-                                                .foregroundColor(Color("BodyCopy"))
-
-                                        }
-
-                                    }
-                                    .padding(.horizontal, 0)
-                                    .padding(.vertical, 10)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .cornerRadius(10)
-                                    .background(.white)
                                 }
                                 
                             }
@@ -415,21 +284,12 @@ struct TodaysPage: View {
                         .padding(.horizontal, 0)
                         .padding(.top, 0)
                         .padding(.bottom, 10)
-//                        .frame(width: 369, alignment: .top)
-                        //.background(.green)
                         .background(Color("MainForeground"))
                         .cornerRadius(15)
-//                        .overlay(
-//                            RoundedRectangle(cornerRadius: 15)
-//                                .inset(by: 0.5)
-//                                .stroke(.white, lineWidth: 1)
-//                        )
-                        
+
                     }
                     
-                    
-                    //.padding()
-                    //.frame(maxWidth:.infinity, alignment: .top)
+
                 }.onAppear {
                     viewModel.loadAllTasks()
                 }
