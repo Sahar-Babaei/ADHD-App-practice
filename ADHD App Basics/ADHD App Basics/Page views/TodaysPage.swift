@@ -51,26 +51,26 @@ struct TodaysPage: View {
                     Spacer()
                     
                     //add task button
-                    Button (action: {}){
-                        HStack(alignment: .center, spacing: 3) {
-                            Image("menu-tab-4")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 18, height: 18)
-                                .foregroundColor(Color("BodyCopy"))
-                            //.background(.green)
-                            
-                            Text("Add Today's Tasks")
-                                .font(Font.custom("Helvetica", size: 16))
-                                .foregroundColor(Color("BodyCopy"))
-                        }
-                        .padding(.leading,14)
-                        .padding(.trailing,18)
-                        .padding(.vertical, 10)
-                        .background(Color(.yellow))
-                        .cornerRadius(40)
-                        
-                    }
+//                    Button (action: {}){
+//                        HStack(alignment: .center, spacing: 3) {
+//                            Image("menu-tab-4")
+//                                .resizable()
+//                                .scaledToFit()
+//                                .frame(width: 18, height: 18)
+//                                .foregroundColor(Color("BodyCopy"))
+//                            //.background(.green)
+//                            
+//                            Text("Add Today's Tasks")
+//                                .font(Font.custom("Helvetica", size: 16))
+//                                .foregroundColor(Color("BodyCopy"))
+//                        }
+//                        .padding(.leading,14)
+//                        .padding(.trailing,18)
+//                        .padding(.vertical, 10)
+//                        .background(Color(.yellow))
+//                        .cornerRadius(40)
+//                        
+//                    }
                     
                     
                 }
@@ -98,6 +98,26 @@ struct TodaysPage: View {
                                     .background(.orange)
                                 
                                 Spacer()
+                                Button (action: {}){
+                                    HStack(alignment: .center, spacing: 3) {
+                                        Image("menu-tab-4")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 16, height: 16)
+                                            .foregroundColor(Color("BodyCopy"))
+                                        //.background(.green)
+                                        
+                                        Text("Manage Tasks")
+                                            .font(Font.custom("Helvetica", size: 15))
+                                            .foregroundColor(Color("BodyCopy"))
+                                    }
+                                    .padding(.leading,10)
+                                    .padding(.trailing,16)
+                                    .padding(.vertical, 9)
+                                    .background(Color(.yellow))
+                                    .cornerRadius(40)
+                                    
+                                }
                                 
                             }
                             .padding(.leading, 12)
@@ -180,6 +200,26 @@ struct TodaysPage: View {
                                     .background(.orange)
                                 
                                 Spacer()
+                                Button (action: {}){
+                                    HStack(alignment: .center, spacing: 3) {
+                                        Image("menu-tab-4")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 16, height: 16)
+                                            .foregroundColor(Color("BodyCopy"))
+                                        //.background(.green)
+                                        
+                                        Text("Manage Tasks")
+                                            .font(Font.custom("Helvetica", size: 15))
+                                            .foregroundColor(Color("BodyCopy"))
+                                    }
+                                    .padding(.leading,10)
+                                    .padding(.trailing,16)
+                                    .padding(.vertical, 9)
+                                    .background(Color(.yellow))
+                                    .cornerRadius(40)
+                                    
+                                }
                                 
                             }
                             .padding(.leading, 12)
@@ -287,6 +327,27 @@ struct TodaysPage: View {
                                 
                                 Spacer()
                                 
+                                Button (action: {}){
+                                    HStack(alignment: .center, spacing: 3) {
+                                        Image("menu-tab-4")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 16, height: 16)
+                                            .foregroundColor(Color("BodyCopy"))
+                                        //.background(.green)
+                                        
+                                        Text("Manage Tasks")
+                                            .font(Font.custom("Helvetica", size: 15))
+                                            .foregroundColor(Color("BodyCopy"))
+                                    }
+                                    .padding(.leading,10)
+                                    .padding(.trailing,16)
+                                    .padding(.vertical, 9)
+                                    .background(Color(.yellow))
+                                    .cornerRadius(40)
+                                    
+                                }
+                                
                             }
                             .padding(.leading, 12)
                             .padding(.trailing, 6)
@@ -364,10 +425,11 @@ struct TodaysPage: View {
                 }.onAppear {
                     viewModel.loadAllTasks()
                 }
-                .padding(.top, 5)
-                .padding(.bottom,85)
-                .padding(.horizontal, 12)
                 .background(.blue)
+                //.padding(.top, 5)
+                .padding(.bottom,74)
+                .padding(.horizontal, 12)
+                
                 
                 
                 
