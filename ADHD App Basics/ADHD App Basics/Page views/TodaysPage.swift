@@ -95,11 +95,9 @@ struct TodaysPage: View {
                                     .foregroundColor(Color("MainBackground")),
                                 alignment: .bottom
                             )
-
-                            
                             
                             //three tasks
-                            VStack(alignment: .leading, spacing: 12) {
+                            VStack(alignment: .leading, spacing: 10) {
                                 
                                 ForEach(viewModel.getAllTasksForPriority(priority: Priority.mustDo), id: \.ID.uuidString) { task in
                                     
@@ -107,7 +105,9 @@ struct TodaysPage: View {
                                 }
                       
                             }
-                            .padding(.horizontal, 14)
+                            //.padding(.horizontal, 14)
+                            .padding(.leading,14)
+                            .padding(.trailing,8)
                             .padding(.vertical, 3)
                             .frame(maxWidth: .infinity, alignment: .topLeading)
                             //.background(.yellow)
@@ -169,7 +169,7 @@ struct TodaysPage: View {
                             
                             
                             //three tasks
-                            VStack(alignment: .leading, spacing: 12) {
+                            VStack(alignment: .leading, spacing: 10) {
                                 
                                 ForEach(viewModel.getAllTasksForPriority(priority: Priority.doIfPossible), id: \.ID.uuidString) { task in
                                     
@@ -179,7 +179,8 @@ struct TodaysPage: View {
                       
                             }
 
-                            .padding(.horizontal, 14)
+                            .padding(.leading,14)
+                            .padding(.trailing,8)
                             .padding(.vertical, 3)
                             .frame(maxWidth: .infinity, alignment: .topLeading)
                             //.background(.yellow)
@@ -244,7 +245,7 @@ struct TodaysPage: View {
                             
                             
                             //three tasks
-                            VStack(alignment: .leading, spacing: 12) {
+                            VStack(alignment: .leading, spacing: 10) {
                                 
                                 ForEach(viewModel.getAllTasksForPriority(priority: Priority.niceToDo), id: \.ID.uuidString) { task in
                                     
@@ -254,7 +255,8 @@ struct TodaysPage: View {
                                 
                             }
 
-                            .padding(.horizontal, 14)
+                            .padding(.leading,14)
+                            .padding(.trailing,8)
                             .padding(.vertical, 3)
                             .frame(maxWidth: .infinity, alignment: .topLeading)
                             //.background(.yellow)
