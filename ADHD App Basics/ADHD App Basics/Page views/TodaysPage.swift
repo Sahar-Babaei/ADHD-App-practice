@@ -36,55 +36,22 @@ struct TodaysPage: View {
                             .font(Font.custom("Helvetica", size: 26))
                             .fontWeight(.bold)
                             .foregroundColor(Color("BodyCopy"))
-                        
-                        
-                        
+                
                         //TODO: mentor? how do we get today's date displayed here?
                         Text(a)
                             .font(Font.custom("Helvetica", size: 15))
                             .foregroundColor(Color("BodyCopy"))
-                        
-
-                        
                     }
-                    
                     Spacer()
-                    
-                    //add task button
-//                    Button (action: {}){
-//                        HStack(alignment: .center, spacing: 3) {
-//                            Image("menu-tab-4")
-//                                .resizable()
-//                                .scaledToFit()
-//                                .frame(width: 18, height: 18)
-//                                .foregroundColor(Color("BodyCopy"))
-//                            //.background(.green)
-//                            
-//                            Text("Add Today's Tasks")
-//                                .font(Font.custom("Helvetica", size: 16))
-//                                .foregroundColor(Color("BodyCopy"))
-//                        }
-//                        .padding(.leading,14)
-//                        .padding(.trailing,18)
-//                        .padding(.vertical, 10)
-//                        .background(Color(.yellow))
-//                        .cornerRadius(40)
-//                        
-//                    }
-                    
-                    
                 }
-                
                 .padding(.horizontal, 12)
                 .padding(.vertical, 10)
-                .background(.purple)
+
                 
                 //the sections
                 ScrollView{
                     //contianer for 3 sections
-                    
-                    
-                    VStack(alignment: .center, spacing: 18) {
+                    VStack(alignment: .center, spacing: 14) {
                         
                         //Must do section
                         VStack(alignment: .center, spacing: 5) {
@@ -107,7 +74,7 @@ struct TodaysPage: View {
                                             .foregroundColor(Color("BodyCopyReverse"))
                           
                                         
-                                        Text("Manage Tasks")
+                                        Text("Add Tasks")
                                             .font(Font.custom("Helvetica", size: 15))
                                             .foregroundColor(Color("BodyCopyReverse"))
                                     }
@@ -116,14 +83,18 @@ struct TodaysPage: View {
                                     .padding(.vertical, 9)
                                     .background(Color("SectionButtonBackground"))
                                     .cornerRadius(40)
-                                    
                                 }
-                                
                             }
                             .padding(.leading, 12)
                             .padding(.trailing, 6)
                             .padding(.vertical, 7)
                             .frame(maxWidth: .infinity, alignment: .center)
+                            .overlay(
+                                Rectangle()
+                                    .frame(height: 1)
+                                    .foregroundColor(Color("MainBackground")),
+                                alignment: .bottom
+                            )
 
                             
                             
@@ -136,22 +107,21 @@ struct TodaysPage: View {
                                 }
                       
                             }
-                            .padding(.leading, 15)
-                            .padding(.trailing, 10)
-                            .padding(.vertical, 5)
+                            .padding(.horizontal, 14)
+                            .padding(.vertical, 3)
                             .frame(maxWidth: .infinity, alignment: .topLeading)
-                            .background(.yellow)
-                            
-
-                            
-                            
+                            //.background(.yellow)
+  
                         }
-                        .padding(.horizontal, 0)
                         .padding(.top, 0)
                         .padding(.bottom, 10)
                         .background(Color("MainForeground"))
                         .cornerRadius(15)
+                        .padding(.horizontal, 12)
 
+                        
+                        
+                        
                         //if time allows section
                         VStack(alignment: .center, spacing: 5) {
                             //header part
@@ -172,7 +142,7 @@ struct TodaysPage: View {
                                             .frame(width: 16, height: 16)
                                             .foregroundColor(Color("BodyCopyReverse"))
                                         
-                                        Text("Manage Tasks")
+                                        Text("Add Tasks")
                                             .font(Font.custom("Helvetica", size: 15))
                                             .foregroundColor(Color("BodyCopyReverse"))
                                     }
@@ -189,6 +159,12 @@ struct TodaysPage: View {
                             .padding(.trailing, 6)
                             .padding(.vertical, 7)
                             .frame(maxWidth: .infinity, alignment: .center)
+                            .overlay(
+                                Rectangle()
+                                    .frame(height: 1)
+                                    .foregroundColor(Color("MainBackground")),
+                                alignment: .bottom
+                            )
 
                             
                             
@@ -202,21 +178,21 @@ struct TodaysPage: View {
                                 }
                       
                             }
-                            .padding(.leading, 15)
-                            .padding(.trailing, 10)
-                            .padding(.vertical, 5)
+
+                            .padding(.horizontal, 14)
+                            .padding(.vertical, 3)
                             .frame(maxWidth: .infinity, alignment: .topLeading)
-                            .background(.yellow)
+                            //.background(.yellow)
                             
 
                             
                             
                         }
-                        .padding(.horizontal, 0)
                         .padding(.top, 0)
                         .padding(.bottom, 10)
                         .background(Color("MainForeground"))
                         .cornerRadius(15)
+                        .padding(.horizontal, 12)
 
                         
                         //Nice to do section
@@ -241,7 +217,7 @@ struct TodaysPage: View {
                                             .foregroundColor(Color("BodyCopyReverse"))
                                         
                                         
-                                        Text("Manage Tasks")
+                                        Text("Add Tasks")
                                             .font(Font.custom("Helvetica", size: 15))
                                             .foregroundColor(Color("BodyCopyReverse"))
                                     }
@@ -258,6 +234,12 @@ struct TodaysPage: View {
                             .padding(.trailing, 6)
                             .padding(.vertical, 7)
                             .frame(maxWidth: .infinity, alignment: .center)
+                            .overlay(
+                                Rectangle()
+                                    .frame(height: 1)
+                                    .foregroundColor(Color("MainBackground")),
+                                alignment: .bottom
+                            )
                             //.background(.green)
                             
                             
@@ -271,21 +253,21 @@ struct TodaysPage: View {
                                 }
                                 
                             }
-                            .padding(.leading, 15)
-                            .padding(.trailing, 10)
-                            .padding(.vertical, 5)
+
+                            .padding(.horizontal, 14)
+                            .padding(.vertical, 3)
                             .frame(maxWidth: .infinity, alignment: .topLeading)
-                            .background(.yellow)
+                            //.background(.yellow)
                             
 
                             
                             
                         }
-                        .padding(.horizontal, 0)
                         .padding(.top, 0)
                         .padding(.bottom, 10)
                         .background(Color("MainForeground"))
                         .cornerRadius(15)
+                        .padding(.horizontal, 12)
 
                     }
                     
@@ -293,10 +275,8 @@ struct TodaysPage: View {
                 }.onAppear {
                     viewModel.loadAllTasks()
                 }
-                .background(.blue)
-                //.padding(.top, 5)
                 .padding(.bottom,74)
-                .padding(.horizontal, 12)
+                //.padding(.horizontal, 12)
                 
                 
                 
