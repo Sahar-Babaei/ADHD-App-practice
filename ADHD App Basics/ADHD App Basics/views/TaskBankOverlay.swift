@@ -241,21 +241,24 @@ struct TaskBankOverlay: View {
                     ScrollView {
                         LazyVGrid(columns: getColumnStyle(viewModel.gridViewEnabled)) {
                             ForEach(filteredItems, id: \.ID) { task in
-                                TaskCard(fTask: task,chosenHeight: (viewModel.gridViewEnabled ? 112 : 157), chosenSpacing:(viewModel.gridViewEnabled ? 6 : 25), onDelete: {
-                                    viewModel.allTasksList.removeAll { $0.ID == task.ID }
-                                },onEdit: {
-                                    print("scooby doo")
-                                    onEdit?(task)
-                                },onSelect: { selected in
-                                    
-                                    onEdit?(task)
-                                }, selectionModeEnabled : isSelectionMode
-                            
-                                )
-                                    .onTapGesture {
-                                        print("this thing works: " + task.name )
-                                    }
-                           
+                                if(task.status == .notStarted) {
+                                    TaskCard(fTask: task,chosenHeight: (viewModel.gridViewEnabled ? 112 : 157), chosenSpacing:(viewModel.gridViewEnabled ? 6 : 25), onDelete: {
+                                        viewModel.allTasksList.removeAll { $0.ID == task.ID }
+                                    },onEdit: {
+                                        print("scooby doo")
+                                        onEdit?(task)
+                                    },onSelect: { selected in
+                                        
+                                        onEdit?(task)
+                                    }, selectionModeEnabled : isSelectionMode
+                                
+                                    )
+                                        .onTapGesture {
+                                            print("this thing works: " + task.name )
+                                        }
+
+                                }
+                                                           
                             }
                         }
 

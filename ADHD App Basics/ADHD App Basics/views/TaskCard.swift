@@ -132,13 +132,7 @@ struct TaskCard: View {
           //  .background(.blue)
             
         }
-        .onTapGesture {
-            if selectionModeEnabled{
-                cardSelected.toggle()
-                onSelect(cardSelected)
-            }
-           
-        }
+        
         .frame(height:chosenHeight)
         .padding(12)
         
@@ -150,7 +144,13 @@ struct TaskCard: View {
                 .strokeBorder(cardSelected ? Color("BodyCopy") : Color.clear, lineWidth: 2)
         )
         .shadow(color: .black.opacity(0.1), radius: 2, x: 0, y: 1)
-        
+        .onTapGesture {
+            if selectionModeEnabled{
+                cardSelected.toggle()
+                onSelect(cardSelected)
+            }
+           
+        }
         
         
     }
@@ -163,5 +163,5 @@ struct TaskCard: View {
 
 //MARK: - Preview
 #Preview {
-    TaskCard(fTask: Task(), chosenHeight: 120,chosenSpacing: 10,onDelete: {}, onEdit: {}, onSelect: {_ in }, selectionModeEnabled: false)
+    TaskCard(fTask: Task(), chosenHeight: 120,chosenSpacing: 10,onDelete: {}, onEdit: {}, onSelect: {_ in }, selectionModeEnabled: true)
 }
