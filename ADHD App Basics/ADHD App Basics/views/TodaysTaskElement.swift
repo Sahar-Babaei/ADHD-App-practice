@@ -11,6 +11,7 @@ struct TodaysTaskElement: View {
     
     @ObservedObject var viewModel : TaskBankViewModel
     var fTask : Task
+    @State var crossOutTitle : Bool = false
     
     var body: some View {
         HStack(alignment: .center, spacing: 12) {
@@ -21,10 +22,12 @@ struct TodaysTaskElement: View {
                 if isChecked {
                     
                     task.status = .completed
+                    crossOutTitle = true
                    
                 }
                 else{
                     task.status = .plannedForToday
+                    crossOutTitle = false
                    
                 }
                 viewModel.updateTask(task)
@@ -34,7 +37,11 @@ struct TodaysTaskElement: View {
 
             //task title
             Text(fTask.name)
+                .font(Font.custom("Instrument Sans", size: 16))
+                .fontWeight(.medium)
+                .strikethrough(crossOutTitle, color: Color("BodyCopy"))
                 .frame(maxWidth: .infinity, alignment: .leading)
+
 
             // ... button
             Menu {
@@ -68,7 +75,7 @@ struct TodaysTaskElement: View {
         .padding(.vertical, 10)
         .frame(maxWidth: .infinity, alignment: .leading)
         .cornerRadius(10)
-        .background(.green)
+        .background(.pink)
     }
 }
 

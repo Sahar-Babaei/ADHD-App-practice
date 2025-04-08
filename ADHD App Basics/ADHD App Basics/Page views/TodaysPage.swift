@@ -234,62 +234,63 @@ struct TodaysPage: View {
                             VStack(alignment: .leading, spacing: 12) {
                                 
                                 ForEach(viewModel.getAllTasksForPriority(priority: Priority.doIfPossible), id: \.ID.uuidString) { task in
-                                    HStack(alignment: .center, spacing: 12) {
-
-                                        //checkbox
-                                        Checkbox(isChecked: task.status == .completed ) { isChecked in
-                                            var task = task
-                                            if isChecked {
-                                                
-                                                task.status = .completed
-                                               
-                                            }
-                                            else{
-                                                task.status = .plannedForToday
-                                               
-                                            }
-                                            viewModel.updateTask(task)
-                                            
-                                        }
-
-
-                                        //task title
-                                        Text(task.name)
-                                            .frame(maxWidth: .infinity, alignment: .leading)
-
-                                        // ... button
-                                        Menu {
-
-                                            Button("Edit") {
-                                                // Implement edit functionality here
-                                            }
-                                            Button("Remove from today", role: .destructive) {
-                                                //remove functionality
-                                                var task = task
-                                                if task.status != .completed{
-                                                    task.status = .notStarted
-                                                }
-                                                task.taskAssignment = nil
-                                                viewModel.updateTask(task)
-                                                
-                                                
-
-                                            }
-                                        } label: {
-                                            Image("vertical-more")
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(width: 24, height: 24)
-                                                .foregroundColor(Color("BodyCopy"))
-
-                                        }
-
-                                    }
-                                    .padding(.horizontal, 0)
-                                    .padding(.vertical, 10)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .cornerRadius(10)
-                                    .background(.green)
+                                    TodaysTaskElement(viewModel: TaskBankViewModel(), fTask: task)
+//                                    HStack(alignment: .center, spacing: 12) {
+//
+//                                        //checkbox
+//                                        Checkbox(isChecked: task.status == .completed ) { isChecked in
+//                                            var task = task
+//                                            if isChecked {
+//                                                
+//                                                task.status = .completed
+//                                               
+//                                            }
+//                                            else{
+//                                                task.status = .plannedForToday
+//                                               
+//                                            }
+//                                            viewModel.updateTask(task)
+//                                            
+//                                        }
+//
+//
+//                                        //task title
+//                                        Text(task.name)
+//                                            .frame(maxWidth: .infinity, alignment: .leading)
+//
+//                                        // ... button
+//                                        Menu {
+//
+//                                            Button("Edit") {
+//                                                // Implement edit functionality here
+//                                            }
+//                                            Button("Remove from today", role: .destructive) {
+//                                                //remove functionality
+//                                                var task = task
+//                                                if task.status != .completed{
+//                                                    task.status = .notStarted
+//                                                }
+//                                                task.taskAssignment = nil
+//                                                viewModel.updateTask(task)
+//                                                
+//                                                
+//
+//                                            }
+//                                        } label: {
+//                                            Image("vertical-more")
+//                                                .resizable()
+//                                                .scaledToFit()
+//                                                .frame(width: 24, height: 24)
+//                                                .foregroundColor(Color("BodyCopy"))
+//
+//                                        }
+//
+//                                    }
+//                                    .padding(.horizontal, 0)
+//                                    .padding(.vertical, 10)
+//                                    .frame(maxWidth: .infinity, alignment: .leading)
+//                                    .cornerRadius(10)
+//                                    .background(.green)
                                 }
                       
                             }
@@ -362,6 +363,10 @@ struct TodaysPage: View {
                             VStack(alignment: .leading, spacing: 12) {
                                 
                                 ForEach(viewModel.getAllTasksForPriority(priority: Priority.niceToDo), id: \.ID.uuidString) { task in
+                                    
+                                  
+                                    
+                                    //TodaysTaskElement(fTask: task)
                                     HStack(alignment: .center, spacing: 12) {
 
 
