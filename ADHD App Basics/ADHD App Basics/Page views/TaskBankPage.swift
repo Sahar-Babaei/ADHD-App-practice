@@ -21,8 +21,9 @@ struct TaskBankPage: View {
 //    }
     
     //selection mode
-    var isSelectionMode: Bool = false
+    var isSelectionMode: Bool = true
     var onSelectTasks: (([Task]) -> Void)? = nil
+    var onEdit: ((Task) -> Void)? = nil
     
     //filtering, sorting and searching variables
     @State private var searchText: String = ""
@@ -276,8 +277,14 @@ struct TaskBankPage: View {
                             ForEach(filteredItems, id: \.ID) { task in
                                 TaskCard(fTask: task,chosenHeight: (viewModel.gridViewEnabled ? 112 : 157), chosenSpacing:(viewModel.gridViewEnabled ? 6 : 25), onDelete: {
                                     viewModel.allTasksList.removeAll { $0.ID == task.ID }
-                                }, cardSelected: (isSelectionMode ? true : false)
-                                
+                                },onEdit: {
+                                    print("scooby doo")
+                                    onEdit?(task)
+                                },onSelect: { selected in
+                                    
+                                    onEdit?(task)
+                                }, selectionModeEnabled : isSelectionMode
+                            
                                 )
 //                                if isSelectionMode {
                                     .onTapGesture {

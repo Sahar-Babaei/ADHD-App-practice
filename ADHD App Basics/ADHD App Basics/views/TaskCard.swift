@@ -15,10 +15,14 @@ struct TaskCard: View {
     var chosenSpacing: CGFloat
     @State private var showMenu: Bool = false
     @State private var showDeleteConfirmation: Bool = false
+    
     @StateObject var storageViewModel = TaskBankViewModel()
     // Function to delete a task, provided by TaskBankPage
     var onDelete: () -> Void
-    @State public var cardSelected: Bool
+    var onEdit: () -> Void
+    var onSelect: (Bool) -> Void
+    @State private var cardSelected: Bool = false
+    @State public var selectionModeEnabled : Bool
     
         
     //MARK: - body
@@ -58,7 +62,7 @@ struct TaskCard: View {
                     Menu {
                         
                         Button("Edit") {
-                            // Implement edit functionality here
+                            onEdit()
                         }
                         Button("Delete", role: .destructive) {
                             showDeleteConfirmation = true
@@ -78,8 +82,7 @@ struct TaskCard: View {
                             .foregroundColor(Color("BodyCopy"))
                         
                     }
-                    
-                    
+
                     .confirmationDialog("Are you sure you want to delete this task?",
                                         isPresented: $showDeleteConfirmation,
                                         titleVisibility: .visible
@@ -129,6 +132,13 @@ struct TaskCard: View {
           //  .background(.blue)
             
         }
+        .onTapGesture {
+            if selectionModeEnabled{
+                cardSelected.toggle()
+                onSelect(cardSelected)
+            }
+           
+        }
         .frame(height:chosenHeight)
         .padding(12)
         
@@ -153,5 +163,5 @@ struct TaskCard: View {
 
 //MARK: - Preview
 #Preview {
-    TaskCard(fTask: Task(), chosenHeight: 120,chosenSpacing: 10,onDelete: {}, cardSelected: false)
+    TaskCard(fTask: Task(), chosenHeight: 120,chosenSpacing: 10,onDelete: {}, onEdit: {}, onSelect: {_ in }, selectionModeEnabled: false)
 }

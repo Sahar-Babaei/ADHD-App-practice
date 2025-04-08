@@ -111,16 +111,17 @@ struct TodaysPage: View {
                                     HStack(alignment: .center, spacing: 12) {
 
                                         //checkbox
-                                        Rectangle()
-                                        .foregroundColor(.clear)
-                                        .frame(width: 18, height: 18)
-                                        .cornerRadius(5)
-                                        .overlay(
-                                        RoundedRectangle(cornerRadius: 5)
-                                        .inset(by: 0.75)
-                                        .stroke(Color(red: 0.26, green: 0.26, blue: 0.26), lineWidth: 1.5)
-
-                                        )
+                                      //  Checkbox()
+//                                        Rectangle()
+//                                        .foregroundColor(.clear)
+//                                        .frame(width: 18, height: 18)
+//                                        .cornerRadius(5)
+//                                        .overlay(
+//                                        RoundedRectangle(cornerRadius: 5)
+//                                        .inset(by: 0.75)
+//                                        .stroke(Color(red: 0.26, green: 0.26, blue: 0.26), lineWidth: 1.5)
+//
+//                                        )
 
                                         //task title
                                         Text(task.name)
@@ -204,16 +205,30 @@ struct TodaysPage: View {
                                     HStack(alignment: .center, spacing: 12) {
 
                                         //checkbox
-                                        Rectangle()
-                                        .foregroundColor(.clear)
-                                        .frame(width: 18, height: 18)
-                                        .cornerRadius(5)
-                                        .overlay(
-                                        RoundedRectangle(cornerRadius: 5)
-                                        .inset(by: 0.75)
-                                        .stroke(Color(red: 0.26, green: 0.26, blue: 0.26), lineWidth: 1.5)
-
-                                        )
+                                        Checkbox(isChecked: task.status == .completed ) { isChecked in
+                                            var task = task
+                                            if isChecked {
+                                                
+                                                task.status = .completed
+                                               
+                                            }
+                                            else{
+                                                task.status = .plannedForToday
+                                               
+                                            }
+                                            viewModel.updateTask(task)
+                                            
+                                        }
+//                                        Rectangle()
+//                                        .foregroundColor(.clear)
+//                                        .frame(width: 18, height: 18)
+//                                        .cornerRadius(5)
+//                                        .overlay(
+//                                        RoundedRectangle(cornerRadius: 5)
+//                                        .inset(by: 0.75)
+//                                        .stroke(Color(red: 0.26, green: 0.26, blue: 0.26), lineWidth: 1.5)
+//
+//                                        )
 
                                         //task title
                                         Text(task.name)
@@ -225,8 +240,16 @@ struct TodaysPage: View {
                                             Button("Edit") {
                                                 // Implement edit functionality here
                                             }
-                                            Button("Remove", role: .destructive) {
+                                            Button("Remove from today", role: .destructive) {
                                                 //remove functionality
+                                                var task = task
+                                                if task.status != .completed{
+                                                    task.status = .notStarted
+                                                }
+                                                task.taskAssignment = nil
+                                                viewModel.updateTask(task)
+                                                
+                                                
 
                                             }
                                         } label: {
@@ -297,16 +320,17 @@ struct TodaysPage: View {
                                     HStack(alignment: .center, spacing: 12) {
 
                                         //checkbox
-                                        Rectangle()
-                                        .foregroundColor(.clear)
-                                        .frame(width: 18, height: 18)
-                                        .cornerRadius(5)
-                                        .overlay(
-                                        RoundedRectangle(cornerRadius: 5)
-                                        .inset(by: 0.75)
-                                        .stroke(Color(red: 0.26, green: 0.26, blue: 0.26), lineWidth: 1.5)
+                                    //    Checkbox()
+//                                        Rectangle()
+//                                        .foregroundColor(.clear)
+//                                        .frame(width: 18, height: 18)
+//                                        .cornerRadius(5)
+//                                        .overlay(
+//                                        RoundedRectangle(cornerRadius: 5)
+//                                        .inset(by: 0.75)
+//                                        .stroke(Color(red: 0.26, green: 0.26, blue: 0.26), lineWidth: 1.5)
 
-                                        )
+  //                                      )
 
                                         //task title
                                         Text(task.name)

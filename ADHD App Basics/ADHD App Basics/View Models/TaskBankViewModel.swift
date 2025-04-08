@@ -47,6 +47,25 @@ class TaskBankViewModel: ObservableObject {
         loadAllTasks()
     }
     
+    func updateTask(_ task : Task){
+        var existingTasks = retrieveTasksFromUserDefaults()
+        
+        var indexOfTask = existingTasks.firstIndex { storedTask in
+            storedTask.ID == task.ID
+        }
+        if let index = indexOfTask {
+            existingTasks[index] = task
+        }
+      //  existingTasks.append(task)
+       
+        
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(existingTasks) {
+            UserDefaults.standard.set(encoded, forKey: "user_tasks")
+        }
+        loadAllTasks()
+    }
+    
     func sortTasks() {
         allTasksList = allTasksList.sorted { taskA, taskB in
             if reverseOrder {

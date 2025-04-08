@@ -13,9 +13,10 @@ struct ContentView: View {
     @State private var selectedTab = 1
     // variable for changing tabs
     @State private var showTaskCreationOverlay: Bool = false
+    @State private var showTaskEditionOverlay: Bool = false
     @StateObject private var viewModel: MainViewModel = .init()
     @StateObject private var myViewModel: TaskBankViewModel = .init()
-    
+    @StateObject private var taskEditionViewModel: TaskCreationViewModel = .init()
     //navigation path:
     
     var body: some View {
@@ -32,7 +33,10 @@ struct ContentView: View {
                         TodaysPage(viewModel: myViewModel)
                     case 2:
                        // Text ("this is tab 2 lol lol ")
-                        TaskBankPage(viewModel: myViewModel)
+                        TaskBankPage(viewModel: myViewModel, onEdit:{selectedTask in
+                            taskEditionViewModel.fTask = selectedTask
+                            showTaskEditionOverlay = true
+                        })
                         
                     case 3:
                         Text ("this is tab 3 lol lol lol")
@@ -275,6 +279,21 @@ struct ContentView: View {
                     })
                 }
 
+            }
+            else if showTaskEditionOverlay {
+                
+                        Color.black.opacity(0.4) // Dimming effect
+                            .ignoresSafeArea()
+                        .transition(.opacity)
+                    VStack{
+                        TaskEdition(viewModel: taskEditionViewModel, storageViewModel: myViewModel, showExpanded: false, onComplete: { taskCreated in
+                            showTaskEditionOverlay = false
+                            if (taskCreated) {
+                                viewModel.startToast()
+                            }
+                        })
+                    }
+                
             }
             
         }

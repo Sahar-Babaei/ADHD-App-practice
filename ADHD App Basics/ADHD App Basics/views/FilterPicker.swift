@@ -190,7 +190,9 @@ struct MultiplePickerView: View {
                     
                 }
             }
+            .background(.orange)
         }
+       
     }
 }
 
@@ -234,6 +236,7 @@ struct FilterPickerView: View {
                 .transition(.move(edge: .bottom))
             }
         }
+        .background(.yellow)
         .onChange(of: selectedSensor) {
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.30) {
@@ -244,6 +247,7 @@ struct FilterPickerView: View {
             }
             
         }
+        
     }
 }
 

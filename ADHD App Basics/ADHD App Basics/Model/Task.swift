@@ -11,7 +11,7 @@ import SwiftUI
 
 struct Task: Codable {
     
-    var name = "bsjkhagsc bab,s jchvb asd chjlsad cas,asdubcl.ksaa cdskjh dcx default"
+    var name = "default task title"
     
     var hiddenName: String {
         get {
