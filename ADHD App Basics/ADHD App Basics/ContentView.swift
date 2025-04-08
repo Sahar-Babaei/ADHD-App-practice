@@ -52,7 +52,7 @@ struct ContentView: View {
                 //note: somehow this verically centers the text but i don't know why it doesn't automatically happen.
                 
                 //The toast
-                if (selectedTab != 2 && viewModel.toastVisible) {
+                if (selectedTab != 2 && viewModel.creationToastVisible) {
                     HStack(alignment: .center){
                         
                         Image("success-icon")
@@ -62,6 +62,26 @@ struct ContentView: View {
                             .foregroundColor(Color("BodyCopy"))
                         
                         Text("You created a task!")
+                            .font(Font.custom("Helvetica", size: 14))
+                            .foregroundColor(Color("BodyCopy"))
+                    }
+                    .frame(maxHeight: 70)
+                    .frame(maxWidth: 200)
+                    //.padding(.bottom, 500)
+                    .background(.orange).padding(.bottom, 680)
+                    
+                }
+                
+                if ( viewModel.editionToastVisible) {
+                    HStack(alignment: .center){
+                        
+                        Image("success-icon")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 22, height: 22)
+                            .foregroundColor(Color("BodyCopy"))
+                        
+                        Text("You Edited a task!")
                             .font(Font.custom("Helvetica", size: 14))
                             .foregroundColor(Color("BodyCopy"))
                     }
@@ -286,10 +306,10 @@ struct ContentView: View {
                             .ignoresSafeArea()
                         .transition(.opacity)
                     VStack{
-                        TaskEdition(viewModel: taskEditionViewModel, storageViewModel: myViewModel, showExpanded: false, onComplete: { taskCreated in
+                        TaskEdition(viewModel: taskEditionViewModel, storageViewModel: myViewModel, showExpanded: false, onComplete: { taskEdited in
                             showTaskEditionOverlay = false
-                            if (taskCreated) {
-                                viewModel.startToast()
+                            if (taskEdited) {
+                                viewModel.editionToast()
                             }
                         })
                     }

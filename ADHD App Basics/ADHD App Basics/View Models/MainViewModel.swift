@@ -9,12 +9,20 @@ import Foundation
 
 class MainViewModel: ObservableObject {
 
-    @Published var toastVisible: Bool = false
+    @Published var creationToastVisible: Bool = false
+    @Published var editionToastVisible: Bool = false
     
     func startToast() {
-        toastVisible = true
+        creationToastVisible = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.toastVisible = false
+            self.creationToastVisible = false
+        }
+    }
+    
+    func editionToast() {
+        editionToastVisible = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.editionToastVisible = false
         }
     }
 }
