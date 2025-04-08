@@ -74,9 +74,12 @@ struct TodaysPage: View {
                     
                     
                 }
+                
                 .padding(.horizontal, 12)
                 .padding(.vertical, 10)
+                .background(.purple)
                 
+                //the sections
                 ScrollView{
                     //contianer for 3 sections
                     
@@ -101,7 +104,7 @@ struct TodaysPage: View {
                             .padding(.trailing, 6)
                             .padding(.vertical, 7)
                             .frame(maxWidth: .infinity, alignment: .center)
-                            .background(.green)
+                            //.background(.green)
                             
                             
                             //three tasks
@@ -110,18 +113,6 @@ struct TodaysPage: View {
                                 ForEach(viewModel.getAllTasksForPriority(priority: Priority.mustDo), id: \.ID.uuidString) { task in
                                     HStack(alignment: .center, spacing: 12) {
 
-                                        //checkbox
-                                      //  Checkbox()
-//                                        Rectangle()
-//                                        .foregroundColor(.clear)
-//                                        .frame(width: 18, height: 18)
-//                                        .cornerRadius(5)
-//                                        .overlay(
-//                                        RoundedRectangle(cornerRadius: 5)
-//                                        .inset(by: 0.75)
-//                                        .stroke(Color(red: 0.26, green: 0.26, blue: 0.26), lineWidth: 1.5)
-//
-//                                        )
 
                                         //task title
                                         Text(task.name)
@@ -168,7 +159,7 @@ struct TodaysPage: View {
                         .padding(.horizontal, 0)
                         .padding(.top, 0)
                         .padding(.bottom, 10)
-                        .frame(width: 369, alignment: .top)
+                        //.frame(width: 369, alignment: .top)
                         .background(.green)
                         .cornerRadius(15)
                         .overlay(
@@ -219,16 +210,7 @@ struct TodaysPage: View {
                                             viewModel.updateTask(task)
                                             
                                         }
-//                                        Rectangle()
-//                                        .foregroundColor(.clear)
-//                                        .frame(width: 18, height: 18)
-//                                        .cornerRadius(5)
-//                                        .overlay(
-//                                        RoundedRectangle(cornerRadius: 5)
-//                                        .inset(by: 0.75)
-//                                        .stroke(Color(red: 0.26, green: 0.26, blue: 0.26), lineWidth: 1.5)
-//
-//                                        )
+
 
                                         //task title
                                         Text(task.name)
@@ -283,7 +265,7 @@ struct TodaysPage: View {
                         .padding(.horizontal, 0)
                         .padding(.top, 0)
                         .padding(.bottom, 10)
-                        .frame(width: 369, alignment: .top)
+                        //.frame(width: 369, alignment: .top)
                         .background(.green)
                         .cornerRadius(15)
                         .overlay(
@@ -319,18 +301,6 @@ struct TodaysPage: View {
                                 ForEach(viewModel.getAllTasksForPriority(priority: Priority.niceToDo), id: \.ID.uuidString) { task in
                                     HStack(alignment: .center, spacing: 12) {
 
-                                        //checkbox
-                                    //    Checkbox()
-//                                        Rectangle()
-//                                        .foregroundColor(.clear)
-//                                        .frame(width: 18, height: 18)
-//                                        .cornerRadius(5)
-//                                        .overlay(
-//                                        RoundedRectangle(cornerRadius: 5)
-//                                        .inset(by: 0.75)
-//                                        .stroke(Color(red: 0.26, green: 0.26, blue: 0.26), lineWidth: 1.5)
-
-  //                                      )
 
                                         //task title
                                         Text(task.name)
@@ -377,7 +347,7 @@ struct TodaysPage: View {
                         .padding(.horizontal, 0)
                         .padding(.top, 0)
                         .padding(.bottom, 10)
-                        .frame(width: 369, alignment: .top)
+//                        .frame(width: 369, alignment: .top)
                         .background(.green)
                         .cornerRadius(15)
                         .overlay(
@@ -388,17 +358,24 @@ struct TodaysPage: View {
                         
                     }
                     
+                    
                     //.padding()
                     //.frame(maxWidth:.infinity, alignment: .top)
                 }.onAppear {
                     viewModel.loadAllTasks()
                 }
+                .padding(.top, 5)
+                .padding(.bottom,85)
+                .padding(.horizontal, 12)
+                .background(.blue)
+                
                 
                 
                 
                 
                 
             }
+            
             .frame(maxWidth: .infinity, alignment: .center)
             .background(Color("MainBackground"))
             

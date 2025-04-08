@@ -36,8 +36,8 @@ struct Checkbox: View {
 //                    .foregroundStyle(.white)
                 Image(systemName: isChecked ? "checkmark.square.fill": "square")
                     .resizable()
-                    .frame(width: 30, height: 30)
-                    .foregroundColor(.blue)
+                    .frame(width: 22, height: 22)
+                    .foregroundColor(Color("CheckboxFill"))
                 
             }
         }
