@@ -45,10 +45,27 @@ struct ContentView: View {
                     
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                //TODO: somehow this verically centers the text but i don't know why it doesn't automatically happen.
+                //note: somehow this verically centers the text but i don't know why it doesn't automatically happen.
                 
+                //The toast
                 if (selectedTab != 2 && viewModel.toastVisible) {
-                    Text("You created a task!").padding(.bottom, 500)
+                    HStack(alignment: .center){
+                        
+                        Image("success-icon")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 22, height: 22)
+                            .foregroundColor(Color("BodyCopy"))
+                        
+                        Text("You created a task!")
+                            .font(Font.custom("Helvetica", size: 14))
+                            .foregroundColor(Color("BodyCopy"))
+                    }
+                    .frame(maxHeight: 70)
+                    .frame(maxWidth: 200)
+                    //.padding(.bottom, 500)
+                    .background(.orange).padding(.bottom, 680)
+                    
                 }
                 
                 //MARK: - the tabs
@@ -203,7 +220,17 @@ struct ContentView: View {
                             .overlay(
                                 RoundedRectangle(cornerRadius: 57)
                                     .inset(by: 0.5)
-                                    .stroke(Color(red: 0.4, green: 0.4, blue: 0.4), lineWidth: 1)
+                                    //.stroke(Color("MainForeground"), lineWidth: 1)
+                                    .stroke(
+                                        LinearGradient(
+                                            gradient: Gradient(colors: [Color("CreateButtonGradientTop"), Color("CreateButtonGradientBottom")]),
+                                            startPoint: .top,
+                                            endPoint: .bottom
+                                        ),
+                                        lineWidth: 1
+                                    )
+                                    .opacity(0.5)
+                                    
                                 
                             )
                             //.blur(radius: 40)
@@ -214,15 +241,15 @@ struct ContentView: View {
                         .frame(maxWidth: .infinity, alignment: .trailing)
                         
                         
-                        Spacer()
-                            .frame(height: 10)
+//                        Spacer()
+//                            .frame(height: 10)
                         
                     }
                     
                     
                 }
                 
-                .padding(0)
+                //.padding(0)
                 .frame(maxWidth: .infinity, alignment: .bottom)
                 .fixedSize(horizontal: false, vertical: true)
                 
