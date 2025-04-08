@@ -289,7 +289,7 @@ struct TodaysPage: View {
                                     .padding(.vertical, 10)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     .cornerRadius(10)
-                                    .background(.white)
+                                    .background(.green)
                                 }
                       
                             }
