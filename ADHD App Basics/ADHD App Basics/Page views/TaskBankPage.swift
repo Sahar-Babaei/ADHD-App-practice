@@ -117,8 +117,8 @@ struct TaskBankPage: View {
             ZStack {
                 VStack(alignment: .leading){
 
-                    Spacer()
-                        .frame(height: 25)
+//                    Spacer()
+//                        .frame(height: 25)
                     
                     HStack(){
                         //page's title
@@ -167,7 +167,8 @@ struct TaskBankPage: View {
                             
                     }
                     .padding(.horizontal, 12)
-                    .padding(.bottom,10)
+                    //.padding(.bottom,10)
+                    .padding(.vertical, 10)
                    
                     //filter button
                     HStack{

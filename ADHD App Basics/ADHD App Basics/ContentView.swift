@@ -52,7 +52,7 @@ struct ContentView: View {
                 //note: somehow this verically centers the text but i don't know why it doesn't automatically happen.
                 
                 //The toast
-                if (selectedTab != 2 && viewModel.creationToastVisible) {
+                if ( viewModel.creationToastVisible) {
                     HStack(alignment: .center){
                         
                         Image("success-icon")
