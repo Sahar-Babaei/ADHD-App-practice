@@ -18,14 +18,15 @@ struct TaskCard: View {
     @StateObject var storageViewModel = TaskBankViewModel()
     // Function to delete a task, provided by TaskBankPage
     var onDelete: () -> Void
+    @State public var cardSelected: Bool
     
-  
-    
+        
     //MARK: - body
     var body: some View {
         
         //card
         VStack(alignment: .leading){
+            
             
             //tag and title
             VStack(alignment: .leading, spacing: chosenSpacing){
@@ -134,6 +135,10 @@ struct TaskCard: View {
         .background(Color("MainForeground"))
         //.background(.green)
         .cornerRadius(20)
+        .overlay(
+            RoundedRectangle(cornerRadius: 20)
+                .strokeBorder(cardSelected ? Color("BodyCopy") : Color.clear, lineWidth: 2)
+        )
         .shadow(color: .black.opacity(0.1), radius: 2, x: 0, y: 1)
         
         
@@ -148,5 +153,5 @@ struct TaskCard: View {
 
 //MARK: - Preview
 #Preview {
-    TaskCard(fTask: Task(), chosenHeight: 120,chosenSpacing: 10,onDelete: {})
+    TaskCard(fTask: Task(), chosenHeight: 120,chosenSpacing: 10,onDelete: {}, cardSelected: false)
 }

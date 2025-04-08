@@ -30,6 +30,13 @@ struct TaskBankPage: View {
     @State private var presentingSheet: Bool = false
 //    @State private var
     
+    //selection mode adding tasks to today's plan
+    @State private var counter = 0
+    
+//    private var selectCardGesture: some Gesture {
+//        isSelectionMode ? (TapGesture().onEnded { counter += 1 }) : nil
+//    }
+    
     //categories
     var filters: [String] {
         var seen: Set<String> = [] // keeps track of unique values
@@ -242,6 +249,17 @@ struct TaskBankPage: View {
                     }
                     .padding(.horizontal, 12)
                     
+                    //TODO: fix spacing between filter bar and tasks
+                    //show filtering results for everything but all
+                    if !selectedFilter.isEmpty && selectedFilter != "All" {
+                        Text("Filtered by: " + selectedFilter)
+                            .font(Font.custom("Helvetica", size: 16))
+                            .fontWeight(.regular)
+                            .italic()
+                            .foregroundColor(Color("BodyCopy"))
+                            .padding(.horizontal)
+                            .padding(.vertical, 10)
+                    }
                     
                     if isSelectionMode {    //show instructions when selecting tasks
                         Text("Select your tasks from the bank:")
@@ -258,13 +276,20 @@ struct TaskBankPage: View {
                             ForEach(filteredItems, id: \.ID) { task in
                                 TaskCard(fTask: task,chosenHeight: (viewModel.gridViewEnabled ? 112 : 157), chosenSpacing:(viewModel.gridViewEnabled ? 6 : 25), onDelete: {
                                     viewModel.allTasksList.removeAll { $0.ID == task.ID }
-                                }
-//                                         if isSelectionMode{
-//                                    .onTapGesture{
-//                                        .borderStyle
-//                                    }
-//                                }
+                                }, cardSelected: (isSelectionMode ? true : false)
+                                
                                 )
+//                                if isSelectionMode {
+                                    .onTapGesture {
+                                        print("this thing works: " + task.name )
+                                    }
+//                                }
+//                                .onTapGesture {
+//                                    
+//                                }
+//                                .gesture(selectCardGesture)
+//                                Toggle(isOn: $isSelectionMode)
+                           
                             }
                         }
     //                    .padding(.vertical, 10)

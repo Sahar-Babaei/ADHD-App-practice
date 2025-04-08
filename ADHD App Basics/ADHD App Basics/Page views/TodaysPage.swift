@@ -60,7 +60,7 @@ struct TodaysPage: View {
                                 .foregroundColor(Color("BodyCopy"))
                             //.background(.green)
                             
-                            Text("Manage Tasks")
+                            Text("Add Today's Tasks")
                                 .font(Font.custom("Helvetica", size: 16))
                                 .foregroundColor(Color("BodyCopy"))
                         }
