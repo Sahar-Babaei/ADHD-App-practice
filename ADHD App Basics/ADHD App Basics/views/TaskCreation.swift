@@ -241,7 +241,7 @@ struct TaskCreation: View {
                         }
                         
                     }) {
-                        Text("Add task ")
+                        Text("Create task ")
                             .padding()
                             .frame(height: 32)
                             .background(Color.black)

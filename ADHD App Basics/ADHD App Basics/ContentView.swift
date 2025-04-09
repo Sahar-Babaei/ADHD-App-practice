@@ -61,17 +61,27 @@ struct ContentView: View {
                         Image("success-icon")
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 22, height: 22)
-                            .foregroundColor(Color("BodyCopy"))
+                            .frame(width: 24, height: 24)
+                            .foregroundColor(Color("ToastSuccessBody"))
                         
                         Text("You created a task!")
-                            .font(Font.custom("Helvetica", size: 14))
-                            .foregroundColor(Color("BodyCopy"))
+                            .font(Font.custom("Helvetica", size: 16))
+                            .foregroundColor(Color("ToastSuccessBody"))
                     }
-                    .frame(maxHeight: 70)
+                    .frame(maxHeight: 55)
                     .frame(maxWidth: 200)
-                    //.padding(.bottom, 500)
-                    .background(.orange).padding(.bottom, 680)
+                    .background(Color("ToastSuccessBackground"))
+                    .cornerRadius(15)
+                    .shadow(color: .black.opacity(0.15), radius: 2, x: 0, y: 2)
+                    .overlay(
+                    RoundedRectangle(cornerRadius: 15)
+                    .inset(by: 0.5)
+                    .stroke(Color("ToastSuccessBody"), lineWidth: 1)
+
+                    )
+                
+                
+                    .padding(.bottom, 680)
                     
                 }
                 
@@ -81,17 +91,28 @@ struct ContentView: View {
                         Image("success-icon")
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 22, height: 22)
-                            .foregroundColor(Color("BodyCopy"))
+                            .frame(width: 24, height: 24)
+                            .foregroundColor(Color("ToastSuccessBody"))
                         
-                        Text("You Edited a task!")
-                            .font(Font.custom("Helvetica", size: 14))
-                            .foregroundColor(Color("BodyCopy"))
+                        Text("Edited Successfully!")
+                            .font(Font.custom("Helvetica", size: 16))
+                            .foregroundColor(Color("ToastSuccessBody"))
                     }
-                    .frame(maxHeight: 70)
-                    .frame(maxWidth: 200)
-                    //.padding(.bottom, 500)
-                    .background(.orange).padding(.bottom, 680)
+                    .frame(maxHeight: 55)
+                    .frame(maxWidth: 210)
+                    .background(Color("ToastSuccessBackground"))
+                    .cornerRadius(15)
+                    .shadow(color: .black.opacity(0.15), radius: 2, x: 0, y: 2)
+                    .overlay(
+                    RoundedRectangle(cornerRadius: 15)
+                    .inset(by: 0.5)
+                    .stroke(Color("ToastSuccessBody"), lineWidth: 1)
+
+                    )
+                
+                
+                    .padding(.bottom, 680)
+                    
                     
                 }
                 
