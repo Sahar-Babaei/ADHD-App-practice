@@ -98,7 +98,10 @@ struct TaskBankOverlay: View {
                         HStack(){
                             
                             //cancel button
-                            Button(action: { self.onComplete(false)}) {
+                            Button(action: {
+                                self.onComplete(false)
+                                viewModel.selectedTaskList.removeAll()
+                            }) {
                                 Text("Cancel")
                                     .padding(.top)
                                     .padding(.bottom)
@@ -119,6 +122,7 @@ struct TaskBankOverlay: View {
                                     viewModel.updateTask(task)
                                     self.onComplete(false)
                                 }
+                                viewModel.selectedTaskList.removeAll()
                             }) {
                                 Text("Done")
                                     .padding()

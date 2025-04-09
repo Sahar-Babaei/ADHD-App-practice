@@ -24,6 +24,7 @@ struct TaskBankPage: View {
     var isSelectionMode: Bool = false
     var onSelectTasks: (([Task]) -> Void)? = nil
     var onEdit: ((Task) -> Void)? = nil
+//    private var noResult: String = "No results found"
     
     //filtering, sorting and searching variables
     @State private var searchText: String = ""
@@ -416,6 +417,7 @@ struct TaskBankPage: View {
                         .background(.ultraThinMaterial)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
                         .shadow(radius: 10)
+                        .padding(.bottom, 50)
                 }
 //                }.onChange(of: selectedFilter) {
 //                    

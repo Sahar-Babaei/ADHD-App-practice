@@ -189,9 +189,10 @@ struct MultiplePickerView: View {
                     .labelsHidden()
                     
                 }
-                .listRowInsets(EdgeInsets(top: 2, leading: 15, bottom: 2, trailing: 15)) // Less vertical space
-                        .padding(.bottom, 0)
+                
             }
+            .listRowInsets(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15)) // Less vertical space
+                    .padding(.bottom, 0)
 //            .background(.orange)
         }
        
