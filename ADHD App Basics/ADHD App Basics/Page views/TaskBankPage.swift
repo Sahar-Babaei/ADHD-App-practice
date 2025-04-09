@@ -21,7 +21,7 @@ struct TaskBankPage: View {
 //    }
     
     //selection mode
-    var isSelectionMode: Bool = true
+    var isSelectionMode: Bool = false
     var onSelectTasks: (([Task]) -> Void)? = nil
     var onEdit: ((Task) -> Void)? = nil
     

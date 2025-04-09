@@ -20,11 +20,14 @@ struct TaskBankOverlay: View {
 //        viewModel.loadAllTasks()
 //    }
     
+    
+    
     //selection mode
     var isSelectionMode: Bool = true
     var onSelectTasks: (([Task]) -> Void)? = nil
     var onEdit: ((Task) -> Void)? = nil
     var onComplete : (Bool) -> Void = { _ in }
+    var priority: Priority 
     
     //filtering, sorting and searching variables
     @State private var searchText: String = ""
@@ -38,6 +41,7 @@ struct TaskBankOverlay: View {
 //    private var selectCardGesture: some Gesture {
 //        isSelectionMode ? (TapGesture().onEnded { counter += 1 }) : nil
 //    }
+//    var selectedTaskList: [Task]
     
     //categories
     var filters: [String] {
@@ -107,7 +111,15 @@ struct TaskBankOverlay: View {
                             Spacer()
                             
                             //add Task button
-                            Button(action: {}) {
+                            Button(action: {
+                                viewModel.selectedTaskList.forEach{ task in
+                                    task.status = .plannedForToday
+                                    task.taskAssignment = TaskAssignment(date: Date(), priority: priority)
+                                    
+                                    viewModel.updateTask(task)
+                                    self.onComplete(false)
+                                }
+                            }) {
                                 Text("Done")
                                     .padding()
                                     .frame(height: 32)
@@ -124,7 +136,7 @@ struct TaskBankOverlay: View {
                     
                     HStack(){
                         //instructions
-                        Text("Select 3 Tasks to add to the ????? sections")
+                        Text("Select 3 Tasks to add to the \(priority.name.lowercased().capitalized) sections")
                             .font(Font.custom("Helvetica", size: 16))
                             .fontWeight(.regular)
                             .foregroundColor(Color("BodyCopy"))
@@ -248,14 +260,16 @@ struct TaskBankOverlay: View {
                                         print("scooby doo")
                                         onEdit?(task)
                                     },onSelect: { selected in
-                                        
+                                        viewModel.selectedTaskList.append(task)
                                         onEdit?(task)
+//                                        print(viewModel.selectedTasklist)
                                     }, selectionModeEnabled : isSelectionMode
                                 
                                     )
-                                        .onTapGesture {
-                                            print("this thing works: " + task.name )
-                                        }
+//                                        .onTapGesture {
+//                                            print("this thing works: " + task.name )
+////                                            selectedTaskList.append(task)
+//                                        }
 
                                 }
                                                            
@@ -342,5 +356,5 @@ struct TaskBankOverlay: View {
 }
 
 #Preview {
-    TaskBankOverlay(viewModel: TaskBankViewModel())
+    TaskBankOverlay(viewModel: TaskBankViewModel(),isSelectionMode: true, priority: .mustDo)
 }

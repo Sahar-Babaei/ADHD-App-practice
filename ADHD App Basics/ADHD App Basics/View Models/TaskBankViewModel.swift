@@ -15,6 +15,9 @@ class TaskBankViewModel: ObservableObject {
     @Published var userTaskTitle : String = ""
     @Published var gridViewEnabled: Bool = false
     
+    @Published var selectedTaskList: [Task] = []
+    
+    
     func loadAllTasks() {
         let retrievedTasks = retrieveTasksFromUserDefaults()
         allTasksList = retrievedTasks

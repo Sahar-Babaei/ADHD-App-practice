@@ -59,39 +59,42 @@ struct TaskCard: View {
                     //                        .font(.body)
                     
                     // "More" menu button
-                    Menu {
-                        
-                        Button("Edit") {
-                            onEdit()
+                    if !selectionModeEnabled{
+                        Menu {
+                            
+                            Button("Edit") {
+                                onEdit()
+                            }
+                            Button("Delete", role: .destructive) {
+                                showDeleteConfirmation = true
+                                
+                                storageViewModel.removeTask(fTask)
+                                
+                                
+                            }
+                        } label: {
+                            Image(systemName: "ellipsis")
+                                .font(.body)
+                                .padding(.leading,15)
+                                .padding(.trailing,3)
+                                .padding(.vertical,12)
+                                
+                           
+                                .foregroundColor(Color("BodyCopy"))
+                            
                         }
-                        Button("Delete", role: .destructive) {
-                            showDeleteConfirmation = true
-                            
-                            storageViewModel.removeTask(fTask)
-                            
-                            
-                        }
-                    } label: {
-                        Image(systemName: "ellipsis")
-                            .font(.body)
-                            .padding(.leading,15)
-                            .padding(.trailing,3)
-                            .padding(.vertical,12)
-                            
-                       
-                            .foregroundColor(Color("BodyCopy"))
-                        
-                    }
 
-                    .confirmationDialog("Are you sure you want to delete this task?",
-                                        isPresented: $showDeleteConfirmation,
-                                        titleVisibility: .visible
-                    ) {
-                        Button("Delete", role: .destructive) {
-                            onDelete()
+                        .confirmationDialog("Are you sure you want to delete this task?",
+                                            isPresented: $showDeleteConfirmation,
+                                            titleVisibility: .visible
+                        ) {
+                            Button("Delete", role: .destructive) {
+                                onDelete()
+                            }
+                            Button("Cancel", role: .cancel) { }
                         }
-                        Button("Cancel", role: .cancel) { }
                     }
+                    
                 }
                 
                 
