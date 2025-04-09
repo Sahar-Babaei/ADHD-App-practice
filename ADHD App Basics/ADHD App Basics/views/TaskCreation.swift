@@ -49,7 +49,7 @@ struct TaskCreation: View {
                 HStack(alignment:.center){
                     //heading
                     Text("Task title")
-                        .font(Font.custom("Instrument Sans", size: 16)) // Set the custom font
+                        .font(Font.custom("Instrument Sans", size: 14)) // Set the custom font
                         .fontWeight(.regular) // Apply weight separately
                     
                     Spacer()
@@ -112,7 +112,7 @@ struct TaskCreation: View {
                     
                     VStack (alignment: .leading) {
                         Text("Tag")
-                            .font(Font.custom("Instrument Sans", size: 16)) // Set the custom font
+                            .font(Font.custom("Instrument Sans", size: 14)) // Set the custom font
                             .fontWeight(.regular) // Apply weight separately
                         
                         //tag dropdown menu that passes in the dropdown's tag value
@@ -131,28 +131,31 @@ struct TaskCreation: View {
                     
                     VStack(alignment: .leading){
                         Text("Status")
-                            .font(Font.custom("Instrument Sans", size: 16)) // Set the custom font
+                            .font(Font.custom("Instrument Sans", size: 14)) // Set the custom font
                             .fontWeight(.regular)
                         StatusDropDownMenu(selectedStatus: $selectedStatus) // Pass as binding
                         
                         if selectedStatus == .plannedForToday{
 
                                 VStack(alignment: .leading, spacing: 10) {
-                                    Text("Please Choose a Priority Category")
-                                        .font(Font.custom("Helvetica", size: 13))
-                                        .fontWeight(.regular)
+                                    HStack{
+                                        Text("Choose a Priority Category")
+                                            .font(Font.custom("Helvetica", size: 14))
+                                            .fontWeight(.regular)
+                                    }
+
 
                                     HStack(spacing: 10) {
                                         ForEach(Priority.allCases, id: \.self) { priority in
-                                            Text(priority.name)
+                                            Text(priority.name.lowercased().capitalized)
                                                 .font(Font.custom("Helvetica", size: 13))
                                                 .foregroundColor(Color("BodyCopy"))
                                             
-                                                .frame(maxWidth: .infinity, minHeight: 50)
+                                                .frame(maxWidth: .infinity, minHeight: 45)
                                                 .background(selectedPriority == priority ? Color.yellow : Color.gray.opacity(0.2))
-                                                .cornerRadius(12)
+                                                .cornerRadius(8)
                                                 .overlay(
-                                                    RoundedRectangle(cornerRadius: 12)
+                                                    RoundedRectangle(cornerRadius: 8)
                                                         .stroke(selectedPriority == priority ? Color.orange : Color.clear, lineWidth: 2)
                                                 )
                                                 .onTapGesture {
@@ -160,7 +163,12 @@ struct TaskCreation: View {
                                                 }
                                         }
                                     }
+                                    .padding(4)
+                                    .background(.gray)
+                                    .cornerRadius(12)
+                                    
                             }
+                               
 
                             .padding(.vertical,10)
 

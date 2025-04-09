@@ -54,17 +54,22 @@ struct TagDropDownMenu: View {
                     .padding(.trailing, 12)
                     .padding(.vertical, 4)
                     .background(.clear) // Use enum-defined background color
+                    
                     .cornerRadius(15)
                     .padding(.leading, 20)
-                    .transition(.opacity.combined(with: .slide))
+                    //.transition(.opacity.combined(with: .slide))
                     .onTapGesture {
                         selectedTag = tag
                         isExpanded = false
                     }
+                    
                     .padding(.vertical, 5)
                 }
+                
             }
-        }
+            
+        }.background(Color.gray.opacity(0.1))
+        
     }
 }
 
