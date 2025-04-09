@@ -136,8 +136,8 @@ struct TaskBankOverlay: View {
                     
                     HStack(){
                         //instructions
-                        Text("Select 3 Tasks to add to the \(priority.name.lowercased().capitalized) sections")
-                            .font(Font.custom("Helvetica", size: 16))
+                        Text("Select up to 3 Tasks to add to the \(priority.name.lowercased().capitalized) sections")
+                            .font(Font.custom("Helvetica", size: 15))
                             .fontWeight(.regular)
                             .foregroundColor(Color("BodyCopy"))
                         

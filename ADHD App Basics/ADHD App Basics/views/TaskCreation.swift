@@ -117,17 +117,11 @@ struct TaskCreation: View {
                         
                         //tag dropdown menu that passes in the dropdown's tag value
                         TagDropDownMenu(selectedTag: $selectedTag)
-                        
-                        
-                        //                        Rectangle()
-                        //                            .foregroundColor(.clear)
-                        //                            .frame(height: 39)
-                        //                            .background(Color(red: 0.92, green: 0.92, blue: 0.92))
-                        //                            .cornerRadius(4)
-                        //                        DropdownMenu
+
                         
                     }
                     .padding(.vertical,20)
+                    
                     
                     VStack(alignment: .leading){
                         Text("Status")

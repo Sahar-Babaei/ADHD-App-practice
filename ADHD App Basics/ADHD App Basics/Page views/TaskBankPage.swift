@@ -250,6 +250,7 @@ struct TaskBankPage: View {
 
                     }
                     .padding(.horizontal, 12)
+                    .padding(.bottom,8)
                     
                     //TODO: fix spacing between filter bar and tasks
                     //show filtering results for everything but all

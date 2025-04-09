@@ -46,10 +46,10 @@ struct TaskCard: View {
                             .foregroundColor(fTask.tag.color)
                         
                         Text(fTask.tag.name)
-                            .font(Font.custom("Helvetica", size: 14))
+                            .font(Font.custom("Helvetica", size: 13))
                             .foregroundColor(fTask.tag.color)
                     }
-                    
+                   // .background(.yellow)
                     
                     Spacer()
                     
@@ -77,12 +77,15 @@ struct TaskCard: View {
                                 .font(.body)
                                 .padding(.leading,15)
                                 .padding(.trailing,3)
-                                .padding(.vertical,12)
+                                //.padding(.vertical,12)
+                                .padding(.top,6)
+                                .padding(.bottom,8)
                                 
                            
                                 .foregroundColor(Color("BodyCopy"))
                             
                         }
+                       // .background(.pink)
 
                         .confirmationDialog("Are you sure you want to delete this task?",
                                             isPresented: $showDeleteConfirmation,
@@ -96,6 +99,7 @@ struct TaskCard: View {
                     }
                     
                 }
+                //.background(.green)
                 
                 
                 
@@ -124,7 +128,7 @@ struct TaskCard: View {
                     .frame(width: 8, height: 8)
                 
                 Text(fTask.status.name)
-                    .font(Font.custom("Helvetica", size: 13))
+                    .font(Font.custom("Helvetica", size: 14))
                     .foregroundColor(fTask.status.bodyColor)
             }
             .padding(.leading, 8)
@@ -137,7 +141,10 @@ struct TaskCard: View {
         }
         
         .frame(height:chosenHeight)
-        .padding(12)
+        .padding(.top,15)
+        .padding(.bottom,14)
+        .padding(.leading,14)
+        .padding(.trailing,15)
         
         .background(Color("MainForeground"))
         //.background(.green)

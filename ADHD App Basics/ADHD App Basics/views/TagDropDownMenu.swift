@@ -35,7 +35,8 @@ struct TagDropDownMenu: View {
                 }
                 .padding()
                 .frame(maxWidth: .infinity)
-                .background(Color.gray.opacity(0.1))
+                //.background(Color.gray.opacity(0.1))
+                .background(.pink)
                 .cornerRadius(10)
             }
             .buttonStyle(PlainButtonStyle())
