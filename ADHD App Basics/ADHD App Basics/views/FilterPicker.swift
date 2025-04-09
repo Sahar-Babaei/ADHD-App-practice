@@ -163,7 +163,7 @@ struct MultiplePickerView: View {
                     Picker("", selection: $selectedSensor) {
                         ForEach(picker.children.indices, id: \.self) { index in
                             if picker.parent == "Status", let status = picker.children[index] as? Status {
-                                HStack {
+                                HStack (spacing: 3) {
                                     Circle()
                                         .fill(status.bodyColor)
                                         .frame(width: 10, height: 10)
@@ -171,7 +171,7 @@ struct MultiplePickerView: View {
                                 }
                                 .tag( (status.name))
                             } else if picker.parent == "Tag", let tag = picker.children[index] as? Tag {
-                                HStack {
+                                HStack (spacing: 3){
                                     Image(systemName: "tag")
                                         .foregroundColor(tag.color)
                                     Text(tag.name)
@@ -189,8 +189,10 @@ struct MultiplePickerView: View {
                     .labelsHidden()
                     
                 }
+                .listRowInsets(EdgeInsets(top: 2, leading: 15, bottom: 2, trailing: 15)) // Less vertical space
+                        .padding(.bottom, 0)
             }
-            .background(.orange)
+//            .background(.orange)
         }
        
     }
