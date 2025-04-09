@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 
-struct Task: Codable {
+class Task: Codable {
     
     var name = "default task title"
     

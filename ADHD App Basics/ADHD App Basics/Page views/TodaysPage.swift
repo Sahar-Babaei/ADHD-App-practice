@@ -11,6 +11,7 @@ import Foundation
 struct TodaysPage: View {
     
     @ObservedObject var viewModel : TaskBankViewModel
+    var onEdit: ((Task) -> Void) = {_ in }
     
     var a :String {
         //"a hello"
@@ -101,7 +102,7 @@ struct TodaysPage: View {
                                 
                                 ForEach(viewModel.getAllTasksForPriority(priority: Priority.mustDo), id: \.ID.uuidString) { task in
                                     
-                                    TodaysTaskElement(viewModel: TaskBankViewModel(), fTask: task)
+                                    TodaysTaskElement(viewModel: viewModel, fTask: task,onEdit:{onEdit(task)} )
                                 }
                             }
                             .padding(.top, 6)
@@ -165,7 +166,7 @@ struct TodaysPage: View {
                                 
                                 ForEach(viewModel.getAllTasksForPriority(priority: Priority.doIfPossible), id: \.ID.uuidString) { task in
                                     
-                                    TodaysTaskElement(viewModel: TaskBankViewModel(), fTask: task)
+                                    TodaysTaskElement(viewModel: viewModel, fTask: task, onEdit:{onEdit(task)})
 
                                 }
                             }
@@ -231,7 +232,7 @@ struct TodaysPage: View {
                                 
                                 ForEach(viewModel.getAllTasksForPriority(priority: Priority.niceToDo), id: \.ID.uuidString) { task in
                                     
-                                    TodaysTaskElement(viewModel: TaskBankViewModel(), fTask: task)
+                                    TodaysTaskElement(viewModel: viewModel, fTask: task, onEdit:{onEdit(task)})
                                 }
                             }
                             .padding(.top, 6)

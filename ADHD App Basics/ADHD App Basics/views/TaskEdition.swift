@@ -148,7 +148,7 @@ struct TaskEdition: View {
                                                 .foregroundColor(Color("BodyCopy"))
                                             
                                                 .frame(maxWidth: .infinity, minHeight: 50)
-                                                .background(selectedPriority == priority ? Color.yellow : Color.gray.opacity(0.2))
+                                                .background(viewModel.fTask.taskAssignment?.priority == priority ? Color.yellow : Color.gray.opacity(0.2))
                                                 .cornerRadius(12)
                                                 .overlay(
                                                     RoundedRectangle(cornerRadius: 12)

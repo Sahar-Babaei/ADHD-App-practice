@@ -30,7 +30,10 @@ struct ContentView: View {
                     case 1:
                         //make enums for name of each tab instead of 1,2,3,...
                         //Text ("this is tab 1 lol")
-                        TodaysPage(viewModel: myViewModel)
+                        TodaysPage(viewModel: myViewModel,onEdit:{selectedTask in
+                            taskEditionViewModel.fTask = selectedTask
+                            showTaskEditionOverlay = true
+                        })
                     case 2:
                        // Text ("this is tab 2 lol lol ")
                         TaskBankPage(viewModel: myViewModel, onEdit:{selectedTask in

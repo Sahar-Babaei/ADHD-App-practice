@@ -10,27 +10,29 @@ import SwiftUI
 struct TodaysTaskElement: View {
     
     @ObservedObject var viewModel : TaskBankViewModel
+
     @State var fTask : Task
     @State var crossOutTitle : Bool = false
+    var onEdit: () -> Void
     
     var body: some View {
         HStack(alignment: .top , spacing: 12) {
 
             //checkbox
             Checkbox(isChecked: fTask.status == .completed ) { isChecked in
-                var task = fTask
+//                var task = fTask
                 if isChecked {
                     
-                    task.status = .completed
+                    fTask.status = .completed
                     crossOutTitle = true
                    
                 }
                 else{
-                    task.status = .plannedForToday
+                    fTask.status = .plannedForToday
                     crossOutTitle = false
                    
                 }
-                viewModel.updateTask(task)
+                viewModel.updateTask(fTask)
                 
             }
             .padding(.top,2)
@@ -41,7 +43,7 @@ struct TodaysTaskElement: View {
             Text(fTask.name)
                 .font(Font.custom("Instrument Sans", size: 16))
                 .fontWeight(.medium)
-                .strikethrough(crossOutTitle, color: Color("BodyCopy"))
+                .strikethrough(fTask.status == .completed, color: Color("BodyCopy"))
                 .frame(maxWidth: .infinity, alignment: .leading)
                 //.background(.purple)
 
@@ -51,15 +53,16 @@ struct TodaysTaskElement: View {
 
                 Button("Edit") {
                     // Implement edit functionality here
+                    onEdit()
                 }
                 Button("Remove from today", role: .destructive) {
                     //remove functionality
-                    var task = fTask
-                    if task.status != .completed{
-                        task.status = .notStarted
+//                    var task = fTask
+                    if fTask.status != .completed{
+                        fTask.status = .notStarted
                     }
-                    task.taskAssignment = nil
-                    viewModel.updateTask(task)
+                    fTask.taskAssignment = nil
+                    viewModel.updateTask(fTask)
                     
                     
 
@@ -89,5 +92,5 @@ struct TodaysTaskElement: View {
 }
 
 #Preview {
-    TodaysTaskElement(viewModel: TaskBankViewModel(), fTask: Task())
+    TodaysTaskElement(viewModel: TaskBankViewModel(), fTask: Task(), onEdit: {})
 }
