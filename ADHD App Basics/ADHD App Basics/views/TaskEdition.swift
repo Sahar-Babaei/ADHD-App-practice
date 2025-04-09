@@ -14,11 +14,7 @@ struct TaskEdition: View {
     @State private var selectedTag: Tag = .none
     @State private var selectedPriority: Priority = .niceToDo
     @State private var showExpanded: Bool = false
-    //    @State private var tagDropDown: TagDropDownMenu
-    //    @State private var userSelectedStatus: Status = $selectedStatus
-    //@State private var statusDropDown: StatusDropDownMenu
-    
-    //    var dropdown
+    @State private var hasUserSelectedPriority = false
     
     @State private var text: String = ""
     @StateObject var viewModel = TaskCreationViewModel()
@@ -148,14 +144,26 @@ struct TaskEdition: View {
                                                 .foregroundColor(Color("BodyCopy"))
                                             
                                                 .frame(maxWidth: .infinity, minHeight: 50)
-                                                .background(viewModel.fTask.taskAssignment?.priority == priority ? Color.yellow : Color.gray.opacity(0.2))
+                                                .background(
+                                                    (hasUserSelectedPriority
+                                                        ? (selectedPriority == priority)
+                                                        : (viewModel.fTask.taskAssignment?.priority == priority))
+                                                    ? Color.yellow
+                                                    : Color.gray.opacity(0.2)
+                                                )
                                                 .cornerRadius(12)
                                                 .overlay(
                                                     RoundedRectangle(cornerRadius: 12)
-                                                        .stroke(selectedPriority == priority ? Color.orange : Color.clear, lineWidth: 2)
+                                                        .stroke(
+                                                            (hasUserSelectedPriority
+                                                                ? (selectedPriority == priority)
+                                                                : (viewModel.fTask.taskAssignment?.priority == priority))
+                                                            ? Color.orange
+                                                            : Color.gray.opacity(0.2), lineWidth: 2)
                                                 )
                                                 .onTapGesture {
                                                     selectedPriority = priority
+                                                    hasUserSelectedPriority = true
                                                 }
                                         }
                                     }
