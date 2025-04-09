@@ -14,7 +14,7 @@ struct TodaysTaskElement: View {
     @State var crossOutTitle : Bool = false
     
     var body: some View {
-        HStack(alignment: .top , spacing: 10) {
+        HStack(alignment: .top , spacing: 12) {
 
             //checkbox
             Checkbox(isChecked: fTask.status == .completed ) { isChecked in
@@ -33,6 +33,8 @@ struct TodaysTaskElement: View {
                 viewModel.updateTask(task)
                 
             }
+            .padding(.top,2)
+
 
 
             //task title
@@ -41,6 +43,7 @@ struct TodaysTaskElement: View {
                 .fontWeight(.medium)
                 .strikethrough(crossOutTitle, color: Color("BodyCopy"))
                 .frame(maxWidth: .infinity, alignment: .leading)
+                //.background(.purple)
 
 
             // ... button
@@ -65,20 +68,23 @@ struct TodaysTaskElement: View {
                 Image("vertical-more")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 24, height: 24)
+                    .frame(width: 20, height: 20)
                     .foregroundColor(Color("BodyCopy"))
                     
 
             }
-            .padding(.leading, 10)
+            //.padding(.top,2)
+            //.background(.orange)
+            //.padding(.leading, 10)
    
 
         }
-        //.padding(.horizontal, 0)
+   //     .padding(.horizontal, 0)
         .padding(.vertical, 4)
+        .padding(.leading, 18)
+        .padding(.trailing, 12)
         .frame(maxWidth: .infinity, alignment: .leading)
-        //.cornerRadius(10)
-        //.background(.pink)
+        //.background(.yellow)
     }
 }
 

@@ -58,7 +58,7 @@ struct TodaysPage: View {
                             //header part
                             HStack(alignment: .center) {
                                 
-                                Text("MUST DO TODAY")
+                                Text("1. MUST DO TODAY")
                                     .font(Font.custom("Helvetica", size: 16))
                                     .fontWeight(.bold)
                                     .foregroundColor(Color("BodyCopy"))
@@ -85,9 +85,9 @@ struct TodaysPage: View {
                                     .cornerRadius(40)
                                 }
                             }
-                            .padding(.leading, 12)
-                            .padding(.trailing, 6)
-                            .padding(.vertical, 7)
+                            .padding(.leading, 15)
+                            .padding(.trailing, 10)
+                            .padding(.vertical, 12)
                             .frame(maxWidth: .infinity, alignment: .center)
                             .overlay(
                                 Rectangle()
@@ -103,18 +103,11 @@ struct TodaysPage: View {
                                     
                                     TodaysTaskElement(viewModel: TaskBankViewModel(), fTask: task)
                                 }
-                      
                             }
-                            //.padding(.horizontal, 14)
-//                            .padding(.leading,14)
-//                            .padding(.trailing,8)
-//                            .padding(.vertical, 3)
-//                            .frame(maxWidth: .infinity, alignment: .topLeading)
-                            //.background(.yellow)
-  
+                            .padding(.top, 6)
                         }
                         .padding(.top, 0)
-                        .padding(.bottom, 10)
+                        .padding(.bottom, 18)
                         .background(Color("MainForeground"))
                         .cornerRadius(15)
                         .padding(.horizontal, 12)
@@ -127,7 +120,7 @@ struct TodaysPage: View {
                             //header part
                             HStack(alignment: .center) {
                                 
-                                Text("DO IF TIME ALLOWS")
+                                Text("2. DO IF TIME ALLOWS")
                                     .font(Font.custom("Helvetica", size: 16))
                                     .fontWeight(.bold)
                                     .foregroundColor(Color("BodyCopy"))
@@ -148,16 +141,16 @@ struct TodaysPage: View {
                                     }
                                     .padding(.leading,10)
                                     .padding(.trailing,16)
-                                    .padding(.vertical, 9)
+                                    .padding(.vertical, 8)
                                     .background(Color("SectionButtonBackground"))
                                     .cornerRadius(40)
                                     
                                 }
                                 
                             }
-                            .padding(.leading, 12)
-                            .padding(.trailing, 6)
-                            .padding(.vertical, 7)
+                            .padding(.leading, 15)
+                            .padding(.trailing, 10)
+                            .padding(.vertical, 12)
                             .frame(maxWidth: .infinity, alignment: .center)
                             .overlay(
                                 Rectangle()
@@ -167,7 +160,6 @@ struct TodaysPage: View {
                             )
 
                             
-                            
                             //three tasks
                             VStack(alignment: .leading, spacing: 10) {
                                 
@@ -176,21 +168,11 @@ struct TodaysPage: View {
                                     TodaysTaskElement(viewModel: TaskBankViewModel(), fTask: task)
 
                                 }
-                      
                             }
-//
-//                            .padding(.leading,14)
-//                            .padding(.trailing,8)
-//                            .padding(.vertical, 3)
-//                            .frame(maxWidth: .infinity, alignment: .topLeading)
-                            //.background(.yellow)
-                            
-
-                            
-                            
+                            .padding(.top, 6)
                         }
                         .padding(.top, 0)
-                        .padding(.bottom, 10)
+                        .padding(.bottom, 18)
                         .background(Color("MainForeground"))
                         .cornerRadius(15)
                         .padding(.horizontal, 12)
@@ -201,7 +183,7 @@ struct TodaysPage: View {
                             //header part
                             HStack(alignment: .center) {
                                 
-                                Text("NICE TO DO")
+                                Text("3. NICE TO DO")
                                     .font(Font.custom("Helvetica", size: 16))
                                     .fontWeight(.bold)
                                     .foregroundColor(Color("BodyCopy"))
@@ -224,16 +206,16 @@ struct TodaysPage: View {
                                     }
                                     .padding(.leading,10)
                                     .padding(.trailing,16)
-                                    .padding(.vertical, 9)
+                                    .padding(.vertical, 8)
                                     .background(Color("SectionButtonBackground"))
                                     .cornerRadius(40)
                                     
                                 }
                                 
                             }
-                            .padding(.leading, 12)
-                            .padding(.trailing, 6)
-                            .padding(.vertical, 7)
+                            .padding(.leading, 15)
+                            .padding(.trailing, 10)
+                            .padding(.vertical, 12)
                             .frame(maxWidth: .infinity, alignment: .center)
                             .overlay(
                                 Rectangle()
@@ -250,23 +232,12 @@ struct TodaysPage: View {
                                 ForEach(viewModel.getAllTasksForPriority(priority: Priority.niceToDo), id: \.ID.uuidString) { task in
                                     
                                     TodaysTaskElement(viewModel: TaskBankViewModel(), fTask: task)
-
                                 }
-                                
                             }
-
-//                            .padding(.leading,14)
-//                            .padding(.trailing,8)
-//                            .padding(.vertical, 3)
-//                            .frame(maxWidth: .infinity, alignment: .topLeading)
-                            //.background(.yellow)
-                            
-
-                            
-                            
+                            .padding(.top, 6)
                         }
                         .padding(.top, 0)
-                        .padding(.bottom, 10)
+                        .padding(.bottom, 18)
                         .background(Color("MainForeground"))
                         .cornerRadius(15)
                         .padding(.horizontal, 12)
