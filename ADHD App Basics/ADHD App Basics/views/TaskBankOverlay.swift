@@ -122,7 +122,10 @@ struct TaskBankOverlay: View {
                                     viewModel.updateTask(task)
                                     self.onComplete(false)
                                 }
+//                                viewModel.selectedTaskList.removeAll()
+                                print(viewModel.selectedTaskList)
                                 viewModel.selectedTaskList.removeAll()
+                                
                             }) {
                                 Text("Done")
                                     .padding()
@@ -264,8 +267,14 @@ struct TaskBankOverlay: View {
                                         print("scooby doo")
                                         onEdit?(task)
                                     },onSelect: { selected in
-                                        viewModel.selectedTaskList.append(task)
-                                        onEdit?(task)
+                                        if selected == true {
+                                            viewModel.selectedTaskList.append(task)
+                                            onEdit?(task)
+                                        }
+                                        else {
+                                            viewModel.selectedTaskList.removeAll { $0.ID == task.ID }
+                                        }
+                                        
 //                                        print(viewModel.selectedTasklist)
                                     }, selectionModeEnabled : isSelectionMode
                                 
