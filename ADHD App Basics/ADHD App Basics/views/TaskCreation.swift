@@ -61,8 +61,10 @@ struct TaskCreation: View {
                     }) {
                         //only rotate chevron icon downward when showExpanded is true
                         Image("chevron-double-up")
-                            .foregroundColor(Color(red: 0, green: 0, blue: 0))
-                            .rotationEffect(.degrees(showExpanded ? 180 : 0 ))
+                            .foregroundColor(Color("BodyCopy"))
+                            .scaleEffect(y: showExpanded ? -1 : 1)
+//                            .rotationEffect(.degrees(showExpanded ? 180 : 0))
+//                                .animation(.easeInOut(duration: 0.3), value: showExpanded)
                     }
                 }
                 
