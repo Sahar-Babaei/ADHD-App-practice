@@ -413,7 +413,7 @@ struct TaskBankPage: View {
                     //                        .frame(width: 100, height: 100)
                     //                        .background(Color(.blue))
                     MultiplePickerView(selectedSensor: $selectedFilter)
-                        .frame(width: 350, height: 680)
+                        .frame(width: 350, height: 590)
                         .background(.ultraThinMaterial)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
                         .shadow(radius: 10)

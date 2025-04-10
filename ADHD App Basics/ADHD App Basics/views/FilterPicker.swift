@@ -155,7 +155,7 @@ struct MultiplePickerView: View {
 
     var body: some View {
         Form {
-            Text(selectedSensor)
+//            Text(selectedSensor)
             
 
             ForEach(pickers) { picker in
@@ -191,10 +191,12 @@ struct MultiplePickerView: View {
                 }
                 
             }
-            .listRowInsets(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15)) // Less vertical space
-                    .padding(.bottom, 0)
+            .listRowInsets(EdgeInsets(top: 2, leading: 15, bottom: 2, trailing: 15)) // Less vertical space
+//            .padding(.bottom, 0)
+//                    .padding(.top)
 //            .background(.orange)
         }
+//        .padding(.top)
        
     }
 }
@@ -229,7 +231,7 @@ struct FilterPickerView: View {
 
                     VStack {
                         MultiplePickerView(selectedSensor: $selectedSensor)
-                            .frame(width: 350, height: 730)
+                            .frame(width: 350, height: 600)
                             .background(.ultraThinMaterial)
                             .clipShape(RoundedRectangle(cornerRadius: 20))
                             .shadow(radius: 10)
