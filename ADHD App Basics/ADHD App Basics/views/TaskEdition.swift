@@ -13,7 +13,7 @@ struct TaskEdition: View {
     @State private var selectedStatus: Status = .notStarted // New state for status
     @State private var selectedTag: Tag = .none
     @State private var selectedPriority: Priority = .niceToDo
-    @State private var showExpanded: Bool = false
+    @State private var showExpanded: Bool = true
     @State private var hasUserSelectedPriority = false
     
     @State private var text: String = ""
@@ -280,5 +280,5 @@ struct TaskEdition: View {
 
 
 #Preview {
-    TaskEdition(viewModel: TaskCreationViewModel(), storageViewModel: TaskBankViewModel(), showExpanded: false, onComplete:{_ in })
+    TaskEdition(viewModel: TaskCreationViewModel(), storageViewModel: TaskBankViewModel(), showExpanded: true, onComplete:{_ in })
 }
