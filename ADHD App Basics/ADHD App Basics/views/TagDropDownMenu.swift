@@ -43,26 +43,36 @@ struct TagDropDownMenu: View {
             
             if isExpanded {
                 ForEach(Tag.allCases, id: \.self) { tag in
-                    HStack(alignment: .center) {
+//                    ZStack(alignment: .leading){
+//                        Rectangle()
+//                            .fill(.clear)
+//                            .frame(width:.infinity, height: 40)
+//                            .padding(0)
+                        HStack(alignment: .center) {
 
-                        Image(systemName: "tag")
-                            .foregroundColor(tag.color)
-                        Text(tag.name) // Use enum-defined name
-                            .font(Font.custom("Helvetica", size: 14))
-                            .foregroundColor(tag.color)
+                            Image(systemName: "tag")
+                                .foregroundColor(tag.color)
+                            Text(tag.name) // Use enum-defined name
+                                .font(Font.custom("Helvetica", size: 14))
+                                .foregroundColor(tag.color)
+                        }
+                        .padding(.leading, 8)
+                        .padding(.trailing, 12)
+                        .padding(.vertical, 1)
+                         // Use enum-defined background color
+                        
+                        .frame(maxWidth: .infinity, maxHeight:40, alignment: .leading)
+                        .background(.clear)
+                        .cornerRadius(15)
+                        .padding(.leading, 20)
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            selectedTag = tag
+                            isExpanded = false
                     }
-                    .padding(.leading, 8)
-                    .padding(.trailing, 12)
-                    .padding(.vertical, 4)
-                    .background(.clear) // Use enum-defined background color
-                    
-                    .cornerRadius(15)
-                    .padding(.leading, 20)
                     //.transition(.opacity.combined(with: .slide))
-                    .onTapGesture {
-                        selectedTag = tag
-                        isExpanded = false
-                    }
+                    
+//                    }
                     
                     .padding(.vertical, 5)
                 }
