@@ -20,12 +20,14 @@ struct TaskEdition: View {
     @StateObject var viewModel = TaskCreationViewModel()
     @StateObject var storageViewModel = TaskBankViewModel()
     var onComplete : (Bool) -> Void = { _ in }
+    var onError : () -> Void = { }
     
-    init(viewModel: TaskCreationViewModel, storageViewModel: TaskBankViewModel, showExpanded: Bool , onComplete: @escaping (Bool) -> Void) {
+    init(viewModel: TaskCreationViewModel, storageViewModel: TaskBankViewModel, showExpanded: Bool , onComplete: @escaping (Bool) -> Void, onError: @escaping () -> Void) {
         _viewModel = StateObject(wrappedValue: viewModel)
         _storageViewModel = StateObject(wrappedValue: storageViewModel)
         self.showExpanded = showExpanded
         self.onComplete = onComplete //not invoking, just saving.
+        self.onError = onError
         //        self.tagDropDown = TagDropDownMenu()
         //self.statusDropDown = StatusDropDownMenu()
         //  self.selectedPriority = selectedPriority
@@ -250,17 +252,37 @@ struct TaskEdition: View {
 //                        viewModel.fTask.tag = selectedTag
 //                        viewModel.fTask.status = selectedStatus
                     
-                    //viewModel.createTask returns nil if the task data is no-good
-                    let newlyEditedTask = viewModel.createTask(with:selectedPriority)
-                    self.onComplete(true)
                     
-                    
-                    //only add to storage if the task was successfully created (aka, it's not nil)
-                    if let a = newlyEditedTask {
-                        storageViewModel.updateTask(a)
-                        // put a flag here to make it all disapear
+                    if (viewModel.fTask.taskAssignment?.priority != selectedPriority) {
+                        let tasksAlreadyInTodaysPriority = storageViewModel.getTodaysTaskForPriority(priority: selectedPriority)
+                        if (tasksAlreadyInTodaysPriority.count < 3)
+                        {
+                            //viewModel.createTask returns nil if the task data is no-good
+                            let newlyEditedTask = viewModel.createTask(with:selectedPriority)
+                            self.onComplete(true)
+                            
+                            //only add to storage if the task was successfully created (aka, it's not nil)
+                            if let a = newlyEditedTask {
+                                storageViewModel.updateTask(a)
+                                // put a flag here to make it all disapear
+                            }
+                        } else {
+                            self.onError()
+                        }
+                    } else {
+                        //viewModel.createTask returns nil if the task data is no-good
+                        let newlyEditedTask = viewModel.createTask(with:selectedPriority)
+                        self.onComplete(true)
                         
+                        //only add to storage if the task was successfully created (aka, it's not nil)
+                        if let a = newlyEditedTask {
+                            storageViewModel.updateTask(a)
+                            // put a flag here to make it all disapear
+                        }
                     }
+                    
+                    
+
                     
                 }) {
                     Text("Update Task ")
@@ -292,5 +314,5 @@ struct TaskEdition: View {
 
 
 #Preview {
-    TaskEdition(viewModel: TaskCreationViewModel(), storageViewModel: TaskBankViewModel(), showExpanded: true, onComplete:{_ in })
+    TaskEdition(viewModel: TaskCreationViewModel(), storageViewModel: TaskBankViewModel(), showExpanded: true, onComplete:{_ in }, onError: {})
 }

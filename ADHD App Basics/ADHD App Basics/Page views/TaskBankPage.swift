@@ -288,8 +288,7 @@ struct TaskBankPage: View {
                                     print("scooby doo")
                                     onEdit?(task)
                                 },onSelect: { selected in
-                                    
-                                    onEdit?(task)
+                                    searchIsFocused = false
                                 }, selectionModeEnabled : isSelectionMode
                             
                                 )
@@ -326,10 +325,10 @@ struct TaskBankPage: View {
                 
                         
                         VStack{
-                            TaskCreation(viewModel: TaskCreationViewModel(), storageViewModel: viewModel, showExpanded: false, onComplete: {_ in
-                                viewModel.showTextFieldOverlay = false
-                                
-                            })
+//                            TaskCreation(viewModel: TaskCreationViewModel(), storageViewModel: viewModel, showExpanded: false, onComplete: {_ in
+//                                viewModel.showTextFieldOverlay = false
+//                                
+//                            })
 
                             //input field
     //                        TextField ("Task title:", text: $viewModel.userTaskTitle)

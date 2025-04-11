@@ -33,6 +33,8 @@ struct ContentView: View {
                         TodaysPage(viewModel: myViewModel,onEdit:{selectedTask in
                             taskEditionViewModel.fTask = selectedTask
                             showTaskEditionOverlay = true
+                        }, onError: {
+                            viewModel.errorToast()
                         })
                     case 2:
                        // Text ("this is tab 2 lol lol ")
@@ -320,6 +322,8 @@ struct ContentView: View {
                         if (taskCreated) {
                             viewModel.startToast()
                         }
+                    }, onError: {
+                        viewModel.errorToast()
                     })
                 }
 
@@ -335,8 +339,41 @@ struct ContentView: View {
                             if (taskEdited) {
                                 viewModel.editionToast()
                             }
+                        }, onError: {
+                            viewModel.errorToast()
                         })
                     }
+                
+            }
+            
+            
+            if ( viewModel.errorToastVisible) {
+                HStack(alignment: .center){
+                    
+                    Image("success-icon")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 24, height: 24)
+                        .foregroundColor(Color("ToastSuccessBody"))
+                    
+                    Text("Bruh")
+                        .font(Font.custom("Helvetica", size: 16))
+                        .foregroundColor(Color("ToastSuccessBody"))
+                }
+                .frame(maxHeight: 55)
+                .frame(maxWidth: 200)
+                .background(Color("ToastSuccessBackground"))
+                .cornerRadius(15)
+                .shadow(color: .black.opacity(0.15), radius: 2, x: 0, y: 2)
+                .overlay(
+                RoundedRectangle(cornerRadius: 15)
+                .inset(by: 0.5)
+                .stroke(Color("ToastSuccessBody"), lineWidth: 1)
+
+                )
+            
+            
+                .padding(.bottom, 680)
                 
             }
             

@@ -158,9 +158,11 @@ struct TaskCard: View {
             if selectionModeEnabled{
                 cardSelected.toggle()
                 onSelect(cardSelected)
+            } else {
+                onSelect(false)
             }
            
-        }.allowsHitTesting(selectionModeEnabled)
+        }
         
         
     }
