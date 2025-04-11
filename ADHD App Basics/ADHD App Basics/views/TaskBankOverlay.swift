@@ -163,7 +163,7 @@ struct TaskBankOverlay: View {
                         
                         HStack(){
                             //instructions
-                            Text("Select up to 3 Tasks to add to the \(priority.name.lowercased().capitalized) sections")
+                            Text("Select Tasks to add to the \(priority.name.lowercased().capitalized) sections or tap the '+' button to create a new task")
                                 .font(Font.custom("Helvetica", size: 15))
                                 .fontWeight(.regular)
                                 .foregroundColor(Color("BodyCopy"))
@@ -401,7 +401,7 @@ struct TaskBankOverlay: View {
                         }
 
                     MultiplePickerView(selectedSensor: $selectedFilter)
-                        .frame(width: 350, height: 730)
+                        .frame(width: 350, height: 590)
                         .background(.ultraThinMaterial)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
                         .shadow(radius: 10)
