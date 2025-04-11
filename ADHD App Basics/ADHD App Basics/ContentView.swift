@@ -349,27 +349,27 @@ struct ContentView: View {
             
             
             if ( viewModel.errorToastVisible) {
-                HStack(alignment: .center){
+                HStack(alignment: .top){
                     
-                    Image("success-icon")
+                    Image("error-icon")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 24, height: 24)
-                        .foregroundColor(Color("ToastSuccessBody"))
+                        .foregroundColor(Color("ToastErrorBody"))
                     
-                    Text("Bruh")
+                    Text("Sorry, only 3 tasks allowed per priority. \nPlease remove a task from this section.")
                         .font(Font.custom("Helvetica", size: 16))
-                        .foregroundColor(Color("ToastSuccessBody"))
+                        .foregroundColor(Color("ToastErrorBody"))
                 }
-                .frame(maxHeight: 55)
-                .frame(maxWidth: 200)
-                .background(Color("ToastSuccessBackground"))
+                .frame(maxHeight: 70)
+                .frame(maxWidth: 360)
+                .background(Color("ToastErrorBackground"))
                 .cornerRadius(15)
                 .shadow(color: .black.opacity(0.15), radius: 2, x: 0, y: 2)
                 .overlay(
                 RoundedRectangle(cornerRadius: 15)
                 .inset(by: 0.5)
-                .stroke(Color("ToastSuccessBody"), lineWidth: 1)
+                .stroke(Color("ToastErrorBody"), lineWidth: 1)
 
                 )
             
