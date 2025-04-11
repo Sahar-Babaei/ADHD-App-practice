@@ -79,7 +79,7 @@ struct SettingsPage: View {
                         .cornerRadius(15)
                         
                         .padding(.horizontal)
-                        .padding(.bottom,74)
+                        .padding(.bottom,95)
                         
                         
                        // .background(.red)
