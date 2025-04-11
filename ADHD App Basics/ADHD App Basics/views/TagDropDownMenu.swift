@@ -24,7 +24,7 @@ struct TagDropDownMenu: View {
                         Image(systemName: "tag")
                             .foregroundColor(selectedTag.color)
                         Text(selectedTag.name) // Display selected status
-                            .font(Font.custom("Helvetica", size: 14))
+                            .font(Font.custom("Helvetica", size: 15))
                             .foregroundColor(selectedTag.color)
                     }
                     Spacer()
@@ -38,6 +38,13 @@ struct TagDropDownMenu: View {
                 
                 .background(Color("FieldBackground"))
                 .cornerRadius(12)
+                
+                .overlay(
+                    Rectangle()
+                        .frame(height: 1)
+                        .foregroundColor(isExpanded ? Color("BodyCopy").opacity(0.2): Color(.clear)),
+                    alignment: .bottom
+                )
             }
             .buttonStyle(PlainButtonStyle())
             
@@ -51,7 +58,7 @@ struct TagDropDownMenu: View {
                         HStack(alignment: .center) {
 
                             Image(systemName: "tag")
-                                .font(.system(size: 13))
+                                .font(.system(size: 14))
                                 .foregroundColor(tag.color)
                             Text(tag.name) // Use enum-defined name
                                 .font(Font.custom("Helvetica", size: 14))
@@ -75,9 +82,11 @@ struct TagDropDownMenu: View {
                     
 //                    }
                     
-                    .padding(.vertical, 5)
+                    //.padding(.vertical, 4)
+                    .padding(.top,5)
+                    .padding(.bottom,5)
                 }
-                .padding(.bottom,10)
+                .padding(.bottom,6)
             }
             
         }

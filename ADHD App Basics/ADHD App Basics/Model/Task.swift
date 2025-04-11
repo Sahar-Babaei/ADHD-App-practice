@@ -11,7 +11,7 @@ import SwiftUI
 
 class Task: Codable {
     
-    var name = "default task title"
+    var name = ""
     
     var hiddenName: String {
         get {

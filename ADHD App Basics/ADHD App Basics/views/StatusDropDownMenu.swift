@@ -24,6 +24,14 @@ struct StatusDropDownMenu: View {
                             .font(Font.custom("Helvetica", size: 14))
                             .foregroundColor(selectedStatus.bodyColor)
                     }
+                    .padding(.leading, 8)
+                    .padding(.trailing, 12)
+                    .padding(.vertical, 4)
+                    .background(selectedStatus.backgroundColor)
+                    .cornerRadius(12)
+                    //.padding(.leading, 20)
+                    
+                    
                     Spacer()
                     
                     Image(systemName: isExpanded ? "chevron.down" : "chevron.right")
@@ -34,6 +42,14 @@ struct StatusDropDownMenu: View {
                 .frame(maxWidth: .infinity)
                 .background(Color("FieldBackground"))
                 .cornerRadius(12)
+                
+                    .overlay(
+                        Rectangle()
+                            .frame(height: 1)
+                            .foregroundColor(isExpanded ? Color("BodyCopy").opacity(0.2): Color(.clear)),
+                        alignment: .bottom
+                    )
+                
             }
             .buttonStyle(PlainButtonStyle())
 
@@ -45,7 +61,7 @@ struct StatusDropDownMenu: View {
                             .frame(width: 8, height: 8)
                         
                         Text(status.name)
-                            .font(Font.custom("Helvetica", size: 13))
+                            .font(Font.custom("Helvetica", size: 14))
                             .foregroundColor(status.bodyColor)
                     }
                     .padding(.leading, 8)
@@ -53,8 +69,8 @@ struct StatusDropDownMenu: View {
                     .padding(.vertical, 4)
                     .background(status.backgroundColor)
                     .cornerRadius(12)
-                    .padding(.leading, 20)
-                    .frame(maxWidth: .infinity, maxHeight:20, alignment: .leading)
+                    .padding(.leading, 35)
+                    .frame(maxWidth: .infinity, maxHeight:17, alignment: .leading)
                     .background(.clear)
                     //.transition(.opacity.combined(with: .slide))
                     .contentShape(Rectangle())
@@ -62,9 +78,12 @@ struct StatusDropDownMenu: View {
                         selectedStatus = status
                         isExpanded = false
                     }
-                    .padding(.vertical, 5)
+                    .padding(.top,8)
+                    .padding(.bottom,6)
                 }
-                .padding(.bottom,10)
+                .padding(.bottom,8)
+                //.padding(.top,12)
+                
             }
             
         }

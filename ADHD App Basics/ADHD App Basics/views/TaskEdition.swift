@@ -143,28 +143,34 @@ struct TaskEdition: View {
                                     
                                     HStack(spacing: 10) {
                                         ForEach(Priority.allCases, id: \.self) { priority in
-                                            Text(priority.name)
-                                                .font(Font.custom("Helvetica", size: 13))
-                                                .foregroundColor(Color("BodyCopy"))
+                                            Text(priority.name.lowercased().capitalized)
+                                                .font(Font.custom("Helvetica", size: 14))
+                                                .foregroundColor(
+                                                    (hasUserSelectedPriority
+                                                     ? (selectedPriority == priority)
+                                                     : (viewModel.fTask.taskAssignment?.priority == priority))
+                                                    ? Color("BodyCopyReverse")
+                                                    :  Color("BodyCopy")
+                                                )
                                             
                                                 .frame(maxWidth: .infinity, minHeight: 50)
                                                 .background(
                                                     (hasUserSelectedPriority
                                                      ? (selectedPriority == priority)
                                                      : (viewModel.fTask.taskAssignment?.priority == priority))
-                                                    ? Color.yellow
-                                                    : Color.gray.opacity(0.2)
+                                                    ? Color("TagNoColor")
+                                                    :  Color(.clear)
                                                 )
                                                 .cornerRadius(8)
-                                                .overlay(
-                                                    RoundedRectangle(cornerRadius: 8)
-                                                        .stroke(
-                                                            (hasUserSelectedPriority
-                                                             ? (selectedPriority == priority)
-                                                             : (viewModel.fTask.taskAssignment?.priority == priority))
-                                                            ? Color.orange
-                                                            : Color.gray.opacity(0.2), lineWidth: 2)
-                                                )
+//                                                .overlay(
+//                                                    RoundedRectangle(cornerRadius: 8)
+//                                                        .stroke(
+//                                                            (hasUserSelectedPriority
+//                                                             ? (selectedPriority == priority)
+//                                                             : (viewModel.fTask.taskAssignment?.priority == priority))
+//                                                            ? Color.orange
+//                                                            :  Color(.clear), lineWidth: 2)
+//                                                )
                                                 .onTapGesture {
                                                     selectedPriority = priority
                                                     hasUserSelectedPriority = true
@@ -172,7 +178,7 @@ struct TaskEdition: View {
                                         }
                                     }
                                     .padding(4)
-                                    .background(.blue)
+                                    .background(Color("FieldBackground"))
                                     .cornerRadius(12)
                                 }
                                 .padding(.vertical,10)

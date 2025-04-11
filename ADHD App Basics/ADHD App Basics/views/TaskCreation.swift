@@ -130,23 +130,23 @@ struct TaskCreation: View {
                                     HStack(spacing: 10) {
                                         ForEach(Priority.allCases, id: \.self) { priority in
                                             Text(priority.name.lowercased().capitalized)
-                                                .font(Font.custom("Helvetica", size: 13))
-                                                .foregroundColor(Color("BodyCopy"))
+                                                .font(Font.custom("Helvetica", size: 14))
+                                                .foregroundColor(selectedPriority == priority ? Color("BodyCopyReverse") : Color("BodyCopy"))
                                             
                                                 .frame(maxWidth: .infinity, minHeight: 45)
-                                                .background(selectedPriority == priority ? Color.yellow : Color.gray.opacity(0.2))
+                                                .background(selectedPriority == priority ? Color("TagNoColor") : Color(.clear))
                                                 .cornerRadius(8)
-                                                .overlay(
-                                                    RoundedRectangle(cornerRadius: 8)
-                                                        .stroke(selectedPriority == priority ? Color.orange : Color.clear, lineWidth: 2)
-                                                )
+//                                                .overlay(
+//                                                    RoundedRectangle(cornerRadius: 8)
+//                                                        .stroke(selectedPriority == priority ? Color.orange : Color.clear, lineWidth: 2)
+//                                                )
                                                 .onTapGesture {
                                                     selectedPriority = priority
                                                 }
                                         }
                                     }
                                     .padding(4)
-                                    .background(.blue)
+                                    .background(Color("FieldBackground"))
                                     .cornerRadius(12)
                                     
                                 }
