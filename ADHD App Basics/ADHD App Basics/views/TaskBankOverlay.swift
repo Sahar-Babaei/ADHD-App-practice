@@ -41,6 +41,8 @@ struct TaskBankOverlay: View {
     //selection mode adding tasks to today's plan
     @State private var counter = 0
     
+    @State private var bankIsEmpty: Bool = false
+    
 //    private var selectCardGesture: some Gesture {
 //        isSelectionMode ? (TapGesture().onEnded { counter += 1 }) : nil
 //    }
@@ -82,8 +84,10 @@ struct TaskBankOverlay: View {
         } else {
             searchItems
         }
+        print(filteredTasks.count)
         print(filteredTasks)
         print("selected filter:" + selectedFilter)
+     
         return filteredTasks
         
     }
@@ -388,6 +392,8 @@ struct TaskBankOverlay: View {
                             }
                         }
                 }
+                
+                
                 
                 if presentingSheet{
                         Color.black.opacity(0.4) // Dimming effect

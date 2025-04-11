@@ -34,6 +34,7 @@ struct TaskBankPage: View {
     
     //selection mode adding tasks to today's plan
     @State private var counter = 0
+    @State private var taskBankIsEmpty: Bool = false
     
     @FocusState private var searchIsFocused: Bool
     
@@ -391,6 +392,41 @@ struct TaskBankPage: View {
     
                 
                 }
+                
+                if viewModel.allTasksList.isEmpty{
+                    ZStack{
+                        Image("DoDudePointDown")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 150, height: 150)
+                            .padding()
+                        
+                        HStack(){
+                            Text("Let's get to it! Add your first task with the + button below")
+                                .font(Font.custom("Instrument Sans", size: 16))
+                                .foregroundColor(Color("BodyCopy"))
+                                .padding()
+                        }
+                        .frame(maxHeight: 75)
+                        .frame(maxWidth: 280)
+                        .background(Color("BodyCopyReverse"))
+                        .cornerRadius(15)
+                        .shadow(color: .black.opacity(0.15), radius: 2, x: 0, y: 2)
+                        .overlay(
+                        RoundedRectangle(cornerRadius: 15)
+                        .inset(by: 0.5)
+                        .stroke(Color("BodyCopy"), lineWidth: 1)
+
+                        )
+                        .padding(.top, 220)
+                            
+                    }
+                    
+                    
+                }
+                    
+
+                
                 
                 if presentingSheet{
 
