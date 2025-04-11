@@ -80,7 +80,7 @@ class TaskBankViewModel: ObservableObject {
         }
     }
     
-    func getAllTasksForPriority(priority: Priority) -> [Task] {
+    func getTodaysTaskForPriority(priority: Priority) -> [Task] {
         let calendar = Calendar.current
         let todaysDate = Date()
         

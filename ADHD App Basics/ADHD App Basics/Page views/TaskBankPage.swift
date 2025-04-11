@@ -35,6 +35,8 @@ struct TaskBankPage: View {
     //selection mode adding tasks to today's plan
     @State private var counter = 0
     
+    @FocusState private var searchIsFocused: Bool
+    
 //    private var selectCardGesture: some Gesture {
 //        isSelectionMode ? (TapGesture().onEnded { counter += 1 }) : nil
 //    }
@@ -61,6 +63,7 @@ struct TaskBankPage: View {
     var filteredItems: [Task] {
         var items = viewModel.allTasksList
         
+        searchIsFocused = false
         let searchItems = if !searchText.isEmpty  {
             items.filter {$0.name.localizedCaseInsensitiveContains(searchText) }
         } else {
@@ -209,6 +212,7 @@ struct TaskBankPage: View {
                             TextField("Search...", text: $searchText)
                                 .padding(.horizontal)
                                 .foregroundColor(Color("FiltersBodycopy"))
+                                .focused($searchIsFocused)
 
                             
     //                        Text("search")
@@ -292,6 +296,7 @@ struct TaskBankPage: View {
 //                                if isSelectionMode {
                                     .onTapGesture {
                                         print("this thing works: " + task.name )
+                                        searchIsFocused = false
                                     }
 //                                }
 //                                .onTapGesture {
@@ -375,7 +380,7 @@ struct TaskBankPage: View {
                     withAnimation {
                         presentingSheet=false
                     }
-                    
+                    searchIsFocused = false
                 }
                 .onChange(of: selectedFilter) {
     
