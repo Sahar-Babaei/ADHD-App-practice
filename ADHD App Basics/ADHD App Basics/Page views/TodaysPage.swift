@@ -47,12 +47,14 @@ struct TodaysPage: View {
                             Text(a)
                                 .font(Font.custom("Helvetica", size: 15))
                                 .foregroundColor(Color("BodyCopy"))
+                                .padding(.top, 7)
+                                .padding(.leading,3)
                         }
                         Spacer()
                     }
                     .padding(.horizontal, 12)
-                    .padding(.vertical, 10)
-
+                    .padding(.top, 10)
+                    .padding(.bottom, 8)
                     
                     //the sections
                     ScrollView{
