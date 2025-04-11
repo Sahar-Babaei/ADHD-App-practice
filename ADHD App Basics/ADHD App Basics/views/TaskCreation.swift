@@ -110,6 +110,8 @@ struct TaskCreation: View {
                         .padding(.vertical,20)
                         
                         //status
+                        
+                        
                         VStack(alignment: .leading){
                             Text("Status")
                                 .font(Font.custom("Instrument Sans", size: 14)) // Set the custom font
@@ -166,32 +168,41 @@ struct TaskCreation: View {
                         //should only show if showExpanded is false
                         if !showExpanded {
                             //status
-                            HStack(alignment: .center, spacing: 5) {
-                                Circle()
-                                    .fill(selectedStatus.bodyColor)
-                                    .frame(width: 8, height: 8)
-                                
-                                Text(selectedStatus.name)
-                                    .font(Font.custom("Helvetica", size: 13))
-                                    .foregroundColor(selectedStatus.bodyColor)
+                            Button(action: {
+                                showExpanded = true
+                            }){
+                                HStack(alignment: .center, spacing: 5) {
+                                    Circle()
+                                        .fill(selectedStatus.bodyColor)
+                                        .frame(width: 8, height: 8)
+                                    
+                                    Text(selectedStatus.name)
+                                        .font(Font.custom("Helvetica", size: 13))
+                                        .foregroundColor(selectedStatus.bodyColor)
+                                }
+                                .padding(.leading, 8)
+                                .padding(.trailing, 12)
+                                .padding(.vertical, 4)
+                                .background(selectedStatus.backgroundColor)
+                                .cornerRadius(10)
                             }
-                            .padding(.leading, 8)
-                            .padding(.trailing, 12)
-                            .padding(.vertical, 4)
-                            .background(selectedStatus.backgroundColor)
-                            .cornerRadius(10)
                             
-                            //tag
-                            HStack(spacing:2){
-                                
-                                Image(systemName: "tag")
-                                    .font(.system(size: 13))
-                                    .foregroundColor(selectedTag.color)
-                                
-                                Text(selectedTag.name)
-                                    .font(Font.custom("Helvetica", size: 13))
-                                    .foregroundColor(selectedTag.color)
+                            Button (action: {
+                                showExpanded = true
+                            }){
+                                //tag
+                                HStack(spacing:2){
+                                    
+                                    Image(systemName: "tag")
+                                        .font(.system(size: 13))
+                                        .foregroundColor(selectedTag.color)
+                                    
+                                    Text(selectedTag.name)
+                                        .font(Font.custom("Helvetica", size: 13))
+                                        .foregroundColor(selectedTag.color)
+                                }
                             }
+                            
                         }
                     }
                     // .padding(.bottom)

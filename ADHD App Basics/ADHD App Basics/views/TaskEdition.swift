@@ -188,32 +188,41 @@ struct TaskEdition: View {
                         //should only show if showExpanded is false
                         if !showExpanded {
                             //status
-                            HStack(alignment: .center, spacing: 5) {
-                                Circle()
-                                    .fill(viewModel.fTask.status.bodyColor)
-                                    .frame(width: 8, height: 8)
-                                
-                                Text(viewModel.fTask.status.name)
-                                    .font(Font.custom("Helvetica", size: 13))
-                                    .foregroundColor(viewModel.fTask.status.bodyColor)
+                            Button(action: {
+                                showExpanded = true
+                            }){
+                                HStack(alignment: .center, spacing: 5) {
+                                    Circle()
+                                        .fill(viewModel.fTask.status.bodyColor)
+                                        .frame(width: 8, height: 8)
+                                    
+                                    Text(viewModel.fTask.status.name)
+                                        .font(Font.custom("Helvetica", size: 13))
+                                        .foregroundColor(viewModel.fTask.status.bodyColor)
+                                }
+                                .padding(.leading, 8)
+                                .padding(.trailing, 12)
+                                .padding(.vertical, 4)
+                                .background(viewModel.fTask.status.backgroundColor)
+                                .cornerRadius(10)
                             }
-                            .padding(.leading, 8)
-                            .padding(.trailing, 12)
-                            .padding(.vertical, 4)
-                            .background(viewModel.fTask.status.backgroundColor)
-                            .cornerRadius(10)
                             
-                            //tag
-                            HStack(spacing:2){
-                                
-                                Image(systemName: "tag")
-                                    .font(.system(size: 13))
-                                    .foregroundColor(viewModel.fTask.tag.color)
-                                
-                                Text(viewModel.fTask.tag.name)
-                                    .font(Font.custom("Helvetica", size: 13))
-                                    .foregroundColor(viewModel.fTask.tag.color)
+                            Button( action: {
+                                showExpanded = true
+                            }){
+                                //tag
+                                HStack(spacing:2){
+                                    
+                                    Image(systemName: "tag")
+                                        .font(.system(size: 13))
+                                        .foregroundColor(viewModel.fTask.tag.color)
+                                    
+                                    Text(viewModel.fTask.tag.name)
+                                        .font(Font.custom("Helvetica", size: 13))
+                                        .foregroundColor(viewModel.fTask.tag.color)
+                                }
                             }
+                            
                         }
                     }
                     //.padding(.bottom)
