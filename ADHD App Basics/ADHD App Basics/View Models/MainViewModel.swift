@@ -12,6 +12,8 @@ class MainViewModel: ObservableObject {
     @Published var creationToastVisible: Bool = false
     @Published var errorToastVisible: Bool = false
     @Published var editionToastVisible: Bool = false
+    @Published var nameErrorToastVisible: Bool = false
+    
     
     func startToast() {
         creationToastVisible = true
@@ -31,6 +33,13 @@ class MainViewModel: ObservableObject {
         errorToastVisible = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.errorToastVisible = false
+        }
+    }
+    
+    func nameErrorToast() {
+        nameErrorToastVisible = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.nameErrorToastVisible = false
         }
     }
 }

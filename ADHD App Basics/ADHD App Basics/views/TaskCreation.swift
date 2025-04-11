@@ -26,13 +26,15 @@ struct TaskCreation: View {
     @StateObject var storageViewModel = TaskBankViewModel()
     var onComplete : (Bool) -> Void = { _ in }
     var onError : () -> Void = { }
+    var onEmptyNameError : () -> Void = { }
     
-    init(viewModel: TaskCreationViewModel, storageViewModel: TaskBankViewModel, showExpanded: Bool , onComplete: @escaping (Bool) -> Void, onError: @escaping () -> Void) {
+    init(viewModel: TaskCreationViewModel, storageViewModel: TaskBankViewModel, showExpanded: Bool , onComplete: @escaping (Bool) -> Void, onError: @escaping () -> Void,onEmptyNameError: @escaping () -> Void ) {
         _viewModel = StateObject(wrappedValue: viewModel)
         _storageViewModel = StateObject(wrappedValue: storageViewModel)
         self.showExpanded = showExpanded
         self.onComplete = onComplete //not invoking, just saving.
         self.onError = onError
+        self.onEmptyNameError = onEmptyNameError
         //        self.tagDropDown = TagDropDownMenu()
         //self.statusDropDown = StatusDropDownMenu()
       //  self.selectedPriority = selectedPriority
@@ -297,16 +299,27 @@ struct TaskCreation: View {
 
                     
                     let tasksAlreadyInTodaysPriority = storageViewModel.getTodaysTaskForPriority(priority: selectedPriority)
-                    if (tasksAlreadyInTodaysPriority.count < 3)
+                    
+                    if (tasksAlreadyInTodaysPriority.count < 3 )
                     {
-                        let newlyCreatedTask = viewModel.createTask(with:selectedPriority)
-                        self.onComplete(true)
-                        
-                        //only add to storage if the task was successfully created (aka, it's not nil)
-                        if let a = newlyCreatedTask {
-                            storageViewModel.addTask(a)
-                            // put a flag here to make it all disapear
+                        if viewModel.fTask.name.isEmpty{
+                            self.onEmptyNameError()
+                            
                         }
+ 
+                            else{
+                                let newlyCreatedTask = viewModel.createTask(with:selectedPriority)
+                                self.onComplete(true)
+                                
+                                
+                                //only add to storage if the task was successfully created (aka, it's not nil)
+                                    if let a = newlyCreatedTask {
+                                        storageViewModel.addTask(a)
+                                        // put a flag here to make it all disapear
+                                    }
+                               
+                            }
+                        
                     } else {
                         self.onError()
                     }
@@ -369,5 +382,5 @@ struct RoundedCorners: Shape {
 }
 
 #Preview {
-    TaskCreation(viewModel: TaskCreationViewModel(), storageViewModel: TaskBankViewModel(), showExpanded: false, onComplete:{_ in }, onError: {})
+    TaskCreation(viewModel: TaskCreationViewModel(), storageViewModel: TaskBankViewModel(), showExpanded: false, onComplete:{_ in }, onError: {},onEmptyNameError:{})
 }

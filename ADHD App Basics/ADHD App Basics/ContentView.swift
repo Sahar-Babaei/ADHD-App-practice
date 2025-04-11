@@ -325,6 +325,8 @@ struct ContentView: View {
                         }
                     }, onError: {
                         viewModel.errorToast()
+                    },onEmptyNameError: {
+                        viewModel.nameErrorToast()
                     })
                 }
 
@@ -347,6 +349,35 @@ struct ContentView: View {
                 
             }
             
+            if ( viewModel.nameErrorToastVisible) {
+                HStack(alignment: .center){
+                    
+                    Image("success-icon")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 24, height: 24)
+                        .foregroundColor(Color("ToastSuccessBody"))
+                    
+                    Text("Please Enter a Task Name")
+                        .font(Font.custom("Helvetica", size: 16))
+                        .foregroundColor(Color("ToastSuccessBody"))
+                }
+                .frame(maxHeight: 55)
+                .frame(maxWidth: 200)
+                .background(Color("ToastSuccessBackground"))
+                .cornerRadius(15)
+                .shadow(color: .black.opacity(0.15), radius: 2, x: 0, y: 2)
+                .overlay(
+                RoundedRectangle(cornerRadius: 15)
+                .inset(by: 0.5)
+                .stroke(Color("ToastSuccessBody"), lineWidth: 1)
+
+                )
+            
+            
+                .padding(.bottom, 680)
+                
+            }
             
             if ( viewModel.errorToastVisible) {
                 HStack(alignment: .center){
