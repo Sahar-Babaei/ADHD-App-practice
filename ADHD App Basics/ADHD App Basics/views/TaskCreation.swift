@@ -183,6 +183,7 @@ struct TaskCreation: View {
                             HStack(spacing:2){
                                 
                                 Image(systemName: "tag")
+                                    .font(.system(size: 13))
                                     .foregroundColor(selectedTag.color)
                                 
                                 Text(selectedTag.name)
