@@ -153,8 +153,9 @@ struct TaskBankOverlay: View {
 //                        .padding(.bottom, 10)
 //                        .padding(.vertical, 10)
 //                        .padding(.top, 15)
-                        .padding(.top,15)
                         .padding(.bottom,0)
+                        .padding(.top,15)
+                        //.padding(.bottom,0)
                         .padding(.horizontal)
                         //.background(.red)
                         
@@ -163,8 +164,8 @@ struct TaskBankOverlay: View {
                         HStack(){
                             //instructions
                             Text("Select up to 3 Tasks to add to the \(priority.name.lowercased().capitalized) sections")
-                                .font(Font.custom("Helvetica", size: 14))
-                                .fontWeight(.bold)
+                                .font(Font.custom("Helvetica", size: 15))
+                                .fontWeight(.regular)
                                 .foregroundColor(Color("BodyCopy"))
                             //.background(.orange)
                             
@@ -176,9 +177,9 @@ struct TaskBankOverlay: View {
                        // .padding()
 //                        .padding(.bottom,18)
 //                        .padding(.top,4)
-                        .padding(.vertical)
-                        .padding(.top,0)
-                        .padding(.bottom,0)
+                        .padding(.horizontal,2)
+                        .padding(.top,10)
+                        .padding(.bottom,15)
                         //.background(Color("TagNoColor"))
                         
 
@@ -189,6 +190,7 @@ struct TaskBankOverlay: View {
                             .foregroundColor(Color("MainForeground")),
                         alignment: .bottom
                     )
+                    .padding(.top,6)
                     .padding(.bottom,10)
                     
 //                    .padding(.bottom, 12)

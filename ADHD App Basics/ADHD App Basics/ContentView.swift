@@ -136,7 +136,7 @@ struct ContentView: View {
                                     Image("menu-tab-1")
                                         .resizable()
                                         .scaledToFit()
-                                        .frame(width: 24, height: 24)
+                                        .frame(width: 26, height: 26)
                                         .foregroundColor(Color("BodyCopy"))
                                     
                                     //for the bg
@@ -144,7 +144,7 @@ struct ContentView: View {
                                         .padding(.horizontal, 25)
                                     
                                     //.background(.white.opacity(0.3))
-                                        .background(selectedTab == 1 ? Color("MenuButtonBackground") : .clear )
+                                        .background(selectedTab == 1 ? Color("BodyCopyReverse").opacity(0.22) : .clear )
                                     
                                         .cornerRadius(30)
                                         .overlay(
@@ -161,7 +161,7 @@ struct ContentView: View {
                                     Image("menu-tab-2")
                                         .resizable()
                                         .scaledToFit()
-                                        .frame(width: 24, height: 24)
+                                        .frame(width: 26, height: 26)
                                         .foregroundColor(Color("BodyCopy"))
                                     
                                     //for the bg
@@ -169,7 +169,7 @@ struct ContentView: View {
                                         .padding(.horizontal, 25)
                                     
                                     //.background(.white.opacity(0.3))
-                                        .background(selectedTab == 2 ? Color("MenuButtonBackground") : .clear )
+                                        .background(selectedTab == 2 ? Color("BodyCopyReverse").opacity(0.22) : .clear )
                                     
                                         .cornerRadius(30)
                                         .overlay(
@@ -187,7 +187,7 @@ struct ContentView: View {
                                     Image("menu-tab-3")
                                         .resizable()
                                         .scaledToFit()
-                                        .frame(width: 24, height: 24)
+                                        .frame(width: 26, height: 26)
                                         .foregroundColor(Color("BodyCopy"))
                                     
                                     //for the bg
@@ -195,7 +195,7 @@ struct ContentView: View {
                                         .padding(.horizontal, 25)
                                     
                                     //.background(.white.opacity(0.3))
-                                        .background(selectedTab == 3 ? Color("MenuButtonBackground") : .clear )
+                                        .background(selectedTab == 3 ? Color("BodyCopyReverse").opacity(0.22) : .clear )
                                     
                                         .cornerRadius(30)
                                         .overlay(
@@ -212,7 +212,7 @@ struct ContentView: View {
                         }
                         //.background(Color.yellow)
                         .padding(.horizontal, 20)
-                        .padding(.top, 20)
+                        .padding(.top, 16)
                         //.padding(.bottom, 5)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         //Don't deleted this commented out below
@@ -225,7 +225,8 @@ struct ContentView: View {
                         //                            //.inset(by: 0.5)
                         //                            //.stroke(Color(red: 0.4, green: 0.4, blue: 0.4), lineWidth: 1)
                         //                    )
-                        .background(Color(.black).opacity(0.2))
+                       // .background(Color("MenuBackground").opacity(0.1))
+                        .background(Color("BodyCopy").opacity(0.15))
                         .background(.ultraThinMaterial)
                         
                         //.blur(radius: 40)
@@ -254,16 +255,17 @@ struct ContentView: View {
                                         Image("menu-tab-4")
                                             .resizable()
                                             .scaledToFit()
-                                            .frame(width: 24, height: 24)
+                                            .frame(width: 30, height: 30)
                                             .foregroundColor(Color("BodyCopy"))
                                         
-                                    }
+                                    }.padding(30)
                                 }
                                 
                             }
-                            .padding(30)
+//                            .padding(30)
                             
-                            .background(selectedTab == 4 ? Color("MenuButtonBackground").opacity(0.2) : Color("MenuButtonBackground"))
+//                            .background(selectedTab == 4 ? Color("MenuButtonBackground").opacity(0.2) : Color("MenuButtonBackground"))
+                            .background(selectedTab == 4 ? Color("BodyCopy").opacity(0.3) : Color("BodyCopy").opacity(0.1))
                             .background(.ultraThinMaterial) //Delete this if it doesn't make it transparent
                             
                             .cornerRadius(57)
@@ -279,7 +281,7 @@ struct ContentView: View {
                                         ),
                                         lineWidth: 1
                                     )
-                                    .opacity(0.5)
+                                    .opacity(0.6)
                                     
                                 
                             )
@@ -311,8 +313,7 @@ struct ContentView: View {
             //MARK: - the outter most layer
             
             
-            if (showTaskCreationOverlay)
-            {
+            if (showTaskCreationOverlay){
                     Color.black.opacity(0.4) // Dimming effect
                         .ignoresSafeArea()
                     .transition(.opacity)
@@ -332,7 +333,7 @@ struct ContentView: View {
                 
                         Color.black.opacity(0.4) // Dimming effect
                             .ignoresSafeArea()
-                        .transition(.opacity)
+                            .transition(.opacity)
                     VStack{
                         TaskEdition(viewModel: taskEditionViewModel, storageViewModel: myViewModel, showExpanded: false, onComplete: { taskEdited in
                             showTaskEditionOverlay = false
