@@ -300,29 +300,35 @@ struct TaskCreation: View {
                     
                     let tasksAlreadyInTodaysPriority = storageViewModel.getTodaysTaskForPriority(priority: selectedPriority)
                     
-                    if (tasksAlreadyInTodaysPriority.count < 3 )
-                    {
-                        if viewModel.fTask.name.isEmpty{
-                            self.onEmptyNameError()
+                    if viewModel.fTask.name.isEmpty{
+                        self.onEmptyNameError()
+                        
+                    }
+                    else{
+                        if (tasksAlreadyInTodaysPriority.count < 3 )
+                        {
+                            
+                            
+                            
+                            let newlyCreatedTask = viewModel.createTask(with:selectedPriority)
+                            self.onComplete(true)
+                            
+                            
+                            //only add to storage if the task was successfully created (aka, it's not nil)
+                            if let a = newlyCreatedTask {
+                                storageViewModel.addTask(a)
+                                // put a flag here to make it all disapear
+                            }
+                            
+                            
+                            
+                        } else {
+                            self.onError()
                             
                         }
- 
-                            else{
-                                let newlyCreatedTask = viewModel.createTask(with:selectedPriority)
-                                self.onComplete(true)
-                                
-                                
-                                //only add to storage if the task was successfully created (aka, it's not nil)
-                                    if let a = newlyCreatedTask {
-                                        storageViewModel.addTask(a)
-                                        // put a flag here to make it all disapear
-                                    }
-                               
-                            }
-                        
-                    } else {
-                        self.onError()
                     }
+                    
+                    //TODO: even if tasks don't have a status of "planned for today" , they still count for .nicetodo so you end up getting an error
                     
                     
 
