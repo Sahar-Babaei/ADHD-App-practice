@@ -64,7 +64,7 @@ struct TodaysPage: View {
                                 HStack(alignment: .center) {
                                     
                                     Text("1. MUST DO TODAY")
-                                        .font(Font.custom("Helvetica", size: 16))
+                                        .font(Font.custom("Helvetica", size: 15))
                                         .fontWeight(.bold)
                                         .foregroundColor(Color("BodyCopy"))
                                         
@@ -129,7 +129,7 @@ struct TodaysPage: View {
                                 HStack(alignment: .center) {
                                     
                                     Text("2. DO IF TIME ALLOWS")
-                                        .font(Font.custom("Helvetica", size: 16))
+                                        .font(Font.custom("Helvetica", size: 15))
                                         .fontWeight(.bold)
                                         .foregroundColor(Color("BodyCopy"))
                                         
@@ -195,7 +195,7 @@ struct TodaysPage: View {
                                 HStack(alignment: .center) {
                                     
                                     Text("3. NICE TO DO")
-                                        .font(Font.custom("Helvetica", size: 16))
+                                        .font(Font.custom("Helvetica", size: 15))
                                         .fontWeight(.bold)
                                         .foregroundColor(Color("BodyCopy"))
                                       

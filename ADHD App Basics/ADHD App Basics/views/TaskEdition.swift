@@ -284,7 +284,7 @@ struct TaskEdition: View {
         }
         //.background(.green)
         .background(Color("MainForeground"))
-        .clipShape(RoundedCorners(radius: 20, corners: [.topLeft, .topRight]))
+        .clipShape(RoundedCorners(radius: 25, corners: [.topLeft, .topRight]))
             
     }
 }

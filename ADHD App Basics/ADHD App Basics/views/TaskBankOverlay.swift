@@ -93,8 +93,26 @@ struct TaskBankOverlay: View {
         NavigationStack {
             ZStack {
                 VStack(alignment: .leading){
+                    
+                    
+                    HStack(){
+                        //instructions
+                        Text("Select up to 3 Tasks to add to the \(priority.name.lowercased().capitalized) sections")
+                            .font(Font.custom("Helvetica", size: 15))
+                            .fontWeight(.bold)
+                            .foregroundColor(Color("BodyCopy"))
+                            //.background(.orange)
+ 
+                    }
+                    .frame(maxWidth:.infinity)
+                    .padding(.horizontal)
+                    .padding(.bottom,6)
+                    .padding(.top,22)
+//                    .padding(.bottom, 12)
+//                    .padding(.vertical, 10)
+                    //.background(.red)
 
-               
+               //buttons
                         HStack(){
                             
                             //cancel button
@@ -109,7 +127,6 @@ struct TaskBankOverlay: View {
                                     .foregroundStyle(Color("BodyCopy"))
                                     .underline()
                             }
-                            
                             
                             Spacer()
                             
@@ -137,22 +154,36 @@ struct TaskBankOverlay: View {
                             
                             
                         }
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 10)
-                    .padding(.top, 15)
-                    
-                    HStack(){
-                        //instructions
-                        Text("Select up to 3 Tasks to add to the \(priority.name.lowercased().capitalized) sections")
-                            .font(Font.custom("Helvetica", size: 15))
-                            .fontWeight(.regular)
-                            .foregroundColor(Color("BodyCopy"))
                         
-                                            
- 
-                    }
                     .padding(.horizontal, 12)
-                    .padding(.vertical, 10)
+                    .padding(.bottom, 10)
+                    //.padding(.vertical, 10)
+                    //.padding(.top, 15)
+                    //.background(.red)
+                    .overlay(
+                        Rectangle()
+                            .frame(height: 1)
+                            .foregroundColor(Color("MainForeground")),
+                        alignment: .bottom
+                    )
+                    
+//                    
+//                    HStack(){
+//                        //instructions
+//                        Text("Select up to 3 Tasks to add to the \(priority.name.lowercased().capitalized) sections")
+//                            .font(Font.custom("Helvetica", size: 15))
+//                            .fontWeight(.regular)
+//                            .foregroundColor(Color("BodyCopy"))
+//                            //.background(.orange)
+//                        
+//                                            
+// 
+//                    }
+//                    .frame(maxWidth:.infinity,maxHeight:1)
+//                    .padding(.top,0)
+//                    .padding(.bottom, 12)
+//                    .padding(.vertical, 10)
+//                    //.background(.red)
 
                    
                     //filter button
@@ -261,7 +292,7 @@ struct TaskBankOverlay: View {
                         LazyVGrid(columns: getColumnStyle(viewModel.gridViewEnabled)) {
                             ForEach(filteredItems, id: \.ID) { task in
                                 if(task.status == .notStarted) {
-                                    TaskCard(fTask: task,chosenHeight: (viewModel.gridViewEnabled ? 112 : 157), chosenSpacing:(viewModel.gridViewEnabled ? 6 : 25), onDelete: {
+                                    TaskCard(fTask: task,chosenHeight: (viewModel.gridViewEnabled ? 112 : 159), chosenSpacing:(viewModel.gridViewEnabled ? 6 : 25), onDelete: {
                                         viewModel.allTasksList.removeAll { $0.ID == task.ID }
                                     },onEdit: {
                                         print("scooby doo")
@@ -345,7 +376,7 @@ struct TaskBankOverlay: View {
 
             }
 //            .frame(height:600)
-            .clipShape(RoundedCorners(radius: 30, corners: [.topLeft, .topRight]))
+            .clipShape(RoundedCorners(radius: 35, corners: [.topLeft, .topRight]))
             .onAppear {
                 viewModel.loadAllTasks()
                 //this makes all tasks appears when this page is loaded.
