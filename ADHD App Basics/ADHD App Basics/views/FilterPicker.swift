@@ -191,12 +191,14 @@ struct MultiplePickerView: View {
                 }
                 
             }
-            .listRowInsets(EdgeInsets(top: 2, leading: 15, bottom: 2, trailing: 15)) // Less vertical space
+            .listRowInsets(EdgeInsets(top: 2, leading: 15, bottom: 2, trailing: 15))
+            
+            // Less vertical space
 //            .padding(.bottom, 0)
 //                    .padding(.top)
 //            .background(.orange)
         }
-//        .padding(.top)
+
        
     }
 }
