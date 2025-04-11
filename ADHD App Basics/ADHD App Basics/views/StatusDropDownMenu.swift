@@ -32,8 +32,8 @@ struct StatusDropDownMenu: View {
                 }
                 .padding()
                 .frame(maxWidth: .infinity)
-                .background(Color.gray.opacity(0.1))
-                .cornerRadius(10)
+                .background(Color("FieldBackground"))
+                .cornerRadius(12)
             }
             .buttonStyle(PlainButtonStyle())
 
@@ -52,17 +52,24 @@ struct StatusDropDownMenu: View {
                     .padding(.trailing, 12)
                     .padding(.vertical, 4)
                     .background(status.backgroundColor)
-                    .cornerRadius(15)
+                    .cornerRadius(12)
                     .padding(.leading, 20)
-                    .transition(.opacity.combined(with: .slide))
+                    .frame(maxWidth: .infinity, maxHeight:20, alignment: .leading)
+                    .background(.clear)
+                    //.transition(.opacity.combined(with: .slide))
+                    .contentShape(Rectangle())
                     .onTapGesture {
                         selectedStatus = status
                         isExpanded = false
                     }
                     .padding(.vertical, 5)
                 }
+                .padding(.bottom,10)
             }
+            
         }
+        .background(Color("FieldBackground"))
+        .cornerRadius(12)
     }
 }
 

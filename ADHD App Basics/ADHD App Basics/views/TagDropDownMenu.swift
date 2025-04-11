@@ -35,9 +35,9 @@ struct TagDropDownMenu: View {
                 }
                 .padding()
                 .frame(maxWidth: .infinity)
-                //.background(Color.gray.opacity(0.1))
-                .background(.pink)
-                .cornerRadius(10)
+                
+                .background(Color("FieldBackground"))
+                .cornerRadius(12)
             }
             .buttonStyle(PlainButtonStyle())
             
@@ -51,6 +51,7 @@ struct TagDropDownMenu: View {
                         HStack(alignment: .center) {
 
                             Image(systemName: "tag")
+                                .font(.system(size: 13))
                                 .foregroundColor(tag.color)
                             Text(tag.name) // Use enum-defined name
                                 .font(Font.custom("Helvetica", size: 14))
@@ -63,7 +64,7 @@ struct TagDropDownMenu: View {
                         
                         .frame(maxWidth: .infinity, maxHeight:40, alignment: .leading)
                         .background(.clear)
-                        .cornerRadius(15)
+                        .cornerRadius(12)
                         .padding(.leading, 20)
                         .contentShape(Rectangle())
                         .onTapGesture {
@@ -76,10 +77,13 @@ struct TagDropDownMenu: View {
                     
                     .padding(.vertical, 5)
                 }
-                
+                .padding(.bottom,10)
             }
             
-        }.background(Color.gray.opacity(0.1))
+        }
+        //.background(Color.gray.opacity(0.1))
+        .background(Color("FieldBackground"))
+        .cornerRadius(12)
         
     }
 }

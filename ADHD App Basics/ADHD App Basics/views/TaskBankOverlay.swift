@@ -106,7 +106,7 @@ struct TaskBankOverlay: View {
                                     .padding(.top)
                                     .padding(.bottom)
                                     .frame(height: 32)
-                                    .foregroundStyle(Color("GreyStatusBody"))
+                                    .foregroundStyle(Color("BodyCopy"))
                                     .underline()
                             }
                             
@@ -130,8 +130,8 @@ struct TaskBankOverlay: View {
                                 Text("Done")
                                     .padding()
                                     .frame(height: 32)
-                                    .background(Color.black)
-                                    .foregroundStyle(.white)
+                                    .background(Color("SectionButtonBackground"))
+                                    .foregroundStyle(Color("BodyCopyReverse"))
                                     .cornerRadius(10)
                             }
                             
