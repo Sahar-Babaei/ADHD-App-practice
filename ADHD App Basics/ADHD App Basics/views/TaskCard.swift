@@ -160,7 +160,7 @@ struct TaskCard: View {
                 onSelect(cardSelected)
             }
            
-        }
+        }.allowsHitTesting(selectionModeEnabled)
         
         
     }

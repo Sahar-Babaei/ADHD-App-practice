@@ -291,6 +291,15 @@ struct TaskCreation: View {
                         // put a flag here to make it all disapear
                         
                     }
+            
+//                    if let a = newlyCreatedTask {
+//                                            var taskForPriority = storageViewModel.getAllTasksForPriority(priority: selectedPriority)
+//                                            if taskForPriority.count < 3 {
+//                                                storageViewModel.addTask(a)
+//                                            } else{
+//                    //                            toastViewModel.editionToast()
+//                                            }
+                                            
                     
                 }) {
                     Text("Create task ")

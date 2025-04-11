@@ -10,14 +10,17 @@ import SwiftUI
 struct Checkbox: View {
     @State public var isChecked : Bool
     var onChecked: (Bool) -> Void
-    
+    @State public var isEnabled: Bool = true
     
  //   @Binding var isChecked: Bool
     var body: some View {
         
         Button(action: {
-            isChecked.toggle()
-            onChecked(isChecked)})
+            if isEnabled{
+                isChecked.toggle()
+                onChecked(isChecked)
+            }
+        })
         {
             ZStack {
 //                Rectangle()
@@ -46,9 +49,10 @@ struct Checkbox: View {
     }
     
     
+    
 }
 
 #Preview {
-    Checkbox(isChecked: false, onChecked: {_ in })
+    Checkbox(isChecked: false, onChecked: {_ in }, isEnabled: true)
 }
     

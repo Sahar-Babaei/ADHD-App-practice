@@ -106,10 +106,16 @@ struct TodaysPage: View {
                                 
                                 //three tasks
                                 VStack(alignment: .leading, spacing: 10) {
+                                    var tasksForToday = viewModel.getTodaysTaskForPriority(priority: .mustDo)
                                     
-                                    ForEach(viewModel.getAllTasksForPriority(priority: Priority.mustDo), id: \.ID.uuidString) { task in
+                                    ForEach(tasksForToday, id: \.ID.uuidString) { task in
                                         
                                         TodaysTaskElement(viewModel: viewModel, fTask: task,onEdit:{onEdit(task)} )
+                                    }
+                                    
+                                    var potatoStew: Int = 3 - tasksForToday.count
+                                    ForEach(0..<potatoStew, id:\.self){ index in
+                                        FakeTodaysTaskElement()
                                     }
                                 }
                                 .padding(.top, 6)
@@ -173,11 +179,16 @@ struct TodaysPage: View {
                                 
                                 //three tasks
                                 VStack(alignment: .leading, spacing: 10) {
+                                    var tasksForToday = viewModel.getTodaysTaskForPriority(priority: .doIfPossible)
                                     
-                                    ForEach(viewModel.getAllTasksForPriority(priority: Priority.doIfPossible), id: \.ID.uuidString) { task in
+                                    ForEach(tasksForToday, id: \.ID.uuidString) { task in
                                         
-                                        TodaysTaskElement(viewModel: viewModel, fTask: task, onEdit:{onEdit(task)})
-
+                                        TodaysTaskElement(viewModel: viewModel, fTask: task,onEdit:{onEdit(task)} )
+                                    }
+                                    
+                                    var potatoStew: Int = 3 - tasksForToday.count
+                                    ForEach(0..<potatoStew, id:\.self){ index in
+                                        FakeTodaysTaskElement()
                                     }
                                 }
                                 .padding(.top, 6)
@@ -243,9 +254,16 @@ struct TodaysPage: View {
                                 //three tasks
                                 VStack(alignment: .leading, spacing: 10) {
                                     
-                                    ForEach(viewModel.getAllTasksForPriority(priority: Priority.niceToDo), id: \.ID.uuidString) { task in
+                                    var tasksForToday = viewModel.getTodaysTaskForPriority(priority: .niceToDo)
+                                    
+                                    ForEach(tasksForToday, id: \.ID.uuidString) { task in
                                         
-                                        TodaysTaskElement(viewModel: viewModel, fTask: task, onEdit:{onEdit(task)})
+                                        TodaysTaskElement(viewModel: viewModel, fTask: task,onEdit:{onEdit(task)} )
+                                    }
+                                    
+                                    var potatoStew: Int = 3 - tasksForToday.count
+                                    ForEach(0..<potatoStew, id:\.self){ index in
+                                        FakeTodaysTaskElement()
                                     }
                                 }
                                 .padding(.top, 6)

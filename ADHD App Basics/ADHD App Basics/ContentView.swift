@@ -223,7 +223,7 @@ struct ContentView: View {
                         //                            //.inset(by: 0.5)
                         //                            //.stroke(Color(red: 0.4, green: 0.4, blue: 0.4), lineWidth: 1)
                         //                    )
-                        .background(Color("MenuBackground"))
+                        .background(Color(.black).opacity(0.2))
                         .background(.ultraThinMaterial)
                         
                         //.blur(radius: 40)
