@@ -344,6 +344,8 @@ struct ContentView: View {
                             }
                         }, onError: {
                             viewModel.errorToast()
+                        },onEmptyNameError: {
+                            viewModel.nameErrorToast()
                         })
                     }
                 
@@ -388,7 +390,7 @@ struct ContentView: View {
                         .frame(width: 24, height: 24)
                         .foregroundColor(Color("ToastErrorBody"))
                     
-                    Text("Sorry, only 3 tasks allowed per priority. \nPlease remove a task from this section.")
+                    Text("Sorry, only 3 tasks allowed per priority. \nPlease remove a task from this category.")
                         .font(Font.custom("Helvetica", size: 16))
                         .foregroundColor(Color("ToastErrorBody"))
                 }

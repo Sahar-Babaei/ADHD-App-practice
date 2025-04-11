@@ -21,13 +21,15 @@ struct TaskEdition: View {
     @StateObject var storageViewModel = TaskBankViewModel()
     var onComplete : (Bool) -> Void = { _ in }
     var onError : () -> Void = { }
+    var onEmptyNameError : () -> Void = { }
     
-    init(viewModel: TaskCreationViewModel, storageViewModel: TaskBankViewModel, showExpanded: Bool , onComplete: @escaping (Bool) -> Void, onError: @escaping () -> Void) {
+    init(viewModel: TaskCreationViewModel, storageViewModel: TaskBankViewModel, showExpanded: Bool , onComplete: @escaping (Bool) -> Void, onError: @escaping () -> Void,onEmptyNameError: @escaping () -> Void) {
         _viewModel = StateObject(wrappedValue: viewModel)
         _storageViewModel = StateObject(wrappedValue: storageViewModel)
         self.showExpanded = showExpanded
         self.onComplete = onComplete //not invoking, just saving.
         self.onError = onError
+        self.onEmptyNameError = onEmptyNameError
         //        self.tagDropDown = TagDropDownMenu()
         //self.statusDropDown = StatusDropDownMenu()
         //  self.selectedPriority = selectedPriority
@@ -263,42 +265,34 @@ struct TaskEdition: View {
                 
                 Spacer()
                 Button(action: {
-                    //viewModel.ftask... tied the dropdown tag and status values to the Task's tag and status values
-//                        viewModel.fTask.tag = selectedTag
-//                        viewModel.fTask.status = selectedStatus
-                    
-                    
-                    if (viewModel.fTask.taskAssignment?.priority != selectedPriority) {
-                        let tasksAlreadyInTodaysPriority = storageViewModel.getTodaysTaskForPriority(priority: selectedPriority)
-                        if (tasksAlreadyInTodaysPriority.count < 3)
-                        {
+                    if viewModel.fTask.name.isEmpty{
+                        self.onEmptyNameError()
+                    }
+                    else{
+                        if (viewModel.fTask.taskAssignment?.priority != selectedPriority) {
+                            let tasksAlreadyInTodaysPriority = storageViewModel.getTodaysTaskForPriority(priority: selectedPriority)
+                            if (tasksAlreadyInTodaysPriority.count < 3)
+                            {
+                                let newlyEditedTask = viewModel.createTask(with:selectedPriority)
+                                self.onComplete(true)
+                                
+                                if let a = newlyEditedTask {
+                                    storageViewModel.updateTask(a)
+                                    
+                                }
+                            } else {
+                                self.onError()
+                            }
+                        } else {
                             //viewModel.createTask returns nil if the task data is no-good
                             let newlyEditedTask = viewModel.createTask(with:selectedPriority)
                             self.onComplete(true)
                             
-                            //only add to storage if the task was successfully created (aka, it's not nil)
                             if let a = newlyEditedTask {
                                 storageViewModel.updateTask(a)
-                                // put a flag here to make it all disapear
                             }
-                        } else {
-                            self.onError()
-                        }
-                    } else {
-                        //viewModel.createTask returns nil if the task data is no-good
-                        let newlyEditedTask = viewModel.createTask(with:selectedPriority)
-                        self.onComplete(true)
-                        
-                        //only add to storage if the task was successfully created (aka, it's not nil)
-                        if let a = newlyEditedTask {
-                            storageViewModel.updateTask(a)
-                            // put a flag here to make it all disapear
                         }
                     }
-                    
-                    
-
-                    
                 }) {
                     Text("Update Task ")
                         .foregroundStyle(Color("BodyCopyReverse"))
@@ -329,5 +323,5 @@ struct TaskEdition: View {
 
 
 #Preview {
-    TaskEdition(viewModel: TaskCreationViewModel(), storageViewModel: TaskBankViewModel(), showExpanded: true, onComplete:{_ in }, onError: {})
+    TaskEdition(viewModel: TaskCreationViewModel(), storageViewModel: TaskBankViewModel(), showExpanded: true, onComplete:{_ in }, onError: {},onEmptyNameError:{})
 }

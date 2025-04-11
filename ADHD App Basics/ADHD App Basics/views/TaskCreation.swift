@@ -291,57 +291,29 @@ struct TaskCreation: View {
                 
                 //add Task button
                 Button(action: {
-                    //viewModel.ftask... tied the dropdown tag and status values to the Task's tag and status values
+
                     viewModel.fTask.tag = selectedTag
                     viewModel.fTask.status = selectedStatus
-                    
-                    //viewModel.createTask returns nil if the task data is no-good
-
-                    
+           
                     let tasksAlreadyInTodaysPriority = storageViewModel.getTodaysTaskForPriority(priority: selectedPriority)
                     
                     if viewModel.fTask.name.isEmpty{
                         self.onEmptyNameError()
-                        
                     }
                     else{
                         if (tasksAlreadyInTodaysPriority.count < 3 )
                         {
-                            
-                            
-                            
                             let newlyCreatedTask = viewModel.createTask(with:selectedPriority)
                             self.onComplete(true)
-                            
-                            
-                            //only add to storage if the task was successfully created (aka, it's not nil)
+
                             if let a = newlyCreatedTask {
                                 storageViewModel.addTask(a)
-                                // put a flag here to make it all disapear
                             }
-                            
-                            
-                            
                         } else {
                             self.onError()
-                            
                         }
                     }
-                    
-                    //TODO: even if tasks don't have a status of "planned for today" , they still count for .nicetodo so you end up getting an error
-                    
-                    
-
-            
-//                    if let a = newlyCreatedTask {
-//                                            var taskForPriority = storageViewModel.getAllTasksForPriority(priority: selectedPriority)
-//                                            if taskForPriority.count < 3 {
-//                                                storageViewModel.addTask(a)
-//                                            } else{
-//                    //                            toastViewModel.editionToast()
-//                                            }
-                                            
-                    
+      
                 }) {
                     Text("Create task ")
                         .foregroundStyle(Color("BodyCopyReverse"))
