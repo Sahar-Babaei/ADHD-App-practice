@@ -86,7 +86,7 @@ struct ContentView: View {
                 }
                 
                 if ( viewModel.editionToastVisible) {
-                    HStack(alignment: .center){
+                    HStack(){
                         
                         Image("success-icon")
                             .resizable()

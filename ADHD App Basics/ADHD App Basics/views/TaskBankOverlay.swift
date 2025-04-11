@@ -94,25 +94,11 @@ struct TaskBankOverlay: View {
             ZStack {
                 VStack(alignment: .leading){
                     
-                    
-                    HStack(){
-                        //instructions
-                        Text("Select up to 3 Tasks to add to the \(priority.name.lowercased().capitalized) sections")
-                            .font(Font.custom("Helvetica", size: 15))
-                            .fontWeight(.bold)
-                            .foregroundColor(Color("BodyCopy"))
-                            //.background(.orange)
- 
-                    }
-                    .frame(maxWidth:.infinity)
-                    .padding(.horizontal)
-                    .padding(.bottom,6)
-                    .padding(.top,22)
-//                    .padding(.bottom, 12)
-//                    .padding(.vertical, 10)
-                    //.background(.red)
+
 
                //buttons
+                   // top part
+                    VStack{
                         HStack(){
                             
                             //cancel button
@@ -139,7 +125,7 @@ struct TaskBankOverlay: View {
                                     viewModel.updateTask(task)
                                     self.onComplete(false)
                                 }
-//                                viewModel.selectedTaskList.removeAll()
+                                //                                viewModel.selectedTaskList.removeAll()
                                 print(viewModel.selectedTaskList)
                                 viewModel.selectedTaskList.removeAll()
                                 
@@ -151,21 +137,52 @@ struct TaskBankOverlay: View {
                                     .foregroundStyle(Color("BodyCopyReverse"))
                                     .cornerRadius(10)
                             }
-                            
+                        }
+//                        .padding(.horizontal, 12)
+//                        .padding(.bottom, 10)
+//                        .padding(.vertical, 10)
+//                        .padding(.top, 15)
+                        .padding(.top,15)
+                        .padding(.bottom,0)
+                        .padding(.horizontal)
+                        //.background(.red)
+                        
+                        
+                        
+                        HStack(){
+                            //instructions
+                            Text("Select up to 3 Tasks to add to the \(priority.name.lowercased().capitalized) sections")
+                                .font(Font.custom("Helvetica", size: 14))
+                                .fontWeight(.bold)
+                                .foregroundColor(Color("BodyCopy"))
+                            //.background(.orange)
                             
                         }
+                        .frame(maxWidth:.infinity)
+//                        .padding(.horizontal)
+//                        .padding(.bottom,6)
+//                        .padding(.top,22)
+                       // .padding()
+//                        .padding(.bottom,18)
+//                        .padding(.top,4)
+                        .padding(.vertical)
+                        .padding(.top,0)
+                        .padding(.bottom,0)
+                        //.background(Color("TagNoColor"))
                         
-                    .padding(.horizontal, 12)
-                    .padding(.bottom, 10)
-                    //.padding(.vertical, 10)
-                    //.padding(.top, 15)
-                    //.background(.red)
+
+                    }
                     .overlay(
                         Rectangle()
                             .frame(height: 1)
                             .foregroundColor(Color("MainForeground")),
                         alignment: .bottom
                     )
+                    .padding(.bottom,10)
+                    
+//                    .padding(.bottom, 12)
+//                    .padding(.vertical, 10)
+                    //.background(.red)
                     
 //                    
 //                    HStack(){
@@ -292,7 +309,7 @@ struct TaskBankOverlay: View {
                         LazyVGrid(columns: getColumnStyle(viewModel.gridViewEnabled)) {
                             ForEach(filteredItems, id: \.ID) { task in
                                 if(task.status == .notStarted) {
-                                    TaskCard(fTask: task,chosenHeight: (viewModel.gridViewEnabled ? 112 : 159), chosenSpacing:(viewModel.gridViewEnabled ? 6 : 25), onDelete: {
+                                    TaskCard(fTask: task,chosenHeight: (viewModel.gridViewEnabled ? 112 : 155), chosenSpacing:(viewModel.gridViewEnabled ? 6 : 25), onDelete: {
                                         viewModel.allTasksList.removeAll { $0.ID == task.ID }
                                     },onEdit: {
                                         print("scooby doo")

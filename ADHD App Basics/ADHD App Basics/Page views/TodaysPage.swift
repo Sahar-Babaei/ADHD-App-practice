@@ -75,20 +75,21 @@ struct TodaysPage: View {
                                         taskBankOverlayPriority = .mustDo
                                     }){
                                         HStack(alignment: .center, spacing: 3) {
-                                            Image("menu-tab-4")
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(width: 16, height: 16)
-                                                .foregroundColor(Color("BodyCopyReverse"))
+//                                            Image("menu-tab-4")
+//                                                .resizable()
+//                                                .scaledToFit()
+//                                                .frame(width: 16, height: 16)
+//                                                .foregroundColor(Color("BodyCopyReverse"))
                               
                                             
                                             Text("Add Tasks")
                                                 .font(Font.custom("Helvetica", size: 15))
                                                 .foregroundColor(Color("BodyCopyReverse"))
                                         }
-                                        .padding(.leading,10)
-                                        .padding(.trailing,16)
-                                        .padding(.vertical, 9)
+                                        //                                        .padding(.leading,10)
+                                        //                                        .padding(.trailing,16)
+                                                                                .padding(.horizontal,15)
+                                                                                .padding(.vertical, 8)
                                         .background(Color("SectionButtonBackground"))
                                         .cornerRadius(40)
                                     }
@@ -146,19 +147,20 @@ struct TodaysPage: View {
                                         taskBankOverlayPriority = .doIfPossible
                                     }){
                                         HStack(alignment: .center, spacing: 3) {
-                                            Image("menu-tab-4")
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(width: 16, height: 16)
-                                                .foregroundColor(Color("BodyCopyReverse"))
+//                                            Image("menu-tab-4")
+//                                                .resizable()
+//                                                .scaledToFit()
+//                                                .frame(width: 16, height: 16)
+//                                                .foregroundColor(Color("BodyCopyReverse"))
                                             
                                             Text("Add Tasks")
                                                 .font(Font.custom("Helvetica", size: 15))
                                                 .foregroundColor(Color("BodyCopyReverse"))
                                         }
-                                        .padding(.leading,10)
-                                        .padding(.trailing,16)
-                                        .padding(.vertical, 8)
+                                        //                                        .padding(.leading,10)
+                                        //                                        .padding(.trailing,16)
+                                                                                .padding(.horizontal,15)
+                                                                                .padding(.vertical, 8)
                                         .background(Color("SectionButtonBackground"))
                                         .cornerRadius(40)
                                         
@@ -218,19 +220,20 @@ struct TodaysPage: View {
                                         taskBankOverlayPriority = .niceToDo
                                     }){
                                         HStack(alignment: .center, spacing: 3) {
-                                            Image("menu-tab-4")
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(width: 16, height: 16)
-                                                .foregroundColor(Color("BodyCopyReverse"))
+//                                            Image("menu-tab-4")
+//                                                .resizable()
+//                                                .scaledToFit()
+//                                                .frame(width: 16, height: 16)
+//                                                .foregroundColor(Color("BodyCopyReverse"))
                                             
                                             
                                             Text("Add Tasks")
                                                 .font(Font.custom("Helvetica", size: 15))
                                                 .foregroundColor(Color("BodyCopyReverse"))
                                         }
-                                        .padding(.leading,10)
-                                        .padding(.trailing,16)
+//                                        .padding(.leading,10)
+//                                        .padding(.trailing,16)
+                                        .padding(.horizontal,15)
                                         .padding(.vertical, 8)
                                         .background(Color("SectionButtonBackground"))
                                         .cornerRadius(40)
@@ -296,6 +299,9 @@ struct TodaysPage: View {
                 
                 ZStack{
                     if showTaskBankOverlay == true {
+                        Color.black.opacity(0.4) // Dimming effect
+                            .ignoresSafeArea()
+                        .transition(.opacity)
                         TaskBankOverlay(viewModel: viewModel, onComplete: {_ in
                             showTaskBankOverlay = false
                         }, priority: taskBankOverlayPriority)
