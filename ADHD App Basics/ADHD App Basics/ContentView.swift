@@ -44,7 +44,7 @@ struct ContentView: View {
                         })
                         
                     case 3:
-                        Text ("this is tab 3 lol lol lol")
+                        SettingsPage()
                     case 4:
                         Text ("this is tab 4 lol lol lol lol")
                     default: //if we do an enum, the default is not necessary. only for ints
