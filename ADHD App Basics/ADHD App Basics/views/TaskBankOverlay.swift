@@ -27,7 +27,10 @@ struct TaskBankOverlay: View {
     var onSelectTasks: (([Task]) -> Void)? = nil
     var onEdit: ((Task) -> Void)? = nil
     var onComplete : (Bool) -> Void = { _ in }
-    var priority: Priority 
+    var onError : () -> Void = {}
+    var priority: Priority
+    
+    @FocusState private var searchIsFocused: Bool
     
     //filtering, sorting and searching variables
     @State private var searchText: String = ""
@@ -119,11 +122,19 @@ struct TaskBankOverlay: View {
                             //add Task button
                             Button(action: {
                                 viewModel.selectedTaskList.forEach{ task in
-                                    task.status = .plannedForToday
-                                    task.taskAssignment = TaskAssignment(date: Date(), priority: priority)
+                                    let tasksAlreadyInTodaysPriority = viewModel.getTodaysTaskForPriority(priority: priority)
+                                    if (tasksAlreadyInTodaysPriority.count < 3)
+                                    {
+                                        task.status = .plannedForToday
+                                        task.taskAssignment = TaskAssignment(date: Date(), priority: priority)
+                                        
+                                        viewModel.updateTask(task)
+                                        self.onComplete(true)
+                                    } else {
+                                        self.onError()
+                                    }
                                     
-                                    viewModel.updateTask(task)
-                                    self.onComplete(false)
+                                    
                                 }
                                 //                                viewModel.selectedTaskList.removeAll()
                                 print(viewModel.selectedTaskList)
@@ -241,6 +252,7 @@ struct TaskBankOverlay: View {
                             TextField("Search...", text: $searchText)
                                 .padding(.horizontal)
                                 .foregroundColor(Color("FiltersBodycopy"))
+                                .focused($searchIsFocused)
 
                         }
                         .padding(.horizontal, 12)
@@ -315,6 +327,7 @@ struct TaskBankOverlay: View {
                                         print("scooby doo")
                                         onEdit?(task)
                                     },onSelect: { selected in
+                                        searchIsFocused = false
                                         if selected == true {
                                             viewModel.selectedTaskList.append(task)
                                             onEdit?(task)
@@ -360,6 +373,7 @@ struct TaskBankOverlay: View {
                 }
                 .background(Color("MainBackground"))
                 .onTapGesture {
+                    searchIsFocused = false
                     withAnimation {
                         presentingSheet=false
                     }

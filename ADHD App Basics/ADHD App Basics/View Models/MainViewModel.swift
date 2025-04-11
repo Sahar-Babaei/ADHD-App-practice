@@ -10,6 +10,7 @@ import Foundation
 class MainViewModel: ObservableObject {
 
     @Published var creationToastVisible: Bool = false
+    @Published var errorToastVisible: Bool = false
     @Published var editionToastVisible: Bool = false
     
     func startToast() {
@@ -23,6 +24,13 @@ class MainViewModel: ObservableObject {
         editionToastVisible = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.editionToastVisible = false
+        }
+    }
+    
+    func errorToast() {
+        errorToastVisible = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.errorToastVisible = false
         }
     }
 }

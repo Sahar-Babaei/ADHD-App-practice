@@ -12,6 +12,7 @@ struct TodaysPage: View {
     
     @ObservedObject var viewModel : TaskBankViewModel
     var onEdit: ((Task) -> Void) = {_ in }
+    var onError: (() -> Void) = {}
     
     @State private var showTaskBankOverlay : Bool = false
     @State private var taskBankOverlayPriority : Priority = .mustDo
@@ -114,7 +115,7 @@ struct TodaysPage: View {
                                         TodaysTaskElement(viewModel: viewModel, fTask: task,onEdit:{onEdit(task)} )
                                     }
                                     
-                                    var potatoStew: Int = 3 - tasksForToday.count
+                                    var potatoStew: Int = max(3 - tasksForToday.count, 0)
                                     ForEach(0..<potatoStew, id:\.self){ index in
                                         FakeTodaysTaskElement()
                                     }
@@ -304,6 +305,8 @@ struct TodaysPage: View {
                         .transition(.opacity)
                         TaskBankOverlay(viewModel: viewModel, onComplete: {_ in
                             showTaskBankOverlay = false
+                        }, onError: {
+                            onError()
                         }, priority: taskBankOverlayPriority)
                     }
                 }
