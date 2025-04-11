@@ -164,22 +164,22 @@ struct TaskEdition: View {
                                                     :  Color(.clear)
                                                 )
                                                 .cornerRadius(8)
-//                                                .overlay(
-//                                                    RoundedRectangle(cornerRadius: 8)
-//                                                        .stroke(
-//                                                            (hasUserSelectedPriority
-//                                                             ? (selectedPriority == priority)
-//                                                             : (viewModel.fTask.taskAssignment?.priority == priority))
-//                                                            ? Color.orange
-//                                                            :  Color(.clear), lineWidth: 2)
-//                                                )
+                                                .overlay(
+                                                    RoundedRectangle(cornerRadius: 8)
+                                                        .stroke(
+                                                            (hasUserSelectedPriority
+                                                             ? (selectedPriority == priority)
+                                                             : (viewModel.fTask.taskAssignment?.priority == priority))
+                                                            ? Color("BodyCopy")
+                                                            :  Color(.clear), lineWidth: 1.5)
+                                                )
                                                 .onTapGesture {
                                                     selectedPriority = priority
                                                     hasUserSelectedPriority = true
                                                 }
                                         }
                                     }
-                                    .padding(4)
+                                    .padding(5)
                                     .background(Color("FieldBackground"))
                                     .cornerRadius(12)
                                 }

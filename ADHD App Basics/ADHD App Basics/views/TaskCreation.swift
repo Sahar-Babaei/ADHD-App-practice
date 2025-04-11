@@ -138,16 +138,16 @@ struct TaskCreation: View {
                                                 .frame(maxWidth: .infinity, minHeight: 45)
                                                 .background(selectedPriority == priority ? Color("TagNoColor") : Color(.clear))
                                                 .cornerRadius(8)
-//                                                .overlay(
-//                                                    RoundedRectangle(cornerRadius: 8)
-//                                                        .stroke(selectedPriority == priority ? Color.orange : Color.clear, lineWidth: 2)
-//                                                )
+                                                .overlay(
+                                                    RoundedRectangle(cornerRadius: 8)
+                                                        .stroke(selectedPriority == priority ? Color("BodyCopy") : Color.clear, lineWidth: 1.5)
+                                                )
                                                 .onTapGesture {
                                                     selectedPriority = priority
                                                 }
                                         }
                                     }
-                                    .padding(4)
+                                    .padding(5)
                                     .background(Color("FieldBackground"))
                                     .cornerRadius(12)
                                     
