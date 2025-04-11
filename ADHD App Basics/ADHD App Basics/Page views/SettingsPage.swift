@@ -38,22 +38,20 @@ struct SettingsPage: View {
 //                                Spacer()
 //                                    .frame(height:120)
                                 
-                                HStack{
-                                    Text("Settings and Preferences")
-                                        .font(Font.custom("Helvetica", size: 15))
+                                VStack {
+                                    Text("Setting and Preference features will be added soon!")
+                                        .font(Font.custom("Helvetica", size: 16))
+                                        .foregroundColor(Color("BodyCopy"))
                                         .fontWeight(.regular)
                                         .padding()
-                                        .background(.blue)
+                                        //.background(.blue)
+                                        .multilineTextAlignment(.center)
+                                        .frame(maxWidth: .infinity, alignment: .center)
                                 }
+                                .padding(.top,15)
 
-                                
-                                HStack{
-                                    Text("Settings and Preferences")
-                                        .font(Font.custom("Helvetica", size: 15))
-                                        .fontWeight(.regular)
-                                        .padding()
-                                        .background(.green)
-                                }
+//                                Spacer()
+//                                    .frame(height:250)
                                 
                                 VStack{
                                     Image("SaharKirsten")
@@ -64,11 +62,12 @@ struct SettingsPage: View {
                                     
                                     Text("Designed & Developed by Sahar and Kirsten")
                                         .foregroundColor(Color("BodyCopy"))
-                                        .font(Font.custom("Helvetica", size: 15))
+                                        .font(Font.custom("Helvetica", size: 13))
                                         .fontWeight(.regular)
                                         .padding()
                                         
                                 }
+                                .padding(.top,270)
                                 
 
                             }
@@ -79,11 +78,11 @@ struct SettingsPage: View {
                         .background(Color("MainForeground"))
                         .cornerRadius(15)
                         
-                        .padding()
+                        .padding(.horizontal)
                         .padding(.bottom,74)
                         
                         
-                        .background(.red)
+                       // .background(.red)
 
 
                 }
