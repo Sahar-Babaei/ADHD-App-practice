@@ -300,8 +300,8 @@ struct TaskCreation: View {
                     if viewModel.fTask.name.isEmpty{
                         self.onEmptyNameError()
                     }
-                    else{
-                        if (tasksAlreadyInTodaysPriority.count < 3 )
+                    else{ //checks if the status is not plannedForToday or priority is over 3
+                        if (viewModel.fTask.status != .plannedForToday || tasksAlreadyInTodaysPriority.count < 3 )
                         {
                             let newlyCreatedTask = viewModel.createTask(with:selectedPriority)
                             self.onComplete(true)

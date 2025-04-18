@@ -269,13 +269,24 @@ struct TaskEdition: View {
                         self.onEmptyNameError()
                     }
                     else{
+                        //TODO: need to figure this out does not like it, need to get the tasks status from before update and then check that it is .completed and if so then set the date to today otherwise keep it the same
+//                        let oldTaskCopy: Task? = storageViewModel.getTaskfromId(viewModel.fTask.ID)
+//                        let taskisNewlyCompleted = oldTaskCopy?.status != .completed && viewModel.fTask.status == .completed
+                        
+                        let taskisNewlyCompleted = false
+                        
+                        
                         if (viewModel.fTask.taskAssignment?.priority != selectedPriority) {
                             let tasksAlreadyInTodaysPriority = storageViewModel.getTodaysTaskForPriority(priority: selectedPriority)
                             if (tasksAlreadyInTodaysPriority.count < 3)
                             {
+                                if taskisNewlyCompleted {
+                                    viewModel.fTask.completionDate = Date()
+                                }
+
                                 let newlyEditedTask = viewModel.createTask(with:selectedPriority)
                                 self.onComplete(true)
-                                
+                                                                
                                 if let a = newlyEditedTask {
                                     storageViewModel.updateTask(a)
                                     
@@ -285,8 +296,13 @@ struct TaskEdition: View {
                             }
                         } else {
                             //viewModel.createTask returns nil if the task data is no-good
+                            //if the status is not started then update the task
+                            if taskisNewlyCompleted {
+                                viewModel.fTask.completionDate = Date()
+                            }
                             let newlyEditedTask = viewModel.createTask(with:selectedPriority)
                             self.onComplete(true)
+                            
                             
                             if let a = newlyEditedTask {
                                 storageViewModel.updateTask(a)

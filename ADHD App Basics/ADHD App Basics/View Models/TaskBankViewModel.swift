@@ -36,6 +36,11 @@ class TaskBankViewModel: ObservableObject {
 //        clearTitle()
 //    }
     
+    func getTaskfromId(_ id: String) -> Task? {
+        let retrievedTask = retrieveTaskFromUserDefaults(taskID: id)
+        
+        return retrievedTask
+    }
     
     func addTask(_ task: Task) {
       
@@ -48,6 +53,29 @@ class TaskBankViewModel: ObservableObject {
         // There are two things that you can find when you click on an element (I don't know how we need to ask AI or something) either, the index, or the actual ID. Then we
         removeTaskFromUserDefaults(taskID: taskToRemove.ID)
         loadAllTasks()
+    }
+    
+    func removeOldTasks() {
+        var existingTasks = retrieveTasksFromUserDefaults()
+        
+        var oldTasks = existingTasks.filter { task in
+            if let completionDate = task.completionDate{
+                isOlderThan30Days(completionDate)
+            }
+            else {
+                false
+            }
+        }
+        
+        var oldTasksIds = oldTasks.map { $0.ID }
+        removeTasksFromUserDefaults(taskIDs: oldTasksIds)
+    }
+    
+    private func isOlderThan30Days(_ date: Date) -> Bool {
+        guard let thirtyDaysAgo = Calendar.current.date(byAdding: .day, value: -30, to: Date()) else {
+            return false
+        }
+        return date < thirtyDaysAgo
     }
     
     func updateTask(_ task : Task){

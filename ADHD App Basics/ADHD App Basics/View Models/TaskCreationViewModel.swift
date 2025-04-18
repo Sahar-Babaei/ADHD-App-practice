@@ -28,6 +28,10 @@ class TaskCreationViewModel: ObservableObject {
         if fTask.status == .plannedForToday{
             fTask.taskAssignment = TaskAssignment(date: Date(), priority: priority)
         }
+        
+        if fTask.status == .completed{
+            fTask.completionDate = Date()
+        }
        
         
         let taskToReturn = fTask

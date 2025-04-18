@@ -24,11 +24,13 @@ struct TodaysTaskElement: View {
                 if isChecked {
                     
                     fTask.status = .completed
+                    fTask.completionDate = Date()
                     crossOutTitle = true
                    
                 }
                 else{
                     fTask.status = .plannedForToday
+                    fTask.completionDate = nil
                     crossOutTitle = false
                    
                 }

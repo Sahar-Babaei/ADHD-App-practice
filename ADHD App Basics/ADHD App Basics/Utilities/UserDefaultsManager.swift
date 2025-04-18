@@ -33,6 +33,19 @@ func removeTaskFromUserDefaults(taskID: UUID) {
     }
 }
 
+func removeTasksFromUserDefaults(taskIDs: [UUID]) {     //remove multiple tasks
+    var existingTasks = retrieveTasksFromUserDefaults()
+    
+    existingTasks.removeAll { task in
+        taskIDs.contains(task.ID)
+    }
+    
+    let encoder = JSONEncoder()
+    if let encoded = try? encoder.encode(existingTasks) {
+        UserDefaults.standard.set(encoded, forKey: "user_tasks")
+    }
+}
+
 // MARK: - retrieve Task from UserDefaults
 
 func retrieveTasksFromUserDefaults() -> [Task] {
