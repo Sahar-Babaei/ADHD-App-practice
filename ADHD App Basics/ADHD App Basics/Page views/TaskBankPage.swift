@@ -64,7 +64,7 @@ struct TaskBankPage: View {
     var filteredItems: [Task] {
         var items = viewModel.allTasksList
         
-        searchIsFocused = false
+//searchIsFocused = false
         let searchItems = if !searchText.isEmpty  {
             items.filter {$0.name.localizedCaseInsensitiveContains(searchText) }
         } else {
@@ -294,10 +294,10 @@ struct TaskBankPage: View {
                             
                                 )
 //                                if isSelectionMode {
-                                    .onTapGesture {
-                                        print("this thing works: " + task.name )
-                                        searchIsFocused = false
-                                    }
+//                                    .onTapGesture {
+//                                        print("this thing works: " + task.name )
+//                                        searchIsFocused = false
+//                                    }
 //                                }
 //                                .onTapGesture {
 //                                    
@@ -380,7 +380,7 @@ struct TaskBankPage: View {
                     withAnimation {
                         presentingSheet=false
                     }
-                    searchIsFocused = false
+//                    searchIsFocused = false
                 }
                 .onChange(of: selectedFilter) {
     
@@ -472,6 +472,7 @@ struct TaskBankPage: View {
 //                }
             }
             .onAppear {
+                viewModel.removeOldTasks()
                 viewModel.loadAllTasks()
                 //this makes all tasks appears when this page is loaded.
             }

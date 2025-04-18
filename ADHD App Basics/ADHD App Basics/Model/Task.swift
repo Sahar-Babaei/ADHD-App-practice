@@ -27,7 +27,7 @@ class Task: Codable {
     var tag : Tag = .none
     var notes: String = ""
     var isCompleted: Bool = false
-    var status: Status = .plannedForToday
+    var status: Status = .notStarted
     var creationDate : Date = Date()
     var completionDate : Date? = nil // Optional date for when the task is completed
     var taskAssignment: TaskAssignment? = nil
