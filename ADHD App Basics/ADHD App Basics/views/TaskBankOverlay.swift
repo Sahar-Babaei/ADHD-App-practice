@@ -67,11 +67,16 @@ struct TaskBankOverlay: View {
         return ["All"] + uniqueFilters
     }
     
+    @State var searchActive: Bool = false
+    @State var filterActive: Bool = false
     var filteredItems: [Task] {
-        var items = viewModel.allTasksList
+        var items = viewModel.allTasksList.filter { $0.status == .notStarted}
+        
+//        searchActive = !searchText.isEmpty
         
         let searchItems = if !searchText.isEmpty  {
             items.filter {$0.name.localizedCaseInsensitiveContains(searchText) }
+            
         } else {
             items
         }
@@ -259,6 +264,9 @@ struct TaskBankOverlay: View {
                                 .padding(.horizontal)
                                 .foregroundColor(Color("FiltersBodycopy"))
                                 .focused($searchIsFocused)
+                                .onChange(of: searchText) { oldValue, newValue in
+                                    searchActive = !newValue.isEmpty
+                                }
 
                         }
                         .padding(.horizontal, 12)
@@ -326,7 +334,7 @@ struct TaskBankOverlay: View {
                     ScrollView {
                         LazyVGrid(columns: getColumnStyle(viewModel.gridViewEnabled)) {
                             ForEach(filteredItems, id: \.ID) { task in
-                                if(task.status == .notStarted) {
+//                                if(task.status == .notStarted) {
                                     TaskCard(fTask: task,chosenHeight: (viewModel.gridViewEnabled ? 112 : 155), chosenSpacing:(viewModel.gridViewEnabled ? 6 : 25), onDelete: {
                                         viewModel.allTasksList.removeAll { $0.ID == task.ID }
                                     },onEdit: {
@@ -351,7 +359,7 @@ struct TaskBankOverlay: View {
 ////                                            selectedTaskList.append(task)
 //                                        }
 
-                                }
+//                                }
                                                            
                             }
                         }
@@ -386,13 +394,68 @@ struct TaskBankOverlay: View {
                     
                 }
                 .onChange(of: selectedFilter) {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.30) {
-                            withAnimation(.easeInOut(duration: 0.35)){
-                                presentingSheet = false
-                            }
+                    filterActive = selectedFilter != "All"
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.30) {
+                        withAnimation(.easeInOut(duration: 0.35)){
+                            presentingSheet = false
                         }
+                    }
                 }
                 
+                
+                //ALL THE DIFFERENT EMPTY STATES FOR FILTER && SEARCH BAR
+                if filteredItems.isEmpty{
+                    ZStack{
+                        Image("DoDudePointDown")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 150, height: 150)
+                            .padding()
+                        
+                        HStack(){
+                            if searchActive && filterActive {
+                                Text("looks like nothing is working")
+                                    .font(Font.custom("Instrument Sans", size: 16))
+                                    .foregroundColor(Color("BodyCopy"))
+                                    .padding()
+                            }
+                            else if searchActive {
+                                Text("No results for search")
+                                    .font(Font.custom("Instrument Sans", size: 16))
+                                    .foregroundColor(Color("BodyCopy"))
+                                    .padding()
+                            }
+                            else if filterActive {
+                                Text("wrong filter woop woop")
+                                    .font(Font.custom("Instrument Sans", size: 16))
+                                    .foregroundColor(Color("BodyCopy"))
+                                    .padding()
+                            }
+                            else {
+                                Text("It looks like there aren't any tasks with the \"Not Started\" status. \n Add a task below!")
+                                    .font(Font.custom("Instrument Sans", size: 16))
+                                    .foregroundColor(Color("BodyCopy"))
+                                    .padding()
+                            }
+                            
+                        }
+                        .frame(maxHeight: 105)
+                        .frame(maxWidth: 280)
+                        .background(Color("BodyCopyReverse"))
+                        .cornerRadius(15)
+                        .shadow(color: .black.opacity(0.15), radius: 2, x: 0, y: 2)
+                        .overlay(
+                        RoundedRectangle(cornerRadius: 15)
+                        .inset(by: 0.5)
+                        .stroke(Color("BodyCopy"), lineWidth: 1)
+
+                        )
+                        .padding(.top, 220)
+                            
+                    }
+                    
+                    
+                }
                 
                 
                 if presentingSheet{
