@@ -162,7 +162,8 @@ struct FilterPickerModel: Identifiable {
 var pickers: [FilterPickerModel] {
     [
         FilterPickerModel(
-            parent: "Clear all filters",
+//            parent: "Clear all filters",
+            parent: "",
             children: [FilterOption(value: "All", label: "Clear all")]
         ),
         FilterPickerModel(
