@@ -439,28 +439,20 @@ struct TaskBankPage: View {
                                 presentingSheet=false
                             }
                         }
-                    
-                    //here is where you can apply filter if you want it to be applied after the popup is closed
-                    
-                    //            //TODO: would be nice to have this dark background
-                    ////                    Color.black.opacity(0.3)
-                    ////                        .edgesIgnoringSafeArea(.all)
-                    ////                        .onTapGesture {
-                    ////                            withAnimation {
-                    ////                                presentingSheet = false
-                    //                            }
-                    //                    Rectangle()
-                    //                        .frame(width: 100, height: 100)
-                    //                        .background(Color(.blue))
+
                     MultiplePickerView(selectedSensor: $selectedFilter)
-                        .frame(width: 350, height: 590)
+                        .frame(width: 310, height: 580)
                         .background(.ultraThinMaterial)
                     
                         .clipShape(RoundedRectangle(cornerRadius: 20))
                         .shadow(radius: 10)
-                        .padding(.bottom, 50)
-//                        .background(.blue)
+                        .padding(.bottom, 65)
+                        
                 }
+                    
+
+                
+                
 //                }.onChange(of: selectedFilter) {
 //                    
 //                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.30) {
@@ -471,6 +463,7 @@ struct TaskBankPage: View {
 //                    
 //                }
             }
+            
             .onAppear {
                 viewModel.removeOldTasks()
                 viewModel.loadAllTasks()

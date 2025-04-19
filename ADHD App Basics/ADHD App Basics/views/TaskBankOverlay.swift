@@ -432,7 +432,7 @@ struct TaskBankOverlay: View {
                                     .padding()
                             }
                             else {
-                                Text("It looks like there aren't any tasks with the \"Not Started\" status. \n Add a task below!")
+                                Text("It looks like there aren't any tasks with the \"Not Started\" status. \nAdd a task below!")
                                     .font(Font.custom("Instrument Sans", size: 16))
                                     .foregroundColor(Color("BodyCopy"))
                                     .padding()
@@ -470,11 +470,26 @@ struct TaskBankOverlay: View {
                         }
 
                     MultiplePickerView(selectedSensor: $selectedFilter)
-                        .frame(width: 350, height: 590)
+                        .frame(width: 310, height: 580)
                         .background(.ultraThinMaterial)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
                         .shadow(radius: 10)
+                        .padding(.bottom, 60)
                 }
+                
+                /**
+                       VStack {
+                           MultiplePickerView(selectedSensor: $selectedSensor)
+                               .frame(width: 310, height: 580)
+                               .background(.ultraThinMaterial)
+                               .clipShape(RoundedRectangle(cornerRadius: 20))
+                               .shadow(radius: 10)
+                       }
+                       .padding(.bottom, 90)
+                   }
+                   .transition(.move(edge: .bottom))
+                       
+                 */
 
             }
 //            .frame(height:600)

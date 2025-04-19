@@ -154,53 +154,72 @@ struct MultiplePickerView: View {
     @Binding var selectedSensor: String
 
     var body: some View {
-        Form {
-//            Text(selectedSensor)
-            
+        VStack{
 
-            ForEach(pickers) { picker in
-                Section(header: Text(picker.parent)) {
-                    Picker("", selection: $selectedSensor) {
-                        ForEach(picker.children.indices, id: \.self) { index in
-                            if picker.parent == "Status", let status = picker.children[index] as? Status {
-                                HStack (spacing: 3) {
-                                    Circle()
-                                        .fill(status.bodyColor)
-                                        .frame(width: 10, height: 10)
-                                    Text(status.name)
+        Form {
+            //            Text(selectedSensor)
+           
+                
+                ForEach(pickers) { picker in
+                    Section(header: Text(picker.parent)) {
+                        Picker("", selection: $selectedSensor) {
+                            ForEach(picker.children.indices, id: \.self) { index in
+                                if picker.parent == "Status", let status = picker.children[index] as? Status {
+                                    HStack (spacing: 3) {
+                                        Circle()
+                                            .fill(status.bodyColor)
+                                            .frame(width: 10, height: 10)
+                                            .padding(.horizontal,8)
+                                        Text(status.name)
+                                            .font(Font.custom("Helvetica", size: 14))
+                                    }
+                                    .tag( (status.name))
+                                } else if picker.parent == "Tag", let tag = picker.children[index] as? Tag {
+                                    HStack (spacing: 3){
+                                        Image(systemName: "tag")
+                                            .foregroundColor(tag.color)
+                                            .font(.system(size: 14))
+                                            .padding(.leading,3)
+                                            .padding(.trailing,8)
+                                        
+                                        Text(tag.name)
+                                            .font(Font.custom("Helvetica", size: 14))
+                                        
+                                    }
+                                    .tag((tag.name))
+                                } else if let all = picker.children[index] as? String {
+                                    HStack {
+                                        Text(all)
+                                    }.tag((all))
                                 }
-                                .tag( (status.name))
-                            } else if picker.parent == "Tag", let tag = picker.children[index] as? Tag {
-                                HStack (spacing: 3){
-                                    Image(systemName: "tag")
-                                        .foregroundColor(tag.color)
-                                    Text(tag.name)
-                                }
-                                .tag((tag.name))
-                            } else if let all = picker.children[index] as? String {
-                                HStack {
-                                    Text(all)
-                                }.tag((all))
-                                }
-                            
+                                
+                            }
                         }
+                        .pickerStyle(InlinePickerStyle())
+                        .labelsHidden()
+                        
                     }
-                    .pickerStyle(InlinePickerStyle())
-                    .labelsHidden()
+                    .listRowBackground(Color("FieldBackground"))
+                    
                     
                 }
+                .listRowInsets(EdgeInsets(top: 8, leading: 12, bottom: 4, trailing: 12))
                 
+                
+                // Less vertical space
+                //            .padding(.bottom, 0)
+                //                    .padding(.top)
+                //            .background(.orange)
             }
-            .listRowInsets(EdgeInsets(top: 2, leading: 15, bottom: 2, trailing: 15))
             
-            // Less vertical space
-//            .padding(.bottom, 0)
-//                    .padding(.top)
-//            .background(.orange)
+            
         }
-
-       
+       // .background(Color.green)
+        .scrollContentBackground(.hidden) // 👈 this hides Form's default background (iOS 16+)
+            .background(Color("MainForeground"))
+        
     }
+    
 }
 
 struct FilterPickerView: View {
@@ -233,12 +252,12 @@ struct FilterPickerView: View {
 
                     VStack {
                         MultiplePickerView(selectedSensor: $selectedSensor)
-                            .frame(width: 350, height: 600)
+                            .frame(width: 310, height: 580)
                             .background(.ultraThinMaterial)
                             .clipShape(RoundedRectangle(cornerRadius: 20))
                             .shadow(radius: 10)
                     }
-                    .padding(.bottom, 50)
+                    .padding(.bottom, 90)
                 }
                 .transition(.move(edge: .bottom))
             }
