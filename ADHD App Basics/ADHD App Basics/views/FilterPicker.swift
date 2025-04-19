@@ -226,6 +226,7 @@ struct MultiplePickerView: View {
                                     // For "Clear all" or basic options
                                     HStack {
                                         Text(child.label)
+                                            .font(Font.custom("Helvetica", size: 15))
                                     }
                                     .tag(child.value)
                                 }

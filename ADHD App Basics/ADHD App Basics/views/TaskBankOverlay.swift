@@ -385,7 +385,9 @@ struct TaskBankOverlay: View {
                     
                     
                 }
+                
                 .background(Color("MainBackground"))
+                
                 .onTapGesture {
                     searchIsFocused = false
                     withAnimation {
@@ -476,31 +478,19 @@ struct TaskBankOverlay: View {
                         .shadow(radius: 10)
                         .padding(.bottom, 60)
                 }
-                
-                /**
-                       VStack {
-                           MultiplePickerView(selectedSensor: $selectedSensor)
-                               .frame(width: 310, height: 580)
-                               .background(.ultraThinMaterial)
-                               .clipShape(RoundedRectangle(cornerRadius: 20))
-                               .shadow(radius: 10)
-                       }
-                       .padding(.bottom, 90)
-                   }
-                   .transition(.move(edge: .bottom))
-                       
-                 */
-
             }
-//            .frame(height:600)
+
             .clipShape(RoundedCorners(radius: 35, corners: [.topLeft, .topRight]))
+            
             .onAppear {
                 viewModel.loadAllTasks()
                 //this makes all tasks appears when this page is loaded.
             }
             
             
+            
             }
+        
             
     }
          
