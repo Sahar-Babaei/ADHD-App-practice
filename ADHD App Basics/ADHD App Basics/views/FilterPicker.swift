@@ -130,22 +130,52 @@ import SwiftUI
 //}
 //
 
+struct FilterOption: Identifiable {
+    var id = UUID()
+    var value: String
+    var label: String
+}
+
+
+
 struct FilterPickerModel: Identifiable {
     let id = UUID()
     var parent: String
-    var children: [Any] // Allows enums or strings
+    //var children: [Any] // Allows enums or strings
+    var children: [FilterOption]
 }
+
+//var pickers: [FilterPickerModel] {
+//    [
+//        FilterPickerModel(parent: "Clear all filters", children: ["All"]),
+//        FilterPickerModel(
+//            parent: "Status",
+//            children: Status.allCases.map { $0 } // Passing enums directly
+//        ),
+//        FilterPickerModel(
+//            parent: "Tag",
+//            children: Tag.allCases.map { $0 }
+//        )
+//    ]
+//}
 
 var pickers: [FilterPickerModel] {
     [
-        FilterPickerModel(parent: "Clear all filters", children: ["All"]),
+        FilterPickerModel(
+            parent: "Clear all filters",
+            children: [FilterOption(value: "All", label: "Clear all")]
+        ),
         FilterPickerModel(
             parent: "Status",
-            children: Status.allCases.map { $0 } // Passing enums directly
+            children: Status.allCases.map { status in
+                FilterOption(value: status.name, label: status.name)
+            }
         ),
         FilterPickerModel(
             parent: "Tag",
-            children: Tag.allCases.map { $0 }
+            children: Tag.allCases.map { tag in
+                FilterOption(value: tag.name, label: tag.name)
+            }
         )
     ]
 }
@@ -163,37 +193,78 @@ struct MultiplePickerView: View {
                 ForEach(pickers) { picker in
                     Section(header: Text(picker.parent)) {
                         Picker("", selection: $selectedSensor) {
-                            ForEach(picker.children.indices, id: \.self) { index in
-                                if picker.parent == "Status", let status = picker.children[index] as? Status {
-                                    HStack (spacing: 3) {
+                            
+                            ForEach(picker.children) { child in
+                                if picker.parent == "Status",
+                                   let status = Status.allCases.first(where: { $0.name == child.value }) {
+                                    
+                                    HStack(spacing: 3) {
                                         Circle()
                                             .fill(status.bodyColor)
                                             .frame(width: 10, height: 10)
-                                            .padding(.horizontal,8)
-                                        Text(status.name)
+                                            .padding(.horizontal, 8)
+                                        Text(child.label)
                                             .font(Font.custom("Helvetica", size: 14))
                                     }
-                                    .tag( (status.name))
-                                } else if picker.parent == "Tag", let tag = picker.children[index] as? Tag {
-                                    HStack (spacing: 3){
+                                    .tag(child.value)
+
+                                } else if picker.parent == "Tag",
+                                          let tag = Tag.allCases.first(where: { $0.name == child.value }) {
+
+                                    HStack(spacing: 3) {
                                         Image(systemName: "tag")
                                             .foregroundColor(tag.color)
                                             .font(.system(size: 14))
-                                            .padding(.leading,3)
-                                            .padding(.trailing,8)
-                                        
-                                        Text(tag.name)
+                                            .padding(.leading, 3)
+                                            .padding(.trailing, 8)
+                                        Text(child.label)
                                             .font(Font.custom("Helvetica", size: 14))
-                                        
                                     }
-                                    .tag((tag.name))
-                                } else if let all = picker.children[index] as? String {
+                                    .tag(child.value)
+
+                                } else {
+                                    // For "Clear all" or basic options
                                     HStack {
-                                        Text(all)
-                                    }.tag((all))
+                                        Text(child.label)
+                                    }
+                                    .tag(child.value)
                                 }
-                                
                             }
+
+                            
+                            
+//                            ForEach(picker.children.indices, id: \.self) { index in
+//                                if picker.parent == "Status", let status = picker.children[index] as? Status {
+//                                    HStack (spacing: 3) {
+//                                        Circle()
+//                                            .fill(status.bodyColor)
+//                                            .frame(width: 10, height: 10)
+//                                            .padding(.horizontal,8)
+//                                        Text(status.name)
+//                                            .font(Font.custom("Helvetica", size: 14))
+//                                    }
+//                                    
+//                                    .tag( (status.name))
+//                                } else if picker.parent == "Tag", let tag = picker.children[index] as? Tag {
+//                                    HStack (spacing: 3){
+//                                        Image(systemName: "tag")
+//                                            .foregroundColor(tag.color)
+//                                            .font(.system(size: 14))
+//                                            .padding(.leading,3)
+//                                            .padding(.trailing,8)
+//                                        
+//                                        Text(tag.name)
+//                                            .font(Font.custom("Helvetica", size: 14))
+//                                        
+//                                    }
+//                                    .tag((tag.name))
+//                                } else if let all = picker.children[index] as? String {
+//                                    HStack {
+//                                        Text(all)
+//                                    }.tag((all))
+//                                }
+//                                
+//                            }
                         }
                         .pickerStyle(InlinePickerStyle())
                         .labelsHidden()
