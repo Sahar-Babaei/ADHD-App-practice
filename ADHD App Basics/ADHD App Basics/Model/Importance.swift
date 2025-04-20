@@ -21,13 +21,13 @@ enum Importance : Codable, CaseIterable {
         
     }
     
-//    var color : Color {
-//        switch self {
-//            case .asap: return Color("TagTeal")
-//            case .soon: return Color("TagOrange")
-//            case .wait: return Color("TagIndigo")
-//        }
-//        
-//    }
+    var color : Color {
+        switch self {
+        case .asap: return Color(.red)
+        case .soon: return Color(.green)
+        case .wait: return Color(.blue)
+        }
+        
+    }
     
 }
