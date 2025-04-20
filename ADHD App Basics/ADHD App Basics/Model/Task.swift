@@ -28,6 +28,7 @@ class Task: Codable {
     var notes: String = ""
     var isCompleted: Bool = false
     var status: Status = .notStarted
+    var importance: Importance = .asap
     var creationDate : Date = Date()
     var completionDate : Date? = nil // Optional date for when the task is completed
     var taskAssignment: TaskAssignment? = nil
@@ -40,6 +41,7 @@ class Task: Codable {
             case notes = "task_notes"
             case isCompleted = "task_completed"
             case status = "task_status"
+            case importance = "task_importance"
             case creationDate = "task_creation_date"
             case completionDate = "task_completion_date"
             case taskAssignment = "task_assignment"
