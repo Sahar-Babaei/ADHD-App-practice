@@ -49,7 +49,7 @@ struct TaskCard: View {
                             .font(Font.custom("Helvetica", size: 13))
                             .foregroundColor(fTask.tag.color)
                     }
-                   // .background(.yellow)
+                    // .background(.yellow)
                     
                     Spacer()
                     
@@ -77,16 +77,16 @@ struct TaskCard: View {
                                 .font(.body)
                                 .padding(.leading,15)
                                 .padding(.trailing,3)
-                                //.padding(.vertical,12)
+                            //.padding(.vertical,12)
                                 .padding(.top,6)
                                 .padding(.bottom,8)
-                                
-                           
+                            
+                            
                                 .foregroundColor(Color("BodyCopy"))
                             
                         }
-                       // .background(.pink)
-
+                        // .background(.pink)
+                        
                         .confirmationDialog("Are you sure you want to delete this task?",
                                             isPresented: $showDeleteConfirmation,
                                             titleVisibility: .visible
@@ -112,32 +112,47 @@ struct TaskCard: View {
                     .foregroundColor(Color("BodyCopy"))
                     .lineLimit(2)
                     .truncationMode(.tail)
-                    
-                    
+                
+                
                 
                 
             }
-         //   .background(.green)
+            //   .background(.green)
             
             Spacer()
             
-            //status
-            HStack(alignment: .center, spacing: 5) {
-                Circle()
-                    .fill(fTask.status.bodyColor)
-                    .frame(width: 8, height: 8)
+            //staus and importance
+            VStack(alignment:.leading, spacing: 8){
+                HStack(spacing:4){
+                    
+//                    Image(systemName: "tag")
+//                        .font(.system(size: 13))
+//                        .foregroundColor(fTask.tag.color)
+                    
+                    Text(fTask.importance.name)
+                        .font(Font.custom("Helvetica", size: 13))
+                        .foregroundColor(fTask.importance.color)
+                }
                 
-                Text(fTask.status.name)
-                    .font(Font.custom("Helvetica", size: 14))
-                    .foregroundColor(fTask.status.bodyColor)
+                
+                //status
+                HStack(alignment: .center, spacing: 5) {
+                    Circle()
+                        .fill(fTask.status.bodyColor)
+                        .frame(width: 8, height: 8)
+                    
+                    Text(fTask.status.name)
+                        .font(Font.custom("Helvetica", size: 14))
+                        .foregroundColor(fTask.status.bodyColor)
+                }
+                .padding(.leading, 8)
+                .padding(.trailing, 12)
+                .padding(.vertical, 4)
+                .background(fTask.status.backgroundColor)
+                .cornerRadius(15)
+                //  .background(.blue)
+                
             }
-            .padding(.leading, 8)
-            .padding(.trailing, 12)
-            .padding(.vertical, 4)
-            .background(fTask.status.backgroundColor)
-            .cornerRadius(15)
-          //  .background(.blue)
-            
         }
         
         .frame(height:chosenHeight)

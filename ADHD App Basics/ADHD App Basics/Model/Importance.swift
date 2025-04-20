@@ -9,14 +9,15 @@ import Foundation
 import SwiftUICore
 
 enum Importance : Codable, CaseIterable {
-    case asap, soon, wait
+    case asap, soon, wait ,none
     
     var name : String {
         switch self {
-            case .asap: return "Do asap"
-            case .soon: return "Do Soon"
-            case .wait: return "Can Wait"
-
+        case .asap: return "Do asap"
+        case .soon: return "Do Soon"
+        case .wait: return "Can Wait"
+        case .none: return "none"
+            
         }
         
     }
@@ -25,7 +26,8 @@ enum Importance : Codable, CaseIterable {
         switch self {
         case .asap: return Color(.red)
         case .soon: return Color(.green)
-        case .wait: return Color(.blue)
+        case .wait: return Color(.gray)
+        case .none: return Color("BodyCopy")
         }
         
     }
