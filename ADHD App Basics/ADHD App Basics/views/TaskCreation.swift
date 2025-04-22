@@ -12,6 +12,7 @@ struct TaskCreation: View {
     //keep track of overlay expansion
     @State private var selectedStatus: Status = .notStarted // New state for status
     @State private var selectedTag: Tag = .none
+    @State private var selectedImportance: Importance = .none
     @State private var selectedPriority: Priority = .niceToDo
     //@Binding var selectedPriority: Priority
     @State private var showExpanded: Bool = false
@@ -111,6 +112,21 @@ struct TaskCreation: View {
                         }
                         .padding(.vertical,20)
                         
+                        
+                        //importance
+                        VStack (alignment: .leading) {
+                            Text("Importance")
+                                .font(Font.custom("Instrument Sans", size: 14)) // Set the custom font
+                                .fontWeight(.regular) // Apply weight separately
+                            
+                            //tag dropdown menu that passes in the dropdown's tag value
+                            ImportanceDropDownMenu(selectedImportance: $selectedImportance)
+                            
+                            
+                        }
+                        .padding(.vertical,20)
+                        
+                        
                         //status
                         
                         
@@ -205,6 +221,21 @@ struct TaskCreation: View {
                                 }
                             }
                             
+                            //Importance:
+                            Button (action: {
+                                showExpanded = true
+                            }){
+                                //tag
+                                HStack(spacing:2){
+                                    
+                                   
+                                    
+                                    Text(selectedImportance.name)
+                                        .font(Font.custom("Helvetica", size: 13))
+                                        .foregroundColor(selectedImportance.color)
+                                }
+                            }
+                            
                         }
                     }
                     // .padding(.bottom)
@@ -294,6 +325,7 @@ struct TaskCreation: View {
 
                     viewModel.fTask.tag = selectedTag
                     viewModel.fTask.status = selectedStatus
+                    viewModel.fTask.importance = selectedImportance
            
                     let tasksAlreadyInTodaysPriority = storageViewModel.getTodaysTaskForPriority(priority: selectedPriority)
                     
