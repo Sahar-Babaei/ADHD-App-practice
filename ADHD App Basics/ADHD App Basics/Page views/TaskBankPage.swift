@@ -38,6 +38,9 @@ struct TaskBankPage: View {
     
     @FocusState private var searchIsFocused: Bool
     
+    @State var searchActive: Bool = false
+    @State var filterActive: Bool = false
+    
 //    private var selectCardGesture: some Gesture {
 //        isSelectionMode ? (TapGesture().onEnded { counter += 1 }) : nil
 //    }
@@ -214,6 +217,9 @@ struct TaskBankPage: View {
                                 .padding(.horizontal)
                                 .foregroundColor(Color("FiltersBodycopy"))
                                 .focused($searchIsFocused)
+                                .onChange(of: searchText) { oldValue, newValue in
+                                    searchActive = !newValue.isEmpty
+                                }
 
                             
     //                        Text("search")
@@ -383,7 +389,7 @@ struct TaskBankPage: View {
 //                    searchIsFocused = false
                 }
                 .onChange(of: selectedFilter) {
-    
+                    filterActive = selectedFilter != "All"
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.30) {
                             withAnimation(.easeInOut(duration: 0.35)){
                                 presentingSheet = false
@@ -393,7 +399,7 @@ struct TaskBankPage: View {
                 
                 }
                 
-                if viewModel.allTasksList.isEmpty{
+                if filteredItems.isEmpty{
                     ZStack{
                         Image("DoDudePointDown")
                             .resizable()
@@ -401,11 +407,33 @@ struct TaskBankPage: View {
                             .frame(width: 150, height: 150)
                             .padding()
                         
+                        
                         HStack(){
-                            Text("Let's get to it! Add your first task with the + button below")
-                                .font(Font.custom("Instrument Sans", size: 16))
-                                .foregroundColor(Color("BodyCopy"))
-                                .padding()
+//                            HStack(){
+                                if searchActive && filterActive {
+                                    Text("looks like nothing is working")
+                                        .font(Font.custom("Instrument Sans", size: 16))
+                                        .foregroundColor(Color("BodyCopy"))
+                                        .padding()
+                                }
+                                else if searchActive {
+                                    Text("No results for search")
+                                        .font(Font.custom("Instrument Sans", size: 16))
+                                        .foregroundColor(Color("BodyCopy"))
+                                        .padding()
+                                }
+                                else if filterActive {
+                                    Text("wrong filter woop woop")
+                                        .font(Font.custom("Instrument Sans", size: 16))
+                                        .foregroundColor(Color("BodyCopy"))
+                                        .padding()
+                                }
+                                else {
+                                    Text("It looks like there aren't any tasks with the \"Not Started\" status. \nAdd a task below!")
+                                        .font(Font.custom("Instrument Sans", size: 16))
+                                        .foregroundColor(Color("BodyCopy"))
+                                        .padding()
+                                }
                         }
                         .frame(maxHeight: 75)
                         .frame(maxWidth: 280)
