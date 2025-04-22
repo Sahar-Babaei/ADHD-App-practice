@@ -128,10 +128,12 @@ struct TaskCard: View {
 //                    Image(systemName: "tag")
 //                        .font(.system(size: 13))
 //                        .foregroundColor(fTask.tag.color)
+                    if fTask.importance.name != "none"{
+                        Text(fTask.importance.name)
+                            .font(Font.custom("Helvetica", size: 13))
+                            .foregroundColor(fTask.importance.color)
+                    }
                     
-                    Text(fTask.importance.name)
-                        .font(Font.custom("Helvetica", size: 13))
-                        .foregroundColor(fTask.importance.color)
                 }
                 
                 
