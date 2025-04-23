@@ -82,6 +82,7 @@ func getTaskNameOverride(tag:Tag) -> String {
 
 func addNameOverrideToUserDefaults(tag: Tag, name: String) {
     var existingOverrides = retrieveNameOverridesFromUserDefaults()
+    existingOverrides.removeAll { $0.tag.name == tag.name } //clear old overrides (remember to get rid of the potato)
     let nameOverride = NameOverride(tag:tag, name:name)
     existingOverrides.append(nameOverride)
     

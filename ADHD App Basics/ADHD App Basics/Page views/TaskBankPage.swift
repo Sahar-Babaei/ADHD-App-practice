@@ -496,6 +496,7 @@ struct TaskBankPage: View {
                 viewModel.removeOldTasks()
                 viewModel.loadAllTasks()
                 //this makes all tasks appears when this page is loaded.
+                //go through tasks,check the assigned date and compare to today, if the date doesn't match, remove the status of "planned for today" and assignment. then save it again :)
             }
             
             
