@@ -58,6 +58,39 @@ func retrieveTasksFromUserDefaults() -> [Task] {
     return []
 }
 
+func retrieveNameOverridesFromUserDefaults() -> [NameOverride] {
+    if let savedData = UserDefaults.standard.data(forKey: "tag_name_override") {
+        let decoder = JSONDecoder()
+        if let loadedUserDetails = try? decoder.decode([NameOverride].self, from: savedData) {
+            return loadedUserDetails
+        }
+    }
+    return []
+}
+
+func getTaskNameOverride(tag:Tag) -> String {
+    if let savedData = UserDefaults.standard.data(forKey: "tag_name_override") {
+        let decoder = JSONDecoder()
+        //if a name override exists for the tag
+        if let loadedUserDetails = try? decoder.decode([NameOverride].self, from: savedData) {
+            return loadedUserDetails.first { $0.tag.name == tag.name}?.name ?? tag.name
+        }
+    }
+    return tag.name
+    
+}
+
+func addNameOverrideToUserDefaults(tag: Tag, name: String) {
+    var existingOverrides = retrieveNameOverridesFromUserDefaults()
+    let nameOverride = NameOverride(tag:tag, name:name)
+    existingOverrides.append(nameOverride)
+    
+    let encoder = JSONEncoder()
+    if let encoded = try? encoder.encode(existingOverrides) {
+        UserDefaults.standard.set(encoded, forKey: "tag_name_override")
+    }
+}
+
 //Returns nil if it failed to find the task
 func retrieveTaskFromUserDefaults(taskID: String) -> Task? {
     if let savedData = UserDefaults.standard.data(forKey: "user_tasks") {

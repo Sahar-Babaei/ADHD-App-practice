@@ -322,7 +322,9 @@ struct TaskCreation: View {
                 
                 //add Task button
                 Button(action: {
-
+                    
+                    storageViewModel.addTagNameOverride(tag: .work , name: "potato")
+                    
                     viewModel.fTask.tag = selectedTag
                     viewModel.fTask.status = selectedStatus
                     viewModel.fTask.importance = selectedImportance

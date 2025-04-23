@@ -40,12 +40,13 @@ struct TaskCard: View {
                     
                     //tag
                     HStack(spacing:4){
+                       
                         
                         Image(systemName: "tag")
                             .font(.system(size: 13))
                             .foregroundColor(fTask.tag.color)
                         
-                        Text(fTask.tag.name)
+                        Text(getTaskNameOverride(tag: fTask.tag))
                             .font(Font.custom("Helvetica", size: 13))
                             .foregroundColor(fTask.tag.color)
                     }

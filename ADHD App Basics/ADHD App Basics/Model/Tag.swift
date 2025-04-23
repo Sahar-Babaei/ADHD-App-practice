@@ -8,6 +8,17 @@
 import Foundation
 import SwiftUICore
 
+class NameOverride  : Codable {
+    var tag : Tag
+    var name : String
+    
+    init(tag: Tag, name: String) {
+        self.tag = tag
+        self.name = name
+    }
+    
+}
+
 enum Tag : Codable, CaseIterable {
     case school, life, misc, work, hobby, none
     

@@ -108,6 +108,10 @@ class TaskBankViewModel: ObservableObject {
         }
     }
     
+    func addTagNameOverride(tag: Tag, name: String){
+        addNameOverrideToUserDefaults(tag: tag, name: name)
+    }
+    
     func getTodaysTaskForPriority(priority: Priority) -> [Task] {
         let calendar = Calendar.current
         let todaysDate = Date()
