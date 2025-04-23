@@ -24,7 +24,8 @@ class Task: Codable {
     
     var ID = UUID()
     //var fTaskCategory : [String] = ["No category"]
-    var tag : Tag = .none
+//    var tag : Tag = .none
+    var tag: Tag = Tag(type: .none)
     var notes: String = ""
     var isCompleted: Bool = false
     var status: Status = .notStarted

@@ -11,7 +11,7 @@ struct TaskEdition: View {
     
     //keep track of overlay expansion
     @State private var selectedStatus: Status = .notStarted // New state for status
-    @State private var selectedTag: Tag = .none
+    @State private var selectedTag: Tag = Tag(type: .none)
     @State private var selectedPriority: Priority = .niceToDo
     @State private var showExpanded: Bool = true
     @State private var hasUserSelectedPriority = false

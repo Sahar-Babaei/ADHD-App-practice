@@ -8,10 +8,16 @@
 import SwiftUI
 
 struct TagDropDownMenu: View {
-    
-    @State private var isExpanded: Bool = false
+    @State private var isExpanded = false
     @Binding var selectedTag: Tag
-    
+    @State private var editingTagID: UUID?
+    @State private var editedName: String = ""
+
+    // Sample tags you might store in a view model or as static defaults
+    @State private var availableTags: [Tag] = Tag.TagType.allCases.map {
+        Tag(type: $0)
+    }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             Button(action: {
@@ -20,89 +26,79 @@ struct TagDropDownMenu: View {
                 }
             }) {
                 HStack {
-                    HStack(alignment: .center) {
-                        Image(systemName: "tag")
-                            .foregroundColor(selectedTag.color)
-                        Text(selectedTag.name) // Display selected status
-                            .font(Font.custom("Helvetica", size: 15))
-                            .foregroundColor(selectedTag.color)
-                    }
+                    Image(systemName: "tag")
+                        .foregroundColor(selectedTag.color)
+                    Text(selectedTag.name)
+                        .font(Font.custom("Helvetica", size: 15))
+                        .foregroundColor(selectedTag.color)
                     Spacer()
-                    
                     Image(systemName: isExpanded ? "chevron.down" : "chevron.right")
                         .foregroundColor(Color("GreyStatusBody"))
                         .padding(6)
                 }
                 .padding()
                 .frame(maxWidth: .infinity)
-                
                 .background(Color("FieldBackground"))
                 .cornerRadius(12)
-                
-                .overlay(
-                    Rectangle()
-                        .frame(height: 1)
-                        .foregroundColor(isExpanded ? Color("BodyCopy").opacity(0.2): Color(.clear)),
-                    alignment: .bottom
-                )
             }
             .buttonStyle(PlainButtonStyle())
-            
-            if isExpanded {
-                ForEach(Tag.allCases, id: \.self) { tag in
-//                    ZStack(alignment: .leading){
-//                        Rectangle()
-//                            .fill(.clear)
-//                            .frame(width:.infinity, height: 40)
-//                            .padding(0)
-                        HStack(alignment: .center) {
 
-                            Image(systemName: "tag")
-                                .font(.system(size: 14))
-                                .foregroundColor(tag.color)
-                            Text(tag.name) // Use enum-defined name
-                                .font(Font.custom("Helvetica", size: 14))
-                                .foregroundColor(tag.color)
+            if isExpanded {
+                ForEach($availableTags, id: \.id) { $tag in
+                    VStack(alignment: .leading) {
+                        if editingTagID == tag.id {
+                            HStack {
+                                TextField("Enter name", text: $editedName)
+                                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                                Button("Save") {
+                                    tag.customName = editedName
+                                    editingTagID = nil
+                                }
+                            }
+                            .padding(.horizontal)
+                        } else {
+                            HStack {
+                                Image(systemName: "tag")
+                                    .font(.system(size: 14))
+                                    .foregroundColor(tag.color)
+                                Text(tag.name)
+                                    .font(Font.custom("Helvetica", size: 14))
+                                    .foregroundColor(tag.color)
+
+                                Spacer()
+                                Button(action: {
+                                    editedName = tag.name
+                                    editingTagID = tag.id
+                                }) {
+                                    Image(systemName: "pencil")
+                                        .foregroundColor(.gray)
+                                }
+                            }
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                selectedTag = tag
+                                isExpanded = false
+                            }
                         }
-                        .padding(.leading, 8)
-                        .padding(.trailing, 12)
-                        .padding(.vertical, 1)
-                         // Use enum-defined background color
-                        
-                        .frame(maxWidth: .infinity, maxHeight:40, alignment: .leading)
-                        .background(.clear)
-                        .cornerRadius(12)
-                        .padding(.leading, 20)
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            selectedTag = tag
-                            isExpanded = false
                     }
-                    //.transition(.opacity.combined(with: .slide))
-                    
-//                    }
-                    
-                    //.padding(.vertical, 4)
-                    .padding(.top,5)
-                    .padding(.bottom,5)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 4)
                 }
-                .padding(.bottom,6)
+                .padding(.bottom, 6)
             }
-            
         }
-        //.background(Color.gray.opacity(0.1))
         .background(Color("FieldBackground"))
         .cornerRadius(12)
-        
     }
 }
 
 // Test View
 struct aView: View {
-    @State private var selectedTag: Tag = .none // Define a state variable
+    @State private var selectedTag: Tag = Tag(type: .none)
+
     var body: some View {
         VStack(spacing: 20) {
-            TagDropDownMenu(selectedTag: $selectedTag) // Pass as binding
+            TagDropDownMenu(selectedTag: $selectedTag)
         }
         .padding()
     }
@@ -113,4 +109,5 @@ struct aView_Previews: PreviewProvider {
         aView()
     }
 }
+
 

@@ -162,7 +162,6 @@ struct FilterPickerModel: Identifiable {
 var pickers: [FilterPickerModel] {
     [
         FilterPickerModel(
-//            parent: "Clear all filters",
             parent: "",
             children: [FilterOption(value: "All", label: "Clear all")]
         ),
@@ -174,27 +173,25 @@ var pickers: [FilterPickerModel] {
         ),
         FilterPickerModel(
             parent: "Tag",
-            children: Tag.allCases.map { tag in
-                FilterOption(value: tag.name, label: tag.name)
-            }
-        )
+            // Use TagType.allCases instead of Tag.allCases
+            children: Tag.TagType.allCases.map { tagType in
+                // Create a Tag for each TagType
+                let tag = Tag(type: tagType)
+                return FilterOption(value: tag.name, label: tag.name)
+            })
     ]
 }
+
 
 struct MultiplePickerView: View {
     @Binding var selectedSensor: String
 
     var body: some View {
-        VStack{
-
-        Form {
-            //            Text(selectedSensor)
-           
-                
+        VStack {
+            Form {
                 ForEach(pickers) { picker in
                     Section(header: Text(picker.parent)) {
                         Picker("", selection: $selectedSensor) {
-                            
                             ForEach(picker.children) { child in
                                 if picker.parent == "Status",
                                    let status = Status.allCases.first(where: { $0.name == child.value }) {
@@ -210,7 +207,11 @@ struct MultiplePickerView: View {
                                     .tag(child.value)
 
                                 } else if picker.parent == "Tag",
-                                          let tag = Tag.allCases.first(where: { $0.name == child.value }) {
+                                          // Use TagType.allCases instead of Tag.allCases
+                                          let tagType = Tag.TagType.allCases.first(where: { $0.rawValue == child.value }) {
+                                    
+                                    // Create Tag instance using tagType
+                                    let tag = Tag(type: tagType)
 
                                     HStack(spacing: 3) {
                                         Image(systemName: "tag")
@@ -232,68 +233,20 @@ struct MultiplePickerView: View {
                                     .tag(child.value)
                                 }
                             }
-
-                            
-                            
-//                            ForEach(picker.children.indices, id: \.self) { index in
-//                                if picker.parent == "Status", let status = picker.children[index] as? Status {
-//                                    HStack (spacing: 3) {
-//                                        Circle()
-//                                            .fill(status.bodyColor)
-//                                            .frame(width: 10, height: 10)
-//                                            .padding(.horizontal,8)
-//                                        Text(status.name)
-//                                            .font(Font.custom("Helvetica", size: 14))
-//                                    }
-//                                    
-//                                    .tag( (status.name))
-//                                } else if picker.parent == "Tag", let tag = picker.children[index] as? Tag {
-//                                    HStack (spacing: 3){
-//                                        Image(systemName: "tag")
-//                                            .foregroundColor(tag.color)
-//                                            .font(.system(size: 14))
-//                                            .padding(.leading,3)
-//                                            .padding(.trailing,8)
-//                                        
-//                                        Text(tag.name)
-//                                            .font(Font.custom("Helvetica", size: 14))
-//                                        
-//                                    }
-//                                    .tag((tag.name))
-//                                } else if let all = picker.children[index] as? String {
-//                                    HStack {
-//                                        Text(all)
-//                                    }.tag((all))
-//                                }
-//                                
-//                            }
                         }
                         .pickerStyle(InlinePickerStyle())
                         .labelsHidden()
-                        
                     }
                     .listRowBackground(Color("FieldBackground"))
-                    
-                    
                 }
                 .listRowInsets(EdgeInsets(top: 8, leading: 12, bottom: 4, trailing: 12))
-                
-                
-                // Less vertical space
-                //            .padding(.bottom, 0)
-                //                    .padding(.top)
-                //            .background(.orange)
             }
-            
-            
         }
-       // .background(Color.green)
         .scrollContentBackground(.hidden) // 👈 this hides Form's default background (iOS 16+)
-            .background(Color("MainForeground"))
-        
+        .background(Color("MainForeground"))
     }
-    
 }
+
 
 struct FilterPickerView: View {
     @State private var selectedSensor: String = "no sensor selected"
