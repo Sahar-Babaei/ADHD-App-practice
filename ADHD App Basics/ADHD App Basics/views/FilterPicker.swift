@@ -177,11 +177,20 @@ var pickers: [FilterPickerModel] {
             children: Tag.allCases.map { tag in
                 FilterOption(value: tag.name, label: tag.name)
             }
+        ),
+        FilterPickerModel(
+            parent: "Importance",
+            children: Importance.allCases.map { importance in
+                FilterOption(value: importance.name, label: importance.name)
+            }
         )
     ]
 }
 
 struct MultiplePickerView: View {
+    
+//    @Binding var selectedSensors: Set<String>
+    
     @Binding var selectedSensor: String
 
     var body: some View {
@@ -227,7 +236,7 @@ struct MultiplePickerView: View {
                                     // For "Clear all" or basic options
                                     HStack {
                                         Text(child.label)
-                                            .font(Font.custom("Helvetica", size: 15))
+                                            .font(Font.custom("Helvetica", size: 14))
                                     }
                                     .tag(child.value)
                                 }
@@ -336,16 +345,16 @@ struct FilterPickerView: View {
             }
         }
         .background(.yellow)
-        .onChange(of: selectedSensor) {
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.30) {
-                withAnimation(.easeInOut(duration: 0.35)){
-                    showOverlay = false
-                }
-                selectedSensor = "no sensor selected"
-            }
-            
-        }
+//        .onChange(of: selectedSensor) {
+//            
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.30) {
+//                withAnimation(.easeInOut(duration: 0.35)){
+//                    showOverlay = false
+//                }
+//                selectedSensor = "no sensor selected"
+//            }
+//            
+//        }
         
     }
 }

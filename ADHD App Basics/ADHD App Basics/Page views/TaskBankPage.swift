@@ -423,7 +423,7 @@ struct TaskBankPage: View {
                                         .padding()
                                 }
                                 else if filterActive {
-                                    Text("wrong filter woop woop")
+                                    Text("Oops! It looks like there aren't any tasks with this filter.")
                                         .font(Font.custom("Instrument Sans", size: 16))
                                         .foregroundColor(Color("BodyCopy"))
                                         .padding()
