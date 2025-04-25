@@ -72,7 +72,7 @@ class TaskBankViewModel: ObservableObject {
     }
     
     private func isOlderThan30Days(_ date: Date) -> Bool {
-        guard let thirtyDaysAgo = Calendar.current.date(byAdding: .day, value: -1, to: Date()) else {
+        guard let thirtyDaysAgo = Calendar.current.date(byAdding: .day, value: -31, to: Date()) else {
             return false
         }
         return date < thirtyDaysAgo
