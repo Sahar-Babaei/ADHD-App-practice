@@ -8,8 +8,32 @@
 import SwiftUI
 import Foundation
 
+enum AppearanceOption: String, CaseIterable, Identifiable {
+    case system = "System"
+    case light = "Light"
+    case dark = "Dark"
+
+    var id: String { self.rawValue }
+
+    var colorScheme: ColorScheme? {
+        switch self {
+        case .system:
+            return nil
+        case .light:
+            return .light
+        case .dark:
+            return .dark
+        }
+    }
+}
+
+
+
+
 struct ContentView: View {
     
+    @AppStorage("selectedAppearance") private var selectedAppearance: AppearanceOption = .system
+
     @State private var selectedTab = 1
     // variable for changing tabs
     @State private var showTaskCreationOverlay: Bool = false
@@ -412,7 +436,9 @@ struct ContentView: View {
             }
             
         }
+        .preferredColorScheme(selectedAppearance.colorScheme)
     }
+    
 }
 
 
