@@ -68,7 +68,7 @@ struct ContentView: View {
                         })
                         
                     case 3:
-                        SettingsPage()
+                        SettingsPage(storageViewModel: TaskBankViewModel())
                     case 4:
                         Text ("this is tab 4 lol lol lol lol")
                     default: //if we do an enum, the default is not necessary. only for ints
