@@ -94,14 +94,33 @@ import SwiftUI
 //        
 //    }
 //}
+struct TagRenamingRow: View {
+    let tag: Tag
+    @Binding var customName: String
+
+    var body: some View {
+        HStack {
+            Image(systemName: "tag.fill")
+                .foregroundColor(tag.color)
+            Text(tag.name) // Original name shown for clarity
+                .foregroundColor(.secondary)
+            Spacer()
+            TextField("Custom name", text: $customName)
+                .textFieldStyle(.roundedBorder)
+                .frame(width: 150)
+        }
+    }
+}
 
 
 struct SettingsPage: View {
+    @ObservedObject var storageViewModel: TaskBankViewModel
     @AppStorage("selectedAppearance") private var selectedAppearance: AppearanceOption = .system
 
     var body: some View {
         NavigationView {
             Form {
+                // Appearance Section
                 Section(header: Text("Appearance")) {
                     Picker("Appearance", selection: $selectedAppearance) {
                         ForEach(AppearanceOption.allCases) { option in
@@ -111,7 +130,25 @@ struct SettingsPage: View {
                     .pickerStyle(SegmentedPickerStyle())
                 }
 
-                // Your existing settings content
+                // Tag Renaming Section
+                Section(header: Text("Rename Tags")) {
+                    ForEach(Tag.allCases, id: \.self) { tag in
+                        TagRenamingRow(
+                            tag: tag,
+                            customName: Binding(
+                                get: {
+                                    storageViewModel.getTagNameOverride(tag: tag)
+                                    //storageViewModel.tagNameOverrides.first(where: { $0.tag == tag })?.name ?? ""
+                                },
+                                set: { newValue in
+                                    storageViewModel.addTagNameOverride(tag: tag, name: newValue)
+
+                                   // storageViewModel.saveTagNameOverrides()
+                                }
+                            )
+                        )
+                    }
+                }
             }
             .navigationTitle("Settings")
         }
@@ -119,8 +156,9 @@ struct SettingsPage: View {
 }
 
 
+
 #Preview {
-    SettingsPage()
+    SettingsPage(storageViewModel: TaskBankViewModel())
 }
 
 

@@ -60,7 +60,7 @@ struct TagDropDownMenu: View {
                             Image(systemName: "tag")
                                 .font(.system(size: 14))
                                 .foregroundColor(tag.color)
-                            Text(tag.name) // Use enum-defined name
+                            Text(getTaskNameOverride(tag:tag)) // Use enum-defined name
                                 .font(Font.custom("Helvetica", size: 14))
                                 .foregroundColor(tag.color)
                         }
