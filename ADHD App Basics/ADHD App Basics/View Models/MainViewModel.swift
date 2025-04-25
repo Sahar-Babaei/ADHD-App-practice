@@ -14,6 +14,8 @@ class MainViewModel: ObservableObject {
     @Published var editionToastVisible: Bool = false
     @Published var nameErrorToastVisible: Bool = false
     
+
+    
     
     func startToast() {
         creationToastVisible = true
