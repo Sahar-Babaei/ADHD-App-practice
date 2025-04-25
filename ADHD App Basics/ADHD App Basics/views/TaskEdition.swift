@@ -287,7 +287,10 @@ struct TaskEdition: View {
                                 let newlyEditedTask = viewModel.createTask(with:selectedPriority)
                                 self.onComplete(true)
                                                                 
-                                if let a = newlyEditedTask {
+                                if var a = newlyEditedTask {
+                                    if a.status == .notStarted {
+                                        a.taskAssignment = nil
+                                    }
                                     storageViewModel.updateTask(a)
                                     
                                 }
@@ -304,8 +307,12 @@ struct TaskEdition: View {
                             self.onComplete(true)
                             
                             
-                            if let a = newlyEditedTask {
+                            if var a = newlyEditedTask {
+                                if a.status == .notStarted {
+                                    a.taskAssignment = nil
+                                }
                                 storageViewModel.updateTask(a)
+                                
                             }
                         }
                     }
